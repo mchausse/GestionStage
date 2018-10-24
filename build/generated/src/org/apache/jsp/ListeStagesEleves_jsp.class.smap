@@ -5,10 +5,14 @@ JSP
 *F
 + 0 ListeStagesEleves.jsp
 ListeStagesEleves.jsp
-+ 1 footer.jsp
++ 1 navBar.jsp
+navBar.jsp
++ 2 footer.jsp
 footer.jsp
 *L
-5,67:49
-5#1,8:116
-71#0,7:123
+5,18:50
+5#1,35:68
+22#0,23:102
+5#2,8:125
+44#0,7:132
 *E
