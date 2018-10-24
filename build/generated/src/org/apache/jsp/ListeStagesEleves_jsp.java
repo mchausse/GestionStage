@@ -104,10 +104,24 @@ public final class ListeStagesEleves_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\n");
       out.write("        <!-- Contenu de la page -->\n");
       out.write("        <div class=\"container-fluid\" id=\"contenuPage\">\n");
-      out.write("            <!-- Section de recherche par competances -->\n");
+      out.write("            <!-- Section de recherche par competences -->\n");
       out.write("            <div class=\"row\">\n");
-      out.write("                <div class=\"col-lg-12\">\n");
+      out.write("                <div class=\"col-lg-6\">\n");
       out.write("                    <h2>Recherche par compétences</h2>\n");
+      out.write("                </div>\n");
+      out.write("                <div class=\"col-lg-6\">\n");
+      out.write("                    <ul class=\"dropdown-menu\">\n");
+      out.write("                        <li class=\"dropdown-item px-2\">php</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">html</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">java</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">c</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">c++</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">c#</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">python</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">VB</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">java EE</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">ruby</li>\n");
+      out.write("                    </ul>\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("            <!-- Fin de section de recherche par competances -->\n");
@@ -118,6 +132,7 @@ public final class ListeStagesEleves_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                    <h2>Recherche par mots-clés</h2>\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
+      out.write("            <!-- Fin de la section de recherche des stages -->\n");
       out.write("        </div>\n");
       out.write("\n");
       out.write("        <!-- Footer -->\n");
@@ -131,8 +146,6 @@ public final class ListeStagesEleves_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("</footer>\r\n");
       out.write("\n");
       out.write("        <!-- Fin footer -->\n");
-      out.write("        <script>\n");
-      out.write("        </script>\n");
       out.write("    </body>\n");
       out.write("</html> \n");
     } catch (Throwable t) {
