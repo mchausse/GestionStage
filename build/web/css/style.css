@@ -1,0 +1,15 @@
+#contenuPage{
+	margin:8em 1em 1em 1em;
+}
+.lienBarreTitre{
+	font-size: 32px;
+	margin-right:2em;
+}
+.lienBarre{
+	font-size: 27px;
+}
+.lienImageBarre{
+	background-image: url("../images/logoCegep.png");
+	width:80px;
+	height:85px;
+}

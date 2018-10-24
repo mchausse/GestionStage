@@ -1,3 +1,11 @@
+<%-- 
+    Document   : ListeStagesEleves
+    Created on : Oct 24, 2018, 10:26:06 AM
+    Author     : mchausse
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Stages | Accueil</title>
@@ -24,7 +32,6 @@
             <!-- Liste des liens -->
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav" id="barreNav">
-                    <hr />
                     <li class="nav-item">
                         <a class="nav-link lienBarre" href="#">Mon profil</a>
                     </li>
@@ -59,9 +66,10 @@
                 </div>
             </div>
         </div>
-        <footer id="footer" class="container-fluid text-center">
-            <p>&copy; Copyright 2018, Nom Site.</p>
-        </footer>
+
+        <!-- Footer -->
+        <%@include  file="footer.jsp" %>
+        <!-- Fin footer -->
         <script>
         </script>
     </body>

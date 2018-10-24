@@ -1,0 +1,14 @@
+SMAP
+ListeStagesEleves_jsp.java
+JSP
+*S JSP
+*F
++ 0 ListeStagesEleves.jsp
+ListeStagesEleves.jsp
++ 1 footer.jsp
+footer.jsp
+*L
+5,67:49
+5#1,8:116
+71#0,7:123
+*E
