@@ -13,17 +13,23 @@
 	width:80px;
 	height:85px;
 }
+/* Gab */
+#contenuListeEleve{
+    margin: 13em auto;
+}
+#rechercheEleveTab{
+    border: solid 1.5px;
+    border-color: #BABABA;
+}
+.divBorder{
+    border:solid 2px; 
+    border-color: #BABABA;
+    border-radius: 20px;
+}
 /* Menu Gab */
 #logo{
     max-height: 4.5em;
     transition: 0.5s;
-}
-#contenuListeEleve{
-    padding: 10em;
-}
-#rechercheEleveTab{
-    border: solid 1px;
-    border-color: red;
 }
 #choixMenu{
     margin:1.5em 0 0;
@@ -35,13 +41,16 @@
     margin-top: 1.5em;
     padding:15px;
 }
+.colRechercheEtu{
+    margin: 1em auto auto auto;
+}
 .navbar{
     background-color:#F2F2F2;
     /*padding: 0.5em 1em 1em 1em;*/
     height: 5em;
     font-size: 1.6em;
     border-style: none;
-    box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 30px 0px rgba(0,0,0,0.30);
     transition: 0.5s;
 }
 .navbar-brand{

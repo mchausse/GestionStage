@@ -18,16 +18,16 @@
     </head>
     <body>
         <%@include  file="menu.jsp" %>
-         <div class="container-fluid" id="contenuListeEleve">
+         <div class="container" id="contenuListeEleve">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-4"> <!-- partie gauche de la page -->
                     <select class="form-control" id="selectionStage">
                         <option value="progWeb">Programmation web</option>
                         <option value="progC#">Programmation C#</option>
                         <option value="progJava">Programmation Java</option>
                     </select>
-                    <br>    <!--Faire fonction onChange en JS pour loader les élèves dans les recherches-->
-                    <input type="text" class="form-control" id="rechercheEleve" style="border-radius: 50px;"> 
+                    <br><!--Faire fonction onChange en JS pour loader les élèves dans les recherches-->
+                    <input type="text" class="form-control has-feedback" id="rechercheEleve" style="border-radius: 50px;">
                     <br>
                     <table class="table table-hover" id="rechercheEleveTab">
                         <thead>
@@ -70,7 +70,16 @@
                                 <td><input type="checkbox" checked disabled></td>
                             </tr>
                         </tbody>
-                      </table>
+                    </table>
+                </div>
+                <div class="col-lg-7 divBorder"> <!--coté droit de la page -->
+                    <h1>Fuck 12</h1>
+                    <h1>Fuck 12</h1>
+                    <h1>Fuck 12</h1>
+                    <h1>Fuck 12</h1>
+                    <h1>Fuck 12</h1>
+                    <h1>Fuck 12</h1>
+                    <h1>Fuck 12</h1>
                 </div>
             </div>
          </div>
