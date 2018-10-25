@@ -30,7 +30,7 @@
                 <a class="nav-link lienBarre" href="#">Documents</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link lienBarre" href="#">ParamÃ¨tres</a>
+                <a class="nav-link lienBarre" href="#">Paramètres</a>
             </li>
         </ul>
     </div>
