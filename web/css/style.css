@@ -31,6 +31,10 @@
     max-height: 4.5em;
     transition: 0.5s;
 }
+#logo:hover{
+    max-height: 5em;
+    margin-top: -0.3em;
+}
 #choixMenu{
     margin:1.5em 0 0;
 }
@@ -65,13 +69,15 @@
     color: #e3003b;
     font-size: 1.5em;
 }
-
 @media screen and (max-width: 900px) {
     .navbar{
         font-size: 18px;
-        /*background-color: red;*/
     }
     #logo{
         max-height: 3em;
     }
+    #logo:hover{
+    max-height: 3.5em;
+    margin-top: -0.2em;
+}
 }
