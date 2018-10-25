@@ -13,3 +13,56 @@
 	width:80px;
 	height:85px;
 }
+/* Menu Gab */
+#logo{
+    max-height: 4.5em;
+    transition: 0.5s;
+}
+#contenuListeEleve{
+    padding: 10em;
+}
+#rechercheEleveTab{
+    border: solid 1px;
+    border-color: red;
+}
+#choixMenu{
+    margin:1.5em 0 0;
+}
+#navbar-collapse-main{
+    background-color:#F2F2F2;
+}
+#btnMenuColl{
+    margin-top: 1.5em;
+    padding:15px;
+}
+.navbar{
+    background-color:#F2F2F2;
+    /*padding: 0.5em 1em 1em 1em;*/
+    height: 5em;
+    font-size: 1.6em;
+    border-style: none;
+    box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
+    transition: 0.5s;
+}
+.navbar-brand{
+    max-height: 4.5em;
+    margin: 0.1em;
+}
+.navbar-default .navbar-nav li a {
+    color: #454545;
+    transition: 0.5s;
+}
+.navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a.actif{
+    color: #e3003b;
+    font-size: 1.5em;
+}
+
+@media screen and (max-width: 900px) {
+    .navbar{
+        font-size: 18px;
+        /*background-color: red;*/
+    }
+    #logo{
+        max-height: 3em;
+    }
+}
