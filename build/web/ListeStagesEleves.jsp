@@ -59,9 +59,83 @@
             <!-- Fin de section de recherche par competances -->
 
             <!-- Section de recherche des stages -->
-            <div class="row">
+            <div class="row" id="rechercheStage">
                 <div class="col-lg-12">
-                    <h2>Recherche par mots-clés</h2>
+                    <div class="row">
+                    <div class="col-lg-4"><h2>Recherche par mots-clés</h2></div>
+                    <!-- Barre de recherche -->
+                    <form class="col-lg-7">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                            <input id="inputRecherche" type="text" class="form-control" placeholder="Search">
+                        </div>
+                    </form>
+                    </div>
+                    <!-- Fin de la barre de recherche -->
+                </div>
+                <div class="col-lg-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>Compagnie <a href="#" class="fa fa-arrows-alt-v"></a></td>
+                                <td>Spécialité <a href="#" class="fa fa-arrows-alt-v"></a></td>
+                                <td>Poste <a href="#" class="fa fa-arrows-alt-v"></a></td>
+                                <td>Places <a href="#" class="fa fa-arrows-alt-v"></a></td>
+                                <td>Rémunération <a href="#" class="fa fa-arrows-alt-v"></a></td>
+                                <td>Match <a href="#" class="fa fa-arrows-alt-v"></a></td>
+                                <td>Statut <a href="#" class="fa fa-arrows-alt-v"></a></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="pommes.com">pomme</a></td>
+                                <td>Programmation</td>
+                                <td>Programmeur Web</td>
+                                <td>1</td>
+                                <td>0$/hr</td>
+                                <td>87%</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td><a href="pommes.com">pomme</a></td>
+                                <td>Programmation</td>
+                                <td>Programmeur Web</td>
+                                <td>1</td>
+                                <td>0$/hr</td>
+                                <td>87%</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td><a href="pommes.com">pomme</a></td>
+                                <td>Programmation</td>
+                                <td>Programmeur Web</td>
+                                <td>1</td>
+                                <td>0$/hr</td>
+                                <td>87%</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td><a href="pommes.com">pomme</a></td>
+                                <td>Programmation</td>
+                                <td>Programmeur Web</td>
+                                <td>1</td>
+                                <td>0$/hr</td>
+                                <td>87%</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td><a href="pommes.com">pomme</a></td>
+                                <td>Programmation</td>
+                                <td>Programmeur Web</td>
+                                <td>1</td>
+                                <td>0$/hr</td>
+                                <td>87%</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- Fin de la section de recherche des stages -->
