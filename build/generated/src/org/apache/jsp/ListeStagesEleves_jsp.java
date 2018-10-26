@@ -99,6 +99,7 @@ public final class ListeStagesEleves_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("    </div>\r\n");
       out.write("</nav>\r\n");
       out.write("<!-- Fin de la barre de navigation -->\r\n");
+<<<<<<< HEAD
       out.write("\r\n");
       out.write("        <!-- Fin de la barre de navigation -->\r\n");
       out.write("\r\n");
@@ -121,6 +122,45 @@ public final class ListeStagesEleves_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("        </div>\r\n");
       out.write("\r\n");
       out.write("        <!-- Footer -->\r\n");
+=======
+      out.write("\n");
+      out.write("        <!-- Fin de la barre de navigation -->\n");
+      out.write("\n");
+      out.write("        <!-- Contenu de la page -->\n");
+      out.write("        <div class=\"container-fluid\" id=\"contenuPage\">\n");
+      out.write("            <!-- Section de recherche par competences -->\n");
+      out.write("            <div class=\"row\">\n");
+      out.write("                <div class=\"col-lg-6\">\n");
+      out.write("                    <h2>Recherche par compétences</h2>\n");
+      out.write("                </div>\n");
+      out.write("                <div class=\"col-lg-6\">\n");
+      out.write("                    <ul class=\"dropdown-menu\">\n");
+      out.write("                        <li class=\"dropdown-item px-2\">php</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">html</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">java</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">c</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">c++</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">c#</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">python</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">VB</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">java EE</li>\n");
+      out.write("                        <li class=\"dropdown-item px-2\">ruby</li>\n");
+      out.write("                    </ul>\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("            <!-- Fin de section de recherche par competances -->\n");
+      out.write("\n");
+      out.write("            <!-- Section de recherche des stages -->\n");
+      out.write("            <div class=\"row\">\n");
+      out.write("                <div class=\"col-lg-12\">\n");
+      out.write("                    <h2>Recherche par mots-clés</h2>\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("            <!-- Fin de la section de recherche des stages -->\n");
+      out.write("        </div>\n");
+      out.write("\n");
+      out.write("        <!-- Footer -->\n");
+>>>>>>> c15346ed680be024358367736f373c474cb0bed2
       out.write("        ");
       out.write("\r\n");
       out.write("\r\n");
@@ -129,12 +169,19 @@ public final class ListeStagesEleves_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("<footer id=\"footer\" class=\"container-fluid text-center\">\r\n");
       out.write("    <p>&copy; Copyright 2018, Nom Site.</p>\r\n");
       out.write("</footer>\r\n");
+<<<<<<< HEAD
       out.write("\r\n");
       out.write("        <!-- Fin footer -->\r\n");
       out.write("        <script>\r\n");
       out.write("        </script>\r\n");
       out.write("    </body>\r\n");
       out.write("</html> \r\n");
+=======
+      out.write("\n");
+      out.write("        <!-- Fin footer -->\n");
+      out.write("    </body>\n");
+      out.write("</html> \n");
+>>>>>>> c15346ed680be024358367736f373c474cb0bed2
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

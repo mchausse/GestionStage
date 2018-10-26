@@ -1,14 +1,17 @@
 #contenuPage{
-	margin:8em 1em 1em 1em;
+    margin:8em 1em 1em 1em;
 }
+
+/** ====== Barre de menu ====== */
 .lienBarreTitre{
-	font-size: 32px;
-	margin-right:2em;
+    font-size: 32px;
+    margin-right:2em;
 }
 .lienBarre{
-	font-size: 27px;
+    font-size: 27px;
 }
 .lienImageBarre{
+<<<<<<< HEAD
 	background-image: url("../images/logoCegep.png");
 	width:80px;
 	height:85px;
@@ -81,3 +84,31 @@
         margin-top: -0.2em;
     }
 }
+=======
+    background-image: url("../images/logoCegep.png");
+    width:80px;
+    height:85px;
+}
+
+/** ====== page : ListeStagesEleves.jsp ====== */
+#conteneurCompetences{
+    height: 120px;
+    width:600px;
+    margin:3px;
+}
+.competence{
+    border-radius: 25px;
+    font-size: 18px;
+    padding:5px 8px 5px 8px;
+    margin-right:2px;
+    margin-left:2px;
+    font-weight: bold;
+}
+#inputRecherche{
+    margin-right:4em;
+}
+#rechercheStage{
+    margin-top:3em;
+    margin-right:2em;
+}
+>>>>>>> c15346ed680be024358367736f373c474cb0bed2
