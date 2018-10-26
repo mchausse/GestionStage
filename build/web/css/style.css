@@ -5,6 +5,16 @@
 #contenuListeEleve{
     margin: 13em auto;
 }
+.btnAccepte{
+    width: 100%;
+    border-color: #A6002B;
+    background-color: #e3003b;
+    transition: 0.5s;
+}
+.btnAccepte:hover{
+    background-color: #A6002B;
+    font-size: 18px;
+}
 .colInfoEleve{
     margin: auto;
 }
@@ -49,10 +59,11 @@
 }
 .divLinkEleve a{
     text-decoration: none;
+    font-weight: bold;
     transition: 0.5s;
 }
 .divLinkEleve a:hover{
-    font-size: 14px;
+    font-size: 16px;
 }
 /* Menu Gab */
 #logo{

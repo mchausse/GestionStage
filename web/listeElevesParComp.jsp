@@ -147,6 +147,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <button type="button" class="btn btn-primary btnAccepte" style="width: 100%;">Accepter Candidature</button>
                 </div>
             </div>
          </div>
