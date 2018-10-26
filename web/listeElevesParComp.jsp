@@ -18,9 +18,9 @@
     </head>
     <body>
         <%@include  file="menu.jsp" %>
-         <div class="container" id="contenuListeEleve">
+        <div class="container" id="contenuListeEleve">
             <div class="row">
-                <div class="col-lg-4"> <!-- partie gauche de la page -->
+                <div class="col-lg-5"> <!-- partie gauche de la page -->
                     <select class="form-control" id="selectionStage">
                         <option value="progWeb">Programmation web</option>
                         <option value="progC#">Programmation C#</option>

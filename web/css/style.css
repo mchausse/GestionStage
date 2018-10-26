@@ -77,7 +77,7 @@
         max-height: 3em;
     }
     #logo:hover{
-    max-height: 3.5em;
-    margin-top: -0.2em;
-}
+        max-height: 3.5em;
+        margin-top: -0.2em;
+    }
 }
