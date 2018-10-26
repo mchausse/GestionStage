@@ -90,7 +90,7 @@ public final class listeElevesParComp_jsp extends org.apache.jasper.runtime.Http
       out.write("\n");
       out.write("        <div class=\"container\" id=\"contenuListeEleve\">\n");
       out.write("            <div class=\"row\">\n");
-      out.write("                <div class=\"col-lg-4\"> <!-- partie gauche de la page -->\n");
+      out.write("                <div class=\"col-lg-5\"> <!-- partie gauche de la page -->\n");
       out.write("                    <select class=\"form-control\" id=\"selectionStage\">\n");
       out.write("                        <option value=\"progWeb\">Programmation web</option>\n");
       out.write("                        <option value=\"progC#\">Programmation C#</option>\n");
