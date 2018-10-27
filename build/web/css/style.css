@@ -143,3 +143,61 @@
     margin-top:3em;
     margin-right:2em;
 }
+/** ====== page : profilEtudiant.jsp ====== */
+#profilEtu{
+    height: 80%;
+    margin-top: 10em;
+    margin-bottom: 2em;
+}
+#contenuGauche label{
+    margin-top: 1%;
+}
+#contenuGauche input{
+    width:15em;
+}
+#contenuGauche .btn{
+    margin-left: 1em;
+}
+#contenuGauche #cvListe{
+    width: 10em;
+}
+#contenuGauche #relNoteNom{
+    width: 10em;
+}
+#contenuGauche{
+    width: 55%;
+}
+#completionProfil{
+    color:red;
+}
+#profilEtu #stage{
+    font-size: 20px;
+    border: solid 1.5px;
+    border-color: #BABABA;
+}
+#profilEtu #competence{
+    font-size: 15px;
+    border: solid 1.5px;
+    border-color: #BABABA;
+}
+#profilEtu #contenuDroit{
+    width: 45%;
+}
+#profilEtu #contenuDroit label{
+    margin-top: 2%;
+}
+#profilEtu #contenuDroit .btn{ 
+}
+#rowGaucheBas{
+    margin-top: 1em;
+}
+#contenuMiddle{
+    margin-bottom: 2em;
+}
+#contenuHaut{
+    margin-bottom: 1em;
+}
+#info{
+    margin: 1em 0 0 0;
+    float: right;
+}
