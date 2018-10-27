@@ -95,7 +95,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><a href="pommes.com">pomme</a></td>
+                                    <td><a href="pomme.com">pomme</a></td>
                                     <td>Programmation</td>
                                     <td>Programmeur Web</td>
                                     <td>1</td>
@@ -104,21 +104,21 @@
                                     <td>1</td>
                                 </tr>
                                 <tr>
-                                    <td><a href="pommes.com">pomme</a></td>
-                                    <td>Programmation</td>
-                                    <td>Programmeur Web</td>
+                                    <td><a href="internet.com">Le meilleur internet</a></td>
+                                    <td>Reseau</td>
+                                    <td>Programmeur Reseau</td>
                                     <td>1</td>
-                                    <td>0$/hr</td>
-                                    <td>87%</td>
+                                    <td>-1$/hr</td>
+                                    <td>1%</td>
                                     <td>1</td>
                                 </tr>
                                 <tr>
-                                    <td><a href="pommes.com">pomme</a></td>
-                                    <td>Programmation</td>
-                                    <td>Programmeur Web</td>
+                                    <td><a href="https://downloadmoreram.com/">Download more ram</a></td>
+                                    <td>RAM</td>
+                                    <td>Programmeur de ram</td>
                                     <td>1</td>
-                                    <td>0$/hr</td>
-                                    <td>87%</td>
+                                    <td>π$/hr</td>
+                                    <td>101%</td>
                                     <td>1</td>
                                 </tr>
                                 <tr>

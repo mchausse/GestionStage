@@ -7,8 +7,8 @@
 <!DOCTYPE html>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menu">
     <div class="container-fluid">
-        <div clas="navbar-header">
-            <button type="button" class="navbar-toggle" id="btnMenuColl"data-toggle="collapse" data-target="#navbar-collapse-main">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" id="btnMenuColl" data-toggle="collapse" data-target="#navbar-collapse-main">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
