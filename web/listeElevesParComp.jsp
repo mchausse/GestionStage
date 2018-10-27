@@ -27,15 +27,15 @@
                         <option value="progJava">Programmation Java</option>
                     </select>
                     <br><!--Faire fonction onChange en JS pour loader les élèves dans les recherches-->
-                    <input type="text" class="form-control has-feedback" id="rechercheEleve" style="border-radius: 50px;">
+                    <input type="text" class="form-control has-feedback" id="rechercheEleve" placeHolder="Rechercher ..."style="border-radius: 50px;">
                     <br>
-                    <table class="table table-hover" id="rechercheEleveTab">
+                    <table class="table table-hover borderTable">
                         <thead>
                           <tr>
-                            <th>Nom</th>
-                            <th>Spécialité</th>
-                            <th>Match</th>
-                            <th>Consulté</th>
+                              <th>Nom <a class="sortBy" href="#"><span class="glyphicon glyphicon-sort-by-alphabet"></span></a></th>
+                              <th>Spécialité <a class="sortBy" href="#"><span class="glyphicon glyphicon-sort-by-alphabet"></span></a></th>
+                              <th>Match <a class="sortBy" href="#"><span class="glyphicon glyphicon-sort-by-order"></span></a></th>
+                              <th>Consulté <a class="sortBy" href="#"><span class="glyphicon glyphicon-sort"></span></a></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -72,14 +72,82 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-lg-7 divBorder"> <!--coté droit de la page -->
-                    <h1>Fuck 12</h1>
-                    <h1>Fuck 12</h1>
-                    <h1>Fuck 12</h1>
-                    <h1>Fuck 12</h1>
-                    <h1>Fuck 12</h1>
-                    <h1>Fuck 12</h1>
-                    <h1>Fuck 12</h1>
+                <div class="col-lg-7 col-md-12 col-sm-12 divBorder"> <!--coté droit de la page -->
+                <div class="col-lg-6 col-md-6 col-sm-6 colInfoEleve"> 
+                    <br>
+                    <label>Prénom :</label>
+                    <div class="divInfoEleve">
+                        <p>Pablo</p>
+                    </div>
+                    <br>
+                    <label>Nom :</label>
+                    <div class="divInfoEleve">
+                        <p>Escobar</p>
+                    </div>
+                                        <br>
+                    <label>Téléphone :</label>
+                    <div class="divInfoEleve">
+                        <p>514-666-9119</p>
+                    </div>
+                    <br>
+                    <label>Courriel :</label>
+                    <div class="divInfoEleve">
+                        <p>Pablo@Escobar.col</p>
+                    </div>
+                    <br>
+                    <label>Linkedin :</label>
+                    <div class="divLinkEleve">
+                        <a  href="#">linkedin.com/Pablo</a>
+                    </div>
+                    <br>
+                    <label>Github :</label>
+                    <div class="divLinkEleve">
+                        <a href="#">github.com/Pablo</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 colInfoEleve">
+                    <br>
+                    <label>Spécialité :</label>
+                    <div class="divInfoEleve">
+                        <p>Gestion</p>
+                    </div>
+                    <br>
+                    <label>Ce que je recherche :</label>
+                    <div class="divInfoEleve">
+                        <p> 
+                            &#xb7; Temps plein <br>
+                            &#xb7; Payé (110$/h et +) <br>
+                            &#xb7; Assurance vie <br>
+                        </p>
+                    </div>
+                    <br>
+                    <table class="table table-hover borderTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Compétences</th>
+                                <th scope="col">Domaine</th>
+                                <th scope="col">Niveau</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Gestion</td>
+                                <td>Comptable</td>
+                                <td>Expert</td>
+                            </tr>
+                            <tr>
+                                <td>C#</td>
+                                <td>Prog</td>
+                                <td>Intermediaire</td>
+                            </tr>
+                            <tr>
+                                <td>Java</td>
+                                <td>Prog</td>
+                                <td>Intermediaire</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-primary btnAccepte" style="width: 100%;">Accepter Candidature</button>
                 </div>
             </div>
          </div>
