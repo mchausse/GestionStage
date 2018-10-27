@@ -124,8 +124,7 @@
 
 /** ====== page : ListeStagesEleves.jsp ====== */
 #conteneurCompetences{
-    height: 120px;
-    width:600px;
+    height: 8em;
     margin:3px;
 }
 .competence{
@@ -143,6 +142,10 @@
     margin-top:3em;
     margin-right:2em;
 }
+#sectionCompetences{
+    margin-top:2em;
+}
+
 /** ====== page : profilEtudiant.jsp ====== */
 #profilEtu{
     height: 80%;
@@ -197,6 +200,7 @@
 #contenuHaut{
     margin-bottom: 1em;
 }
+
 #info{
     margin: 1em 0 0 0;
     float: right;

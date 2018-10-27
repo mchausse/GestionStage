@@ -62,7 +62,6 @@ public final class listeElevesParComp_jsp extends org.apache.jasper.runtime.Http
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        ");
-<<<<<<< HEAD
       out.write("\r\n");
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
@@ -156,7 +155,6 @@ public final class listeElevesParComp_jsp extends org.apache.jasper.runtime.Http
       out.write("         </div>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
-=======
       out.write("\n");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
@@ -317,7 +315,6 @@ public final class listeElevesParComp_jsp extends org.apache.jasper.runtime.Http
       out.write("         </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
->>>>>>> c5fbf2ad5a3a05cbf64ae0ff257c9db17147fae0
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
