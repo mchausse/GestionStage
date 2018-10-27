@@ -37,3 +37,20 @@
     margin-top:3em;
     margin-right:2em;
 }
+/** ====== page : profilEtudiant.jsp ====== */
+#profilEtu{
+    height: 80%;
+}
+#profilEtu #contenuGauche{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+#profilEtu input{
+    width:50%;
+}
+#profilEtu #completionProfil{
+    color:red;
+}
+#profilEtu h2{
+    margin: 1% 0 5% 5%;
+}

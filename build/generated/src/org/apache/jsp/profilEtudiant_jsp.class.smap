@@ -1,0 +1,18 @@
+SMAP
+profilEtudiant_jsp.java
+JSP
+*S JSP
+*F
++ 0 profilEtudiant.jsp
+profilEtudiant.jsp
++ 1 navBar.jsp
+navBar.jsp
++ 2 footer.jsp
+footer.jsp
+*L
+5,18:50
+5#1,35:68
+22#0,93:102
+5#2,8:195
+114#0,4:202
+*E
