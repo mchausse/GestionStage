@@ -1,19 +1,73 @@
 #contenuPage{
     margin:8em 1em 1em 1em;
 }
-
-/** ====== Barre de menu ====== */
-.lienBarreTitre{
-    font-size: 32px;
-    margin-right:2em;
+/* Gab */
+#contenuListeEleve{
+    margin: 13em auto;
 }
-.lienBarre{
-    font-size: 27px;
+#rechercheEleveTab{
+    border: solid 1.5px;
+    border-color: #BABABA;
 }
-.lienImageBarre{
-    background-image: url("../images/logoCegep.png");
-    width:80px;
-    height:85px;
+.divBorder{
+    border:solid 2px; 
+    border-color: #BABABA;
+    border-radius: 20px;
+}
+/* Menu Gab */
+#logo{
+    max-height: 4.5em;
+    transition: 0.5s;
+}
+#logo:hover{
+    max-height: 5em;
+    margin-top: -0.3em;
+}
+#choixMenu{
+    margin:1.5em 0 0;
+}
+#navbar-collapse-main{
+    background-color:#F2F2F2;
+}
+#btnMenuColl{
+    margin-top: 1.5em;
+    padding:15px;
+}
+.colRechercheEtu{
+    margin: 1em auto auto auto;
+}
+.navbar{
+    background-color:#F2F2F2;
+    /*padding: 0.5em 1em 1em 1em;*/
+    height: 5em;
+    font-size: 1.6em;
+    border-style: none;
+    box-shadow: 0px 2px 30px 0px rgba(0,0,0,0.30);
+    transition: 0.5s;
+}
+.navbar-brand{
+    max-height: 4.5em;
+    margin: 0.1em;
+}
+.navbar-default .navbar-nav li a {
+    color: #454545;
+    transition: 0.5s;
+}
+.navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a.actif{
+    color: #e3003b;
+    font-size: 1.5em;
+}
+@media screen and (max-width: 900px) {
+    .navbar{
+        font-size: 18px;
+    }
+    #logo{
+        max-height: 3em;
+    }
+    #logo:hover{
+        max-height: 3.5em;
+        margin-top: -0.2em;
+    }
 }
 
 /** ====== page : ListeStagesEleves.jsp ====== */
@@ -37,6 +91,7 @@
     margin-top:3em;
     margin-right:2em;
 }
+<<<<<<< HEAD
 /** ====== page : profilEtudiant.jsp ====== */
 #profilEtu{
     height: 80%;
@@ -54,3 +109,5 @@
 #profilEtu h2{
     margin: 1% 0 5% 5%;
 }
+=======
+>>>>>>> e491a5a221e263fb57f5fed360005b5c3c0107bd

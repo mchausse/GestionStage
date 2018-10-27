@@ -13,7 +13,7 @@ public final class ListeStagesEleves_jsp extends org.apache.jasper.runtime.HttpJ
 
   static {
     _jspx_dependants = new java.util.ArrayList<String>(2);
-    _jspx_dependants.add("/navBar.jsp");
+    _jspx_dependants.add("/menu.jsp");
     _jspx_dependants.add("/footer.jsp");
   }
 
@@ -47,6 +47,7 @@ public final class ListeStagesEleves_jsp extends org.apache.jasper.runtime.HttpJ
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+<<<<<<< HEAD
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -66,10 +67,13 @@ public final class ListeStagesEleves_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("    <body>\r\n");
       out.write("        <!-- Barre de navigation -->\r\n");
       out.write("        ");
+=======
+>>>>>>> e491a5a221e263fb57f5fed360005b5c3c0107bd
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
+<<<<<<< HEAD
       out.write("<!-- Barre de navigation -->\r\n");
       out.write("<nav class=\"navbar navbar-expand-sm bg-light navbar-light fixed-top\" id=\"collapsibleNavbar\">\r\n");
       out.write("    <!-- Titre de la barre de tache -->\r\n");
@@ -100,6 +104,48 @@ public final class ListeStagesEleves_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("    </div>\r\n");
       out.write("</nav>\r\n");
       out.write("<!-- Fin de la barre de navigation -->\r\n");
+=======
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <title>Stages | Accueil</title>\r\n");
+      out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\">\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"css/style.css\">\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.4.1/css/all.css\">\r\n");
+      out.write("        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\r\n");
+      out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\"></script>\r\n");
+      out.write("        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js\"></script>\r\n");
+      out.write("    </head>\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <!-- Barre de navigation -->\r\n");
+      out.write("        ");
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" id=\"menu\">\n");
+      out.write("    <div class=\"container-fluid\">\n");
+      out.write("        <div class=\"navbar-header\">\n");
+      out.write("            <button type=\"button\" class=\"navbar-toggle\" id=\"btnMenuColl\"data-toggle=\"collapse\" data-target=\"#navbar-collapse-main\">\n");
+      out.write("                <span class=\"icon-bar\"></span>\n");
+      out.write("                <span class=\"icon-bar\"></span>\n");
+      out.write("                <span class=\"icon-bar\"></span>\n");
+      out.write("            </button>\n");
+      out.write("            <a class=\"navbar-brand\" href=\"http://www.crosemont.qc.ca/\"><img id=\"logo\" src=\"./images/logoCouper.png\"/></a>\n");
+      out.write("        </div>\n");
+      out.write("        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse-main\">\n");
+      out.write("            <div id=\"choixMenu\">\n");
+      out.write("                <ul class=\"nav navbar-nav navbar-left\">\n");
+      out.write("                    <li><a class=\"#\" href=\"\">Mon profil</a></li>\n");
+      out.write("                    <li><a class=\"#\" href=\"\">Offres de stage</a></li>\n");
+      out.write("                    <li><a class=\"#\" href=\"\">Documents</a></li>\n");
+      out.write("                    <li><a class=\"#\" href=\"\">Recherche Étudiant</a></li>\n");
+      out.write("                </ul>\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
+      out.write("    </div>\n");
+      out.write("</nav>\n");
+      out.write("\n");
+>>>>>>> e491a5a221e263fb57f5fed360005b5c3c0107bd
       out.write("\r\n");
       out.write("        <!-- Fin de la barre de navigation -->\r\n");
       out.write("\r\n");
