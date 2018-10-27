@@ -19,11 +19,20 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <%@include  file="navBar.jsp" %>
-        <div class="container-fluid" id="profilEtu">
-            <h2>Profil rempli à <span id="completionProfil">0%</span></h2>
+        <%@include  file="menu.jsp" %>
+        <div class="container" id="profilEtu">
+            <div class="row" id="contenuHaut">
+                <div class="col-lg-6">
+                <h2>Profil rempli à <span id="completionProfil">0%</span></h2>
+                </div>
+                <div class="col-lg-6">
+                <a href="#" class="btn btn-danger btn-md" id="info">
+                    <span class="glyphicon glyphicon-info-sign"></span> Info
+                </a>
+                </div>
+            </div>
             <form class="form-horizontal">
-                <div class="row">
+                <div class="row" id="contenuMiddle">
                     <div class="col-lg-5" id="contenuGauche">
                         <div class="container-fluid" id="infoBase">
                             <div class="form-group">
@@ -32,7 +41,7 @@
                                   <input type="text" class="form-control" id="nom" placeholder="John">
                                 </div>
                             </div>
-                            <div class="form-group has-error has-feedback">
+                            <div class="form-group">
                                 <label for="prenom" class="col-sm-3 col-form-label">Prénom :</label>
                                 <div class="col-sm-8">
                                   <input type="text" class="form-control" id="prenom" placeholder="Doe">
@@ -52,14 +61,27 @@
                             </div>
                             <div class="form-group">
                                 <label for="cv" class="col-sm-3 col-form-label">CV :</label>
-                                <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="cv">
+                                <div class="col-sm-8 input-group">
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-primary">
+                                            Ajouter<input type="file" lass="form-control-file" accept="application/pdf" style="display: none;" id="cv">
+                                        </span>
+                                    </label>
+                                    <select class="form-control" id="cvListe" readonly>
+                                        <option>cv_C#.pdf</option>
+                                        <option>cvJavaEE.pdf</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="relNote" class="col-sm-3 col-form-label">Relevé de notes :</label>
-                                <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="relNote">
+                                <div class="col-sm-8 input-group">
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-primary">
+                                            Ajouter<input type="file" lass="form-control-file" accept="application/pdf" style="display: none;" id="relNote" multiple>
+                                        </span>
+                                    </label>
+                                    <input type="text" class="form-control" readonly id="relNoteNom">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -76,11 +98,85 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-lg-5" id="contenuDroit">
                         <div class="row">
-                            <div class="col-lg-6" id="contenuDroitOB">
-                                <div class="form-group">
-                                    <label for="spec" class="col-sm-5 col-form-label">Spécialité :</label>
+                            <table  id="competence" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>Compétences <a href="#" class="fa fa-arrows-alt-v"></a></td>
+                                        <td>Domaine <a href="#" class="fa fa-arrows-alt-v"></a></td>
+                                        <td>Niveau <a href="#" class="fa fa-arrows-alt-v"></a></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Java EE</td>
+                                        <td>BackEnd</td>
+                                        <td>
+                                            <select class="form-control">
+                                                <option>Aucun</option>
+                                                <option>Débutant</option>
+                                                <option>Intermédiare</option>
+                                                <option>Expert</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>CSS</td>
+                                        <td>FrontEnd</td>
+                                        <td>
+                                            <select class="form-control">
+                                                <option>Aucun</option>
+                                                <option>Débutant</option>
+                                                <option>Intermédiare</option>
+                                                <option>Expert</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Git</td>
+                                        <td>Versionnage</td>
+                                        <td>
+                                            <select class="form-control">
+                                                <option>Aucun</option>
+                                                <option>Débutant</option>
+                                                <option>Intermédiare</option>
+                                                <option>Expert</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>C#</td>
+                                        <td>BackEnd</td>
+                                        <td>
+                                            <select class="form-control">
+                                                <option>Aucun</option>
+                                                <option>Débutant</option>
+                                                <option>Intermédiare</option>
+                                                <option>Expert</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Service à la clientèle</td>
+                                        <td>Autre</td>
+                                        <td>
+                                            <select class="form-control">
+                                                <option>Aucun</option>
+                                                <option>Débutant</option>
+                                                <option>Intermédiare</option>
+                                                <option>Expert</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row" id="rowGaucheBas">
+                            <div class="col-lg-7" id="spec">
+                                <div class="form-group inline">
+                                    <label for="spec" class="col-sm-4 col-form-label">Domaine :</label>
                                     <div class="col-sm-8">
                                       <select class="form-control" id="spec">
                                         <option>Réseaux</option>
@@ -89,25 +185,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4" id="boxStats">
-                                <label><span class="couleurStat">3</span> canditatures envoyées</label>
-                                <label><span class="couleurStat">15 jours</span> de recherche</label>
-                                <label>CV lu:<span class="couleurStat"> 10</span> fois</label>
-                                <label>Consultation du profil:<span class="couleurStat"> 104</span> fois</label>
+                            <div class="col-lg-4">
+                                <input type="submit" class="btn btn-primary" value="Enregistrer les modifications">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <div class="form-group">
-                                    <label for="recherche">Ce que je recherche:</label>
-                                    <textarea class="form-control" rows="3" id="recherche"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div>    
                 </div>
                 <div class="row">
-                    <table class="table table-striped">
+                    <table id="stage" class="table table-hover">
                         <thead>
                             <tr>
                                 <td>Compagnie <a href="#" class="fa fa-arrows-alt-v"></a></td>
@@ -130,7 +215,7 @@
                                 <td>Reçu</td>
                             </tr>
                             <tr>
-                                <<td><a href="HydroQc">Hydro Québec</a></td>
+                                <td><a href="HydroQc">Hydro Québec</a></td>
                                 <td>Programmation</td>
                                 <td>12/10/2018</td>
                                 <td>Reçu</td>
@@ -142,4 +227,7 @@
         </div>
         <%@include  file="footer.jsp" %>
     </body>
+    <script>
+        $('#info').popover({ trigger: "hover", title: "Statistiques", placement: "bottom", content: "3 canditature envoyés 15 jours de recherche Cv lu : 10 fois Consultation Profil : 104 fois" });
+    </script>
 </html>
