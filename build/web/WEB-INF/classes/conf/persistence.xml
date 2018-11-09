@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="GestionStage_RosemontPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.stageo.beans.Etudiantcritere</class>
+    <class>com.stageo.beans.Message</class>
+    <class>com.stageo.beans.Critere</class>
+    <class>com.stageo.beans.Utilisateurmessage</class>
+    <class>com.stageo.beans.Employeur</class>
+    <class>com.stageo.beans.Coordonnateur</class>
+    <class>com.stageo.beans.Document</class>
+    <class>com.stageo.beans.Offrestagecritere</class>
+    <class>com.stageo.beans.Notification</class>
+    <class>com.stageo.beans.Offrestage</class>
+    <class>com.stageo.beans.Compagnie</class>
+    <class>com.stageo.beans.Candidature</class>
+    <class>com.stageo.beans.Utilisateur</class>
+    <class>com.stageo.beans.Etudiant</class>
+    <class>com.stageo.beans.Cv</class>
+    <class>com.stageo.beans.Adresse</class>
+    <class>com.stageo.dao.MessageDAO</class>
+    <class>com.stageo.dao.EmployeurDAO</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/stageo?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+</persistence>

@@ -27,7 +27,7 @@
                         <option value="progJava">Programmation Java</option>
                     </select>
                     <br><!--Faire fonction onChange en JS pour loader les élèves dans les recherches-->
-                    <input type="text" class="form-control has-feedback" id="rechercheEleve" placeHolder="Rechercher ..."style="border-radius: 50px;">
+                    <input type="text" class="form-control has-feedback" id="rechercheEleve" placeHolder="Rechercher ..." style="border-radius: 50px;">
                     <br>
                     <table class="table table-hover borderTable">
                         <thead>
