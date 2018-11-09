@@ -184,7 +184,7 @@ public final class ListeStagesEleves_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                                    <td>1</td>\r\n");
       out.write("                                </tr>\r\n");
       out.write("                                <tr>\r\n");
-      out.write("                                    <td><a href=\"https://downloadmoreram.com/\">MORE RAM</a></td>\r\n");
+      out.write("                                    <td><a href=\"https://downloadmoreram.com/\">Download more ram</a></td>\r\n");
       out.write("                                    <td>RAM</td>\r\n");
       out.write("                                    <td>Programmeur de ram</td>\r\n");
       out.write("                                    <td>1</td>\r\n");
