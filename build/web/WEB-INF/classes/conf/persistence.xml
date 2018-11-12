@@ -20,6 +20,7 @@
     <class>com.stageo.beans.Adresse</class>
     <class>com.stageo.dao.MessageDAO</class>
     <class>com.stageo.dao.EmployeurDAO</class>
+    <class>com.stageo.dao.UtilisateurDAO</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/stageo?zeroDateTimeBehavior=convertToNull"/>

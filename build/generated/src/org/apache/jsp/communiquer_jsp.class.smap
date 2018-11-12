@@ -1,0 +1,18 @@
+SMAP
+communiquer_jsp.java
+JSP
+*S JSP
+*F
++ 0 communiquer.jsp
+communiquer.jsp
++ 1 menu.jsp
+menu.jsp
++ 2 footer.jsp
+footer.jsp
+*L
+5,17:50
+5#1,26:67
+21#0,11:92
+5#2,8:103
+31#0,6:110
+*E
