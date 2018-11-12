@@ -1,5 +1,5 @@
 #contenuPage{
-    margin:8em 1em 1em 1em;
+    margin:10em 1em 1em 1em;
 }
 /* Page Gab */
 #contenuListeEleve{
@@ -200,8 +200,30 @@
 #contenuHaut{
     margin-bottom: 1em;
 }
-
 #info{
     margin: 1em 0 0 0;
     float: right;
+}
+/** ====== page : communiquer.jsp ====== */
+.message{
+    height:38em;
+}
+#messages{
+    max-height: 38em;
+}
+.titreCompagnie{
+    right:1px;
+}
+.btnMenu{
+    margin-bottom:0.5em;
+    width:9em;
+    margin-left:-0.5em;
+}
+#texteMessage{
+    height: 28em;
+}
+.badge{
+    float: right;
+    margin-top: -10px;
+    margin-right: -20px;
 }
