@@ -122,6 +122,10 @@
     }
 }
 
+/** ====== TOUTES LES PAGE ====== */
+#titrePage{
+    height:11em;
+}
 /** ====== page : ListeStagesEleves.jsp ====== */
 #conteneurCompetences{
     height: 8em;
@@ -227,7 +231,7 @@
     margin-top: -10px;
     margin-right: -20px;
 }
-/** ====== page : offresStageEmployeur.jsp ====== */
+/** ====== page : gestionOffresStageEmployeur.jsp ====== */
 #listeOffresStage{
     margin: auto;
 }
@@ -242,3 +246,4 @@
     margin-top: -10px;
     margin-right: -20px;
 }
+/** ====== page : gestionDocumentsAdministrateur.jsp ====== */

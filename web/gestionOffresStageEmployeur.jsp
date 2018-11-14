@@ -28,11 +28,16 @@
                 <!-- Titre de la page -->
                 <div class="row">
                 <div class="col-lg-1"></div><!-- Sert de margin -->
-                    <div class="col-lg-8">
-                        <div class="jumbotron">
-                            <h1>Gestion des offres de stage</h1> 
-                            <p>Ici, vous pouvez voir vos offres que vous avez publiées, 
-                                ainsi qu'en ajouter des nouvelles ou  modifier et désactive ceux déjà existantes</p> 
+                    <div class="col-lg-10">
+                        <div class="jumbotron" id='titrePage'>
+                            <h1>
+                                <span id='btnDescTitrePage' class='glyphicon glyphicon-triangle-bottom'></span>
+                                Gestion des offres de stage
+                            </h1>
+                            <p id='descTitrePage'>
+                                Ici, vous pouvez voir vos offres que vous avez publiées, 
+                                ainsi qu'en ajouter des nouvelles ou  modifier et désactive ceux déjà existantes.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -208,16 +213,39 @@
             $(document).ready(function(){
                 // Cacher le formulaire de stage
                 $("#ajouterStage").hide();
+                $("#descTitrePage").hide();
                 
-                // Assigner les actions de clicks
+                // === Assigner les actions de clicks ===
+                // Pour le bouton ajouter
                 $("#btnAjouterStage").click(function(){
                     if($("#ajouterStage").show){
                         $("#ajouterStage").hide(300);
+                        // Changer la classe pour changer le signe du bouton
                         $("#btnAjouterStage").html("<span class='glyphicon glyphicon-plus'> Ajouter</span>");
                     }
                     if($("#ajouterStage").hide){
                         $("#ajouterStage").show(300);
+                        // Changer la classe pour changer le signe du bouton
                         $("#btnAjouterStage").html("<span class='glyphicon glyphicon-arrow-left'> Annuler</span>");
+                    }
+                });
+                // Pour le bouton de description du titre
+                $("#btnDescTitrePage").click(function(){
+                    if($("#descTitrePage").show){
+                        $("#descTitrePage").hide(300);
+                        // Changer la classe pour changer le signe du bouton
+                        $("#btnDescTitrePage").removeClass("glyphicon glyphicon-triangle-top");
+                        $("#btnDescTitrePage").addClass('glyphicon glyphicon-triangle-bottom');
+                        // changer la hauteur 
+                        $("#titrePage").css("height","11em");
+                    }
+                    if($("#descTitrePage").hide){
+                        $("#descTitrePage").show(500);
+                        // Changer la classe pour changer le signe du bouton
+                        $("#btnDescTitrePage").removeClass("glyphicon glyphicon-triangle-bottom");
+                        $("#btnDescTitrePage").addClass('glyphicon glyphicon-triangle-top');
+                        // changer la hauteur 
+                        $("#titrePage").css("height","17em");
                     }
                 });
             });
