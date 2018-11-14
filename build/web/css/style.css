@@ -1,7 +1,7 @@
 #contenuPage{
     margin:10em 1em 1em 1em;
 }
-/* Page Gab */
+/* listeElvesParComp Gab*/
 #contenuListeEleve{
     margin: 13em auto;
 }
@@ -241,4 +241,33 @@
     float: right;
     margin-top: -10px;
     margin-right: -20px;
+}
+
+/** ====== page : inscription.jsp ====== */
+#contenuInscription{
+    margin-top: 6em;
+}
+#emailLog{
+    height: 4em;
+    border-radius: 5px 5px 0px 0px;
+}
+#paswordLog{
+    height: 4em;
+    border-radius: 0px 0px 5px 5px;
+}
+#btnLogin{
+    margin-top: 1em;
+    height: 4em;
+    transition: 0.5s;
+}
+#btnLogin:hover{
+    font-size: 18px;
+    height: 3.3em;
+}
+.contenuPan{
+    padding: 2em;
+}
+
+.bold{
+    font-weight: bold;
 }
