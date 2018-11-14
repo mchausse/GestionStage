@@ -231,8 +231,10 @@
 #listeOffresStage{
     margin: auto;
 }
-.btnModStage{
+.btnModStage,
+.btnModDocument{
     margin-left: 0em;
+    margin-top:-1em;
 }
 .label-as-badge {
     border-radius: 1em;

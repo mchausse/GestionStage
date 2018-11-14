@@ -25,6 +25,19 @@
         
         <div class='container-fluid'>
             <div id="contenuPage">
+                <!-- Titre de la page -->
+                <div class="row">
+                <div class="col-lg-1"></div><!-- Sert de margin -->
+                    <div class="col-lg-8">
+                        <div class="jumbotron">
+                            <h1>Gestion des offres de stage</h1> 
+                            <p>Ici, vous pouvez voir vos offres que vous avez publiées, 
+                                ainsi qu'en ajouter des nouvelles ou  modifier et désactive ceux déjà existantes</p> 
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin du titre de la page-->
+                
                 <div class="col-lg-1"></div><!-- Sert de margin -->
                 
                 <!-- Debut de la section du menu des stages -->
@@ -108,7 +121,8 @@
                             <!-- Pour afficher un voyant de couleur -->
                             <span class="label label-success label-as-badge">&#8203 &#8203</span>
                             <div class='row'>
-                                <div class="col-lg-8"><kbd>Compagnie</kbd> Titre de l'offre</div>
+                                <div class="col-lg-12">Publié le 10-18-2018</div>
+                                <div class="col-lg-8"><kbd>Compagnie</kbd> Salut, je suis une tres longue offre de stage</div>
                                 <div class="col-lg-3">Status : Active</div>
                                 <a href="#" class="btn btn-default btn-md btnModStage">
                                     <span class="glyphicon glyphicon-pencil"></span>
@@ -147,6 +161,7 @@
                             <!-- Pour afficher un voyant de couleur -->
                             <span class="label label-danger label-as-badge">&#8203 &#8203</span>
                             <div class='row'>
+                                <div class="col-lg-12">Publié le 10-18-2018</div>
                                 <div class="col-lg-8"><kbd>Compagnie</kbd> Titre de l'offre</div>
                                 <div class="col-lg-3">Status : Inactive</div>
                                 <a href="#" class="btn btn-default btn-md btnModStage">
