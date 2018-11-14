@@ -275,7 +275,9 @@
 .contenuPan{
     padding: 2em;
 }
-
+.inscriptionInput{
+    height: 4em;
+}
 .bold{
     font-weight: bold;
 }

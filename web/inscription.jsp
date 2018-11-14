@@ -22,16 +22,39 @@
         
         <div class="container" id="contenuInscription">
             <div class="row">
-                <div class="col-lg-5">
+                <div class="col-lg-6"> <!-- Contenu d'inscription-->
                     <div class="panel panel-default">
                         <div class="panel-heading"><h4>Inscription</h4></div>
                         <div class="contenuPan">
-                            <p>Nom :</p>
-                            <input type="text">
+                            <div class="input-group"> <!--Nom inscription-->
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </div>
+                                <input type="text" class="form-control inscriptionInput" placeholder="Nom">
+                            </div>
+                            <br/>
+                            <div class="input-group"> <!--Prénom inscription-->
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </div>
+                                <input type="text" class="form-control inscriptionInput" placeholder="Prénom">
+                            </div>
+                            <br/>
+                            <div class="input-group"> <!--Email inscription-->
+                                <div class="input-group-addon "><span class="glyphicon glyphicon-envelope"></span> </div>
+                                <input type="email" class="form-control inscriptionInput" placeholder="Votre@Email.ca">
+                            </div>
+                            <br/>
+                            <div class="input-group"> <!--Password inscription-->
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span> </div>
+                                <input type="password" class="form-control inscriptionInput" placeholder="Mot De Passe">
+                            </div>
+                            <br/>
+                            <select class="form-control inscriptionInput">
+                                <option value="" disabled selected>Je Suis ...</option>
+                                <option>Étudiant</option>
+                                <option>Employeur</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6"> <!-- Contenu de Connexion-->
                     <div class="panel panel-default">
                         <div class="panel-heading"><h4>Connexion</h4></div>
                         <div class="contenuPan">
