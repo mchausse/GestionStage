@@ -227,3 +227,16 @@
     margin-top: -10px;
     margin-right: -20px;
 }
+/** ====== page : offresStageEmployeur.jsp ====== */
+#listeOffresStage{
+    margin: auto;
+}
+.btnModStage{
+    margin-left: 0em;
+}
+.label-as-badge {
+    border-radius: 1em;
+    float: right;
+    margin-top: -10px;
+    margin-right: -20px;
+}
