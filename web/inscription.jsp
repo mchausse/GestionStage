@@ -37,9 +37,15 @@
                         <div class="contenuPan">
                             <form>
                                 <div class="form-group">
-                                  <input type="email" class="form-control"  id="emailLog" placeholder="Votre@Email.ca">
-                                  <input type="password" class="form-control" id="paswordLog" placeholder="Mot De Passe">
-                                  <button type="button" class="btn btn-success" id="btnLogin" style="width:100%">Se Connecter</button>
+                                    <div class="input-group">
+                                        <div class="input-group-addon" id="iconMailLog"><span class="glyphicon glyphicon-envelope"></span> </div>
+                                        <input type="email" class="form-control"  id="emailLog" placeholder="Votre@Email.ca">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-addon" id="iconPasslLog"><span class="glyphicon glyphicon-asterisk"></span> </div>
+                                        <input type="password" class="form-control" id="paswordLog" placeholder="Mot De Passe">
+                                    </div>
+                                    <button type="button" class="btn btn-success" id="btnLogin" style="width:100%">Se Connecter</button>
                                 </div>
                             </form>
                         </div>

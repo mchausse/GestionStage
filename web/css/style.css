@@ -249,11 +249,19 @@
 }
 #emailLog{
     height: 4em;
-    border-radius: 5px 5px 0px 0px;
+    border-radius: 0px 5px 0px 0px;
+}
+#iconMailLog{
+    border-radius: 5px 0px 0px 0px;
 }
 #paswordLog{
     height: 4em;
-    border-radius: 0px 0px 5px 5px;
+    border-top-style: none;
+    border-radius: 0px 0px 5px 0px;
+}
+#iconPasslLog{
+    border-top-style: none;
+    border-radius: 0px 0px 0px 5px;
 }
 #btnLogin{
     margin-top: 1em;
@@ -261,8 +269,8 @@
     transition: 0.5s;
 }
 #btnLogin:hover{
-    font-size: 18px;
-    height: 3.3em;
+    font-size: 16px;
+    height: 3.8em;
 }
 .contenuPan{
     padding: 2em;
