@@ -9,7 +9,7 @@ package com.stageo.beans;
  *
  * @author mchausse
  */
-public class Coordonnateur {
+public class Coordonnateur extends Utilisateur{
 
     private String idCoordonnateur;
 

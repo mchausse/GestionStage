@@ -9,7 +9,7 @@ package com.stageo.beans;
  *
  * @author mchausse
  */
-public class Utilisateur {
+public abstract class Utilisateur {
     private String idUtilisateur;
     private String courriel;
     private String motDePasse;
@@ -17,13 +17,13 @@ public class Utilisateur {
     private String prenom;
     private String typeUtilisateur;
 
-    public Utilisateur() {}
+    protected Utilisateur() {}
 
-    public Utilisateur(String idUtilisateur) {
+    protected Utilisateur(String idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 
-    public Utilisateur(String idUtilisateur, String courriel, String motDePasse, String nom, String prenom, String typeUtilisateur) {
+    protected Utilisateur(String idUtilisateur, String courriel, String motDePasse, String nom, String prenom, String typeUtilisateur) {
         this.idUtilisateur = idUtilisateur;
         this.courriel = courriel;
         this.motDePasse = motDePasse;

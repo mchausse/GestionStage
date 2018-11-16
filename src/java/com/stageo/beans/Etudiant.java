@@ -9,11 +9,13 @@ package com.stageo.beans;
  *
  * @author mchausse
  */
-public class Etudiant {
+public class Etudiant extends Utilisateur{
     private String idEtudiant;
     private String statutRecherche;
 
-    public Etudiant() {}
+    public Etudiant() {
+        super();
+    }
 
     public Etudiant(String idEtudiant) {
         this.idEtudiant = idEtudiant;
