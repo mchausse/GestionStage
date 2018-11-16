@@ -5,44 +5,16 @@
  */
 package com.stageo.beans;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
  * @author mchausse
  */
-@Entity
-@Table(name = "employeur")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Employeur.findAll", query = "SELECT e FROM Employeur e")
-    , @NamedQuery(name = "Employeur.findByIdEmployeur", query = "SELECT e FROM Employeur e WHERE e.idEmployeur = :idEmployeur")
-    , @NamedQuery(name = "Employeur.findByTel", query = "SELECT e FROM Employeur e WHERE e.tel = :tel")
-    , @NamedQuery(name = "Employeur.findByIdCompagnie", query = "SELECT e FROM Employeur e WHERE e.idCompagnie = :idCompagnie")})
-public class Employeur implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_EMPLOYEUR")
+public class Employeur {
     private String idEmployeur;
-    @Basic(optional = false)
-    @Column(name = "TEL")
     private String tel;
-    @Basic(optional = false)
-    @Column(name = "ID_COMPAGNIE")
     private String idCompagnie;
 
-    public Employeur() {
-    }
+    public Employeur() {}
 
     public Employeur(String idEmployeur) {
         this.idEmployeur = idEmployeur;

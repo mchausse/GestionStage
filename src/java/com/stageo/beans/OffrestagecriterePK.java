@@ -5,27 +5,16 @@
  */
 package com.stageo.beans;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-
 /**
  *
  * @author mchausse
  */
-@Embeddable
-public class OffrestagecriterePK implements Serializable {
+public class OffrestagecriterePK {
 
-    @Basic(optional = false)
-    @Column(name = "ID_OFFRE")
     private String idOffre;
-    @Basic(optional = false)
-    @Column(name = "ID_CRITERE")
     private String idCritere;
 
-    public OffrestagecriterePK() {
-    }
+    public OffrestagecriterePK() {}
 
     public OffrestagecriterePK(String idOffre, String idCritere) {
         this.idOffre = idOffre;

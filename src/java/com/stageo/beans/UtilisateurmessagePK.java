@@ -5,27 +5,16 @@
  */
 package com.stageo.beans;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-
 /**
  *
  * @author mchausse
  */
-@Embeddable
-public class UtilisateurmessagePK implements Serializable {
+public class UtilisateurmessagePK {
 
-    @Basic(optional = false)
-    @Column(name = "ID_MESSAGE")
     private String idMessage;
-    @Basic(optional = false)
-    @Column(name = "ID_DESTINATAIRE")
     private String idDestinataire;
 
-    public UtilisateurmessagePK() {
-    }
+    public UtilisateurmessagePK() {}
 
     public UtilisateurmessagePK(String idMessage, String idDestinataire) {
         this.idMessage = idMessage;

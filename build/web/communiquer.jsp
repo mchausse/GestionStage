@@ -56,7 +56,7 @@
                         <div class="panel-body">
                             <div class="col-lg-12">
                                 <a href="#" class="btn btn-danger btn-lg btnMenu">
-                                    <span class="badge">5</span>
+                                    <span class="badge">2</span>
                                     <span class="glyphicon glyphicon-inbox"> Reçus</span>
                                 </a>
                                 <a href="#" class="btn btn-default btn-lg btnMenu">
