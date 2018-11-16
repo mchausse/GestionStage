@@ -13,9 +13,10 @@ import java.sql.SQLException;
 */
 public class Connexion {
     private static Connection cnx;
-    private static String 	url,
-                            user = "", 
+    private static String   url = "jdbc:mysql://localhost/lifty?user=root&password=&serverTimezone=EST",
+                            user = "root", 
                             password="";
+    
     public static Connection getInstance(){
         if (cnx == null)
             try {

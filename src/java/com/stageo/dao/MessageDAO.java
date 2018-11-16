@@ -12,7 +12,7 @@ import java.util.List;
 /* ==== INFO ====
 
  * @author maxime chausse
- * date : 11 novembre 2018
+ * date : 16 novembre 2018
  * cour : Hypermedia II
  * College Rosemont
 */
