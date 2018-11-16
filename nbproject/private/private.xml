@@ -3,8 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/web/css/style.css</file>
             <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/web/inscription.jsp</file>
+=======
+            <file>file:/C:/GestionStage/web/communiquer.jsp</file>
+            <file>file:/C:/GestionStage/web/gestionDocumentsAdministrateur.jsp</file>
+            <file>file:/C:/GestionStage/web/gestionOffresStageEmployeur.jsp</file>
+            <file>file:/C:/GestionStage/web/listeStagesEleves.jsp</file>
+            <file>file:/C:/GestionStage/web/css/style.css</file>
+            <file>file:/C:/GestionStage/web/profilEtudiant.jsp</file>
+>>>>>>> 99dab64fd4b0e186597adbaaf05f353f16ceb4dd
         </group>
     </open-files>
 </project-private>

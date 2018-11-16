@@ -5,39 +5,15 @@
  */
 package com.stageo.beans;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
  * @author mchausse
  */
-@Entity
-@Table(name = "utilisateurmessage")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Utilisateurmessage.findAll", query = "SELECT u FROM Utilisateurmessage u")
-    , @NamedQuery(name = "Utilisateurmessage.findByIdMessage", query = "SELECT u FROM Utilisateurmessage u WHERE u.utilisateurmessagePK.idMessage = :idMessage")
-    , @NamedQuery(name = "Utilisateurmessage.findByIdDestinataire", query = "SELECT u FROM Utilisateurmessage u WHERE u.utilisateurmessagePK.idDestinataire = :idDestinataire")
-    , @NamedQuery(name = "Utilisateurmessage.findByLu", query = "SELECT u FROM Utilisateurmessage u WHERE u.lu = :lu")})
-public class Utilisateurmessage implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @EmbeddedId
+public class Utilisateurmessage {
     protected UtilisateurmessagePK utilisateurmessagePK;
-    @Basic(optional = false)
-    @Column(name = "LU")
     private short lu;
 
-    public Utilisateurmessage() {
-    }
+    public Utilisateurmessage() {}
 
     public Utilisateurmessage(UtilisateurmessagePK utilisateurmessagePK) {
         this.utilisateurmessagePK = utilisateurmessagePK;

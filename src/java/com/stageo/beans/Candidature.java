@@ -5,47 +5,19 @@
  */
 package com.stageo.beans;
 
-import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author mchausse
  */
-@Entity
-@Table(name = "candidature")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Candidature.findAll", query = "SELECT c FROM Candidature c")
-    , @NamedQuery(name = "Candidature.findByIdEtudiant", query = "SELECT c FROM Candidature c WHERE c.candidaturePK.idEtudiant = :idEtudiant")
-    , @NamedQuery(name = "Candidature.findByIdOffre", query = "SELECT c FROM Candidature c WHERE c.candidaturePK.idOffre = :idOffre")
-    , @NamedQuery(name = "Candidature.findByDate", query = "SELECT c FROM Candidature c WHERE c.date = :date")
-    , @NamedQuery(name = "Candidature.findByStatut", query = "SELECT c FROM Candidature c WHERE c.statut = :statut")})
-public class Candidature implements Serializable {
+public class Candidature {
 
-    private static final long serialVersionUID = 1L;
-    @EmbeddedId
     protected CandidaturePK candidaturePK;
-    @Basic(optional = false)
-    @Column(name = "DATE")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    @Basic(optional = false)
-    @Column(name = "STATUT")
     private String statut;
 
-    public Candidature() {
-    }
+    public Candidature() {}
 
     public Candidature(CandidaturePK candidaturePK) {
         this.candidaturePK = candidaturePK;

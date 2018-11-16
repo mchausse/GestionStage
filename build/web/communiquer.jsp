@@ -23,6 +23,26 @@
         
         <div class='container-fluid'>
             <div id="contenuPage">
+                
+                <!-- Titre de la page -->
+                <div class="row">
+                <div class="col-lg-1"></div><!-- Sert de margin -->
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>
+                                    <span id='btnDescTitrePage' class='glyphicon glyphicon-triangle-bottom'></span>
+                                    Communication
+                                </h3>
+                                <p id='descTitrePage'>
+                                    Ici, vous pouvez voir vos messages reçus et envoyés ainsi que les brouillons sauvegardés.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin du titre de la page-->
+                
                 <div class="col-lg-1"></div><!-- Sert de margin -->
                 
                 <!-- Debut de la section du menu des messages -->
@@ -35,8 +55,8 @@
                         <!-- Liste des options du menu -->
                         <div class="panel-body">
                             <div class="col-lg-12">
-                                <a href="#" class="btn btn-default btn-lg btnMenu">
-                                    <span class="badge">5</span>
+                                <a href="#" class="btn btn-danger btn-lg btnMenu">
+                                    <span class="badge">2</span>
                                     <span class="glyphicon glyphicon-inbox"> Reçus</span>
                                 </a>
                                 <a href="#" class="btn btn-default btn-lg btnMenu">
@@ -62,23 +82,45 @@
                         </div>
                         <div id="messages" class="panel-body">
                             <div class="panel panel-default">
-                                <div class="panel-heading"><kbd>Activix</kbd> Maxime </div>
+                                <div class="panel-heading">
+                                    <span class="label label-danger label-as-badge">&#8203 &#8203</span>
+                                    <kbd>Activix</kbd> 
+                                    Maxime 
+                                </div>
                                 <div class="panel-body">Entrevue</div>
                             </div>
                             <div class="panel panel-default">
-                                <div class="panel-heading"><kbd>Wal-Mart</kbd> Charles</div>
+                                <div class="panel-heading">
+                                    <span class="label label-danger label-as-badge">&#8203 &#8203</span>
+                                    <kbd>Wal-Mart</kbd>
+                                    Charles
+                                </div>
+                                <div class="panel-body">Entrevue</div>
+                            </div>
+                            <!-- Mettre une separation entre les messages lus et les non-lus-->
+                            <hr />
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <span class="label label-default label-as-badge">&#8203 &#8203</span>
+                                    <kbd>Cosco</kbd>
+                                    Abdelmounène 
+                                </div>
                                 <div class="panel-body">Entrevue</div>
                             </div>
                             <div class="panel panel-default">
-                                <div class="panel-heading"><kbd>Cosco</kbd> Abdelmounène </div>
+                                <div class="panel-heading">
+                                    <span class="label label-default label-as-badge">&#8203 &#8203</span>
+                                    <kbd>La belle province</kbd>
+                                    Anne-Marie 
+                                </div>
                                 <div class="panel-body">Entrevue</div>
                             </div>
                             <div class="panel panel-default">
-                                <div class="panel-heading"><kbd>La belle province</kbd> Anne-Marie </div>
-                                <div class="panel-body">Entrevue</div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading"><kbd>Chez Rémi</kbd> Jean-Coutu </div>
+                                <div class="panel-heading">
+                                    <span class="label label-default label-as-badge">&#8203 &#8203</span>
+                                    <kbd>Chez Rémi</kbd>
+                                    Jean-Coutu 
+                                </div>
                                 <div class="panel-body">Entrevue</div>
                             </div>
                         </div>
@@ -127,6 +169,7 @@ line breaks.
                     </div>
                 </div>
                 <!-- Fin de la section dun message -->
+                
                 <div class="col-lg-1"></div><!-- Sert de margin -->
                 
             </div>
@@ -139,6 +182,9 @@ line breaks.
         <script>
             
             $(document).ready(function(){
+                // Chacher le titre
+                $("#descTitrePage").hide();
+                
                 $("#messages").hover(function(){
                     $(this).css("overflow-y","scroll");
                 });
@@ -150,6 +196,22 @@ line breaks.
                 });
                 $("#texteMessage").mouseleave(function(){
                     $(this).css("overflow-y","hidden");
+                });
+                
+                // Pour le bouton de description du titre
+                $("#btnDescTitrePage").click(function(){
+                    if($("#btnDescTitrePage").is(".glyphicon-triangle-bottom")){
+                        // Faire apparaitre la desc
+                        $("#descTitrePage").show(500);
+                        // Changer la classe pour changer le signe du bouton
+                        $("#btnDescTitrePage").removeClass("glyphicon-triangle-bottom");
+                        $("#btnDescTitrePage").addClass('glyphicon-triangle-top');
+                    }else{
+                        $("#descTitrePage").hide(300);
+                        // Changer la classe pour changer le signe du bouton
+                        $("#btnDescTitrePage").removeClass("glyphicon-triangle-top");
+                        $("#btnDescTitrePage").addClass('glyphicon-triangle-bottom');
+                    }
                 });
             });
             

@@ -25,6 +25,27 @@
         
         <div class='container-fluid'>
             <div id="contenuPage">
+                
+                <!-- Titre de la page -->
+                <div class="row">
+                <div class="col-lg-1"></div><!-- Sert de margin -->
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>
+                                    <span id='btnDescTitrePage' class='glyphicon glyphicon-triangle-bottom'></span>
+                                    Gestion des documents
+                                </h3>
+                                <p id='descTitrePage'>
+                                    Ici, vous pouvez voir vos document que vous avez publiées, 
+                                    ainsi qu'en ajouter des nouveaux ou modifier et désactiver ceux déjà existants.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin du titre de la page-->
+                
                 <div class="col-lg-1"></div><!-- Sert de margin -->
                 
                 <!-- Debut de la section du menu des documents -->
@@ -109,8 +130,8 @@
                             <!-- Pour afficher un voyant de couleur -->
                             <span class="label label-success label-as-badge">&#8203 &#8203</span>
                             <div class='row'>
-                                <div class="col-lg-4"> Titre du document</div>
-                                <div class="col-lg-4">10-18-2018</div>
+                                <div class="col-lg-12 dateStage">Publié le 10-18-2018</div>
+                                <div class="col-lg-8"> Titre du document</div>
                                 <div class="col-lg-3"><kbd>PUBLIC</kbd></div>
                                 <a href="#" class="btn btn-default btn-md btnModDocument">
                                     <span class="glyphicon glyphicon-pencil"></span>
@@ -144,8 +165,8 @@
                             <!-- Pour afficher un voyant de couleur -->
                             <span class="label label-warning label-as-badge">&#8203 &#8203</span>
                             <div class='row'>
-                                <div class="col-lg-4"> Titre du document</div>
-                                <div class="col-lg-4">10-18-2018</div>
+                                <div class="col-lg-12 dateStage">Publié le 10-18-2018</div>
+                                <div class="col-lg-8"> Titre du document</div>
                                 <div class="col-lg-3"><kbd>ETUDIANT</kbd></div>
                                 <a href="#" class="btn btn-default btn-md btnModDocument">
                                     <span class="glyphicon glyphicon-pencil"></span>
@@ -179,8 +200,8 @@
                             <!-- Pour afficher un voyant de couleur -->
                             <span class="label label-info label-as-badge">&#8203 &#8203</span>
                             <div class='row'>
-                                <div class="col-lg-4"> Titre du document</div>
-                                <div class="col-lg-4">10-18-2018</div>
+                                <div class="col-lg-12 dateStage">Publié le 10-18-2018</div>
+                                <div class="col-lg-8"> Titre du document</div>
                                 <div class="col-lg-3"><kbd>EMPLOYEUR</kbd></div>
                                 <a href="#" class="btn btn-default btn-md btnModDocument">
                                     <span class="glyphicon glyphicon-pencil"></span>
@@ -220,16 +241,30 @@
             $(document).ready(function(){
                 // Cacher le formulaire de stage
                 $("#ajouterDocument").hide();
+                $("#descTitrePage").hide();
                 
                 // Assigner les actions de clicks
                 $("#btnAjouterDocument").click(function(){
-                    if($("#ajouterDocument").show){
+                    if(!$("#ajouterDocument").is(":hidden")){
                         $("#ajouterDocument").hide(300);
                         $("#btnAjouterDocument").html("<span class='glyphicon glyphicon-plus'> Ajouter</span>");
-                    }
-                    if($("#ajouterDocument").hide){
+                    }else{
                         $("#ajouterDocument").show(300);
                         $("#btnAjouterDocument").html("<span class='glyphicon glyphicon-arrow-left'> Annuler</span>");
+                    }
+                });
+                // Pour le bouton de description du titre
+                $("#btnDescTitrePage").click(function(){
+                    if($("#btnDescTitrePage").is(".glyphicon-triangle-bottom")){
+                        $("#descTitrePage").show(500);
+                        // Changer la classe pour changer le signe du bouton
+                        $("#btnDescTitrePage").removeClass("glyphicon-triangle-bottom");
+                        $("#btnDescTitrePage").addClass('glyphicon-triangle-top');
+                    }else{
+                        $("#descTitrePage").hide(300);
+                        // Changer la classe pour changer le signe du bouton
+                        $("#btnDescTitrePage").removeClass("glyphicon-triangle-top");
+                        $("#btnDescTitrePage").addClass('glyphicon-triangle-bottom');
                     }
                 });
             });

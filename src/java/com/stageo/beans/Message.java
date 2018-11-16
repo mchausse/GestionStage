@@ -5,65 +5,22 @@
  */
 package com.stageo.beans;
 
-import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author mchausse
  */
-@Entity
-@Table(name = "message")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Message.findAll", query = "SELECT m FROM Message m")
-    , @NamedQuery(name = "Message.findByIdMessage", query = "SELECT m FROM Message m WHERE m.idMessage = :idMessage")
-    , @NamedQuery(name = "Message.findByTitre", query = "SELECT m FROM Message m WHERE m.titre = :titre")
-    , @NamedQuery(name = "Message.findByMessage", query = "SELECT m FROM Message m WHERE m.message = :message")
-    , @NamedQuery(name = "Message.findByVu", query = "SELECT m FROM Message m WHERE m.vu = :vu")
-    , @NamedQuery(name = "Message.findByDate", query = "SELECT m FROM Message m WHERE m.date = :date")
-    , @NamedQuery(name = "Message.findByHeure", query = "SELECT m FROM Message m WHERE m.heure = :heure")
-    , @NamedQuery(name = "Message.findByIdExpediteur", query = "SELECT m FROM Message m WHERE m.idExpediteur = :idExpediteur")})
-public class Message implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_MESSAGE")
+public class Message{
     private String idMessage;
-    @Basic(optional = false)
-    @Column(name = "TITRE")
     private String titre;
-    @Basic(optional = false)
-    @Column(name = "MESSAGE")
     private String message;
-    @Basic(optional = false)
-    @Column(name = "VU")
     private short vu;
-    @Basic(optional = false)
-    @Column(name = "DATE")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    @Basic(optional = false)
-    @Column(name = "HEURE")
-    @Temporal(TemporalType.TIME)
     private Date heure;
-    @Basic(optional = false)
-    @Column(name = "ID_EXPEDITEUR")
     private String idExpediteur;
 
-    public Message() {
-    }
+    public Message() {}
 
     public Message(String idMessage) {
         this.idMessage = idMessage;
