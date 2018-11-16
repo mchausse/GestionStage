@@ -5,68 +5,22 @@
  */
 package com.stageo.beans;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
  * @author mchausse
  */
-@Entity
-@Table(name = "adresse")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Adresse.findAll", query = "SELECT a FROM Adresse a")
-    , @NamedQuery(name = "Adresse.findByIdAdresse", query = "SELECT a FROM Adresse a WHERE a.idAdresse = :idAdresse")
-    , @NamedQuery(name = "Adresse.findByNumeroCivique", query = "SELECT a FROM Adresse a WHERE a.numeroCivique = :numeroCivique")
-    , @NamedQuery(name = "Adresse.findByRue", query = "SELECT a FROM Adresse a WHERE a.rue = :rue")
-    , @NamedQuery(name = "Adresse.findByBureau", query = "SELECT a FROM Adresse a WHERE a.bureau = :bureau")
-    , @NamedQuery(name = "Adresse.findByVille", query = "SELECT a FROM Adresse a WHERE a.ville = :ville")
-    , @NamedQuery(name = "Adresse.findByCodePostal", query = "SELECT a FROM Adresse a WHERE a.codePostal = :codePostal")
-    , @NamedQuery(name = "Adresse.findByProvince", query = "SELECT a FROM Adresse a WHERE a.province = :province")
-    , @NamedQuery(name = "Adresse.findByPays", query = "SELECT a FROM Adresse a WHERE a.pays = :pays")
-    , @NamedQuery(name = "Adresse.findByTel", query = "SELECT a FROM Adresse a WHERE a.tel = :tel")})
-public class Adresse implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_ADRESSE")
+public class Adresse{
     private String idAdresse;
-    @Basic(optional = false)
-    @Column(name = "NUMERO_CIVIQUE")
     private String numeroCivique;
-    @Basic(optional = false)
-    @Column(name = "RUE")
     private String rue;
-    @Basic(optional = false)
-    @Column(name = "BUREAU")
     private String bureau;
-    @Basic(optional = false)
-    @Column(name = "VILLE")
     private String ville;
-    @Basic(optional = false)
-    @Column(name = "CODE_POSTAL")
     private String codePostal;
-    @Basic(optional = false)
-    @Column(name = "PROVINCE")
     private String province;
-    @Basic(optional = false)
-    @Column(name = "PAYS")
     private String pays;
-    @Basic(optional = false)
-    @Column(name = "TEL")
     private String tel;
 
-    public Adresse() {
-    }
+    public Adresse() {}
 
     public Adresse(String idAdresse) {
         this.idAdresse = idAdresse;

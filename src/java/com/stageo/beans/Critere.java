@@ -5,40 +5,16 @@
  */
 package com.stageo.beans;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
  * @author mchausse
  */
-@Entity
-@Table(name = "critere")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Critere.findAll", query = "SELECT c FROM Critere c")
-    , @NamedQuery(name = "Critere.findByIdCritere", query = "SELECT c FROM Critere c WHERE c.idCritere = :idCritere")
-    , @NamedQuery(name = "Critere.findByNom", query = "SELECT c FROM Critere c WHERE c.nom = :nom")})
-public class Critere implements Serializable {
+public class Critere {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_CRITERE")
     private String idCritere;
-    @Basic(optional = false)
-    @Column(name = "NOM")
     private String nom;
 
-    public Critere() {
-    }
+    public Critere() {}
 
     public Critere(String idCritere) {
         this.idCritere = idCritere;

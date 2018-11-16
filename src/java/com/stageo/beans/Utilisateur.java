@@ -5,62 +5,25 @@
  */
 package com.stageo.beans;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
  * @author mchausse
  */
-@Entity
-@Table(name = "utilisateur")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur u")
-    , @NamedQuery(name = "Utilisateur.findByIdUtilisateur", query = "SELECT u FROM Utilisateur u WHERE u.idUtilisateur = :idUtilisateur")
-    , @NamedQuery(name = "Utilisateur.findByCourriel", query = "SELECT u FROM Utilisateur u WHERE u.courriel = :courriel")
-    , @NamedQuery(name = "Utilisateur.findByMotDePasse", query = "SELECT u FROM Utilisateur u WHERE u.motDePasse = :motDePasse")
-    , @NamedQuery(name = "Utilisateur.findByNom", query = "SELECT u FROM Utilisateur u WHERE u.nom = :nom")
-    , @NamedQuery(name = "Utilisateur.findByPrenom", query = "SELECT u FROM Utilisateur u WHERE u.prenom = :prenom")
-    , @NamedQuery(name = "Utilisateur.findByTypeUtilisateur", query = "SELECT u FROM Utilisateur u WHERE u.typeUtilisateur = :typeUtilisateur")})
-public class Utilisateur implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_UTILISATEUR")
+public abstract class Utilisateur {
     private String idUtilisateur;
-    @Basic(optional = false)
-    @Column(name = "COURRIEL")
     private String courriel;
-    @Basic(optional = false)
-    @Column(name = "MOT_DE_PASSE")
     private String motDePasse;
-    @Basic(optional = false)
-    @Column(name = "NOM")
     private String nom;
-    @Basic(optional = false)
-    @Column(name = "PRENOM")
     private String prenom;
-    @Basic(optional = false)
-    @Column(name = "TYPE_UTILISATEUR")
     private String typeUtilisateur;
 
-    public Utilisateur() {
-    }
+    protected Utilisateur() {}
 
-    public Utilisateur(String idUtilisateur) {
+    protected Utilisateur(String idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 
-    public Utilisateur(String idUtilisateur, String courriel, String motDePasse, String nom, String prenom, String typeUtilisateur) {
+    protected Utilisateur(String idUtilisateur, String courriel, String motDePasse, String nom, String prenom, String typeUtilisateur) {
         this.idUtilisateur = idUtilisateur;
         this.courriel = courriel;
         this.motDePasse = motDePasse;
