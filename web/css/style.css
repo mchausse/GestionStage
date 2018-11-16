@@ -243,7 +243,6 @@
     margin-top: -10px;
     margin-right: -20px;
 }
-<<<<<<< HEAD
 
 /** ====== page : inscription.jsp ====== */
 #contenuInscription{
@@ -282,9 +281,8 @@
 }
 .bold{
     font-weight: bold;
-=======
+}
 /** ====== page : gestionDocumentsAdministrateur.jsp ====== */
 .dateStage{
     color:grey;
->>>>>>> 99dab64fd4b0e186597adbaaf05f353f16ceb4dd
 }
