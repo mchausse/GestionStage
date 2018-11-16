@@ -63,12 +63,12 @@
                                 <div id="infoEmployeur" style="display: none">
                                     <div class="input-group"> <!--Nom inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span> </div>
-                                        <input type="tel" class="form-control inscriptionInput" placeholder="Téléphone" required>
+                                        <input type="tel" class="form-control inscriptionInput" id="inputTel" placeholder="Téléphone" required>
                                     </div>
                                     <br/>
                                     <div class="input-group"> <!--Nom inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span> </div>
-                                        <input type="text" class="form-control inscriptionInput" placeholder="Nom de votre Entreprise" required>
+                                        <input type="text" class="form-control inscriptionInput" id="inputEntre" placeholder="Nom de votre Entreprise" required>
                                     </div>
                                     <input type="submit" class="btn btn-success" id="btnLogin" value="S'Inscrire" style="width:100%">
                                 </div>
@@ -90,7 +90,7 @@
                                         <div class="input-group-addon" id="iconPasslLog"><span class="glyphicon glyphicon-asterisk"></span> </div>
                                         <input type="password" class="form-control" id="paswordLog" placeholder="Mot De Passe" required>
                                     </div>
-                                    <input type="submit" class="btn btn-success" id="btnLogin" value="Se Connecter" style="width:100%">
+                                    <input type="submit" class="btn btn-primary" id="btnLogin" value="Se Connecter" style="width:100%">
                                 </div>
                             </form>
                         </div>
@@ -108,10 +108,14 @@
         if(role === "Étudiant"){
             document.getElementById("infoEleve").style.display = "block";
             document.getElementById("infoEmployeur").style.display = "none";
+            document.getElementById("inputTel").required = false;
+            document.getElementById("inputEntre").required = false;
         }
         if(role === "Employeur"){
             document.getElementById("infoEleve").style.display = "none";
             document.getElementById("infoEmployeur").style.display = "block";
+            document.getElementById("inputTel").required = true;
+            document.getElementById("inputEntre").required = true;
         }
     }
     function cacherInfo(){
