@@ -11,10 +11,6 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.eclipselink.classpath}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.servlet-api.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
