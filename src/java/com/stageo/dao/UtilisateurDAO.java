@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +39,7 @@ public class UtilisateurDAO extends Dao<Utilisateur>{
                 temp.setCourriel(rs.getString("COURRIEL"));
                 temp.setNom(rs.getString("NOM"));
                 temp.setPrenom(rs.getString("PRENOM"));
-                temp.setTypeUtilisateur("TYPE_UTILISATEUR");
+                temp.setTypeUtilisateur(rs.getString("TYPE_UTILISATEUR"));
                 return temp;
             }
             return null;
@@ -58,18 +60,18 @@ public class UtilisateurDAO extends Dao<Utilisateur>{
                 temp.setCourriel(rs.getString("COURRIEL"));
                 temp.setNom(rs.getString("NOM"));
                 temp.setPrenom(rs.getString("PRENOM"));
-                temp.setTypeUtilisateur("TYPE_UTILISATEUR");
+                temp.setTypeUtilisateur(rs.getString("TYPE_UTILISATEUR"));
                 return temp;
             }
             return null;
         }catch(SQLException e){return new Utilisateur(""+e);} //Pour voir l'erreur
     }
-    
     @Override
     public boolean create(Utilisateur o) {
         try{
-            String requete = "INSERT INTO utilisateur (ID_UTILISATEUR, COURRIEL, MOT_DE_PASSE, NOM, PRENOM, TYPE_UTILISATEUR) " +
-                                "VALUES (?, ?, ?, ?, ?, ?);";
+            String requete = "INSERT INTO `utilisateur`"
+                    + "(`ID_UTILISATEUR`, `COURRIEL`, `MOT_DE_PASSE`, `NOM`, `PRENOM`, `TYPE_UTILISATEUR`) "
+                    + "VALUES (?,?,?,?,?,?)";
             PreparedStatement requeteParam = cnx.prepareStatement(requete);
             
             requeteParam.setString(1, o.getIdUtilisateur());
@@ -81,21 +83,61 @@ public class UtilisateurDAO extends Dao<Utilisateur>{
             
             requeteParam.executeUpdate();
             return true;
-        }catch(SQLException e){return false;}
+        }catch(SQLException e){return true;}
     }
 
     @Override
     public boolean update(Utilisateur o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+        String requete = "UPDATE `utilisateur` "
+                + "SET `ID_UTILISATEUR` = ?, `COURRIEL` = ?, `MOT_DE_PASSE` = ?, `NOM` = ?, `PRENOM` = ?, `TYPE_UTILISATEUR` = ? "
+                + "WHERE `utilisateur`.`ID_UTILISATEUR` = ?";
+        PreparedStatement requeteParam = cnx.prepareStatement(requete);
+        
+        requeteParam.setString(1, o.getIdUtilisateur());
+        requeteParam.setString(2, o.getCourriel());
+        requeteParam.setString(3, o.getMotDePasse());
+        requeteParam.setString(4, o.getNom());
+        requeteParam.setString(5, o.getPrenom());
+        requeteParam.setString(6, o.getTypeUtilisateur());
+        requeteParam.setString(7, o.getIdUtilisateur());
+        
+        requeteParam.executeUpdate();
+        return true;
+        }catch(SQLException e){return false;}
     }
 
     @Override
     public boolean delete(Utilisateur o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            String requete = "DELETE FROM `utilisateur` WHERE `utilisateur`.`ID_UTILISATEUR` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            
+            requeteParam.setString(1, o.getIdUtilisateur());
+            requeteParam.executeUpdate();
+            return true;
+        }catch(SQLException e){return false;}
     }
 
     @Override
     public List<Utilisateur> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            List<Utilisateur> liste = new ArrayList();
+            String requete = "SELECT * FROM `utilisateur`";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            
+            ResultSet rs = requeteParam.executeQuery();
+            while (rs.next()){
+                Utilisateur temp = new Utilisateur();
+                temp.setIdUtilisateur(rs.getString("ID_UTILISATEUR"));
+                temp.setCourriel(rs.getString("COURRIEL"));
+                temp.setNom(rs.getString("NOM"));
+                temp.setPrenom(rs.getString("PRENOM"));
+                temp.setTypeUtilisateur(rs.getString("PRENOM"));
+                temp.setTypeUtilisateur(rs.getString("TYPE_UTILISATEUR"));
+                liste.add(temp);
+            }
+            return liste;
+        }catch(SQLException e){return null;}
     }
 }
