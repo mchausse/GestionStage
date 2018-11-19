@@ -4,6 +4,8 @@
     Author     : gabri
 --%>
 
+<%@page import="com.stageo.beans.Etudiant"%>
+<%@page import="com.stageo.dao.EtudiantDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.logging.Logger"%>
 <%@page import="java.util.logging.Level"%>
@@ -68,6 +70,41 @@
             
             //Test Delete
             out.println("Delete : " + dao.delete(test3) + "<br/>");
+            
+            //----------------------TEST ETUDIANT-----------------------------//
+            out.println("<hr/>");
+            out.println("Teste Etudiant<br/>");
+            EtudiantDAO daoEtu = new EtudiantDAO(c.getInstance());
+            
+            //Find
+            Etudiant etu1 = new Etudiant();
+            etu1.setIdEtudiant("1");
+            etu1.setStatutRecherche("En Recherche");
+            
+            Etudiant etu2 = daoEtu.find(etu1);
+            out.println("ID Find : " + etu2.getIdEtudiant() + " " + etu2.getStatutRecherche() + "<br/>");
+            
+            //FindByID
+            Etudiant etu3 = daoEtu.findById("1");
+            out.println("ID FindByID : " + etu2.getIdEtudiant() + " " + etu2.getStatutRecherche() + "<br/>");
+            
+            //Create
+            Etudiant etu4 = new Etudiant();
+            etu4.setIdEtudiant("2");
+            etu4.setStatutRecherche("Engagé");
+            out.println("Créé : " + daoEtu.create(etu4));
+            
+            //FindAll
+            List<Etudiant> listeEtu = daoEtu.findAll();
+            for(int i=0; i<listeEtu.size(); i++){
+                out.println("<hr/>");
+                out.println("ID : " + listeEtu.get(i).getIdEtudiant() + "<br/>");
+                out.println("Statut : " + listeEtu.get(i).getStatutRecherche() + "<br/>");
+            }
+            out.println("<br/>");
+            
+            //Delete
+            out.println("Delete : " + daoEtu.delete(etu4) + "<br/>");
         %>
     </body>
 </html>

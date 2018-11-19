@@ -9,7 +9,8 @@ package com.stageo.beans;
  *
  * @author mchausse
  */
-public class Etudiant extends Utilisateur{
+//public class Etudiant extends Utilisateur{
+public class Etudiant { //Etudiant ne devrait pas dessendre de utilisateur
     private String idEtudiant;
     private String statutRecherche;
 
