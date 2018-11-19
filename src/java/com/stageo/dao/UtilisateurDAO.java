@@ -38,6 +38,7 @@ public class UtilisateurDAO extends Dao<Utilisateur>{
                 temp.setNom(rs.getString("NOM"));
                 temp.setPrenom(rs.getString("PRENOM"));
                 temp.setTypeUtilisateur(rs.getString("TYPE_UTILISATEUR"));
+                temp.setMotDePasse(rs.getString("MOT_DE_PASSE"));
                 return temp;
             }
             return null;
@@ -59,6 +60,27 @@ public class UtilisateurDAO extends Dao<Utilisateur>{
                 temp.setNom(rs.getString("NOM"));
                 temp.setPrenom(rs.getString("PRENOM"));
                 temp.setTypeUtilisateur(rs.getString("TYPE_UTILISATEUR"));
+                temp.setMotDePasse(rs.getString("MOT_DE_PASSE"));
+                return temp;
+            }
+            return null;
+        }catch(SQLException e){return new Utilisateur(""+e);} //Pour voir l'erreur
+    }
+    public Utilisateur findByEmail(String email) {
+        try{
+            String requete = "SELECT * FROM utilisateur WHERE COURRIEL=?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            requeteParam.setString(1, email);
+            ResultSet rs = requeteParam.executeQuery();
+            
+            if(rs.next()){
+                Utilisateur temp = new Utilisateur();
+                temp.setIdUtilisateur(rs.getString("ID_UTILISATEUR"));
+                temp.setCourriel(rs.getString("COURRIEL"));
+                temp.setNom(rs.getString("NOM"));
+                temp.setPrenom(rs.getString("PRENOM"));
+                temp.setTypeUtilisateur(rs.getString("TYPE_UTILISATEUR"));
+                temp.setMotDePasse(rs.getString("MOT_DE_PASSE"));
                 return temp;
             }
             return null;

@@ -45,6 +45,10 @@
             Utilisateur temp2 = dao.find(test2);
             out.println("Find by OBJ : " + test2.getIdUtilisateur() + "<br/>");
             
+            //findByEmail
+            Utilisateur user1 = dao.findByEmail("gab@hotmail.com");
+            out.println("<br/><br/> ID par Email : " + user1.getIdUtilisateur() + "<br/>");
+            out.println("Email : " + user1.getCourriel()+"<br/>");
             //Teste creation
             Utilisateur test3 = new Utilisateur();
             test3.setIdUtilisateur("666");

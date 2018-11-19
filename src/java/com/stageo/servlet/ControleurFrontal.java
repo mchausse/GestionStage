@@ -9,6 +9,7 @@ import com.stageo.controleur.AfficherListeStagesVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagerie;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherProfilEtudiantAction;
+import com.stageo.controleur.ConnexionAction;
 import com.stageo.controleur.DefaultAction;
 
 import java.io.IOException;
@@ -48,6 +49,9 @@ public class ControleurFrontal extends HttpServlet {
             case "afficherMessagerie":
                 action = new AfficherMessagerie();
                 break;
+            case "connexion":
+                action = new ConnexionAction();
+            break;
             default :
                 action = new DefaultAction();
         }

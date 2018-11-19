@@ -1,0 +1,14 @@
+SMAP
+inscription_jsp.java
+JSP
+*S JSP
+*F
++ 0 inscription.jsp
+WEB-INF/vues/inscription.jsp
++ 1 menu.jsp
+WEB-INF/vues/menu.jsp
+*L
+5,16:49
+5#1,26:65
+20#0,107:90
+*E
