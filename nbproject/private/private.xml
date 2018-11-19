@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/beans/Employeur.java</file>
             <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/web/testUserDAO.jsp</file>
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/dao/UtilisateurDAO.java</file>
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/beans/Utilisateur.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/dao/EtudiantDAO.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/dao/EmployeurDAO.java</file>
         </group>
     </open-files>
 </project-private>

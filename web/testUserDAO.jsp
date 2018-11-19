@@ -116,7 +116,8 @@
             
             //Find
             Employeur emp1 = new Employeur();
-            emp1.setIdEmployeur("3");
+            //emp1.setIdEmployeur("3");
+            emp1.setIdEmployeur("2");
             
             Employeur emp2 = daoEmp.find(emp1);
             out.println("ID employeur : " + emp2.getIdEmployeur() + "<br/>");
@@ -124,12 +125,40 @@
             out.println("ID compagnie : " + emp2.getIdCompagnie() + "<br/>");
             
             //FindbyID
-            Employeur emp3 = daoEmp.findById("3");
+            //Employeur emp3 = daoEmp.findById("3");
+            Employeur emp3 = daoEmp.findById("2");
             out.println("<br/>");
             out.println("ID employeur : " + emp3.getIdEmployeur() + "<br/>");
             out.println("Tel : " + emp3.getTel()+ "<br/>");
             out.println("ID compagnie : " + emp3.getIdCompagnie() + "<br/>");
-
+            
+            //Create
+            Employeur emp4 = new Employeur();
+            emp4.setIdEmployeur("3");
+            emp4.setTel("5147899876");
+            emp4.setIdCompagnie("2");
+            out.println("<br/><br/>Créer : " + daoEmp.create(emp4));
+            out.println("<br/>");
+            out.println("ID employeur : " + emp4.getIdEmployeur() + "<br/>");
+            out.println("Tel : " + emp4.getTel()+ "<br/>");
+            out.println("ID compagnie : " + emp4.getIdCompagnie() + "<br/>");
+            
+            //Update
+            emp4.setTel("66666666");
+            out.println("Modifier : " + daoEmp.update(emp4));
+            
+            //FindAll
+            List<Employeur> listeEmp = daoEmp.findAll();
+            for(int i=0; i<listeEmp.size(); i++){
+                out.println("<hr/>");
+                out.println("ID : " + listeEmp.get(i).getIdEmployeur() + "<br/>");
+                out.println("Tel : " + listeEmp.get(i).getTel() + "<br/>");
+                out.println("IdComp : " + listeEmp.get(i).getIdCompagnie() + "<br/>");
+            }
+            out.println("<br/>");
+            
+            //Delete
+            out.println("Delete : " + daoEmp.delete(emp4));
         %>
     </body>
 </html>

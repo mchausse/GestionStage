@@ -61,27 +61,31 @@ public class EmployeurDAO extends Dao<Employeur>{
     }
     @Override
     public boolean create(Employeur o) {
-        try{
-            String requete = "INSERT INTO `employeur`(`ID_EMPLOYEUR`, `TEL`, `ID_COMPAGNIE`) VALUES (?,?,?)";
-            PreparedStatement requeteParam = cnx.prepareStatement(requete);
-            
-            requeteParam.setString(1, o.getIdEmployeur());
-            requeteParam.setString(2, o.getTel());
-            requeteParam.setString(3, o.getIdCompagnie());
-            requeteParam.executeUpdate();
-            return true;
-        }catch(SQLException e){return true;}
+        if(this.findById(o.getIdEmployeur())==null){ //Si l'utilisateur n'existe pas
+            try{
+                String requete = "INSERT INTO `employeur`(`ID_EMPLOYEUR`, `TEL`, `ID_COMPAGNIE`) VALUES (?,?,?)";
+                PreparedStatement requeteParam = cnx.prepareStatement(requete);
+
+                requeteParam.setString(1, o.getIdEmployeur());
+                requeteParam.setString(2, o.getTel());
+                requeteParam.setString(3, o.getIdCompagnie());
+                requeteParam.executeUpdate();
+                return true;
+            }catch(SQLException e){return false;}
+        }
+        return false;
     }
 
     @Override
     public boolean update(Employeur o) {
         try{
-            String requete = "UPDATE `Employeur` "
-                    + "SET `ID_Employeur` = ?, `STATUT_RECHERCHE` = ? "
-                    + "WHERE `Employeur`.`ID_Employeur` = ?";
+            String requete = "UPDATE `employeur` SET `ID_EMPLOYEUR` = ?, `TEL` = ?, `ID_COMPAGNIE` = ? WHERE `employeur`.`ID_EMPLOYEUR` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete);
 
             requeteParam.setString(1, o.getIdEmployeur());
+            requeteParam.setString(2, o.getTel());
+            requeteParam.setString(3, o.getIdCompagnie());
+            requeteParam.setString(4, o.getIdEmployeur());
 
             requeteParam.executeUpdate();
             return true;
@@ -111,6 +115,8 @@ public class EmployeurDAO extends Dao<Employeur>{
             while (rs.next()){
                 Employeur temp = new Employeur();
                 temp.setIdEmployeur(rs.getString("ID_Employeur"));
+                temp.setTel(rs.getString("TEL"));
+                temp.setIdCompagnie(rs.getString("ID_COMPAGNIE"));
                 liste.add(temp);
             }
             return liste;

@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import com.stageo.beans.Employeur;
+import com.stageo.dao.EmployeurDAO;
 import com.stageo.beans.Etudiant;
 import com.stageo.dao.EtudiantDAO;
 import java.util.List;
@@ -60,6 +62,8 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -79,6 +83,8 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
             Connexion c = new Connexion();
             c.setUrl("jdbc:mysql://localhost/stageo?user=root&password=root&serverTimezone=EST&characterEncoding=UTF-8");
             
+            //----------------------TEST UTILISATEUR---------------------------//
+            out.println("<h3>Test Utilisateur</h3>");
             UtilisateurDAO dao = new UtilisateurDAO(c.getInstance());
             //Test par ID : 
             Utilisateur test1 = dao.findById("1");
@@ -121,7 +127,7 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
             
             //----------------------TEST ETUDIANT-----------------------------//
             out.println("<hr/>");
-            out.println("Teste Etudiant<br/>");
+            out.println("<h3>Test Etudiant</h3>");
             EtudiantDAO daoEtu = new EtudiantDAO(c.getInstance());
             
             //Find
@@ -155,6 +161,33 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
             out.println("Delete : " + daoEtu.delete(etu4) + "<br/>");
             
             //----------------------TEST EMPLOYEUR----------------------------//
+            out.println("<hr/><h3>Test Employeur</h3>");
+            EmployeurDAO daoEmp = new EmployeurDAO(c.getInstance());
+            
+            //Find
+            Employeur emp1 = new Employeur();
+            //emp1.setIdEmployeur("3");
+            emp1.setIdEmployeur("2");
+            
+            Employeur emp2 = daoEmp.find(emp1);
+            out.println("ID employeur : " + emp2.getIdEmployeur() + "<br/>");
+            out.println("Tel : " + emp2.getTel()+ "<br/>");
+            out.println("ID compagnie : " + emp2.getIdCompagnie() + "<br/>");
+            
+            //FindbyID
+            //Employeur emp3 = daoEmp.findById("3");
+            Employeur emp3 = daoEmp.findById("2");
+            out.println("<br/>");
+            out.println("ID employeur : " + emp3.getIdEmployeur() + "<br/>");
+            out.println("Tel : " + emp3.getTel()+ "<br/>");
+            out.println("ID compagnie : " + emp3.getIdCompagnie() + "<br/>");
+            
+            //Create
+            Employeur emp4 = new Employeur();
+            emp4.setIdEmployeur("2");
+            emp4.setTel("5147899876");
+            emp4.setIdCompagnie("2");
+            out.println("Créer : " + daoEmp.create(emp4));
             
         
       out.write("\n");

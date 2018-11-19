@@ -9,7 +9,7 @@ package com.stageo.beans;
  *
  * @author mchausse
  */
-public class Employeur { //Employeur ne devrait pas dessendre d'utilisateur
+public class Employeur extends Utilisateur{ 
     private String idEmployeur;
     private String tel;
     private String idCompagnie;
