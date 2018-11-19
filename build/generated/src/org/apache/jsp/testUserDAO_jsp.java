@@ -3,6 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import com.stageo.beans.Utilisateur;
 import com.stageo.singleton.Connexion;
 import com.stageo.dao.UtilisateurDAO;
@@ -50,6 +53,9 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -57,14 +63,57 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>JSP Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h1>Hello World!</h1>\n");
+      out.write("        <h1>Test de mon DAO</h1>\n");
       out.write("        ");
-
+    
+            try { //devrait etre dans le singleton
+                Class.forName("com.mysql.jdbc.Driver");
+            }catch (ClassNotFoundException ex) {
+                Logger.getLogger(UtilisateurDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             Connexion c = new Connexion();
             c.setUrl("jdbc:mysql://localhost/stageo?user=root&password=root&serverTimezone=EST&characterEncoding=UTF-8");
             
             UtilisateurDAO dao = new UtilisateurDAO(c.getInstance());
-            Utilisateur test = dao.findById("1");
+            //Test par ID : 
+            Utilisateur test1 = dao.findById("1");
+            out.println("Find by ID : " + test1.getIdUtilisateur() + "<br/>");
+            
+            //Test par Obj
+            Utilisateur test2 = new Utilisateur("1");
+            Utilisateur temp2 = dao.find(test2);
+            out.println("Find by OBJ : " + test2.getIdUtilisateur() + "<br/>");
+            
+            //Teste creation
+            Utilisateur test3 = new Utilisateur();
+            test3.setIdUtilisateur("666");
+            test3.setCourriel("bob@bob.com");
+            test3.setMotDePasse("bob");
+            test3.setNom("billy");
+            test3.setPrenom("bob");
+            test3.setTypeUtilisateur("etudiant");
+            out.println("Création : " + dao.create(test3) + "<br/>");
+            
+            //Test findAll
+            List<Utilisateur> listeTemp = dao.findAll();
+            out.println("Liste des utilisateurs : <br/>" );
+            for(int i=0; i<listeTemp.size(); i++){
+                out.println("<hr/>");
+                out.println("<b> ID : "+listeTemp.get(i).getIdUtilisateur()+"</b><br/>");
+                out.println("Courriel : " +listeTemp.get(i).getCourriel()+"<br/>");
+                out.println("Nom : " +listeTemp.get(i).getNom()+"<br/>");
+                out.println("Prenom : " +listeTemp.get(i).getPrenom()+"<br/>");
+                out.println("Type : " +listeTemp.get(i).getTypeUtilisateur()+"<br/>");
+            }
+            
+            out.println("<hr/>");
+            //Test modification
+            test3.setNom("Robert");
+            out.println("Modifié : "+dao.update(test3)+"<br/>");
+            
+            //Test Delete
+            out.println("Delete : " + dao.delete(test3) + "<br/>");
         
       out.write("\n");
       out.write("    </body>\n");
