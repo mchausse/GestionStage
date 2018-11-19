@@ -4,6 +4,10 @@
     Author     : gabri
 --%>
 
+<%@page import="com.stageo.beans.Employeur"%>
+<%@page import="com.stageo.dao.EmployeurDAO"%>
+<%@page import="com.stageo.beans.Etudiant"%>
+<%@page import="com.stageo.dao.EtudiantDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.logging.Logger"%>
 <%@page import="java.util.logging.Level"%>
@@ -29,6 +33,8 @@
             Connexion c = new Connexion();
             c.setUrl("jdbc:mysql://localhost/stageo?user=root&password=root&serverTimezone=EST&characterEncoding=UTF-8");
             
+            //----------------------TEST UTILISATEUR---------------------------//
+            out.println("<h3>Test Utilisateur</h3>");
             UtilisateurDAO dao = new UtilisateurDAO(c.getInstance());
             //Test par ID : 
             Utilisateur test1 = dao.findById("1");
@@ -68,6 +74,91 @@
             
             //Test Delete
             out.println("Delete : " + dao.delete(test3) + "<br/>");
+            
+            //----------------------TEST ETUDIANT-----------------------------//
+            out.println("<hr/>");
+            out.println("<h3>Test Etudiant</h3>");
+            EtudiantDAO daoEtu = new EtudiantDAO(c.getInstance());
+            
+            //Find
+            Etudiant etu1 = new Etudiant();
+            etu1.setIdEtudiant("1");
+            etu1.setStatutRecherche("En Recherche");
+            
+            Etudiant etu2 = daoEtu.find(etu1);
+            out.println("ID Find : " + etu2.getIdEtudiant() + " " + etu2.getStatutRecherche() + "<br/>");
+            
+            //FindByID
+            Etudiant etu3 = daoEtu.findById("1");
+            out.println("ID FindByID : " + etu2.getIdEtudiant() + " " + etu2.getStatutRecherche() + "<br/>");
+            
+            //Create
+            Etudiant etu4 = new Etudiant();
+            etu4.setIdEtudiant("2");
+            etu4.setStatutRecherche("Engagé");
+            out.println("Créé : " + daoEtu.create(etu4));
+            
+            //FindAll
+            List<Etudiant> listeEtu = daoEtu.findAll();
+            for(int i=0; i<listeEtu.size(); i++){
+                out.println("<hr/>");
+                out.println("ID : " + listeEtu.get(i).getIdEtudiant() + "<br/>");
+                out.println("Statut : " + listeEtu.get(i).getStatutRecherche() + "<br/>");
+            }
+            out.println("<br/>");
+            
+            //Delete
+            out.println("Delete : " + daoEtu.delete(etu4) + "<br/>");
+            
+            //----------------------TEST EMPLOYEUR----------------------------//
+            out.println("<hr/><h3>Test Employeur</h3>");
+            EmployeurDAO daoEmp = new EmployeurDAO(c.getInstance());
+            
+            //Find
+            Employeur emp1 = new Employeur();
+            //emp1.setIdEmployeur("3");
+            emp1.setIdEmployeur("2");
+            
+            Employeur emp2 = daoEmp.find(emp1);
+            out.println("ID employeur : " + emp2.getIdEmployeur() + "<br/>");
+            out.println("Tel : " + emp2.getTel()+ "<br/>");
+            out.println("ID compagnie : " + emp2.getIdCompagnie() + "<br/>");
+            
+            //FindbyID
+            //Employeur emp3 = daoEmp.findById("3");
+            Employeur emp3 = daoEmp.findById("2");
+            out.println("<br/>");
+            out.println("ID employeur : " + emp3.getIdEmployeur() + "<br/>");
+            out.println("Tel : " + emp3.getTel()+ "<br/>");
+            out.println("ID compagnie : " + emp3.getIdCompagnie() + "<br/>");
+            
+            //Create
+            Employeur emp4 = new Employeur();
+            emp4.setIdEmployeur("3");
+            emp4.setTel("5147899876");
+            emp4.setIdCompagnie("2");
+            out.println("<br/><br/>Créer : " + daoEmp.create(emp4));
+            out.println("<br/>");
+            out.println("ID employeur : " + emp4.getIdEmployeur() + "<br/>");
+            out.println("Tel : " + emp4.getTel()+ "<br/>");
+            out.println("ID compagnie : " + emp4.getIdCompagnie() + "<br/>");
+            
+            //Update
+            emp4.setTel("66666666");
+            out.println("Modifier : " + daoEmp.update(emp4));
+            
+            //FindAll
+            List<Employeur> listeEmp = daoEmp.findAll();
+            for(int i=0; i<listeEmp.size(); i++){
+                out.println("<hr/>");
+                out.println("ID : " + listeEmp.get(i).getIdEmployeur() + "<br/>");
+                out.println("Tel : " + listeEmp.get(i).getTel() + "<br/>");
+                out.println("IdComp : " + listeEmp.get(i).getIdCompagnie() + "<br/>");
+            }
+            out.println("<br/>");
+            
+            //Delete
+            out.println("Delete : " + daoEmp.delete(emp4));
         %>
     </body>
 </html>
