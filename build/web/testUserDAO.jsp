@@ -4,6 +4,8 @@
     Author     : gabri
 --%>
 
+<%@page import="com.stageo.beans.Employeur"%>
+<%@page import="com.stageo.dao.EmployeurDAO"%>
 <%@page import="com.stageo.beans.Etudiant"%>
 <%@page import="com.stageo.dao.EtudiantDAO"%>
 <%@page import="java.util.List"%>
@@ -31,6 +33,8 @@
             Connexion c = new Connexion();
             c.setUrl("jdbc:mysql://localhost/stageo?user=root&password=root&serverTimezone=EST&characterEncoding=UTF-8");
             
+            //----------------------TEST UTILISATEUR---------------------------//
+            out.println("<h3>Test Utilisateur</h3>");
             UtilisateurDAO dao = new UtilisateurDAO(c.getInstance());
             //Test par ID : 
             Utilisateur test1 = dao.findById("1");
@@ -73,7 +77,7 @@
             
             //----------------------TEST ETUDIANT-----------------------------//
             out.println("<hr/>");
-            out.println("Teste Etudiant<br/>");
+            out.println("<h3>Test Etudiant</h3>");
             EtudiantDAO daoEtu = new EtudiantDAO(c.getInstance());
             
             //Find
@@ -105,6 +109,27 @@
             
             //Delete
             out.println("Delete : " + daoEtu.delete(etu4) + "<br/>");
+            
+            //----------------------TEST EMPLOYEUR----------------------------//
+            out.println("<hr/><h3>Test Employeur</h3>");
+            EmployeurDAO daoEmp = new EmployeurDAO(c.getInstance());
+            
+            //Find
+            Employeur emp1 = new Employeur();
+            emp1.setIdEmployeur("3");
+            
+            Employeur emp2 = daoEmp.find(emp1);
+            out.println("ID employeur : " + emp2.getIdEmployeur() + "<br/>");
+            out.println("Tel : " + emp2.getTel()+ "<br/>");
+            out.println("ID compagnie : " + emp2.getIdCompagnie() + "<br/>");
+            
+            //FindbyID
+            Employeur emp3 = daoEmp.findById("3");
+            out.println("<br/>");
+            out.println("ID employeur : " + emp3.getIdEmployeur() + "<br/>");
+            out.println("Tel : " + emp3.getTel()+ "<br/>");
+            out.println("ID compagnie : " + emp3.getIdCompagnie() + "<br/>");
+
         %>
     </body>
 </html>

@@ -153,6 +153,9 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
             
             //Delete
             out.println("Delete : " + daoEtu.delete(etu4) + "<br/>");
+            
+            //----------------------TEST EMPLOYEUR----------------------------//
+            
         
       out.write("\n");
       out.write("    </body>\n");

@@ -73,15 +73,16 @@ public class EtudiantDAO extends Dao<Etudiant>{
     @Override
     public boolean update(Etudiant o) {
         try{
-        String requete = "UPDATE `Etudiant` "
-                + "SET `ID_Etudiant` = ?, `STATUT_RECHERCHE` = ? "
-                + "WHERE `Etudiant`.`ID_Etudiant` = ?";
-        PreparedStatement requeteParam = cnx.prepareStatement(requete);
-        
-        requeteParam.setString(1, o.getIdEtudiant());
-        requeteParam.setString(1, o.getStatutRecherche());
-        requeteParam.executeUpdate();
-        return true;
+            String requete = "UPDATE `Etudiant` "
+                    + "SET `ID_Etudiant` = ?, `STATUT_RECHERCHE` = ? "
+                    + "WHERE `Etudiant`.`ID_Etudiant` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+
+            requeteParam.setString(1, o.getIdEtudiant());
+            requeteParam.setString(2, o.getStatutRecherche());
+            requeteParam.setString(3, o.getIdEtudiant());
+            requeteParam.executeUpdate();
+            return true;
         }catch(SQLException e){return false;}
     }
 
