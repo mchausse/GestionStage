@@ -76,7 +76,7 @@ public class ConnexionAction extends AbstractAction{
                     return "messagerie";
                 }
             }
-        }catch(Exception e){return "inscription";} //Si il y a une erreur
+        }catch(Exception e){return ""+e;} //Si il y a une erreur
         return "inscription";
     }
 }

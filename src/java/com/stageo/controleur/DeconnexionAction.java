@@ -15,6 +15,5 @@ public class DeconnexionAction extends AbstractAction{
     public String execute() {
         request.getSession().invalidate();
         return "inscription";
-
     }
 }

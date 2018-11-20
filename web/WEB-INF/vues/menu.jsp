@@ -19,12 +19,12 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-main">
             <div id="choixMenu">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a class="#" href="">Mon profil</a></li>
                     <li><a class="#" href="">Offres de stage</a></li>
                     <li><a class="#" href="">Documents</a></li>
                     <li><a class="#" href="">Recherche Étudiant</a></li>
                     <c:if test="${ sessionScope['connecte']==true }" > <!--si l'utilisateur est connecte -->
                         <li><a class="#" href="do?action=deconnexion">Deconnexion</a></li>
+                        <li><a class="#" href="do?action=afficherConfigCompte">Profil</a></li> <!-- changer le nom pour de quoi d'autre -->
                     </c:if>
                     <c:if test="${ empty sessionScope['connecte'] || sessionScope['connecte']==false }" > <!-- il est deco -->
                         <li><a class="#" href="do?action=afficherIncription">Connexion</a></li>

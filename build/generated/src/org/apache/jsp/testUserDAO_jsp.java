@@ -109,6 +109,15 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
             test3.setTypeUtilisateur("etudiant");
             out.println("Création : " + dao.create(test3) + "<br/>");
             
+            Utilisateur test555 = new Utilisateur();
+            test3.setIdUtilisateur("555");
+            test3.setCourriel("bob@bob.com");
+            test3.setMotDePasse("bob");
+            test3.setNom("billy");
+            test3.setPrenom("bob");
+            test3.setTypeUtilisateur("etudiant");
+            out.println("Création : " + dao.create(test3) + "<br/>");
+            
             //Test findAll
             List<Utilisateur> listeTemp = dao.findAll();
             out.println("Liste des utilisateurs : <br/>" );
@@ -212,7 +221,7 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
             out.println("<br/>");
             
             //Delete
-            out.println("Delete : " + daoEmp.delete(emp4));
+            //out.println("Delete : " + daoEmp.delete(emp4));
         
       out.write("\n");
       out.write("    </body>\n");
