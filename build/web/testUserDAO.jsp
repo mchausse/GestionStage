@@ -46,7 +46,7 @@
             out.println("Find by OBJ : " + test2.getIdUtilisateur() + "<br/>");
             
             //findByEmail
-            Utilisateur user1 = dao.findByEmail("gab@hotmail.com");
+            Utilisateur user1 = dao.findByEmail("slaver@dure.com");
             out.println("<br/><br/> ID par Email : " + user1.getIdUtilisateur() + "<br/>");
             out.println("Email : " + user1.getCourriel()+"<br/>");
             //Teste creation
@@ -120,8 +120,8 @@
             
             //Find
             Employeur emp1 = new Employeur();
-            //emp1.setIdEmployeur("3");
-            emp1.setIdEmployeur("2");
+            emp1.setIdEmployeur("3");
+            //emp1.setIdEmployeur("2");
             
             Employeur emp2 = daoEmp.find(emp1);
             out.println("ID employeur : " + emp2.getIdEmployeur() + "<br/>");
@@ -129,8 +129,8 @@
             out.println("ID compagnie : " + emp2.getIdCompagnie() + "<br/>");
             
             //FindbyID
-            //Employeur emp3 = daoEmp.findById("3");
-            Employeur emp3 = daoEmp.findById("2");
+            Employeur emp3 = daoEmp.findById("3");
+            //Employeur emp3 = daoEmp.findById("2");
             out.println("<br/>");
             out.println("ID employeur : " + emp3.getIdEmployeur() + "<br/>");
             out.println("Tel : " + emp3.getTel()+ "<br/>");
