@@ -96,7 +96,7 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
             out.println("Find by OBJ : " + test2.getIdUtilisateur() + "<br/>");
             
             //findByEmail
-            Utilisateur user1 = dao.findByEmail("gab@hotmail.com");
+            Utilisateur user1 = dao.findByEmail("slaver@dure.com");
             out.println("<br/><br/> ID par Email : " + user1.getIdUtilisateur() + "<br/>");
             out.println("Email : " + user1.getCourriel()+"<br/>");
             //Teste creation

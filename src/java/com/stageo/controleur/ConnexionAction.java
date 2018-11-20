@@ -38,7 +38,7 @@ public class ConnexionAction extends AbstractAction{
         try{
             if(temp!=null && email!=null && password!=null){
                 if(password.equals(temp.getMotDePasse())){
-
+                    //Dependant du type d'utilisateur, va attribuer des attributs en plus
                     if("Employeur".equals(temp.getTypeUtilisateur())){
                         EmployeurDAO daoEmp = new EmployeurDAO(c.getInstance());
                         Employeur empTemp = daoEmp.findById(temp.getIdUtilisateur());
