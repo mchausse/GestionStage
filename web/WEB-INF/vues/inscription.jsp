@@ -80,15 +80,15 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h4>Connexion</h4></div>
                         <div class="contenuPan">
-                            <form>
+                            <form action="do?action=connexion" method="post">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon" id="iconMailLog"><span class="glyphicon glyphicon-envelope"></span> </div>
-                                        <input type="email" class="form-control"  id="emailLog" placeholder="Votre@Email.ca" required>
+                                        <input type="email" class="form-control"  id="emailLog" name="emailLog" placeholder="Votre@Email.ca" required>
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-addon" id="iconPasslLog"><span class="glyphicon glyphicon-asterisk"></span> </div>
-                                        <input type="password" class="form-control" id="paswordLog" placeholder="Mot De Passe" required>
+                                        <input type="password" class="form-control" id="paswordLog" name="passwordLog" placeholder="Mot De Passe" required>
                                     </div>
                                     <input type="submit" class="btn btn-primary" id="btnLogin" value="Se Connecter" style="width:100%">
                                 </div>
