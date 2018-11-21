@@ -38,7 +38,7 @@ public class ConnexionAction extends AbstractAction{
         try{
             if(temp!=null && email!=null && password!=null){
                 if(password.equals(temp.getMotDePasse())){
-
+                    //Dependant du type d'utilisateur, va attribuer des attributs en plus
                     if("Employeur".equals(temp.getTypeUtilisateur())){
                         EmployeurDAO daoEmp = new EmployeurDAO(c.getInstance());
                         Employeur empTemp = daoEmp.findById(temp.getIdUtilisateur());
@@ -76,7 +76,7 @@ public class ConnexionAction extends AbstractAction{
                     return "messagerie";
                 }
             }
-        }catch(Exception e){return "inscription";} //Si il y a une erreur
+        }catch(Exception e){return ""+e;} //Si il y a une erreur
         return "inscription";
     }
 }

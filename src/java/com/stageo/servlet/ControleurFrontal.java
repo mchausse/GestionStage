@@ -10,7 +10,9 @@ import com.stageo.controleur.AfficherMessagerie;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherProfilEtudiantAction;
 import com.stageo.controleur.ConnexionAction;
+import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
+import com.stageo.controleur.InscriptionAction;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -51,6 +53,12 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "connexion":
                 action = new ConnexionAction();
+            break;
+            case "deconnexion":
+                action = new DeconnexionAction();
+            break;
+            case "inscription":
+                action = new InscriptionAction();
             break;
             default :
                 action = new DefaultAction();

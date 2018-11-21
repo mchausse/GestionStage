@@ -64,6 +64,7 @@ public final class inscription_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        ");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" id=\"menu\">\r\n");
       out.write("    <div class=\"container-fluid\">\r\n");

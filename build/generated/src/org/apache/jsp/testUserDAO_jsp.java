@@ -96,12 +96,21 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
             out.println("Find by OBJ : " + test2.getIdUtilisateur() + "<br/>");
             
             //findByEmail
-            Utilisateur user1 = dao.findByEmail("gab@hotmail.com");
+            Utilisateur user1 = dao.findByEmail("slaver@dure.com");
             out.println("<br/><br/> ID par Email : " + user1.getIdUtilisateur() + "<br/>");
             out.println("Email : " + user1.getCourriel()+"<br/>");
             //Teste creation
             Utilisateur test3 = new Utilisateur();
             test3.setIdUtilisateur("666");
+            test3.setCourriel("bob@bob.com");
+            test3.setMotDePasse("bob");
+            test3.setNom("billy");
+            test3.setPrenom("bob");
+            test3.setTypeUtilisateur("etudiant");
+            out.println("Création : " + dao.create(test3) + "<br/>");
+            
+            Utilisateur test555 = new Utilisateur();
+            test3.setIdUtilisateur("555");
             test3.setCourriel("bob@bob.com");
             test3.setMotDePasse("bob");
             test3.setNom("billy");
@@ -212,7 +221,7 @@ public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
             out.println("<br/>");
             
             //Delete
-            out.println("Delete : " + daoEmp.delete(emp4));
+            //out.println("Delete : " + daoEmp.delete(emp4));
         
       out.write("\n");
       out.write("    </body>\n");

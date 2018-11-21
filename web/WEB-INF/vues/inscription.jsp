@@ -24,36 +24,36 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h4>Inscription</h4></div>
                         <div class="contenuPan">
-                            <form>
+                            <form action="do?action=inscription" method="post">
                                 <div class="form-group">
                                     <div class="input-group"> <!--Nom inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </div>
-                                        <input type="text" class="form-control inscriptionInput" placeholder="Nom" required>
+                                        <input type="text" name="nomInscri" class="form-control inscriptionInput" placeholder="Nom" required>
                                     </div>
                                     <br/>
                                     <div class="input-group"> <!--Prénom inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </div>
-                                        <input type="text" class="form-control inscriptionInput" placeholder="Prénom" required>
+                                        <input type="text" name="prenomInscri" class="form-control inscriptionInput" placeholder="Prénom" required>
                                     </div>
                                     <br/>
                                     <div class="input-group"> <!--Email inscription-->
                                         <div class="input-group-addon "><span class="glyphicon glyphicon-envelope"></span> </div>
-                                        <input type="email" class="form-control inscriptionInput" placeholder="Votre@Email.ca" required>
+                                        <input type="email" name="emailInscri" class="form-control inscriptionInput" placeholder="Votre@Email.ca" required>
                                     </div>
                                     <br/>
                                     <div class="input-group"> <!--Password inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span> </div>
-                                        <input type="password" class="form-control inscriptionInput" placeholder="Mot De Passe" required>
+                                        <input type="password" name="passwordInscri" class="form-control inscriptionInput" placeholder="Mot De Passe" required>
                                     </div>
                                     <br />
                                     <div class="input-group"> <!--Password inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span> </div>
-                                        <input type="password" class="form-control inscriptionInput" placeholder="Vérification Mot De Passe" required>
+                                        <input type="password" name="password2Inscri" class="form-control inscriptionInput" placeholder="Vérification Mot De Passe" required>
                                     </div>
                                     <br/>
-                                    <select class="form-control inscriptionInput" onChange="afficheInfo()" id="selectRole"> <!--Password inscription-->
+                                    <select class="form-control inscriptionInput" name="typeInscri" onChange="afficheInfo()" id="selectRole"> <!--Password inscription-->
                                         <option value="" disabled selected>Je Suis ...</option>
-                                        <option>Étudiant</option>
+                                        <option>Etudiant</option>
                                         <option>Employeur</option>
                                     </select>
                                 </div>
@@ -61,14 +61,14 @@
                                     <input type="submit" class="btn btn-success" id="btnLogin" value="S'Inscrire" style="width:100%">
                                 </div>
                                 <div id="infoEmployeur" style="display: none">
-                                    <div class="input-group"> <!--Nom inscription-->
+                                    <div class="input-group"> <!--Telephone inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span> </div>
-                                        <input type="tel" class="form-control inscriptionInput" id="inputTel" placeholder="Téléphone" required>
+                                        <input type="tel" class="form-control inscriptionInput" name="telInscri" id="inputTel" placeholder="Téléphone" required>
                                     </div>
                                     <br/>
-                                    <div class="input-group"> <!--Nom inscription-->
+                                    <div class="input-group"> <!--Nom Entreprise inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span> </div>
-                                        <input type="text" class="form-control inscriptionInput" id="inputEntre" placeholder="Nom de votre Entreprise" required>
+                                        <input type="text" class="form-control inscriptionInput" name="entrepriseInscri" id="inputEntre" placeholder="Nom de votre Entreprise" required>
                                     </div>
                                     <input type="submit" class="btn btn-success" id="btnLogin" value="S'Inscrire" style="width:100%">
                                 </div>
@@ -105,7 +105,7 @@
         var e = document.getElementById("selectRole");
         var role = e.options[e.selectedIndex].value;
         
-        if(role === "Étudiant"){
+        if(role === "Etudiant"){
             document.getElementById("infoEleve").style.display = "block";
             document.getElementById("infoEmployeur").style.display = "none";
             document.getElementById("inputTel").required = false;
