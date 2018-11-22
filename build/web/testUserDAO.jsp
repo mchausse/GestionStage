@@ -4,6 +4,8 @@
     Author     : gabri
 --%>
 
+<%@page import="com.stageo.beans.Adresse"%>
+<%@page import="com.stageo.dao.AdresseDAO"%>
 <%@page import="com.stageo.dao.CompagnieDAO"%>
 <%@page import="com.stageo.beans.Compagnie"%>
 <%@page import="com.stageo.beans.Employeur"%>
@@ -225,6 +227,79 @@
             //Delete
             out.println("<h3>Delete : </h3>");
             out.println("Comp delete : " + daoComp.delete(comp2));
+            
+            //--------------------------TEST ADRESSE---------------------------//
+            
+            //find
+            out.println("<hr/><h3>Find : </h3>");
+            AdresseDAO daoAdd = new AdresseDAO(Connexion.getInstance());
+            Adresse add1 = new Adresse();
+            add1.setIdAdresse("1");
+            
+            Adresse addFound = daoAdd.find(add1);
+            out.println("<b>ID ADD : </b>" + addFound.getIdAdresse() + "<br/>");
+            out.println("<b>NUM CIVIQUE ADD : </b>" + addFound.getNumeroCivique()+ "<br/>");
+            out.println("<b>RUE ADD : </b>" + addFound.getRue() + "<br/>");
+            out.println("<b>BUREAU ADD : </b>" + addFound.getBureau() + "<br/>");
+            out.println("<b>VILLE ADD : </b>" + addFound.getVille() + "<br/>");
+            out.println("<b>CODE POST ADD : </b>" + addFound.getCodePostal() + "<br/>");
+            out.println("<b>PROVINCE ADD : </b>" + addFound.getProvince() + "<br/>");
+            out.println("<b>TEL ADD : </b>" + addFound.getTel() + "<br/>");
+            out.println("<b>PAYS ADD : </b>" + addFound.getPays() + "<br/>");
+
+            //FindByID
+            out.println("<h3>FindByID : </h3>");
+            Adresse addFound2 = daoAdd.findById("1");
+            out.println("<b>ID ADD : </b>" + addFound2.getIdAdresse() + "<br/>");
+            out.println("<b>NUM CIVIQUE ADD : </b>" + addFound2.getNumeroCivique()+ "<br/>");
+            out.println("<b>RUE ADD : </b>" + addFound2.getRue() + "<br/>");
+            out.println("<b>BUREAU ADD : </b>" + addFound2.getBureau() + "<br/>");
+            out.println("<b>VILLE ADD : </b>" + addFound2.getVille() + "<br/>");
+            out.println("<b>CODE POST ADD : </b>" + addFound2.getCodePostal() + "<br/>");
+            out.println("<b>PROVINCE ADD : </b>" + addFound2.getProvince() + "<br/>");
+            out.println("<b>TEL ADD : </b>" + addFound2.getTel() + "<br/>");
+            out.println("<b>PAYS ADD : </b>" + addFound2.getPays() + "<br/>");
+            
+            //Create
+            out.println("<h3>Create : </h3>");
+            Adresse add2 = new Adresse();
+            add2.setIdAdresse("2");
+            add2.setNumeroCivique("444");
+            add2.setRue("En chine");
+            add2.setBureau("666");
+            add2.setVille("chikoutimi");
+            add2.setCodePostal("j6e6t5");
+            add2.setProvince("Alberta");
+            add2.setPays("Canada");
+            add2.setTel("5146668866");
+            out.println("ADD créé : " + daoAdd.create(add2));
+            
+            //Update
+            out.println("<h3>Update : </h3>");
+            add2.setNumeroCivique("666");
+            add2.setBureau("999");
+            out.println("ADD edit : " + daoAdd.update(add2));
+            
+            //FindAll
+            out.println("<h3>FindAll : </h3>");
+            
+            List<Adresse> listeAdd = daoAdd.findAll();
+            for(int i=0; i<listeAdd.size(); i++){
+                out.println("<b>ID ADD : </b>" + listeAdd.get(i).getIdAdresse() + "<br/>");
+                out.println("<b>NUM CIVIQUE ADD : </b>" + listeAdd.get(i).getNumeroCivique()+ "<br/>");
+                out.println("<b>RUE ADD : </b>" + listeAdd.get(i).getRue() + "<br/>");
+                out.println("<b>BUREAU ADD : </b>" + listeAdd.get(i).getBureau() + "<br/>");
+                out.println("<b>VILLE ADD : </b>" + listeAdd.get(i).getVille() + "<br/>");
+                out.println("<b>CODE POST ADD : </b>" + listeAdd.get(i).getCodePostal() + "<br/>");
+                out.println("<b>PROVINCE ADD : </b>" + listeAdd.get(i).getProvince() + "<br/>");
+                out.println("<b>TEL ADD : </b>" + listeAdd.get(i).getTel() + "<br/>");
+                out.println("<b>PAYS ADD : </b>" + listeAdd.get(i).getPays() + "<br/>");
+                out.println("<br/>");
+            }
+            
+            //Delete
+            out.println("<h3>Delete : </h3>");
+            out.println("Add delete : " + daoAdd.delete(add2));
         %>
     </body>
 </html>
