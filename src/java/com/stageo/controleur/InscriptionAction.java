@@ -5,10 +5,14 @@
  */
 package com.stageo.controleur;
 
+import com.stageo.beans.Adresse;
 import com.stageo.beans.Avertissement;
+import com.stageo.beans.Compagnie;
 import com.stageo.beans.Employeur;
 import com.stageo.beans.Etudiant;
 import com.stageo.beans.Utilisateur;
+import com.stageo.dao.AdresseDAO;
+import com.stageo.dao.CompagnieDAO;
 import com.stageo.dao.EmployeurDAO;
 import com.stageo.dao.EtudiantDAO;
 import com.stageo.dao.UtilisateurDAO;
@@ -29,8 +33,6 @@ public class InscriptionAction extends AbstractAction{
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(ConnexionAction.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //Obliger de déclarer les variables sinon sa fonctionne pas, verifier plus tard
         UtilisateurDAO userDao = new UtilisateurDAO(Connexion.getInstance());
         String idUser = UUID.randomUUID().toString();
 
@@ -57,27 +59,59 @@ public class InscriptionAction extends AbstractAction{
             if("Etudiant".equals(request.getParameter("typeInscri"))){
                 Etudiant etuTemp = new Etudiant();
                 EtudiantDAO etuDao = new EtudiantDAO(Connexion.getInstance());
-
+                
+                //Attributs pour l'étudiant
                 etuTemp.setIdEtudiant(idUser);
                 etuTemp.setStatutRecherche("En Recherche");
                 etuDao.create(etuTemp);
                 
+                //Set la session
                 request.getSession().setAttribute("utilisateur", etuTemp);
                 request.getSession().setAttribute("connecte", true);
             }
             else if("Employeur".equals(request.getParameter("typeInscri"))){
-                String idEntreprise = UUID.randomUUID().toString();
+                String idCompagnie= UUID.randomUUID().toString();
+                String idAdresse = UUID.randomUUID().toString();
+                
+                //Objets pour l'employeur
                 Employeur empTemp = new Employeur();
+                Compagnie compTemp = new Compagnie();
+                Adresse adTemp = new Adresse();
+                
+                //DAOs pour l'employeur
                 EmployeurDAO empDao = new EmployeurDAO(Connexion.getInstance());
-
+                CompagnieDAO compDao = new CompagnieDAO(Connexion.getInstance());
+                AdresseDAO adDao = new AdresseDAO(Connexion.getInstance());
+                
+                //Creation de l'employeur
                 empTemp.setIdEmployeur(idUser);
                 empTemp.setTel(request.getParameter("telInscri"));
-                empTemp.setIdCompagnie(idEntreprise);
+                empTemp.setIdCompagnie(idCompagnie);
                 empDao.create(empTemp);
                 
+                //Creation de la comapgnie
+                compTemp.setIdCompagnie(idCompagnie);
+                compTemp.setNom(request.getParameter("entrepriseInscri"));
+                compTemp.setIdAdresse(idAdresse);
+                compTemp.setSiteWeb(""); //rajouter un champs non-obligatoire dans le form
+                compDao.create(compTemp);
+                
+                //Création de l'adresse
+                adTemp.setIdAdresse(idAdresse);
+                adTemp.setTel(request.getParameter("telInscri"));
+                adTemp.setNumeroCivique("");
+                adTemp.setRue("");
+                adTemp.setBureau("");
+                adTemp.setVille("");
+                adTemp.setCodePostal("");
+                adTemp.setProvince("");
+                adTemp.setPays("");
+                adTemp.setTel("");
+                adDao.create(adTemp); //Le champs vide vont se faire set dans le profil
+                
+                //Set la session
                 request.getSession().setAttribute("utilisateur", empTemp);
                 request.getSession().setAttribute("connecte", true);
-                //Faire que sa créé l'entreprise aussi
             }
             return "messagerie";
         }
