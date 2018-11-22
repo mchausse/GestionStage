@@ -4,7 +4,9 @@
     Author     : gabri
 --%>
 
+<%@page import="com.stageo.beans.Avertissement"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,12 +19,34 @@
         <link href="./css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body onLoad="cacherInfo()">
-        <%@include  file="menu.jsp" %>
+        <c:if test="${ param.action=='inscription'}" >
+            <c:redirect url = "do?action=afficherIncription"/>
+        </c:if>
+        <%@include  file="menu.jsp" %> 
+        <!-- Si il y a une erreur : -->
+        <c:if test="${ !empty sessionScope['avertissement']}" >
+            <c:set var = "avert" value = "${sessionScope['avertissement']}"/>
+            <c:remove var="avertissement" scope="session" />
+            <div class="row" style="margin: 10em 0em -10em 0em;">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <c:if test="${ avert.getType()=='erreur' && avert!=''}" >
+                        <div class="alert alert-danger">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Erreur!</strong> ${avert.getMessage()}
+                        </div>
+                    </c:if>
+                </div>
+            </div>
+        </c:if>
+        
         <div class="container" id="contenuInscription">
             <div class="row">
                 <div class="col-lg-6"> <!-- Contenu d'inscription-->
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h4>Inscription</h4></div>
+                        <div class="panel-heading">
+                            <h4>Inscription</h4> 
+                        </div>
                         <div class="contenuPan">
                             <form action="do?action=inscription" method="post">
                                 <div class="form-group">
@@ -122,5 +146,8 @@
         document.getElementById("infoEleve").style.display = "none";
         document.getElementById("infoEmployeur").style.display = "none";
         document.getElementById("infoEleve").style.display = "none";
+    }
+    function deleteAttribut(){
+        <% session.removeAttribute("avertissement"); %>
     }
 </script>
