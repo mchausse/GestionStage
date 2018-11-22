@@ -20,7 +20,7 @@
     </head>
     <body onLoad="cacherInfo()">
         <c:if test="${ param.action=='inscription'}" >
-            <c:redirect url = "do?action=afficherIncription"/>
+            <c:redirect url = "do?action=afficherInscription"/>
         </c:if>
         <%@include  file="menu.jsp" %> 
         <!-- Si il y a une erreur : -->
@@ -146,8 +146,5 @@
         document.getElementById("infoEleve").style.display = "none";
         document.getElementById("infoEmployeur").style.display = "none";
         document.getElementById("infoEleve").style.display = "none";
-    }
-    function deleteAttribut(){
-        <% session.removeAttribute("avertissement"); %>
     }
 </script>
