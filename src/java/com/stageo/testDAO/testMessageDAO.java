@@ -8,7 +8,6 @@ package com.stageo.testDAO;
 import com.stageo.beans.Message;
 import com.stageo.dao.MessageDAO;
 import com.stageo.singleton.Connexion;
-import java.sql.Connection;
 
 /**
  *
@@ -16,15 +15,25 @@ import java.sql.Connection;
  */
 public class testMessageDAO {
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
-        Connection con = new Connexion().getInstance();
-        System.out.println("Connexion cree");
-        MessageDAO mDao = new MessageDAO(con);
-        System.out.println("Dao avec la connexion cree");
-        Message m = new Message();
-        System.out.println("message initialiser");
+        // Initialisation
+        MessageDAO messageDAO = new MessageDAO(Connexion.getInstance());
+        Message message, message2;
         
+        // Trouver le message par le id
+        System.out.println();
+        System.out.println(">> messageDAO.findById(\"0\")");
+        message = messageDAO.findById("0");
+        System.out.println("Message 0 : "+message.getTitre());
         
+        // Trouver le message par l'objet
+        System.out.println();
+        System.out.println(">> messageDAO.find(message2)");
+        message2 = messageDAO.find(message);
+        System.out.println("Message2 0 : "+message.getTitre());
     }
     
 }
