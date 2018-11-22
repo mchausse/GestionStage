@@ -4,6 +4,8 @@
     Author     : gabri
 --%>
 
+<%@page import="com.stageo.dao.CompagnieDAO"%>
+<%@page import="com.stageo.beans.Compagnie"%>
 <%@page import="com.stageo.beans.Employeur"%>
 <%@page import="com.stageo.dao.EmployeurDAO"%>
 <%@page import="com.stageo.beans.Etudiant"%>
@@ -172,6 +174,57 @@
             
             //Delete
             //out.println("Delete : " + daoEmp.delete(emp4));
+            
+            //---------------------------TEST COMPAGNIE-----------------------//
+            CompagnieDAO daoComp = new CompagnieDAO(Connexion.getInstance());
+            
+            //find
+            out.println("<hr/> <h3>Find : </h3>");
+            Compagnie comp1 = new Compagnie();
+            comp1.setIdCompagnie("1");
+            Compagnie compFound1 = daoComp.find(comp1);
+            out.println("<b>ID COMP : </b>" + compFound1.getIdCompagnie() + "<br/>");
+            out.println("<b>NOM COMP : </b>" + compFound1.getNom()+ "<br/>");
+            out.println("<b>ADD COMP : </b>" + compFound1.getIdAdresse()+ "<br/>");
+            out.println("<b>SITE COMP : </b>" + compFound1.getSiteWeb()+ "<br/>");
+
+            //FindByID
+            out.println("<h3>FindByID : </h3>");
+            Compagnie compFound2 = daoComp.findById("1");
+            out.println("<b>ID COMP : </b>" + compFound2.getIdCompagnie()+ "<br/>");
+            out.println("<b>NOM COMP : </b>" + compFound2.getNom()+ "<br/>");
+            out.println("<b>ADD COMP : </b>" + compFound2.getIdAdresse()+ "<br/>");
+            out.println("<b>SITE COMP : </b>" + compFound2.getSiteWeb()+ "<br/>");
+            
+            //Create
+            out.println("<h3>FindByID : </h3>");
+            Compagnie comp2 = new Compagnie();
+            comp2.setIdCompagnie("3");
+            comp2.setIdAdresse("3");
+            comp2.setNom("fuck");
+            comp2.setSiteWeb("fuck.com");
+            out.println("Comp créé : " + daoComp.create(comp2));
+            
+            //Update
+            out.println("<h3>Update : </h3>");
+            comp2.setNom("fuck12");
+            comp2.setSiteWeb("fuck12.com");
+            out.println("Comp update : " + daoComp.update(comp2));
+            
+            //FindAll
+            out.println("<h3>FindAll : </h3>");
+            List<Compagnie> listeComp = daoComp.findAll();
+            for(int i=0; i<listeComp.size(); i++){
+                out.println("<b>ID COMP : </b>" + listeComp.get(i).getIdCompagnie()+ "<br/>");
+                out.println("<b>NOM COMP : </b>" + listeComp.get(i).getNom()+ "<br/>");
+                out.println("<b>ADD COMP : </b>" + listeComp.get(i).getIdAdresse()+ "<br/>");
+                out.println("<b>SITE COMP : </b>" + listeComp.get(i).getSiteWeb()+ "<br/>");
+                out.println("<br/>");
+            }
+            
+            //Delete
+            out.println("<h3>Delete : </h3>");
+            out.println("Comp delete : " + daoComp.delete(comp2));
         %>
     </body>
 </html>
