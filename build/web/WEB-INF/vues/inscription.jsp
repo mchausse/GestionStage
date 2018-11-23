@@ -30,10 +30,16 @@
             <div class="row" style="margin: 10em 0em -10em 0em;">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8">
-                    <c:if test="${ avert.getType()=='erreur' && avert!=''}" >
+                    <c:if test="${ avert.getType()=='erreur' && avert!=''}" > <!-- si cest une erreur -->
                         <div class="alert alert-danger">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             <strong>Erreur!</strong> ${avert.getMessage()}
+                        </div>
+                    </c:if>
+                    <c:if test="${ avert.getType()=='succes' && avert!=''}" > <!-- si cest un succes -->
+                        <div class="alert alert-success">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Succès!</strong> ${avert.getMessage()}
                         </div>
                     </c:if>
                 </div>

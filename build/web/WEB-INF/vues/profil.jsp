@@ -12,6 +12,7 @@
 <jsp:useBean id="etuDao" class="com.stageo.dao.EtudiantDAO" scope="page"></jsp:useBean>
 <jsp:useBean id="empDao" class="com.stageo.dao.EmployeurDAO" scope="page"></jsp:useBean>
 <jsp:useBean id="compDao" class="com.stageo.dao.CompagnieDAO" scope="page"></jsp:useBean>
+<jsp:useBean id="adDao" class="com.stageo.dao.AdresseDAO" scope="page"></jsp:useBean>
 
 <!-- Var User : -->
 <c:set var="user" value="${userDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}" />
@@ -35,7 +36,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h2>
-                                Profil
+                                Votre Profil
                                 <a onclick="edit('${user.getTypeUtilisateur()}')">
                                     <span class="glyphicon glyphicon-edit btnProfil" id="edit"></span>
                                 </a>
@@ -54,7 +55,7 @@
                 <div class="col-lg-6 ">
                      <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4>Vos Informations</h4>
+                            <h4>Informations personnels</h4>
                         </div>
                         <form>
                             <div class="form-group" style="padding:1em;">
@@ -81,7 +82,7 @@
                         <c:if test="${user.getTypeUtilisateur() eq 'Etudiant'}">
                             <c:set var="etu" value="${etuDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}"/>
                             <div class="panel-heading">
-                                <h4> Info Étudiant</h4>
+                                <h4> Infomation Étudiant</h4>
                             </div>
                             <form>
                                 <div class="form-group" style="padding:1em;">
@@ -97,7 +98,7 @@
                         <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
                             <c:set var="emp" value="${empDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}"/>
                             <div class="panel-heading">
-                                <h4> Info Employeur</h4>
+                                <h4> Information Employeur</h4>
                             </div>
                             <form>
                                 <div class="form-group" style="padding:1em;">
@@ -110,6 +111,7 @@
                     </div>
                     <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
                         <c:set var="comp" value="${compDao.findById(emp.getIdCompagnie())}"/>
+                        <c:set var="adresse" value="${adDao.findById(comp.getIdAdresse())}" />
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4>Compagnie</h4>
@@ -125,7 +127,41 @@
                                     <input type="text" class="form-control" id="siteComp2"  value="${comp.getSiteWeb()}" style="display: none;"/>
                                     <br />
                                     <div class="row" style="text-align: center;">
-                                        <a>Afficher adresse ...</a>
+                                        <button type="button" class="btn btn-light" id="btnAdresse" onclick='afficherAdresse()'>Afficher l'adresse</button>
+                                    </div>
+                                    <div id="divAdresse" style="display: none;">
+                                        <label for="numAdd">Numero Civique : </label>
+                                        <input type="number" class="form-control" id="numAdd"  value="${adresse.getNumeroCivique()}" disabled />
+                                        <input type="number" class="form-control" id="numAdd2"  value="${adresse.getNumeroCivique()}" style="display:none;" />
+                                        <br/>
+                                        <label for="rueAdd">Rue : </label>
+                                        <input type="text" class="form-control" id="rueAdd"  value="${adresse.getRue()}" disabled />
+                                        <input type="text" class="form-control" id="rueAdd2"  value="${adresse.getRue()}" style="display:none;" />
+                                        <br/>
+                                        <label for="bureauAdd">Bureau : </label>
+                                        <input type="text" class="form-control" id="bureauAdd"  value="${adresse.getBureau()}" disabled />
+                                        <input type="text" class="form-control" id="bureauAdd2"  value="${adresse.getBureau()}" style="display:none;" />
+                                        <br/>
+                                        <label for="villeAdd">Ville : </label>
+                                        <input type="text" class="form-control" id="villeAdd"  value="${adresse.getVille()}" disabled />
+                                        <input type="text" class="form-control" id="villeAdd2"  value="${adresse.getVille()}" style="display:none;" />
+                                        <br/>
+                                        <label for="codePostAdd">Code Postal : </label>
+                                        <input type="text" class="form-control" id="codePostAdd"  value="${adresse.getCodePostal()}" disabled />
+                                        <input type="text" class="form-control" id="codePostAdd2"  value="${adresse.getCodePostal()}" style="display:none;" />
+                                        <br/>
+                                        <label for="proviceAdd">Province : </label>
+                                        <input type="text" class="form-control" id="provinceAdd"  value="${adresse.getProvince()}" disabled />
+                                        <input type="text" class="form-control" id="provinceAdd2"  value="${adresse.getProvince()}" style="display:none;" />
+                                        <br/>
+                                        <label for="paysAdd">Pays : </label>
+                                        <input type="text" class="form-control" id="paysAdd"  value="${adresse.getPays()}" disabled />
+                                        <input type="text" class="form-control" id="paysAdd2"  value="${adresse.getPays()}" style="display:none;" />
+                                        <br/>
+                                        <label for="telAdd">Téléphone : </label>
+                                        <input type="tel" class="form-control" id="telAdd"  value="${adresse.getTel()}" disabled />
+                                        <input type="tel" class="form-control" id="telAdd2"  value="${adresse.getTel()}" style="display:none;" />
+                                        <br/>
                                     </div>
                                 </div>
                             </form>
@@ -158,8 +194,31 @@
             document.getElementById("statutUser2").style.display = "block";
         }
         if(typeUser === "Employeur"){
+            //Info employeur
             document.getElementById("telUser").style.display = "none";
             document.getElementById("telUser2").style.display = "block";
+            //Infos compagnie
+            document.getElementById("nomComp").style.display = "none";
+            document.getElementById("nomComp2").style.display = "block";
+            document.getElementById("siteComp").style.display = "none";
+            document.getElementById("siteComp2").style.display = "block";
+            //Infos adresse
+            document.getElementById("numAdd").style.display = "none";
+            document.getElementById("numAdd2").style.display = "block";
+            document.getElementById("rueAdd").style.display = "none";
+            document.getElementById("rueAdd2").style.display = "block";
+            document.getElementById("bureauAdd").style.display = "none";
+            document.getElementById("bureauAdd2").style.display = "block";
+            document.getElementById("villeAdd").style.display = "none";
+            document.getElementById("villeAdd2").style.display = "block";
+            document.getElementById("codePostAdd").style.display = "none";
+            document.getElementById("codePostAdd2").style.display = "block";
+            document.getElementById("provinceAdd").style.display = "none";
+            document.getElementById("provinceAdd2").style.display = "block";
+            document.getElementById("paysAdd").style.display = "none";
+            document.getElementById("paysAdd2").style.display = "block";
+            document.getElementById("telAdd").style.display = "none";
+            document.getElementById("telAdd2").style.display = "block";
         }
     }
     function cancel(typeUser){
@@ -183,8 +242,41 @@
             document.getElementById("statutUser2").style.display = "none";
         }
         if(typeUser === "Employeur"){
+            //Info Employeur
             document.getElementById("telUser").style.display = "block";
             document.getElementById("telUser2").style.display = "none";
+            //Infos compagnie
+            document.getElementById("nomComp").style.display = "block";
+            document.getElementById("nomComp2").style.display = "none";
+            document.getElementById("siteComp").style.display = "block";
+            document.getElementById("siteComp2").style.display = "none";
+            //Infos adresse
+            document.getElementById("numAdd").style.display = "block";
+            document.getElementById("numAdd2").style.display = "none";
+            document.getElementById("rueAdd").style.display = "block";
+            document.getElementById("rueAdd2").style.display = "none";
+            document.getElementById("bureauAdd").style.display = "block";
+            document.getElementById("bureauAdd2").style.display = "none";
+            document.getElementById("villeAdd").style.display = "block";
+            document.getElementById("villeAdd2").style.display = "none";
+            document.getElementById("codePostAdd").style.display = "block";
+            document.getElementById("codePostAdd2").style.display = "none";
+            document.getElementById("provinceAdd").style.display = "block";
+            document.getElementById("provinceAdd2").style.display = "none";
+            document.getElementById("paysAdd").style.display = "block";
+            document.getElementById("paysAdd2").style.display = "none";
+            document.getElementById("telAdd").style.display = "block";
+            document.getElementById("telAdd2").style.display = "none";
+        }
+    }
+    function afficherAdresse(){
+        if(document.getElementById("divAdresse").style.display === "none"){
+            document.getElementById("divAdresse").style.display = "block";
+            document.getElementById("btnAdresse").innerHTML = "Cacher l'adresse";
+        }
+        else{
+            document.getElementById("divAdresse").style.display = "none";
+            document.getElementById("btnAdresse").innerHTML = "Afficher l'adresse";
         }
     }
 </script>
