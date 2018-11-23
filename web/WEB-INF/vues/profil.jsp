@@ -7,8 +7,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.stageo.dao.UtilisateurDAO" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- DAOs : -->
 <jsp:useBean id="userDao" class="com.stageo.dao.UtilisateurDAO" scope="page"></jsp:useBean>
 <jsp:useBean id="etuDao" class="com.stageo.dao.EtudiantDAO" scope="page"></jsp:useBean>
+<jsp:useBean id="empDao" class="com.stageo.dao.EmployeurDAO" scope="page"></jsp:useBean>
+<jsp:useBean id="compDao" class="com.stageo.dao.CompagnieDAO" scope="page"></jsp:useBean>
+
+<!-- Var User : -->
 <c:set var="user" value="${userDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}" />
 <!DOCTYPE html>
 <html>
@@ -49,7 +54,7 @@
                 <div class="col-lg-6 ">
                      <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4>Vos Informations : </h4>
+                            <h4>Vos Informations</h4>
                         </div>
                         <form>
                             <div class="form-group" style="padding:1em;">
@@ -62,8 +67,8 @@
                                 <input type="text" class="form-control" id="prenomUser2"  value="${user.getPrenom()}" style="display:none"/>  
                                 <br/>
                                 <label for="emailUser">Courriel </label>
-                                <input type="text" class="form-control" id="emailUser"  value="${user.getCourriel()}" disabled />
-                                <input type="text" class="form-control" id="emailUser2"  value="${user.getCourriel()}" style="display:none"/>   
+                                <input type="email" class="form-control" id="emailUser"  value="${user.getCourriel()}" disabled />
+                                <input type="email" class="form-control" id="emailUser2"  value="${user.getCourriel()}" style="display:none"/>   
                                 <br/>
                                 <label for="typeUser">Type de votre compte : </label>
                                 <input type="text" class="form-control" id="typeUser"  value="${user.getTypeUtilisateur()}" disabled />
@@ -76,7 +81,7 @@
                         <c:if test="${user.getTypeUtilisateur() eq 'Etudiant'}">
                             <c:set var="etu" value="${etuDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}"/>
                             <div class="panel-heading">
-                                <h4> Info Étudiant : </h4>
+                                <h4> Info Étudiant</h4>
                             </div>
                             <form>
                                 <div class="form-group" style="padding:1em;">
@@ -89,7 +94,43 @@
                                 </div>
                             </form>
                         </c:if>
+                        <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                            <c:set var="emp" value="${empDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}"/>
+                            <div class="panel-heading">
+                                <h4> Info Employeur</h4>
+                            </div>
+                            <form>
+                                <div class="form-group" style="padding:1em;">
+                                    <label for="statutUser">Téléphone : </label>
+                                    <input type="tel" class="form-control" id="telUser"  value="${emp.getTel()}" disabled />
+                                    <input type="tel" class="form-control" id="telUser2"  value="${emp.getTel()}" style="display: none;"/>
+                                </div>
+                            </form>
+                        </c:if>
                     </div>
+                    <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                        <c:set var="comp" value="${compDao.findById(emp.getIdCompagnie())}"/>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4>Compagnie</h4>
+                            </div>
+                            <form>
+                                <div class="form-group" style="padding:1em;">
+                                    <label for="statutUser">Nom Compagnie : </label>
+                                    <input type="text" class="form-control" id="nomComp"  value="${comp.getNom()}" disabled />
+                                    <input type="text" class="form-control" id="nomComp2"  value="${comp.getNom()}" style="display: none;"/>
+                                    <br/>
+                                    <label for="statutUser">Site Web Compagnie : </label>
+                                    <input type="text" class="form-control" id="siteComp"  value="${comp.getSiteWeb()}" disabled />
+                                    <input type="text" class="form-control" id="siteComp2"  value="${comp.getSiteWeb()}" style="display: none;"/>
+                                    <br />
+                                    <div class="row" style="text-align: center;">
+                                        <a>Afficher adresse ...</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div> 
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -116,6 +157,10 @@
             document.getElementById("statutUser").style.display = "none";
             document.getElementById("statutUser2").style.display = "block";
         }
+        if(typeUser === "Employeur"){
+            document.getElementById("telUser").style.display = "none";
+            document.getElementById("telUser2").style.display = "block";
+        }
     }
     function cancel(typeUser){
         //Btn edit 
@@ -136,6 +181,10 @@
         if(typeUser === "Etudiant"){
             document.getElementById("statutUser").style.display = "block";
             document.getElementById("statutUser2").style.display = "none";
+        }
+        if(typeUser === "Employeur"){
+            document.getElementById("telUser").style.display = "block";
+            document.getElementById("telUser2").style.display = "none";
         }
     }
 </script>

@@ -6,6 +6,7 @@
 package com.stageo.dao;
 
 import com.stageo.beans.Compagnie;
+import com.stageo.singleton.Connexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +19,9 @@ import java.util.List;
  * @author gabri
  */
 public class CompagnieDAO extends Dao<Compagnie>{
+    public CompagnieDAO(){
+        super(Connexion.getInstance());
+    }
      public CompagnieDAO(Connection c) {
         super(c);
     }
