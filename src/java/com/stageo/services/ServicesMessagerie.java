@@ -11,7 +11,10 @@ import com.stageo.dao.MessageDAO;
 import com.stageo.singleton.Connexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /* ==== INFO ====
 
@@ -59,4 +62,118 @@ public class ServicesMessagerie {
     public boolean envoyerMessage(Message message, String idDestinataire){
         return envoyerMessage(message.getIdMessage(), idDestinataire);
     }
+    
+    
+    // Aller chercher tous les message d'un utilisateur
+    public List<Message> messagesRecus(String idUtilisateur){
+        MessageDAO messageDAO = new MessageDAO(CNX);
+        List messages = new ArrayList<>();
+        String requete = "SELECT * FROM UTILISATEURMESSAGE WHERE ID_DESTINATAIRE = ?";
+        
+        try{
+            PreparedStatement requeteParam = CNX.prepareStatement(requete);
+            requeteParam.setString(1, idUtilisateur);
+            
+            // Aller chercher le id de chaque message
+            ResultSet rs = requeteParam.executeQuery();
+            
+            // Aller chercher les messages celon leurs id et les mettres dans une liste
+            while (rs.next()){
+                messages.add(messageDAO.findById(rs.getString("ID_MESSAGE")));
+            }
+            return messages;
+        }catch(SQLException e){return null;}
+    }
+    public List<Message> messagesRecus(Utilisateur u){return messagesRecus(u.getIdUtilisateur());}
+
+    
+    // Aller chercher tous les message d'un utilisateur qui sont non lus
+    public List<Message> messagesRecusNonLus(String idUtilisateur){
+        MessageDAO messageDAO = new MessageDAO(CNX);
+        List messages = new ArrayList<>();
+        String requete = "SELECT * FROM UTILISATEURMESSAGE WHERE ID_DESTINATAIRE = ? AND LU = 0";
+        
+        try{
+            PreparedStatement requeteParam = CNX.prepareStatement(requete);
+            requeteParam.setString(1, idUtilisateur);
+            
+            // Aller chercher le id de chaque message
+            ResultSet rs = requeteParam.executeQuery();
+            
+            // Aller chercher les messages celon leurs id et les mettres dans une liste
+            while (rs.next()){
+                messages.add(messageDAO.findById(rs.getString("ID_MESSAGE")));
+            }
+            return messages;
+        }catch(SQLException e){return null;}
+    }
+    public List<Message> messagesRecusNonLus(Utilisateur u){return messagesRecusNonLus(u.getIdUtilisateur());}
+    
+    
+    // Aller chercher tous les message d'un utilisateur qui sont lus
+    public List<Message> messagesRecusLus(String idUtilisateur){
+        MessageDAO messageDAO = new MessageDAO(CNX);
+        List messages = new ArrayList<>();
+        String requete = "SELECT * FROM UTILISATEURMESSAGE WHERE ID_DESTINATAIRE = ? AND LU = 1";
+        
+        try{
+            PreparedStatement requeteParam = CNX.prepareStatement(requete);
+            requeteParam.setString(1, idUtilisateur);
+            
+            // Aller chercher le id de chaque message
+            ResultSet rs = requeteParam.executeQuery();
+            
+            // Aller chercher les messages celon leurs id et les mettres dans une liste
+            while (rs.next()){
+                messages.add(messageDAO.findById(rs.getString("ID_MESSAGE")));
+            }
+            return messages;
+        }catch(SQLException e){return null;}
+    }
+    public List<Message> messagesRecusLus(Utilisateur u){return messagesRecusLus(u.getIdUtilisateur());}
+    
+    
+    // Aller chercher tous les message que un utilisateur a envoyer
+    public List<Message> messagesEnvoyes(String idUtilisateur){
+        List messages = new ArrayList<>();
+        String requete = "SELECT * FROM MESSAGE WHERE ID_EXPEDITEUR = ?";
+        
+        try{
+            PreparedStatement requeteParam = CNX.prepareStatement(requete);
+            requeteParam.setString(1, idUtilisateur);
+            ResultSet rs = requeteParam.executeQuery();
+            
+            while (rs.next()){
+                Message message = new Message();
+                message.setIdMessage(rs.getString("ID_MESSAGE"));
+                message.setTitre(rs.getString("TITRE"));
+                message.setMessage(rs.getString("MESSAGE"));
+                message.setVu(Short.valueOf(rs.getString("VU")));
+                message.setDate(rs.getDate("DATE"));
+                message.setHeure(rs.getTime("HEURE"));
+                message.setIdExpediteur(rs.getString("ID_EXPEDITEUR"));
+                messages.add(message);
+            }
+            return messages;
+        }catch(SQLException e){return null;}
+    }
+    public List<Message> messagesEnvoyes(Utilisateur u){return messagesEnvoyes(u.getIdUtilisateur());}
+    
+    
+    // Retourner le nombre de message non-lu
+    public int nbMessagesNonLus(String idUtilisateur){
+        String requete = "SELECT COUNT(ID_MESSAGE) "
+                        + "AS nbMessage "
+                        + "FROM UTILISATEURMESSAGE "
+                        + "WHERE ID_DESTINATAIRE = ? AND LU = 0";
+        try{
+            PreparedStatement requeteParam = CNX.prepareStatement(requete);
+            requeteParam.setString(1, idUtilisateur);
+            ResultSet rs = requeteParam.executeQuery();
+            
+            if(rs.next())return rs.getInt("nbMessage");
+            return -1;
+        }catch(SQLException e){return -1;}
+    }
+    public int nbMessagesNonLus(Utilisateur utilisateur){return nbMessagesNonLus(utilisateur.getIdUtilisateur());}
 }

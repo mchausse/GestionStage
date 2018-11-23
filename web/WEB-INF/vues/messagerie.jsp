@@ -4,11 +4,23 @@
     Author     : mchausse
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.stageo.services.ServicesMessagerie"%>
+<%@page import="com.stageo.dao.UtilisateurDAO"%>
+<%@page import="com.stageo.singleton.Connexion"%>
+
+<!-- Initialiser les dao utiliser dans la page -->
+<jsp:useBean id="connexion" class="com.stageo.singleton.Connexion"/>
+<jsp:useBean id="servicesMessagerie" class="com.stageo.services.ServicesMessagerie" scope="page" />
+<jsp:useBean id="utilisateurDAO" class="com.stageo.dao.UtilisateurDAO" scope="page">
+    <jsp:setProperty name="utilisateurDAO" property="cnx" value="${connexion.getInstance()}" />
+</jsp:useBean>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Stages | Communication</title>
+        <title>Stages | Messagerie</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
@@ -32,7 +44,7 @@
                             <div class="panel-heading">
                                 <h3>
                                     <span id='btnDescTitrePage' class='glyphicon glyphicon-triangle-bottom'></span>
-                                    Communication
+                                    Messagerie de ${sessionScope.utilisateur.getPrenom()}
                                 </h3>
                                 <p id='descTitrePage'>
                                     Ici, vous pouvez voir vos messages reçus et envoyés ainsi que les brouillons sauvegardés.
@@ -55,15 +67,17 @@
                         <!-- Liste des options du menu -->
                         <div class="panel-body">
                             <div class="col-lg-12">
+                                <a href="#" class="btn btn-default btn-lg btnMenu">
+                                    <span class="glyphicon glyphicon-plus"> Nouveau</span>
+                                </a>
                                 <a href="#" class="btn btn-danger btn-lg btnMenu">
-                                    <span class="badge">2</span>
+                                    <span class="badge">${servicesMessagerie.nbMessagesNonLus(sessionScope.utilisateur.getIdUtilisateur())}</span>
                                     <span class="glyphicon glyphicon-inbox"> Reçus</span>
                                 </a>
                                 <a href="#" class="btn btn-default btn-lg btnMenu">
                                     <span class="glyphicon glyphicon-arrow-left"> Envoyés</span>
                                 </a>
                                 <a href="#" class="btn btn-default btn-lg btnMenu">
-                                    <span class="badge">1</span>
                                     <span class="glyphicon glyphicon-floppy-disk"> Sauvegardés</span>
                                 </a>
                             </div>
@@ -81,48 +95,37 @@
                             Messages recus
                         </div>
                         <div id="messages" class="panel-body">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <span class="label label-danger label-as-badge">&#8203 &#8203</span>
-                                    <kbd>Activix</kbd> 
-                                    Maxime 
+                            
+                            <!-- Messaages non-lus -->
+                            <c:forEach var="unMessage" items="${servicesMessagerie.messagesRecusNonLus(sessionScope.utilisateur.getIdUtilisateur())}">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <span class="label label-danger label-as-badge">&#8203 &#8203</span>
+                                        <kbd>Activix</kbd> 
+                                        Maxime 
+                                    </div>
+                                    <div class="panel-body">${unMessage.getTitre()}</div>
                                 </div>
-                                <div class="panel-body">Entrevue</div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <span class="label label-danger label-as-badge">&#8203 &#8203</span>
-                                    <kbd>Wal-Mart</kbd>
-                                    Charles
+                            </c:forEach>
+                            <!-- Fin des messages non-lus -->
+                            
+                            <hr /><!-- Mettre une separation entre les messages lus et les non-lus-->
+                            
+                            <!-- Messages lus -->
+                            <c:forEach var="unMessage" items="${servicesMessagerie.messagesRecusLus(sessionScope.utilisateur.getIdUtilisateur())}">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <!-- Mettre le cercle de la couleur grise pour vu -->
+                                        <span class="label label-default label-as-badge">&#8203 &#8203</span>
+                                        <!-- Afficher le nom de la compagnie -->
+                                        <kbd>${unMessage.getExpediteur().getIdCompagnie()}</kbd> 
+                                        <!-- Aller chercher et afficher le prenom et nom du contact -->
+                                        ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
+                                    </div>
+                                    <div class="panel-body">${unMessage.getTitre()}</div>
                                 </div>
-                                <div class="panel-body">Entrevue</div>
-                            </div>
-                            <!-- Mettre une separation entre les messages lus et les non-lus-->
-                            <hr />
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <span class="label label-default label-as-badge">&#8203 &#8203</span>
-                                    <kbd>Cosco</kbd>
-                                    Abdelmounène 
-                                </div>
-                                <div class="panel-body">Entrevue</div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <span class="label label-default label-as-badge">&#8203 &#8203</span>
-                                    <kbd>La belle province</kbd>
-                                    Anne-Marie 
-                                </div>
-                                <div class="panel-body">Entrevue</div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <span class="label label-default label-as-badge">&#8203 &#8203</span>
-                                    <kbd>Chez Rémi</kbd>
-                                    Jean-Coutu 
-                                </div>
-                                <div class="panel-body">Entrevue</div>
-                            </div>
+                            </c:forEach>
+                            <!-- Fin des messages lus -->
                         </div>
                     </div>
                 </div>
