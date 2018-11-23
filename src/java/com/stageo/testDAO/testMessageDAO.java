@@ -10,10 +10,13 @@ import com.stageo.dao.MessageDAO;
 import com.stageo.singleton.Connexion;
 import java.util.List;
 
-/**
- *
- * @author mchausse
- */
+/* ==== INFO ====
+
+ * @author maxime chausse
+ * date : 22 novembre 2018
+ * cour : Hypermedia II
+ * College Rosemont
+*/
 public class testMessageDAO {
 
     /**
