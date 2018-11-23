@@ -6,6 +6,7 @@
 package com.stageo.dao;
 
 import com.stageo.beans.Utilisateur;
+import com.stageo.singleton.Connexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,9 @@ import java.util.List;
  * @author gabri
  */
 public class UtilisateurDAO extends Dao<Utilisateur>{
-     public UtilisateurDAO(Connection c) {
+    public UtilisateurDAO(){super(Connexion.getInstance());}
+    
+    public UtilisateurDAO(Connection c) {
         super(c);
     }
     

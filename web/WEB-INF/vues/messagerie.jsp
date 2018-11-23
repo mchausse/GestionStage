@@ -2,20 +2,23 @@
     Document   : Communiquer
     Created on : Nov 9, 2018, 3:07:46 PM
     Author     : mchausse
+
+
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.stageo.services.ServicesMessagerie"%>
 <%@page import="com.stageo.dao.UtilisateurDAO"%>
+<%@page import="com.stageo.dao.EmployeurDAO"%>
 <%@page import="com.stageo.singleton.Connexion"%>
+<%@page import="com.stageo.beans.Employeur"%>
 
 <!-- Initialiser les dao utiliser dans la page -->
-<jsp:useBean id="connexion" class="com.stageo.singleton.Connexion"/>
 <jsp:useBean id="servicesMessagerie" class="com.stageo.services.ServicesMessagerie" scope="page" />
-<jsp:useBean id="utilisateurDAO" class="com.stageo.dao.UtilisateurDAO" scope="page">
-    <jsp:setProperty name="utilisateurDAO" property="cnx" value="${connexion.getInstance()}" />
-</jsp:useBean>
+<jsp:useBean id="utilisateurDAO" class="com.stageo.dao.UtilisateurDAO" scope="page"/>
+<jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -98,29 +101,42 @@
                             
                             <!-- Messaages non-lus -->
                             <c:forEach var="unMessage" items="${servicesMessagerie.messagesRecusNonLus(sessionScope.utilisateur.getIdUtilisateur())}">
+                                <c:set var="user" value="${utilisateurDAO.findById(unMessage.getIdExpediteur())}"/>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <span class="label label-danger label-as-badge">&#8203 &#8203</span>
-                                        <kbd>Activix</kbd> 
-                                        Maxime 
+                                        <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                                            <jsp:useBean id="employeur" class="com.stageo.beans.Employeur"/>
+                                            <c:set var="employeur" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
+                                            <!-- Afficher le nom de la compagnie -->
+                                            <kbd>${employeur.getIdCompagnie()}</kbd>
+                                        </c:if>
+                                        <!-- Aller chercher et afficher le prenom et nom du contact -->
+                                        ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
+                                        <div class="dateMessage">${unMessage.getDate()}</div>
                                     </div>
                                     <div class="panel-body">${unMessage.getTitre()}</div>
                                 </div>
                             </c:forEach>
-                            <!-- Fin des messages non-lus -->
+                            <!--Fin des messages non-lus -->
                             
                             <hr /><!-- Mettre une separation entre les messages lus et les non-lus-->
                             
                             <!-- Messages lus -->
                             <c:forEach var="unMessage" items="${servicesMessagerie.messagesRecusLus(sessionScope.utilisateur.getIdUtilisateur())}">
+                                <c:set var="user" value="${utilisateurDAO.findById(unMessage.getIdExpediteur())}"/>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <!-- Mettre le cercle de la couleur grise pour vu -->
                                         <span class="label label-default label-as-badge">&#8203 &#8203</span>
-                                        <!-- Afficher le nom de la compagnie -->
-                                        <kbd>${unMessage.getExpediteur().getIdCompagnie()}</kbd> 
+                                        <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                                            <c:set var="employeur" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
+                                            <!-- Afficher le nom de la compagnie -->
+                                            <kbd>${employeur.getIdCompagnie()}</kbd> 
+                                        </c:if>
                                         <!-- Aller chercher et afficher le prenom et nom du contact -->
                                         ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
+                                        <div class="dateMessage">${unMessage.getDate()}</div>
                                     </div>
                                     <div class="panel-body">${unMessage.getTitre()}</div>
                                 </div>

@@ -286,3 +286,8 @@
 .dateStage{
     color:grey;
 }
+.dateMessage{
+    float:right;
+    color:grey;
+    font-size: 12px;
+}
