@@ -14,6 +14,7 @@ import com.stageo.controleur.ConnexionAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
 import com.stageo.controleur.InscriptionAction;
+import com.stageo.controleur.SelectionnerMessageAction;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -63,6 +64,9 @@ public class ControleurFrontal extends HttpServlet {
             break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
+            break;
+            case "selectionnerMessage":
+                action = new SelectionnerMessageAction();
             break;
             default :
                 action = new DefaultAction();

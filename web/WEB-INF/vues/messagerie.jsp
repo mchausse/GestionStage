@@ -11,6 +11,7 @@
 <%@page import="com.stageo.services.ServicesMessagerie"%>
 <%@page import="com.stageo.dao.UtilisateurDAO"%>
 <%@page import="com.stageo.dao.EmployeurDAO"%>
+<%@page import="com.stageo.dao.CompagnieDAO"%>
 <%@page import="com.stageo.singleton.Connexion"%>
 <%@page import="com.stageo.beans.Employeur"%>
 
@@ -18,7 +19,7 @@
 <jsp:useBean id="servicesMessagerie" class="com.stageo.services.ServicesMessagerie" scope="page" />
 <jsp:useBean id="utilisateurDAO" class="com.stageo.dao.UtilisateurDAO" scope="page"/>
 <jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
-
+<jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
 
 <!DOCTYPE html>
 <html>
@@ -53,7 +54,7 @@
                                     Ici, vous pouvez voir vos messages reçus et envoyés ainsi que les brouillons sauvegardés.
                                 </p>
                             </div>
-                        </div>z
+                        </div>
                     </div>
                 </div>
                 <!-- Fin du titre de la page-->
@@ -102,21 +103,30 @@
                             <!-- Messaages non-lus -->
                             <c:forEach var="unMessage" items="${servicesMessagerie.messagesRecusNonLus(sessionScope.utilisateur.getIdUtilisateur())}">
                                 <c:set var="user" value="${utilisateurDAO.findById(unMessage.getIdExpediteur())}"/>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <span class="label label-danger label-as-badge">&#8203 &#8203</span>
-                                        <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
-                                            <jsp:useBean id="employeur" class="com.stageo.beans.Employeur"/>
-                                            <c:set var="employeur" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
-                                            <!-- Afficher le nom de la compagnie -->
-                                            <kbd>${employeur.getIdCompagnie()}</kbd>
-                                        </c:if>
-                                        <!-- Aller chercher et afficher le prenom et nom du contact -->
-                                        ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
-                                        <div class="dateMessage">${unMessage.getDate()}</div>
+                                <form method="post" action="./do" class="message${unMessage.getIdMessage()}">
+                                    <!-- Informations a envoyer pour le form -->
+                                    <input type="hidden" name="messageSelectionner" value="${unMessage.getIdMessage()}">
+                                    <input type="hidden" name="action" value="selectionnerMessage"/>
+                                    
+                                    <!-- Cree le message -->
+                                    <div class="panel panel-default" onclick="selectionnerUnMessage(${unMessage.getIdMessage()})">
+                                        <div class="panel-heading">
+                                            <span class="label label-danger label-as-badge">&#8203 &#8203</span>
+                                            
+                                            <!-- Afficher le nom de la compagnie si il est un employeur -->
+                                            <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                                                <jsp:useBean id="employeur" class="com.stageo.beans.Employeur"/>
+                                                <c:set var="employeur" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
+                                                <!-- Afficher le nom de la compagnie -->
+                                                <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd>
+                                            </c:if>
+                                            <!-- Aller chercher et afficher le prenom et nom du contact -->
+                                            ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
+                                            <div class="dateMessage">${unMessage.getDate()}</div>
+                                        </div>
+                                        <div class="panel-body">${unMessage.getTitre()}</div>
                                     </div>
-                                    <div class="panel-body">${unMessage.getTitre()}</div>
-                                </div>
+                                </form>
                             </c:forEach>
                             <!--Fin des messages non-lus -->
                             
@@ -132,7 +142,7 @@
                                         <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
                                             <c:set var="employeur" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
                                             <!-- Afficher le nom de la compagnie -->
-                                            <kbd>${employeur.getIdCompagnie()}</kbd> 
+                                            <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd> 
                                         </c:if>
                                         <!-- Aller chercher et afficher le prenom et nom du contact -->
                                         ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
@@ -148,21 +158,22 @@
                 <!-- Fin de la section de la liste de messages -->
                 
                 <!-- Debut de la section dun message -->
-                <div class="col-lg-5">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Message
-                        </div>
-                        <div class="panel-body message">
-                            <div class="col-lg-12" id="messageEnvoyeur">
-                                <label id="messageEnvoyeur"><b>Envoyeur : </b></label><span> Maxime <kbd>Activix</kbd></span>
-                                <hr>
+                <c:if test="${not empty sessionScope.messageSelectionner}">
+                    <div class="col-lg-5">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Message
                             </div>
-                            <div class="col-lg-12" id="messageTitre">
-                                <label id="messageTitre"><b>Titre : </b></label><span> Entrevue</span>
-                                <hr>
-                            </div>
-                            <pre id='texteMessage'>
+                            <div class="panel-body message">
+                                <div class="col-lg-12" id="messageEnvoyeur">
+                                    <label id="messageEnvoyeur"><b>Envoyeur : </b></label><span> Maxime <kbd>Activix</kbd></span>
+                                    <hr>
+                                </div>
+                                <div class="col-lg-12" id="messageTitre">
+                                    <label id="messageTitre"><b>Titre : </b></label><span> Entrevue</span>
+                                    <hr>
+                                </div>
+                                <pre id='texteMessage'>
 Text in a pre element
 is displayed in a fixed-width
 font, and it preserves
@@ -183,10 +194,11 @@ line breaks.
 font, and it preserves
 both      spaces and
 line breaks.
-                            </pre>
+                                </pre>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </c:if>
                 <!-- Fin de la section dun message -->
                 
                 <div class="col-lg-1"></div><!-- Sert de margin -->
@@ -199,7 +211,6 @@ line breaks.
         <!-- Fin footer -->
         
         <script>
-            
             $(document).ready(function(){
                 // Chacher le titre
                 $("#descTitrePage").hide();
@@ -234,6 +245,9 @@ line breaks.
                 });
             });
             
+            function selectionnerUnMessage(id){
+                 $(".message"+id).submit();
+            }
         </script>
     </body>
     
