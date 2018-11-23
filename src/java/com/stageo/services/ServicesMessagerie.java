@@ -43,7 +43,7 @@ public class ServicesMessagerie {
             String requete = "INSERT INTO UTILISATEURMESSAGE (ID_MESSAGE, ID_DESTINATAIRE) VALUES (?, ?)";
             PreparedStatement requeteParam = CNX.prepareStatement(requete);
             
-            requeteParam.setString(1, idMessage.getIdMessage());
+            requeteParam.setString(1, idMessage);
             requeteParam.setString(2, idDestinataire);
             
             requeteParam.executeUpdate();
