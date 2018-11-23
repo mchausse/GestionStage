@@ -67,7 +67,7 @@ public class EtudiantDAO extends Dao<Etudiant>{
             requeteParam.setString(2, o.getStatutRecherche());
             requeteParam.executeUpdate();
             return true;
-        }catch(SQLException e){return true;}
+        }catch(SQLException e){return false;}
     }
 
     @Override
