@@ -23,7 +23,7 @@
                         <li><a class="#" href="">Offres de stage</a></li>
                         <li><a class="#" href="">Documents</a></li>
                         <li><a class="#" href="">Recherche Étudiant</a></li>
-                        <li><a class="#" href="do?action=afficherConfigCompte">Profil</a></li> <!-- changer le nom pour de quoi d'autre -->
+                        <li><a class="#" href="do?action=afficherProfil">Profil</a></li> <!-- changer le nom pour de quoi d'autre -->
                         <li><a class="#" href="do?action=deconnexion">Deconnexion</a></li>
                     </c:if>
                     <c:if test="${ empty sessionScope['connecte'] || sessionScope['connecte']==false }" > <!-- il est deco -->
