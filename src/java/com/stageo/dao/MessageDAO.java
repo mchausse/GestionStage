@@ -6,6 +6,7 @@
 package com.stageo.dao;
 
 import com.stageo.beans.Message;
+import com.stageo.singleton.Connexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ import java.util.List;
  * College Rosemont
 */
 public class MessageDAO extends Dao<Message>{
+    public MessageDAO(){super(Connexion.getInstance());}
     public MessageDAO(Connection c) {super(c);}
     
     @Override

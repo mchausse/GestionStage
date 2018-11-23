@@ -12,14 +12,17 @@
 <%@page import="com.stageo.dao.UtilisateurDAO"%>
 <%@page import="com.stageo.dao.EmployeurDAO"%>
 <%@page import="com.stageo.dao.CompagnieDAO"%>
+<%@page import="com.stageo.dao.MessageDAO"%>
 <%@page import="com.stageo.singleton.Connexion"%>
 <%@page import="com.stageo.beans.Employeur"%>
+<%@page import="com.stageo.beans.Message"%>
 
 <!-- Initialiser les dao utiliser dans la page -->
 <jsp:useBean id="servicesMessagerie" class="com.stageo.services.ServicesMessagerie" scope="page" />
 <jsp:useBean id="utilisateurDAO" class="com.stageo.dao.UtilisateurDAO" scope="page"/>
 <jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
 <jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
+<jsp:useBean id="messageDAO" class="com.stageo.dao.MessageDAO" scope="page"/>
 
 <!DOCTYPE html>
 <html>
@@ -120,6 +123,7 @@
                                                 <!-- Afficher le nom de la compagnie -->
                                                 <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd>
                                             </c:if>
+                                                
                                             <!-- Aller chercher et afficher le prenom et nom du contact -->
                                             ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
                                             <div class="dateMessage">${unMessage.getDate()}</div>
@@ -135,21 +139,31 @@
                             <!-- Messages lus -->
                             <c:forEach var="unMessage" items="${servicesMessagerie.messagesRecusLus(sessionScope.utilisateur.getIdUtilisateur())}">
                                 <c:set var="user" value="${utilisateurDAO.findById(unMessage.getIdExpediteur())}"/>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <!-- Mettre le cercle de la couleur grise pour vu -->
-                                        <span class="label label-default label-as-badge">&#8203 &#8203</span>
-                                        <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
-                                            <c:set var="employeur" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
-                                            <!-- Afficher le nom de la compagnie -->
-                                            <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd> 
-                                        </c:if>
-                                        <!-- Aller chercher et afficher le prenom et nom du contact -->
-                                        ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
-                                        <div class="dateMessage">${unMessage.getDate()}</div>
+                                <form method="post" action="./do" class="message${unMessage.getIdMessage()}">
+                                    <!-- Informations a envoyer pour le form -->
+                                    <input type="hidden" name="messageSelectionner" value="${unMessage.getIdMessage()}">
+                                    <input type="hidden" name="action" value="selectionnerMessage"/>
+                                    
+                                    <!-- Cree le message -->
+                                    <div class="panel panel-default" onclick="selectionnerUnMessage(${unMessage.getIdMessage()})">
+                                        <div class="panel-heading">
+                                            <!-- Mettre le cercle de la couleur grise pour vu -->
+                                            <span class="label label-default label-as-badge">&#8203 &#8203</span>
+                                            <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                                                <c:set var="employeur" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
+
+                                                <!-- Afficher le nom de la compagnie -->
+                                                <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd> 
+                                            </c:if>
+
+                                            <!-- Aller chercher et afficher le prenom et nom du contact -->
+                                            ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
+                                            <!-- Afficher la date du message-->
+                                            <div class="dateMessage">${unMessage.getDate()}</div>
+                                        </div>
+                                        <div class="panel-body">${unMessage.getTitre()}</div>
                                     </div>
-                                    <div class="panel-body">${unMessage.getTitre()}</div>
-                                </div>
+                                </form>
                             </c:forEach>
                             <!-- Fin des messages lus -->
                         </div>
@@ -159,42 +173,37 @@
                 
                 <!-- Debut de la section dun message -->
                 <c:if test="${not empty sessionScope.messageSelectionner}">
+                    <!-- Assigner la variable de sesion a une variable -->
+                    <c:set var="messSelec" value="${messageDAO.findById(sessionScope.messageSelectionner)}"/>
+                    
                     <div class="col-lg-5">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Message
+                            
+                            <!-- Titre du conteneur de message avec la date et l'heure du message -->
+                            <div class="panel-heading">Message</div>
+                            <div class="dateMessage"><!--NOTE : Apparait dans le div plus bas-->
+                                Envoyé le ${messSelec.getDate()} à ${messSelec.getHeure()}
                             </div>
+                            
+                            <!-- Interieur du message -->
                             <div class="panel-body message">
+                                
+                                <!-- Section de l'evoyeur du message -->
                                 <div class="col-lg-12" id="messageEnvoyeur">
-                                    <label id="messageEnvoyeur"><b>Envoyeur : </b></label><span> Maxime <kbd>Activix</kbd></span>
+                                    <label id="messageEnvoyeur"><b>Envoyeur : </b></label>
+                                    <span> Maxime <kbd>Activix</kbd></span>
                                     <hr>
                                 </div>
+                                
+                                <!-- Section du titre du message -->
                                 <div class="col-lg-12" id="messageTitre">
-                                    <label id="messageTitre"><b>Titre : </b></label><span> Entrevue</span>
+                                    <label id="messageTitre"><b>Titre : </b></label>
+                                    <span>${messSelec.getTitre()}</span>
                                     <hr>
                                 </div>
-                                <pre id='texteMessage'>
-Text in a pre element
-is displayed in a fixed-width
-font, and it preserves
-both      spaces and
-line breaks.Text in a pre element
-is displayed in a fixed-width
-font, and it preserves
-both      spaces and
-line breaks.
-
-Text in a pre element
-is displayed in a fixed-width
-font, and it preserves
-both      spaces and
-line breaks.
-
-
-font, and it preserves
-both      spaces and
-line breaks.
-                                </pre>
+                                
+                                <!-- Contenu du message -->
+                                <pre id='texteMessage'>${messSelec.getMessage()}</pre>
                             </div>
                         </div>
                     </div>
@@ -230,17 +239,17 @@ line breaks.
                 
                 // Pour le bouton de description du titre
                 $("#btnDescTitrePage").click(function(){
-                    if($("#btnDescTitrePage").is(".glyphicon-triangle-bottom")){
+                    if($("#btnDescTitrePage").is(".glyphicon-triangle-top")){
+                        $("#descTitrePage").hide(300);
+                        // Changer la classe pour changer le signe du bouton
+                        $("#btnDescTitrePage").removeClass("glyphicon-triangle-top");
+                        $("#btnDescTitrePage").addClass('glyphicon-triangle-bottom');
+                    }else{
                         // Faire apparaitre la desc
                         $("#descTitrePage").show(500);
                         // Changer la classe pour changer le signe du bouton
                         $("#btnDescTitrePage").removeClass("glyphicon-triangle-bottom");
                         $("#btnDescTitrePage").addClass('glyphicon-triangle-top');
-                    }else{
-                        $("#descTitrePage").hide(300);
-                        // Changer la classe pour changer le signe du bouton
-                        $("#btnDescTitrePage").removeClass("glyphicon-triangle-top");
-                        $("#btnDescTitrePage").addClass('glyphicon-triangle-bottom');
                     }
                 });
             });

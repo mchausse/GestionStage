@@ -10,6 +10,7 @@ public class SelectionnerMessageAction extends AbstractAction{
 
     @Override
     public String execute() {
+        // Ajouter le fonction qui change lattribu LU du message
         if(request.getParameter("messageSelectionner") != null)
             request.getSession().setAttribute("messageSelectionner", request.getParameter("messageSelectionner"));
         return "messagerie";
