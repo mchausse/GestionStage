@@ -1,33 +1,87 @@
-<%-- 
-    Document   : testUserDAO
-    Created on : 2018-11-18, 13:50:06
-    Author     : gabri
---%>
+package org.apache.jsp;
 
-<%@page import="com.stageo.beans.Adresse"%>
-<%@page import="com.stageo.dao.AdresseDAO"%>
-<%@page import="com.stageo.dao.CompagnieDAO"%>
-<%@page import="com.stageo.beans.Compagnie"%>
-<%@page import="com.stageo.beans.Employeur"%>
-<%@page import="com.stageo.dao.EmployeurDAO"%>
-<%@page import="com.stageo.beans.Etudiant"%>
-<%@page import="com.stageo.dao.EtudiantDAO"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.logging.Logger"%>
-<%@page import="java.util.logging.Level"%>
-<%@page import="com.stageo.beans.Utilisateur"%>
-<%@page import="com.stageo.singleton.Connexion"%>
-<%@page import="com.stageo.dao.UtilisateurDAO"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Test de mon DAO</h1>
-        <%    
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.*;
+import com.stageo.beans.Adresse;
+import com.stageo.dao.AdresseDAO;
+import com.stageo.dao.CompagnieDAO;
+import com.stageo.beans.Compagnie;
+import com.stageo.beans.Employeur;
+import com.stageo.dao.EmployeurDAO;
+import com.stageo.beans.Etudiant;
+import com.stageo.dao.EtudiantDAO;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import com.stageo.beans.Utilisateur;
+import com.stageo.singleton.Connexion;
+import com.stageo.dao.UtilisateurDAO;
+
+public final class testUserDAO_jsp extends org.apache.jasper.runtime.HttpJspBase
+    implements org.apache.jasper.runtime.JspSourceDependent {
+
+  private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
+
+  private static java.util.List<String> _jspx_dependants;
+
+  private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
+
+  public java.util.List<String> getDependants() {
+    return _jspx_dependants;
+  }
+
+  public void _jspService(HttpServletRequest request, HttpServletResponse response)
+        throws java.io.IOException, ServletException {
+
+    PageContext pageContext = null;
+    HttpSession session = null;
+    ServletContext application = null;
+    ServletConfig config = null;
+    JspWriter out = null;
+    Object page = this;
+    JspWriter _jspx_out = null;
+    PageContext _jspx_page_context = null;
+
+    try {
+      response.setContentType("text/html;charset=UTF-8");
+      pageContext = _jspxFactory.getPageContext(this, request, response,
+      			null, true, 8192, true);
+      _jspx_page_context = pageContext;
+      application = pageContext.getServletContext();
+      config = pageContext.getServletConfig();
+      session = pageContext.getSession();
+      out = pageContext.getOut();
+      _jspx_out = out;
+      _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
+
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <title>JSP Page</title>\r\n");
+      out.write("    </head>\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <h1>Test de mon DAO</h1>\r\n");
+      out.write("        ");
+    
             try { //devrait etre dans le singleton
                 Class.forName("com.mysql.jdbc.Driver");
             }catch (ClassNotFoundException ex) {
@@ -50,7 +104,7 @@
             out.println("Find by OBJ : " + test2.getIdUtilisateur() + "<br/>");
             
             //findByEmail
-            Utilisateur user1 = dao.findByEmail("gab@hotmail.com");
+            Utilisateur user1 = dao.findByEmail("slaver@dure.com");
             out.println("<br/><br/> ID par Email : " + user1.getIdUtilisateur() + "<br/>");
             out.println("Email : " + user1.getCourriel()+"<br/>");
             //Teste creation
@@ -133,8 +187,8 @@
             
             //Find
             Employeur emp1 = new Employeur();
-            //emp1.setIdEmployeur("3");
-            emp1.setIdEmployeur("2");
+            emp1.setIdEmployeur("3");
+            //emp1.setIdEmployeur("2");
             
             Employeur emp2 = daoEmp.find(emp1);
             out.println("ID employeur : " + emp2.getIdEmployeur() + "<br/>");
@@ -142,8 +196,8 @@
             out.println("ID compagnie : " + emp2.getIdCompagnie() + "<br/>");
             
             //FindbyID
-            //Employeur emp3 = daoEmp.findById("3");
-            Employeur emp3 = daoEmp.findById("2");
+            Employeur emp3 = daoEmp.findById("3");
+            //Employeur emp3 = daoEmp.findById("2");
             out.println("<br/>");
             out.println("ID employeur : " + emp3.getIdEmployeur() + "<br/>");
             out.println("Tel : " + emp3.getTel()+ "<br/>");
@@ -300,6 +354,20 @@
             //Delete
             out.println("<h3>Delete : </h3>");
             out.println("Add delete : " + daoAdd.delete(add2));
-        %>
-    </body>
-</html>
+        
+      out.write("\r\n");
+      out.write("    </body>\r\n");
+      out.write("</html>\r\n");
+    } catch (Throwable t) {
+      if (!(t instanceof SkipPageException)){
+        out = _jspx_out;
+        if (out != null && out.getBufferSize() != 0)
+          out.clearBuffer();
+        if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);
+        else throw new ServletException(t);
+      }
+    } finally {
+      _jspxFactory.releasePageContext(_jspx_page_context);
+    }
+  }
+}

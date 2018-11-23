@@ -7,13 +7,13 @@ package com.stageo.controleur;
 
 /**
  *
- * @author Max
+ * @author gabri
  */
-public class AfficherIncriptionAction extends AbstractAction {
+public class AfficherProfilAction extends AbstractAction{
 
     @Override
     public String execute() {
-        return "inscription";
+        return "profil";
     }
     
 }
