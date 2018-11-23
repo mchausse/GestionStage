@@ -19,10 +19,14 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-main">
             <div id="choixMenu">
                 <ul class="nav navbar-nav navbar-left">
-                    <c:if test="${ sessionScope['connecte']==true }" > <!--si l'utilisateur est connecte -->
-                        <li><a class="#" href="">Offres de stage</a></li>
-                        <li><a class="#" href="">Documents</a></li>
-                        <li><a class="#" href="">Recherche Étudiant</a></li>
+                    <c:if test="${ sessionScope['connecte'] eq true }" > <!--si l'utilisateur est connecte -->
+                        <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Employeur'}">
+                            <li><a class="#" href="">Documents</a></li>
+                            <li><a class="#" href="">Recherche Étudiant</a></li>
+                        </c:if>
+                        <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Etudiant'}">
+                            <li><a class="#" href="">Offres de stage</a></li>
+                        </c:if>
                         <li><a class="#" href="do?action=afficherProfil">Profil</a></li> <!-- changer le nom pour de quoi d'autre -->
                         <li><a class="#" href="do?action=deconnexion">Deconnexion</a></li>
                     </c:if>

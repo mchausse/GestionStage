@@ -5,6 +5,7 @@
  */
 package com.stageo.controleur;
 
+import com.stageo.beans.Avertissement;
 import com.stageo.beans.Employeur;
 import com.stageo.beans.Etudiant;
 import com.stageo.beans.Utilisateur;
@@ -75,8 +76,17 @@ public class ConnexionAction extends AbstractAction{
                     request.getSession().setAttribute("connecte", true);
                     return "messagerie";
                 }
+                else{
+                    Avertissement aver = new Avertissement("Mot de passe ou courriel invalide.", "erreur");
+                    request.getSession().setAttribute("avertissement", aver);
+                    return "inscription";
+                }
+            }
+            else{
+                Avertissement aver = new Avertissement("Mot de passe ou courriel invalide.", "erreur");
+                request.getSession().setAttribute("avertissement", aver);
+                return "inscription";
             }
         }catch(Exception e){return ""+e;} //Si il y a une erreur
-        return "inscription";
     }
 }
