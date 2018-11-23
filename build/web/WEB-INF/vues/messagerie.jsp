@@ -74,16 +74,20 @@
                         <!-- Liste des options du menu -->
                         <div class="panel-body">
                             <div class="col-lg-12">
-                                <a href="#" class="btn btn-default btn-lg btnMenu">
+                                <!-- Bouton pour cree un nouveau message -->
+                                <a href="do?action=creerNouveauMessage" class="btn ${(not empty requestScope.enCreation?"btn-danger":"btn-default")} btn-lg btnMenu">
                                     <span class="glyphicon glyphicon-plus"> Nouveau</span>
                                 </a>
-                                <a href="#" class="btn btn-danger btn-lg btnMenu">
+                                <!-- Bouton pour afficher la liste de message recus -->
+                                <a href="do?action=afficherMessagerie" class="btn ${(empty requestScope.enCreation?"btn-danger":"btn-default")} btn-lg btnMenu">
                                     <span class="badge">${servicesMessagerie.nbMessagesNonLus(sessionScope.utilisateur.getIdUtilisateur())}</span>
                                     <span class="glyphicon glyphicon-inbox"> Reçus</span>
                                 </a>
+                                <!-- Bouton pour afficher la liste de message envoyes -->
                                 <a href="#" class="btn btn-default btn-lg btnMenu">
                                     <span class="glyphicon glyphicon-arrow-left"> Envoyés</span>
                                 </a>
+                                <!-- Bouton pour afficher les messages suavegardes -->
                                 <a href="#" class="btn btn-default btn-lg btnMenu">
                                     <span class="glyphicon glyphicon-floppy-disk"> Sauvegardés</span>
                                 </a>
@@ -95,80 +99,115 @@
                 </div>
                 <!-- Fin de la section du menu des messages -->
                 
-                <!-- Debut de la section de la liste de messages -->
-                <div class="col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Messages recus
-                        </div>
-                        <div id="messages" class="panel-body">
+                <!-- Debut de la section du formulaire pour un nouveau message -->
+                <c:if test="${ not empty requestScope.enCreation}">
+                    <div class="col-lg-8">
+                        <div class="panel panel-default">
                             
-                            <!-- Messaages non-lus -->
-                            <c:forEach var="unMessage" items="${servicesMessagerie.messagesRecusNonLus(sessionScope.utilisateur.getIdUtilisateur())}">
-                                <c:set var="user" value="${utilisateurDAO.findById(unMessage.getIdExpediteur())}"/>
-                                <form method="post" action="./do" class="message${unMessage.getIdMessage()}">
-                                    <!-- Informations a envoyer pour le form -->
-                                    <input type="hidden" name="messageSelectionner" value="${unMessage.getIdMessage()}">
-                                    <input type="hidden" name="action" value="selectionnerMessage"/>
-                                    
-                                    <!-- Cree le message -->
-                                    <div class="panel panel-default" onclick="selectionnerUnMessage(${unMessage.getIdMessage()})">
-                                        <div class="panel-heading">
-                                            <span class="label label-danger label-as-badge">&#8203 &#8203</span>
-                                            
-                                            <!-- Afficher le nom de la compagnie si il est un employeur -->
-                                            <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
-                                                <jsp:useBean id="employeur" class="com.stageo.beans.Employeur"/>
-                                                <c:set var="employeur" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
-                                                <!-- Afficher le nom de la compagnie -->
-                                                <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd>
-                                            </c:if>
-                                                
-                                            <!-- Aller chercher et afficher le prenom et nom du contact -->
-                                            ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
-                                            <div class="dateMessage">${unMessage.getDate()}</div>
-                                        </div>
-                                        <div class="panel-body">${unMessage.getTitre()}</div>
-                                    </div>
-                                </form>
-                            </c:forEach>
-                            <!--Fin des messages non-lus -->
+                            <!-- Titre du conteneur de message avec la date et l'heure du message -->
+                            <div class="panel-heading">Nouveau message</div>
                             
-                            <hr /><!-- Mettre une separation entre les messages lus et les non-lus-->
-                            
-                            <!-- Messages lus -->
-                            <c:forEach var="unMessage" items="${servicesMessagerie.messagesRecusLus(sessionScope.utilisateur.getIdUtilisateur())}">
-                                <c:set var="user" value="${utilisateurDAO.findById(unMessage.getIdExpediteur())}"/>
-                                <form method="post" action="./do" class="message${unMessage.getIdMessage()}">
-                                    <!-- Informations a envoyer pour le form -->
-                                    <input type="hidden" name="messageSelectionner" value="${unMessage.getIdMessage()}">
-                                    <input type="hidden" name="action" value="selectionnerMessage"/>
-                                    
-                                    <!-- Cree le message -->
-                                    <div class="panel panel-default" onclick="selectionnerUnMessage(${unMessage.getIdMessage()})">
-                                        <div class="panel-heading">
-                                            <!-- Mettre le cercle de la couleur grise pour vu -->
-                                            <span class="label label-default label-as-badge">&#8203 &#8203</span>
-                                            <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
-                                                <c:set var="employeur" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
-
-                                                <!-- Afficher le nom de la compagnie -->
-                                                <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd> 
-                                            </c:if>
-
-                                            <!-- Aller chercher et afficher le prenom et nom du contact -->
-                                            ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
-                                            <!-- Afficher la date du message-->
-                                            <div class="dateMessage">${unMessage.getDate()}</div>
-                                        </div>
-                                        <div class="panel-body">${unMessage.getTitre()}</div>
-                                    </div>
-                                </form>
-                            </c:forEach>
-                            <!-- Fin des messages lus -->
+                            <!-- Interieur du message -->
+                            <div class="panel-body message">
+                                
+                                <!-- Section de l'evoyeur du message -->
+                                <div class="col-lg-12" id="messageEnvoyeur">
+                                    <label id="messageEnvoyeur"><b>Envoyeur : </b></label>
+                                    <span> Maxime <kbd>Activix</kbd></span>
+                                    <hr>
+                                </div>
+                                
+                                <!-- Section du titre du message -->
+                                <div class="col-lg-12" id="messageTitre">
+                                    <label id="messageTitre"><b>Titre : </b></label>
+                                    <span></span>
+                                    <hr>
+                                </div>
+                                
+                                <!-- Contenu du message -->
+                                <pre id='texteMessage'></pre>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </c:if>
+                <!-- Fin de la section du formulaire pour un nouveau message -->
+                
+                <!-- Debut de la section de la liste de messages -->
+                <c:if test="${empty requestScope.enCreation}">
+                    <div class="col-lg-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Messages recus
+                            </div>
+                            <div id="messages" class="panel-body">
+
+                                <!-- Messaages non-lus -->
+                                <c:forEach var="unMessage" items="${servicesMessagerie.messagesRecusNonLus(sessionScope.utilisateur.getIdUtilisateur())}">
+                                    <c:set var="user" value="${utilisateurDAO.findById(unMessage.getIdExpediteur())}"/>
+                                    <form method="post" action="./do" class="message${unMessage.getIdMessage()}">
+                                        <!-- Informations a envoyer pour le form -->
+                                        <input type="hidden" name="messageSelectionner" value="${unMessage.getIdMessage()}">
+                                        <input type="hidden" name="action" value="selectionnerMessage"/>
+
+                                        <!-- Cree le message -->
+                                        <div class="panel panel-default" onclick="selectionnerUnMessage(${unMessage.getIdMessage()})">
+                                            <div class="panel-heading">
+                                                <span class="label label-danger label-as-badge">&#8203 &#8203</span>
+
+                                                <!-- Afficher le nom de la compagnie si il est un employeur -->
+                                                <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                                                    <jsp:useBean id="employeur" class="com.stageo.beans.Employeur"/>
+                                                    <c:set var="employeur" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
+                                                    <!-- Afficher le nom de la compagnie -->
+                                                    <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd>
+                                                </c:if>
+
+                                                <!-- Aller chercher et afficher le prenom et nom du contact -->
+                                                ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
+                                                <div class="dateMessage">${unMessage.getDate()}</div>
+                                            </div>
+                                            <div class="panel-body">${unMessage.getTitre()}</div>
+                                        </div>
+                                    </form>
+                                </c:forEach>
+                                <!--Fin des messages non-lus -->
+
+                                <hr /><!-- Mettre une separation entre les messages lus et les non-lus-->
+
+                                <!-- Messages lus -->
+                                <c:forEach var="unMessage" items="${servicesMessagerie.messagesRecusLus(sessionScope.utilisateur.getIdUtilisateur())}">
+                                    <c:set var="user" value="${utilisateurDAO.findById(unMessage.getIdExpediteur())}"/>
+                                    <form method="post" action="./do" class="message${unMessage.getIdMessage()}">
+                                        <!-- Informations a envoyer pour le form -->
+                                        <input type="hidden" name="messageSelectionner" value="${unMessage.getIdMessage()}">
+                                        <input type="hidden" name="action" value="selectionnerMessage"/>
+
+                                        <!-- Cree le message -->
+                                        <div class="panel panel-default" onclick="selectionnerUnMessage(${unMessage.getIdMessage()})">
+                                            <div class="panel-heading">
+                                                <!-- Mettre le cercle de la couleur grise pour vu -->
+                                                <span class="label label-default label-as-badge">&#8203 &#8203</span>
+                                                <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                                                    <c:set var="employeur" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
+
+                                                    <!-- Afficher le nom de la compagnie -->
+                                                    <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd> 
+                                                </c:if>
+
+                                                <!-- Aller chercher et afficher le prenom et nom du contact -->
+                                                ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
+                                                <!-- Afficher la date du message-->
+                                                <div class="dateMessage">${unMessage.getDate()}</div>
+                                            </div>
+                                            <div class="panel-body">${unMessage.getTitre()}</div>
+                                        </div>
+                                    </form>
+                                </c:forEach>
+                                <!-- Fin des messages lus -->
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
                 <!-- Fin de la section de la liste de messages -->
                 
                 <!-- Debut de la section dun message -->
