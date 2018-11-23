@@ -38,7 +38,7 @@
                                     Ici, vous pouvez voir vos messages reçus et envoyés ainsi que les brouillons sauvegardés.
                                 </p>
                             </div>
-                        </div>
+                        </div>z
                     </div>
                 </div>
                 <!-- Fin du titre de la page-->

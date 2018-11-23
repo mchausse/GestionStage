@@ -29,7 +29,7 @@ public class ConnexionAction extends AbstractAction{
         }
         Connexion c = new Connexion();
         c.setUrl("jdbc:mysql://localhost/stageo?user=root&password=root&serverTimezone=EST&characterEncoding=UTF-8");
-        UtilisateurDAO daoUser = new UtilisateurDAO(c.getInstance());
+        UtilisateurDAO daoUser = new UtilisateurDAO(Connexion.getInstance());
         
         //Attibuts de la page
         String email = request.getParameter("emailLog");
@@ -40,7 +40,7 @@ public class ConnexionAction extends AbstractAction{
                 if(password.equals(temp.getMotDePasse())){
                     //Dependant du type d'utilisateur, va attribuer des attributs en plus
                     if("Employeur".equals(temp.getTypeUtilisateur())){
-                        EmployeurDAO daoEmp = new EmployeurDAO(c.getInstance());
+                        EmployeurDAO daoEmp = new EmployeurDAO(Connexion.getInstance());
                         Employeur empTemp = daoEmp.findById(temp.getIdUtilisateur());
                         Employeur currentUser = new Employeur();
                         //Set les attributs d'utilisateur
@@ -57,7 +57,7 @@ public class ConnexionAction extends AbstractAction{
                         request.getSession().setAttribute("utilisateur", currentUser);
                     }
                     if("Etudiant".equals(temp.getTypeUtilisateur())){
-                        EtudiantDAO daoEtu = new EtudiantDAO(c.getInstance());
+                        EtudiantDAO daoEtu = new EtudiantDAO(Connexion.getInstance());
                         Etudiant etuTemp = daoEtu.findById(temp.getIdUtilisateur());
                         Etudiant currentUser = new Etudiant();
                         //Set les attributs d'utilisateur

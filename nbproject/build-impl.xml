@@ -950,11 +950,6 @@ exists or setup the property manually. For example like this:
             <classpath path="${java.home}/../lib/tools.jar:${libs.jsp-compiler.classpath}:${libs.jsp-compilation.classpath}"/>
         </java>
         <mkdir dir="${build.generated.dir}/classes"/>
-        <webproject2:javac classpath="${build.classes.dir}:${libs.jsp-compilation.classpath}:${javac.classpath}:${j2ee.platform.classpath}" destdir="${build.generated.dir}/classes" srcdir="${build.generated.dir}/src">
-            <customize>
-                <patternset includes="${javac.jsp.includes}"/>
-            </customize>
-        </webproject2:javac>
     </target>
     <target name="compile-single-jsp">
         <fail unless="jsp.includes">Must select a file in the IDE or set jsp.includes</fail>
