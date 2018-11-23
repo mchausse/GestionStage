@@ -286,3 +286,11 @@
 .dateStage{
     color:grey;
 }
+
+/** ====== page : profil.jsp ====== */
+.btnProfil{
+    text-decoration: none;
+    transition: 0.5s;
+    float: right; 
+    margin-left: 0.2em;
+}
