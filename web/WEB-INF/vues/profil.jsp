@@ -47,7 +47,7 @@
                                     <a onclick="edit('${user.getTypeUtilisateur()}')">
                                         <span class="glyphicon glyphicon-edit btnProfil" id="edit"></span>
                                     </a>
-                                        <button type="submit" style="background:none; border:none;padding:0; float: right;">
+                                    <button type="submit" id="btnConfirmEdit" class="btnProfil">
                                         <span class="glyphicon glyphicon-ok btnProfil" id="editConfirm" style="display: none;"></span>
                                     </button>
                                     <a onclick="cancel('${user.getTypeUtilisateur()}')">

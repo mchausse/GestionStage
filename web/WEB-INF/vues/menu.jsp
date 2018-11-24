@@ -38,8 +38,8 @@
                 </ul>
             </div>
         </div>
-        <!-- POUR DÉBUG -->
+        <!-- POUR DÉBUG 
         <c:out value="Compte = ${sessionScope['utilisateur']}" />
-        <c:out value="Connecte = ${sessionScope['connecte']}" />
+        <c:out value="Connecte = ${sessionScope['connecte']}" /> -->
     </div>
 </nav>

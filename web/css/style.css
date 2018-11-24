@@ -290,7 +290,29 @@
 /** ====== page : profil.jsp ====== */
 .btnProfil{
     text-decoration: none;
-    transition: 0.5s;
     float: right; 
     margin-left: 0.2em;
+    color: #337ab7;
+    transition: 0.5s;
 }
+.btnProfil:hover{
+    transform: scale(1.1, 1.1);
+    color: #255a88;
+}
+#btnConfirmEdit{
+    background:none; 
+    border:none;
+    padding:0; 
+    float: right;
+    color: #6FE371;
+    transition:0.5s;
+}
+#btnAdresse{
+    transition:0.5s;
+}
+#btnAdresse:hover{
+    background-color: #dbdbdb;
+    transform: scale(1.1, 1.1);
+
+}
+
