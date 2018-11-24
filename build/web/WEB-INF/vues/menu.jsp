@@ -27,10 +27,11 @@
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Etudiant'}">
                             <li><a class="#" href="">Offres de stage</a></li>
                         </c:if>
+                        <li><a class="#" href="do?action=afficherMessagerie">Messagerie</a></li>
                         <li><a class="#" href="do?action=afficherProfil">Profil</a></li> <!-- changer le nom pour de quoi d'autre -->
                         <li><a class="#" href="do?action=deconnexion">Deconnexion</a></li>
                     </c:if>
-                    <c:if test="${ empty sessionScope['connecte'] || sessionScope['connecte']==false }" > <!-- il est deco -->
+                    <c:if test="${ empty sessionScope['connecte'] || sessionScope['connecte'] eq false }" > <!-- il est deco -->
                         <li><a class="#" href="do?action=afficherIncription">Accueil</a></li>
                         <li><a class="#" href="do?action=afficherIncription">Connexion</a></li>
                     </c:if>

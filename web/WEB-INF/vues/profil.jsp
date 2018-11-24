@@ -15,7 +15,9 @@
 <jsp:useBean id="adDao" class="com.stageo.dao.AdresseDAO" scope="page"></jsp:useBean>
 
 <!-- Var User : -->
-<c:set var="user" value="${userDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}" />
+<c:if test="${!empty sessionScope['utilisateur']}">
+    <c:set var="user" value="${userDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}" />
+</c:if>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,62 +31,60 @@
     </head>
     <body>
         <%@include  file="menu.jsp" %>
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10 offset-lg-1 " style="margin-top: 10em;">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2>
-                                Votre Profil
-                                <a onclick="edit('${user.getTypeUtilisateur()}')">
-                                    <span class="glyphicon glyphicon-edit btnProfil" id="edit"></span>
-                                </a>
-                                <a>
-                                    <span class="glyphicon glyphicon-ok btnProfil" id="editConfirm" style="display: none;"></span>
-                                </a>
-                                <a onclick="cancel('${user.getTypeUtilisateur()}')">
-                                    <span class="glyphicon glyphicon-remove btnProfil" id="editCancel" style="display: none;"></span>
-                                </a>
-                            </h2>
+        <form action="do?action=modifierProfil" method="post">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10 offset-lg-1 " style="margin-top: 10em;">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2>
+                                    Votre Profil
+                                    <a onclick="edit('${user.getTypeUtilisateur()}')">
+                                        <span class="glyphicon glyphicon-edit btnProfil" id="edit"></span>
+                                    </a>
+                                        <button type="submit" style="background:none; border:none;padding:0; float: right;">
+                                        <span class="glyphicon glyphicon-ok btnProfil" id="editConfirm" style="display: none;"></span>
+                                    </button>
+                                    <a onclick="cancel('${user.getTypeUtilisateur()}')">
+                                        <span class="glyphicon glyphicon-remove btnProfil" id="editCancel" style="display: none;"></span>
+                                    </a>
+                                </h2>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 ">
-                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4>Informations personnels</h4>
-                        </div>
-                        <form>
+                <div class="row">
+                    <div class="col-lg-6 ">
+                         <div class="panel panel-default"><!-- partie pour tout les utilisateur -->
+                            <div class="panel-heading">
+                                <h4>Informations personnels</h4>
+                            </div>
                             <div class="form-group" style="padding:1em;">
                                 <label for="nomUser">Nom : </label>
                                 <input type="text" class="form-control" id="nomUser"  value="${user.getNom()}" disabled /> 
-                                <input type="text" class="form-control" id="nomUser2"  value="${user.getNom()}" style="display:none"/>  
+                                <input type="text" class="form-control" id="nomUser2" name="nomEdit" value="${user.getNom()}" style="display:none"/>  
                                 <br/>
                                 <label for="prenomUser">Prénom :</label>
                                 <input type="text" class="form-control" id="prenomUser"  value="${user.getPrenom()}" disabled />
-                                <input type="text" class="form-control" id="prenomUser2"  value="${user.getPrenom()}" style="display:none"/>  
+                                <input type="text" class="form-control" id="prenomUser2"  name="prenomEdit" value="${user.getPrenom()}" style="display:none"/>  
                                 <br/>
                                 <label for="emailUser">Courriel </label>
                                 <input type="email" class="form-control" id="emailUser"  value="${user.getCourriel()}" disabled />
-                                <input type="email" class="form-control" id="emailUser2"  value="${user.getCourriel()}" style="display:none"/>   
+                                <input type="email" class="form-control" id="emailUser2"  name="emailEdit" value="${user.getCourriel()}" style="display:none"/>   
                                 <br/>
                                 <label for="typeUser">Type de votre compte : </label>
                                 <input type="text" class="form-control" id="typeUser"  value="${user.getTypeUtilisateur()}" disabled />
                             </div>
-                        </form>
-                     </div>
-                </div>
-                <div class="col-lg-6 ">
-                    <div class="panel panel-default">
-                        <c:if test="${user.getTypeUtilisateur() eq 'Etudiant'}">
-                            <c:set var="etu" value="${etuDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}"/>
-                            <div class="panel-heading">
-                                <h4> Infomation Étudiant</h4>
-                            </div>
-                            <form>
+                         </div>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <div class="panel panel-default"> <!-- partie pour tout les Etudiants -->
+                            <c:if test="${user.getTypeUtilisateur() eq 'Etudiant'}">
+                                <c:set var="etu" value="${etuDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}"/>
+                                <div class="panel-heading">
+                                    <h4> Infomation Étudiant</h4>
+                                </div>
                                 <div class="form-group" style="padding:1em;">
                                     <label for="statutUser">Statut : </label>
                                     <input type="text" class="form-control" id="statutUser"  value="${etu.getStatutRecherche()}" disabled />
@@ -93,30 +93,26 @@
                                         <option>Non Disponible</option>
                                     </select>
                                 </div>
-                            </form>
-                        </c:if>
-                        <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
-                            <c:set var="emp" value="${empDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}"/>
-                            <div class="panel-heading">
-                                <h4> Information Employeur</h4>
-                            </div>
-                            <form>
+                            </c:if>
+                            <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}"> <!-- partie pour tout les Employeurs -->
+                                <c:set var="emp" value="${empDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}"/>
+                                <div class="panel-heading">
+                                    <h4> Information Employeur</h4>
+                                </div>
                                 <div class="form-group" style="padding:1em;">
                                     <label for="statutUser">Téléphone : </label>
                                     <input type="tel" class="form-control" id="telUser"  value="${emp.getTel()}" disabled />
                                     <input type="tel" class="form-control" id="telUser2"  value="${emp.getTel()}" style="display: none;"/>
                                 </div>
-                            </form>
-                        </c:if>
-                    </div>
-                    <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
-                        <c:set var="comp" value="${compDao.findById(emp.getIdCompagnie())}"/>
-                        <c:set var="adresse" value="${adDao.findById(comp.getIdAdresse())}" />
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4>Compagnie</h4>
-                            </div>
-                            <form>
+                            </c:if>
+                        </div>
+                        <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}"> <!-- partie pour la compagnie et adresse -->
+                            <c:set var="comp" value="${compDao.findById(emp.getIdCompagnie())}"/>
+                            <c:set var="adresse" value="${adDao.findById(comp.getIdAdresse())}" />
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4>Compagnie</h4>
+                                </div>
                                 <div class="form-group" style="padding:1em;">
                                     <label for="statutUser">Nom Compagnie : </label>
                                     <input type="text" class="form-control" id="nomComp"  value="${comp.getNom()}" disabled />
@@ -164,12 +160,12 @@
                                         <br/>
                                     </div>
                                 </div>
-                            </form>
-                        </div> 
-                    </c:if>
+                            </div> 
+                        </c:if>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </body>
 </html>
 <script type="text/javascript">

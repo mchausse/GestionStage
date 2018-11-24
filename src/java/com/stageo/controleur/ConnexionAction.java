@@ -28,8 +28,6 @@ public class ConnexionAction extends AbstractAction{
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(ConnexionAction.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Connexion c = new Connexion();
-        c.setUrl("jdbc:mysql://localhost/stageo?user=root&password=root&serverTimezone=EST&characterEncoding=UTF-8");
         UtilisateurDAO daoUser = new UtilisateurDAO(Connexion.getInstance());
         
         //Attibuts de la page
@@ -55,7 +53,7 @@ public class ConnexionAction extends AbstractAction{
                         currentUser.setIdCompagnie(empTemp.getIdCompagnie());
                         currentUser.setTel(empTemp.getTel());
                         currentUser.setIdEmployeur(empTemp.getIdEmployeur());
-                        request.getSession().setAttribute("utilisateur", currentUser);
+                        request.getSession().setAttribute("utilisateur", (Employeur)currentUser);
                     }
                     if("Etudiant".equals(temp.getTypeUtilisateur())){
                         EtudiantDAO daoEtu = new EtudiantDAO(Connexion.getInstance());
@@ -71,7 +69,7 @@ public class ConnexionAction extends AbstractAction{
                         //Set les attributs d'un etudiant
                         currentUser.setStatutRecherche(etuTemp.getStatutRecherche());
                         currentUser.setIdEtudiant(etuTemp.getIdEtudiant());
-                        request.getSession().setAttribute("utilisateur", currentUser);
+                        request.getSession().setAttribute("utilisateur", (Etudiant)currentUser);
                     }
                     request.getSession().setAttribute("connecte", true);
                     return "messagerie";
