@@ -83,7 +83,7 @@ public class testMessageDAO {
         // Find all les messages
         System.out.println();
         System.out.println(">> messageDAO.findAll()");
-        List messages2 = messageDAO.findAllById("0");
+        List messages2 = messageDAO.findAllByIdExpediteur("0");
         System.out.print("liste de message : ");
         messages.forEach((m) -> {
             System.out.println((Message)m);

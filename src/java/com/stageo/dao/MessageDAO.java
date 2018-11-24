@@ -124,7 +124,7 @@ public class MessageDAO extends Dao<Message>{
         }catch(SQLException e){return null;}
     }
     
-    public List<Message> findAllById(String id) {
+    public List<Message> findAllByIdExpediteur(String id) {
         try{
             List<Message> liste = new ArrayList();
             String requete = "SELECT * FROM MESSAGE WHERE MESSAGE.ID_EXPEDITEUR = ?";

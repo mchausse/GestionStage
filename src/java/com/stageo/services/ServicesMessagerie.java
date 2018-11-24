@@ -5,6 +5,7 @@
  */
 package com.stageo.services;
 
+import com.stageo.beans.Employeur;
 import com.stageo.beans.Message;
 import com.stageo.beans.Utilisateur;
 import com.stageo.dao.MessageDAO;
@@ -176,4 +177,24 @@ public class ServicesMessagerie {
         }catch(SQLException e){return -1;}
     }
     public int nbMessagesNonLus(Utilisateur utilisateur){return nbMessagesNonLus(utilisateur.getIdUtilisateur());}
+    
+    
+    public List<String> listeOrdoneTypePrenomNom(){
+        List<String> liste = new ArrayList<>();
+        
+        try{
+            String requete = "SELECT utilisateur.TYPE_UTILISATEUR, utilisateur.NOM, utilisateur.PRENOM "
+                            + "FROM UTILISATEUR "
+                            + "ORDER BY utilisateur.TYPE_UTILISATEUR, utilisateur.NOM, utilisateur.PRENOM ";
+            
+            PreparedStatement requeteParam = CNX.prepareStatement(requete);
+            
+            ResultSet rs = requeteParam.executeQuery();
+            while (rs.next())
+                liste.add(rs.getString("TYPE_UTILISATEUR")+","+rs.getString("NOM")+","+rs.getString("PRENOM"));
+            
+            
+            return liste;
+        }catch(SQLException e){return null;}
+    }
 }
