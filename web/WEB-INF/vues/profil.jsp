@@ -120,47 +120,47 @@
                                 <div class="form-group" style="padding:1em;">
                                     <label for="statutUser">Nom Compagnie : </label>
                                     <input type="text" class="form-control" id="nomComp"  value="${comp.getNom()}" disabled />
-                                    <input type="text" class="form-control" id="nomComp2"  value="${comp.getNom()}" style="display: none;"/>
+                                    <input type="text" class="form-control" id="nomComp2" name="nomCompEdit" value="${comp.getNom()}" style="display: none;"/>
                                     <br/>
                                     <label for="statutUser">Site Web Compagnie : </label>
                                     <input type="text" class="form-control" id="siteComp"  value="${comp.getSiteWeb()}" disabled />
-                                    <input type="text" class="form-control" id="siteComp2"  value="${comp.getSiteWeb()}" style="display: none;"/>
+                                    <input type="text" class="form-control" id="siteComp2" name="siteCompEdit" value="${comp.getSiteWeb()}" style="display: none;"/>
                                     <br />
                                     <div class="row" style="text-align: center;">
                                         <button type="button" class="btn btn-light" id="btnAdresse" onclick='afficherAdresse()'>Afficher l'adresse</button>
-                                    </div>
-                                    <div id="divAdresse" style="display: none;">
+                                    </div> 
+                                    <div id="divAdresse" style="display: none;"> <!-- Début des champs adresse -->
                                         <label for="numAdd">Numero Civique : </label>
                                         <input type="number" class="form-control" id="numAdd"  value="${adresse.getNumeroCivique()}" disabled />
-                                        <input type="number" class="form-control" id="numAdd2"  value="${adresse.getNumeroCivique()}" style="display:none;" />
+                                        <input type="number" class="form-control" id="numAdd2" name="numAdEdit" value="${adresse.getNumeroCivique()}" style="display:none;" />
                                         <br/>
                                         <label for="rueAdd">Rue : </label>
                                         <input type="text" class="form-control" id="rueAdd"  value="${adresse.getRue()}" disabled />
-                                        <input type="text" class="form-control" id="rueAdd2"  value="${adresse.getRue()}" style="display:none;" />
+                                        <input type="text" class="form-control" id="rueAdd2"   name="rueAdEdit" value="${adresse.getRue()}" style="display:none;" />
                                         <br/>
                                         <label for="bureauAdd">Bureau : </label>
                                         <input type="text" class="form-control" id="bureauAdd"  value="${adresse.getBureau()}" disabled />
-                                        <input type="text" class="form-control" id="bureauAdd2"  value="${adresse.getBureau()}" style="display:none;" />
+                                        <input type="text" class="form-control" id="bureauAdd2"  name="bureauAdEdit" value="${adresse.getBureau()}" style="display:none;" />
                                         <br/>
                                         <label for="villeAdd">Ville : </label>
                                         <input type="text" class="form-control" id="villeAdd"  value="${adresse.getVille()}" disabled />
-                                        <input type="text" class="form-control" id="villeAdd2"  value="${adresse.getVille()}" style="display:none;" />
+                                        <input type="text" class="form-control" id="villeAdd2"  name="villeAdEdit" value="${adresse.getVille()}" style="display:none;" />
                                         <br/>
                                         <label for="codePostAdd">Code Postal : </label>
                                         <input type="text" class="form-control" id="codePostAdd"  value="${adresse.getCodePostal()}" disabled />
-                                        <input type="text" class="form-control" id="codePostAdd2"  value="${adresse.getCodePostal()}" style="display:none;" />
+                                        <input type="text" class="form-control" id="codePostAdd2"  name="codePostAdEdit" value="${adresse.getCodePostal()}" style="display:none;" />
                                         <br/>
                                         <label for="proviceAdd">Province : </label>
                                         <input type="text" class="form-control" id="provinceAdd"  value="${adresse.getProvince()}" disabled />
-                                        <input type="text" class="form-control" id="provinceAdd2"  value="${adresse.getProvince()}" style="display:none;" />
+                                        <input type="text" class="form-control" id="provinceAdd2"  name="provinceAdEdit" value="${adresse.getProvince()}" style="display:none;" />
                                         <br/>
                                         <label for="paysAdd">Pays : </label>
                                         <input type="text" class="form-control" id="paysAdd"  value="${adresse.getPays()}" disabled />
-                                        <input type="text" class="form-control" id="paysAdd2"  value="${adresse.getPays()}" style="display:none;" />
+                                        <input type="text" class="form-control" id="paysAdd2"  name="paysAdEdit" value="${adresse.getPays()}" style="display:none;" />
                                         <br/>
                                         <label for="telAdd">Téléphone : </label>
                                         <input type="tel" class="form-control" id="telAdd"  value="${adresse.getTel()}" disabled />
-                                        <input type="tel" class="form-control" id="telAdd2"  value="${adresse.getTel()}" style="display:none;" />
+                                        <input type="tel" class="form-control" id="telAdd2"  name="telAdEdit" value="${adresse.getTel()}" style="display:none;" />
                                         <br/>
                                     </div>
                                 </div>

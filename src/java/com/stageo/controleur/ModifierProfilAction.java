@@ -5,9 +5,13 @@
  */
 package com.stageo.controleur;
 
+import com.stageo.beans.Adresse;
 import com.stageo.beans.Employeur;
 import com.stageo.beans.Etudiant;
+import com.stageo.beans.Compagnie;
 import com.stageo.beans.Utilisateur;
+import com.stageo.dao.AdresseDAO;
+import com.stageo.dao.CompagnieDAO;
 import com.stageo.dao.EmployeurDAO;
 import com.stageo.dao.UtilisateurDAO;
 import com.stageo.dao.EtudiantDAO;
@@ -48,6 +52,25 @@ public class ModifierProfilAction extends AbstractAction{
             empDao.update(empTemp);
             
             //Modification compagnie
+            CompagnieDAO compDao = new CompagnieDAO();
+            Compagnie compTemp = compDao.findById(empTemp.getIdCompagnie());
+            compTemp.setNom(request.getParameter("nomCompEdit"));
+            compTemp.setSiteWeb(request.getParameter("siteCompEdit"));
+            compDao.update(compTemp);
+            
+            //Modification adresse
+            AdresseDAO adDao = new AdresseDAO();
+            Adresse adTemp = adDao.findById(compTemp.getIdAdresse());
+            
+            adTemp.setNumeroCivique(request.getParameter("numAdEdit"));
+            adTemp.setRue(request.getParameter("rueAdEdit"));
+            adTemp.setBureau(request.getParameter("bureauAdEdit"));
+            adTemp.setVille(request.getParameter("villeAdEdit"));
+            adTemp.setCodePostal(request.getParameter("codePostAdEdit"));
+            adTemp.setProvince(request.getParameter("provinceAdEdit"));
+            adTemp.setTel(request.getParameter("telAdEdit"));
+            adTemp.setPays(request.getParameter("paysAdEdit"));
+            adDao.update(adTemp);
         }
         return "profil";
     }
