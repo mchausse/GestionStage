@@ -124,7 +124,7 @@
                                             <!-- Declarrer un variable qui se rapellera du type du user precedant-->
                                             <c:set var="typePrec" value=""/>
                                             <!-- Ajouter tous les entrer dans la dropdown-->
-                                            <c:forEach var="u" items="${servicesMessagerie.listeOrdoneTypePrenomNom()}">
+                                            <c:forEach var="u" items="${servicesMessagerie.listeOrdoneTypePrenomNomEmail()}">
                                                 
                                                 <!-- Si le type n'est pas le meme que le precedant, on ajoute une separation dans le dropdownlist-->
                                                 <c:if test="${u.split(',')[0] != typePrec}">
@@ -133,7 +133,7 @@
                                                 </c:if>
                                                 
                                                 <!-- Ajouter le nom de la personne dans le drop down et le passer dans la fonction au cas ou il est sellectionner-->
-                                                <c:set var="personne" value="${u.split(',')[1]}, ${u.split(',')[2]}"/>
+                                                <c:set var="personne" value="${u.split(',')[1]},${u.split(',')[2]}(${u.split(',')[3]})"/>
                                                 <li onclick="ajouterUtilisateur('${personne}')"><a href="#">${personne}</a></li>
                                                 
                                             </c:forEach>

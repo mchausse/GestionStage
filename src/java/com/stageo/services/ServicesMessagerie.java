@@ -179,11 +179,11 @@ public class ServicesMessagerie {
     public int nbMessagesNonLus(Utilisateur utilisateur){return nbMessagesNonLus(utilisateur.getIdUtilisateur());}
     
     
-    public List<String> listeOrdoneTypePrenomNom(){
+    public List<String> listeOrdoneTypePrenomNomEmail(){
         List<String> liste = new ArrayList<>();
         
         try{
-            String requete = "SELECT utilisateur.TYPE_UTILISATEUR, utilisateur.NOM, utilisateur.PRENOM "
+            String requete = "SELECT utilisateur.TYPE_UTILISATEUR, utilisateur.NOM, utilisateur.PRENOM, utilisateur.COURRIEL "
                             + "FROM UTILISATEUR "
                             + "ORDER BY utilisateur.TYPE_UTILISATEUR, utilisateur.NOM, utilisateur.PRENOM ";
             
@@ -191,10 +191,9 @@ public class ServicesMessagerie {
             
             ResultSet rs = requeteParam.executeQuery();
             while (rs.next())
-                liste.add(rs.getString("TYPE_UTILISATEUR")+","+rs.getString("NOM")+","+rs.getString("PRENOM"));
-            
-            
+                liste.add(rs.getString("TYPE_UTILISATEUR")+","+rs.getString("NOM")+","+rs.getString("PRENOM")+","+rs.getString("COURRIEL"));
             return liste;
         }catch(SQLException e){return null;}
     }
+    public String getEmailFromParentheses(String s){return (s.split("\\(")[1]).split("\\)")[0];}
 }
