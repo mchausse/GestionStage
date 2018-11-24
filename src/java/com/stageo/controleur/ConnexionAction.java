@@ -53,7 +53,7 @@ public class ConnexionAction extends AbstractAction{
                         currentUser.setIdCompagnie(empTemp.getIdCompagnie());
                         currentUser.setTel(empTemp.getTel());
                         currentUser.setIdEmployeur(empTemp.getIdEmployeur());
-                        request.getSession().setAttribute("utilisateur", (Employeur)currentUser);
+                        request.getSession().setAttribute("utilisateur", currentUser);
                     }
                     if("Etudiant".equals(temp.getTypeUtilisateur())){
                         EtudiantDAO daoEtu = new EtudiantDAO(Connexion.getInstance());
@@ -69,7 +69,7 @@ public class ConnexionAction extends AbstractAction{
                         //Set les attributs d'un etudiant
                         currentUser.setStatutRecherche(etuTemp.getStatutRecherche());
                         currentUser.setIdEtudiant(etuTemp.getIdEtudiant());
-                        request.getSession().setAttribute("utilisateur", (Etudiant)currentUser);
+                        request.getSession().setAttribute("utilisateur", currentUser);
                     }
                     request.getSession().setAttribute("connecte", true);
                     return "messagerie";

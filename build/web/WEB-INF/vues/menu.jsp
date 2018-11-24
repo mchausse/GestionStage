@@ -34,9 +34,12 @@
                     <c:if test="${ empty sessionScope['connecte'] || sessionScope['connecte'] eq false }" > <!-- il est deco -->
                         <li><a class="#" href="do?action=afficherIncription">Accueil</a></li>
                         <li><a class="#" href="do?action=afficherIncription">Connexion</a></li>
-                    </c:if>
+                    </c:if>                     
                 </ul>
             </div>
         </div>
+        <!-- POUR DÉBUG -->
+        <c:out value="Compte = ${sessionScope['utilisateur']}" />
+        <c:out value="Connecte = ${sessionScope['connecte']}" />
     </div>
 </nav>

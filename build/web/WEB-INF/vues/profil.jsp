@@ -18,6 +18,10 @@
 <c:if test="${!empty sessionScope['utilisateur']}">
     <c:set var="user" value="${userDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}" />
 </c:if>
+
+<c:if test="${ param.action=='modifierProfil'}" > <!-- eviter des bug -->
+    <c:redirect url = "do?action=afficherProfil"/>
+</c:if>
 <!DOCTYPE html>
 <html>
     <head>
@@ -88,7 +92,7 @@
                                 <div class="form-group" style="padding:1em;">
                                     <label for="statutUser">Statut : </label>
                                     <input type="text" class="form-control" id="statutUser"  value="${etu.getStatutRecherche()}" disabled />
-                                    <select class="form-control" id="statutUser2" style="display: none;">
+                                    <select class="form-control" id="statutUser2" name="statutEdit" style="display: none;">
                                         <option>En Recherche</option>
                                         <option>Non Disponible</option>
                                     </select>
@@ -102,7 +106,7 @@
                                 <div class="form-group" style="padding:1em;">
                                     <label for="statutUser">Téléphone : </label>
                                     <input type="tel" class="form-control" id="telUser"  value="${emp.getTel()}" disabled />
-                                    <input type="tel" class="form-control" id="telUser2"  value="${emp.getTel()}" style="display: none;"/>
+                                    <input type="tel" class="form-control" id="telUser2" name="telEmpEdit" value="${emp.getTel()}" style="display: none;"/>
                                 </div>
                             </c:if>
                         </div>

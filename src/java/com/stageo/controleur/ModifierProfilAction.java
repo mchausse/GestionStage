@@ -5,8 +5,12 @@
  */
 package com.stageo.controleur;
 
+import com.stageo.beans.Employeur;
+import com.stageo.beans.Etudiant;
 import com.stageo.beans.Utilisateur;
+import com.stageo.dao.EmployeurDAO;
 import com.stageo.dao.UtilisateurDAO;
+import com.stageo.dao.EtudiantDAO;
 
 /**
  *
@@ -28,6 +32,23 @@ public class ModifierProfilAction extends AbstractAction{
         userTemp.setIdUtilisateur(currentUser.getIdUtilisateur());
         userTemp.setMotDePasse(currentUser.getMotDePasse());
         userDao.update(userTemp);
+        
+        //Modifier le compte de l'élève
+        if("Etudiant".equals(currentUser.getTypeUtilisateur())){
+            EtudiantDAO etuDao = new EtudiantDAO();
+            Etudiant etuTemp = etuDao.findById(currentUser.getIdUtilisateur());
+            etuTemp.setStatutRecherche(request.getParameter("statutEdit"));
+            etuDao.update(etuTemp);
+        }
+        //Modifier le compte Employeur
+        else if("Employeur".equals(currentUser.getTypeUtilisateur())){
+            EmployeurDAO empDao = new EmployeurDAO();
+            Employeur empTemp = empDao.findById(currentUser.getIdUtilisateur());
+            empTemp.setTel(request.getParameter("telEmpEdit"));
+            empDao.update(empTemp);
+            
+            //Modification compagnie
+        }
         return "profil";
     }
     
