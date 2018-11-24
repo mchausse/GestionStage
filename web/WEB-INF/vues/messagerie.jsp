@@ -214,6 +214,7 @@
                 <c:if test="${not empty sessionScope.messageSelectionner}">
                     <!-- Assigner la variable de sesion a une variable -->
                     <c:set var="messSelec" value="${messageDAO.findById(sessionScope.messageSelectionner)}"/>
+                    <c:set var="user" value="${utilisateurDAO.findById(messSelec.getIdExpediteur())}"/>
                     
                     <div class="col-lg-5">
                         <div class="panel panel-default">
@@ -230,7 +231,14 @@
                                 <!-- Section de l'evoyeur du message -->
                                 <div class="col-lg-12" id="messageEnvoyeur">
                                     <label id="messageEnvoyeur"><b>Envoyeur : </b></label>
-                                    <span> Maxime <kbd>Activix</kbd></span>
+                                    <span>
+                                        <!-- Si le user est un employeur nous affiche le nom de la compagnie-->
+                                        <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                                            <c:set var="employeur" value="${employeurDAO.findById(messSelec.getIdExpediteur())}"/>
+                                            <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd>
+                                        </c:if>
+                                        ${user.getPrenom()} ${user.getNom()} 
+                                    </span>
                                     <hr>
                                 </div>
                                 
