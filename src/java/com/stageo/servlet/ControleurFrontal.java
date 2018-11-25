@@ -14,6 +14,7 @@ import com.stageo.controleur.ConnexionAction;
 import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
+import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
 import com.stageo.controleur.SelectionnerMessageAction;
 
@@ -71,6 +72,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherMessagerie":
                 action = new AfficherMessagerieAction();
+                break;
+            case "envoyerMessage":
+                action = new EnvoyerMessageAction();
                 break;
             default :
                 action = new DefaultAction();

@@ -109,57 +109,77 @@
                             
                             <!-- Interieur du message -->
                             <div class="panel-body message">
+                                <form method="post" action="./do">
+                                <input type="hidden" name="action" value="envoyerMessage"/>
                                 
-                                <!-- Section du destinataire du message -->
-                                <div class="col-lg-12" id="messageEnvoyeur">
-                                    <div class="col-lg-2">
-                                        <label id="messageEnvoyeur"><b>Destinataire: </b></label>
+                                    <!-- Section du destinataire du message -->
+                                    <div class="col-lg-12" id="messageEnvoyeur">
+                                        <div class="col-lg-2">
+                                            <label id="messageEnvoyeur"><b>Destinataire: </b></label>
+                                        </div>
+
+                                        <!-- bouton pour la liste des utilisateur-->
+                                        <div class="col-lg-1">
+                                            <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+                                            <ul class="dropdown-menu">
+
+                                                <!-- Declarrer un variable qui se rapellera du type du user precedant-->
+                                                <c:set var="typePrec" value=""/>
+                                                <!-- Ajouter tous les entrer dans la dropdown-->
+                                                <c:forEach var="u" items="${servicesMessagerie.listeOrdoneTypePrenomNomEmail()}">
+
+                                                    <!-- Si le type n'est pas le meme que le precedant, on ajoute une separation dans le dropdownlist-->
+                                                    <c:if test="${u.split(',')[0] != typePrec}">
+                                                        <c:set var="typePrec" value="${u.split(',')[0]}"/>
+                                                        <li class="dropdown-header">${u.split(',')[0]}</li>
+                                                    </c:if>
+
+                                                    <!-- Ajouter le nom de la personne dans le drop down et le passer dans la fonction au cas ou il est sellectionner-->
+                                                    <c:set var="personne" value="${u.split(',')[1]},${u.split(',')[2]}(${u.split(',')[3]})"/>
+                                                    <li onclick="ajouterUtilisateur('${personne}')"><a href="#">${personne}</a></li>
+
+                                                </c:forEach>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Conteneur de utilisateurs -->
+                                        <div class="col-lg-9">
+                                            <span><input class="form-control" id='conteneurUtilisateur' type="text" name='listeUtilisateur' ></span>
+                                        </div>
+
+                                        <hr>
                                     </div>
-                                    
-                                    <!-- bouton pour la liste -->
-                                    <div class="col-lg-1">
-                                        <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
-                                        <ul class="dropdown-menu">
-                                            
-                                            <!-- Declarrer un variable qui se rapellera du type du user precedant-->
-                                            <c:set var="typePrec" value=""/>
-                                            <!-- Ajouter tous les entrer dans la dropdown-->
-                                            <c:forEach var="u" items="${servicesMessagerie.listeOrdoneTypePrenomNomEmail()}">
-                                                
-                                                <!-- Si le type n'est pas le meme que le precedant, on ajoute une separation dans le dropdownlist-->
-                                                <c:if test="${u.split(',')[0] != typePrec}">
-                                                    <c:set var="typePrec" value="${u.split(',')[0]}"/>
-                                                    <li class="dropdown-header">${u.split(',')[0]}</li>
-                                                </c:if>
-                                                
-                                                <!-- Ajouter le nom de la personne dans le drop down et le passer dans la fonction au cas ou il est sellectionner-->
-                                                <c:set var="personne" value="${u.split(',')[1]},${u.split(',')[2]}(${u.split(',')[3]})"/>
-                                                <li onclick="ajouterUtilisateur('${personne}')"><a href="#">${personne}</a></li>
-                                                
-                                            </c:forEach>
-                                        </ul>
+
+                                    <!-- Section du titre du message -->
+                                    <div class="col-lg-12" id="messageTitre">
+                                        <div class="col-lg-12">
+                                            <label id="messageTitre"><b>Titre : </b></label>
+                                            <span><input class="form-control" type="text" name='titreMessage' placeholder="titre du message"></span>
+                                        <hr>
+                                        </div>
                                     </div>
-                                    
-                                    <!-- Conteneur de utilisateurs -->
-                                    <div class="col-lg-9">
-                                        <span><input class="form-control" id='conteneurUtilisateur' type="text" name='listeUtilisateur' ></span>
+
+                                    <!-- Contenu du message -->
+                                    <div class="col-lg-12" id="messageContenu"> 
+                                        <div class="col-lg-12">
+                                            <textarea class="form-control" name='texteMessage' id='texteMessage' rows='13'></textarea>
+                                        </div>
                                     </div>
-                                    
-                                    <hr>
-                                </div>
-                                    
-                                <!-- Section du titre du message -->
-                                <div class="col-lg-12" id="messageTitre">
-                                    <div class="col-lg-12">
-                                        <label id="messageTitre"><b>Titre : </b></label>
-                                        <span><input class="form-control" type="text" name='titreMessage' placeholder="titre du message"></span>
-                                    <hr>
+
+                                    <!-- Bouton submit -->
+                                    <div class="col-lg-12" id="messageContenu"> 
+                                        <div class="col-lg-12">
+                                            <button type="submit" class="btn btn-danger" id='btnEvoyerMessage'>
+                                                Envoyer 
+                                                <span class="glyphicon glyphicon-arrow-right"></span>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <!-- Contenu du message -->
-                                <pre id='texteMessage'></pre>
+
+                                </form>
                             </div>
+                            <!-- Fin du formulaire -->
+                            
                         </div>
                     </div>
                 </c:if>
