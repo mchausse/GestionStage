@@ -9,7 +9,7 @@ package com.stageo.controleur;
  *
  * @author Max
  */
-public class AfficherMessagerie extends AbstractAction{
+public class AfficherMessagerieAction extends AbstractAction{
 
     @Override
     public String execute() {

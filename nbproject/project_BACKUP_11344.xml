@@ -7,16 +7,16 @@
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
-                    <file>${&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD}</file>
-                </library>
-                <library dirs="200">
-                    <file>${file.reference.mysql-connector-java-8.0.12.jar-1}</file>
+                    <file>${file.reference.mysql-connector-java-8.0.12.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
+<<<<<<< HEAD
+=======
                 <library dirs="200">
-                    <file>${file.reference.servlet-api.jar-1}</file>
+                    <file>${file.reference.servlet-api.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
+>>>>>>> 50c6111cafb0fa7591c9f768cd4277603bc0cd36
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
