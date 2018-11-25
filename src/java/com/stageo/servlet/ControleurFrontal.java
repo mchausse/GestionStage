@@ -16,11 +16,9 @@ import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
 import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
-<<<<<<< HEAD
 import com.stageo.controleur.ModifierProfilAction;
-=======
 import com.stageo.controleur.SelectionnerMessageAction;
->>>>>>> 0e07d73bb30e026751a43066fc822be1ecf0ac69
+
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -67,12 +65,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
-<<<<<<< HEAD
             break;
             case "modifierProfil":
                 action = new ModifierProfilAction();
-            break;
-=======
                 break;
             case "selectionnerMessage":
                 action = new SelectionnerMessageAction();
@@ -86,7 +81,6 @@ public class ControleurFrontal extends HttpServlet {
             case "envoyerMessage":
                 action = new EnvoyerMessageAction();
                 break;
->>>>>>> 0e07d73bb30e026751a43066fc822be1ecf0ac69
             default :
                 action = new DefaultAction();
         }

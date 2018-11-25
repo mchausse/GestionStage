@@ -19,14 +19,10 @@ import java.util.List;
  * @author gabri
  */
 public class CompagnieDAO extends Dao<Compagnie>{
-<<<<<<< HEAD
     public CompagnieDAO(){
         super(Connexion.getInstance());
     }
-=======
-    public CompagnieDAO(){super(Connexion.getInstance());}
-    
->>>>>>> 0e07d73bb30e026751a43066fc822be1ecf0ac69
+
      public CompagnieDAO(Connection c) {
         super(c);
     }
