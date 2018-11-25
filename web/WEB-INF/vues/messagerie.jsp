@@ -217,13 +217,14 @@
                                 <!-- Messaages non-lus -->
                                 <c:forEach var="unMessage" items="${servicesMessagerie.messagesRecusNonLus(sessionScope.utilisateur.getIdUtilisateur())}">
                                     <c:set var="user" value="${utilisateurDAO.findById(unMessage.getIdExpediteur())}"/>
+                                    
                                     <form method="post" action="./do" class="message${unMessage.getIdMessage()}">
                                         <!-- Informations a envoyer pour le form -->
                                         <input type="hidden" name="messageSelectionner" value="${unMessage.getIdMessage()}">
                                         <input type="hidden" name="action" value="selectionnerMessage"/>
 
                                         <!-- Cree le message -->
-                                        <div class="panel panel-default" onclick="selectionnerUnMessage(${unMessage.getIdMessage()})">
+                                        <div class="panel panel-default" onclick="selectionnerUnMessage('${unMessage.getIdMessage()}')">
                                             <div class="panel-heading">
                                                 <span class="label label-danger label-as-badge">&#8203 &#8203</span>
 
@@ -256,7 +257,7 @@
                                         <input type="hidden" name="action" value="selectionnerMessage"/>
 
                                         <!-- Cree le message -->
-                                        <div class="panel panel-default" onclick="selectionnerUnMessage(${unMessage.getIdMessage()})">
+                                        <div class="panel panel-default" onclick="selectionnerUnMessage('${unMessage.getIdMessage()}')">
                                             <div class="panel-heading">
                                                 <!-- Mettre le cercle de la couleur grise pour vu -->
                                                 <span class="label label-default label-as-badge">&#8203 &#8203</span>
@@ -379,7 +380,7 @@
             });
             
             function selectionnerUnMessage(id){
-                 $(".message"+id).submit();
+                $(".message"+id).submit();
             }
             
             function ajouterUtilisateur(nom){
