@@ -64,10 +64,6 @@ public class InscriptionAction extends AbstractAction{
                 etuTemp.setIdEtudiant(idUser);
                 etuTemp.setStatutRecherche("En Recherche");
                 etuDao.create(etuTemp);
-                
-                //Set la session
-                request.getSession().setAttribute("utilisateur", etuTemp);
-                request.getSession().setAttribute("connecte", true);
             }
             else if("Employeur".equals(request.getParameter("typeInscri"))){
                 String idCompagnie= UUID.randomUUID().toString();
@@ -108,12 +104,11 @@ public class InscriptionAction extends AbstractAction{
                 adTemp.setPays("");
                 adTemp.setTel("");
                 adDao.create(adTemp); //Le champs vide vont se faire set dans le profil
-                
-                //Set la session
-                request.getSession().setAttribute("utilisateur", empTemp);
-                request.getSession().setAttribute("connecte", true);
             }
-            return "messagerie";
+            //Set l'avertissement
+            Avertissement aver = new Avertissement("Votre compte a été créé.", "succes");
+            request.getSession().setAttribute("avertissement", aver);
+            return "inscription";
         }
     }
 }

@@ -19,8 +19,10 @@ import java.util.List;
  * @author gabri
  */
 public class CompagnieDAO extends Dao<Compagnie>{
-    public CompagnieDAO(){super(Connexion.getInstance());}
-    
+    public CompagnieDAO(){
+        super(Connexion.getInstance());
+    }
+
      public CompagnieDAO(Connection c) {
         super(c);
     }
