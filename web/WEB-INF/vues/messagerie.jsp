@@ -121,7 +121,8 @@
                                         <!-- bouton pour la liste des utilisateur-->
                                         <div class="col-lg-1">
                                             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
-                                            <ul class="dropdown-menu">
+                                            <button class="btn btn-danger dropdown-toggle btn-sm" type="button" id="btnViderUtilisateurs"><span class="glyphicon glyphicon-trash"></span></button>
+                                            <ul class="dropdown-menu" id="listeUtilisateurs">
 
                                                 <!-- Declarrer un variable qui se rapellera du type du user precedant-->
                                                 <c:set var="typePrec" value=""/>
@@ -144,7 +145,8 @@
 
                                         <!-- Conteneur de utilisateurs -->
                                         <div class="col-lg-9">
-                                            <span><input class="form-control" id='conteneurUtilisateur' type="text" name='listeUtilisateur' ></span>
+                                            <span><textarea class="form-control" id='conteneurUtilisateur' name='listeUtilisateur'>${requestScope.listeUtilisateur}</textarea></span>
+                                            <span class="erreurChampsMessage">${requestScope.erreurDestinataire}</span>
                                         </div>
 
                                         <hr>
@@ -154,8 +156,9 @@
                                     <div class="col-lg-12" id="messageTitre">
                                         <div class="col-lg-12">
                                             <label id="messageTitre"><b>Titre : </b></label>
-                                            <span><input class="form-control" type="text" name='titreMessage' placeholder="titre du message"></span>
-                                        <hr>
+                                            <span><input class="form-control" type="text" name='titreMessage' value="${requestScope.titreMessage}" placeholder="titre du message"></span>
+                                            <span class="erreurChampsMessage">${requestScope.erreurTitre}</span>
+                                            <hr>
                                         </div>
                                     </div>
 
@@ -163,6 +166,7 @@
                                     <div class="col-lg-12" id="messageContenu"> 
                                         <div class="col-lg-12">
                                             <textarea class="form-control" name='texteMessage' id='texteMessage' rows='13'></textarea>
+                                            <span class="erreurChampsMessage">${requestScope.erreurTexte}</span>
                                         </div>
                                     </div>
 
@@ -335,6 +339,10 @@
                 });
                 $("#texteMessage").mouseleave(function(){
                     $(this).css("overflow-y","hidden");
+                });
+                
+                $("#btnViderUtilisateurs").click(function(){
+                    $("#conteneurUtilisateur").html = "";
                 });
                 
                 // Pour le bouton de description du titre
