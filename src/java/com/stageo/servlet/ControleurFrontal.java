@@ -6,14 +6,17 @@ import com.stageo.controleur.AfficherGestionDocumentsVueCoordinateurAction;
 import com.stageo.controleur.AfficherInscriptionAction;
 import com.stageo.controleur.AfficherListeEtudiantsVueEmployeurAction;
 import com.stageo.controleur.AfficherListeStagesVueEtudiantAction;
-import com.stageo.controleur.AfficherMessagerie;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
+import com.stageo.controleur.AfficherMessagerieAction;
 import com.stageo.controleur.AfficherProfilAction;
 import com.stageo.controleur.AfficherProfilEtudiantAction;
 import com.stageo.controleur.ConnexionAction;
+import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
+import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
+import com.stageo.controleur.SelectionnerMessageAction;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -49,21 +52,30 @@ public class ControleurFrontal extends HttpServlet {
             case "afficherProfilEtudiant":
                 action = new AfficherProfilEtudiantAction();
                 break;
-            case "afficherMessagerie":
-                action = new AfficherMessagerie();
-                break;
             case "connexion":
                 action = new ConnexionAction();
-            break;
+                break;
             case "deconnexion":
                 action = new DeconnexionAction();
-            break;
+                break;
             case "inscription":
                 action = new InscriptionAction();
-            break;
+                break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
-            break;
+                break;
+            case "selectionnerMessage":
+                action = new SelectionnerMessageAction();
+                break;
+            case "creerNouveauMessage":
+                action = new CreerNouveauMessageAction();
+                break;
+            case "afficherMessagerie":
+                action = new AfficherMessagerieAction();
+                break;
+            case "envoyerMessage":
+                action = new EnvoyerMessageAction();
+                break;
             default :
                 action = new DefaultAction();
         }
