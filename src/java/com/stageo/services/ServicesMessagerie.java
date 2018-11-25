@@ -43,15 +43,19 @@ public class ServicesMessagerie {
     public boolean envoyerMessage(String idMessage, String idDestinataire){
         try{
             // Cree le lien avec le nouveau message et le destinataire
-            String requete = "INSERT INTO UTILISATEURMESSAGE (ID_MESSAGE, ID_DESTINATAIRE) VALUES (?, ?)";
+            String requete = "INSERT INTO UTILISATEURMESSAGE (ID_MESSAGE, ID_DESTINATAIRE, LU) VALUES (?, ?, ?)";
             PreparedStatement requeteParam = CNX.prepareStatement(requete);
             
             requeteParam.setString(1, idMessage);
             requeteParam.setString(2, idDestinataire);
+            requeteParam.setString(3, "0");
             
             requeteParam.executeUpdate();
             return true;
-        }catch(SQLException e){return false;}
+        }catch(SQLException e){
+            System.out.println(e);
+            return false;
+        }
     }
     public boolean envoyerMessage(Message message, Utilisateur destinataire){
         return envoyerMessage(message.getIdMessage(), destinataire.getIdUtilisateur());

@@ -61,12 +61,15 @@ public class MessageDAO extends Dao<Message>{
             reqParam.setString(2, m.getTitre());
             reqParam.setString(3, m.getMessage());
             reqParam.setShort(4, m.getVu());
-            reqParam.setString(5, m.getDate().toString());
-            reqParam.setString(6, m.getHeure().toString());
+            reqParam.setDate(5, new java.sql.Date(m.getDate().getTime()));
+            reqParam.setTime(6, new java.sql.Time(m.getHeure().getTime()));
             reqParam.setString(7, m.getIdExpediteur());
             reqParam.executeUpdate();
             return true;
-        }catch(SQLException e){return false;}
+        }catch(SQLException e){
+            System.out.println(e);
+            return false;
+        }
     }
 
     @Override
