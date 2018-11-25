@@ -24,6 +24,11 @@
 <jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
 <jsp:useBean id="messageDAO" class="com.stageo.dao.MessageDAO" scope="page"/>
 
+<!-- Verifier que le user est toujours connecter -->
+<c:if test="${empty sessionScope.utilisateur}">
+    <c:redirect url="do?action=afficherInscription"/>
+</c:if>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -382,10 +387,9 @@
             function selectionnerUnMessage(id){
                 $(".message"+id).submit();
             }
-            
             function ajouterUtilisateur(nom){
                 document.getElementById("conteneurUtilisateur").value += nom+"; ";
-            };
+            }
             function enleverUtilisateur(i){
                 document.getElementById("utilisateur"+i).remove();
             }

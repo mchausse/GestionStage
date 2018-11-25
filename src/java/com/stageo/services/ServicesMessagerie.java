@@ -110,6 +110,16 @@ public class ServicesMessagerie {
             while (rs.next()){
                 messages.add(messageDAO.findById(rs.getString("ID_MESSAGE")));
             }
+            
+            // Tier les messages en ordre du plus recent
+            Collections.sort(messages, new Comparator<Message>() {
+                @Override
+                public int compare(Message message2, Message message1){
+                    return  message1.getDate().compareTo(message2.getDate());
+                }
+            });
+            
+            // Retourner les messages triers
             return messages;
         }catch(SQLException e){return null;}
     }
