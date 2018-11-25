@@ -5,7 +5,6 @@
  */
 package com.stageo.services;
 
-import com.stageo.beans.Employeur;
 import com.stageo.beans.Message;
 import com.stageo.beans.Utilisateur;
 import com.stageo.dao.MessageDAO;

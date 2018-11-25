@@ -101,6 +101,7 @@
                 
                 <!-- Debut de la section du formulaire pour un nouveau message -->
                 <c:if test="${ not empty requestScope.enCreation}">
+                    <span class="erreurChampsMessage">${requestScope.erreurEnvoi}</span>
                     <div class="col-lg-8">
                         <div class="panel panel-default">
                             

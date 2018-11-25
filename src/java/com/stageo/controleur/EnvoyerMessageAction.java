@@ -1,9 +1,13 @@
 package com.stageo.controleur;
 
+import com.stageo.beans.Message;
 import com.stageo.beans.Utilisateur;
 import com.stageo.dao.UtilisateurDAO;
+import com.stageo.services.ServicesMessagerie; 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /* ==== INFO ====
 
@@ -33,10 +37,37 @@ public class EnvoyerMessageAction extends AbstractAction{
             return "messagerie";
         }
         
-        // Creer et envoyer le message
+        
+        // Cree le message
+        Message message = new Message();
+        message.setIdMessage(UUID.randomUUID().toString());
+        message.setTitre(request.getParameter("titreMessage"));
+        message.setMessage(request.getParameter("texteMessage"));
+        message.setDate(new Date());
+        message.setHeure(new Date());
+        message.setVu((short)0);
+        // Aller chercher le id par la variable de session qui est caster en Utilisateur
+        message.setIdExpediteur(((Utilisateur)request.getSession().getAttribute("utilisateur")).getIdUtilisateur());
+        
+        // Envoyer le message
+        boolean envoi = false;
+        ServicesMessagerie servicesMessagerie = new ServicesMessagerie();
+        for(Utilisateur destinataire : destinataires){
+            envoi = servicesMessagerie.envoyerNouveauMessage(message, destinataire);
+            if(!envoi) request.setAttribute("erreurEnvoi","Une erreure est survenue lors de l'envoi");
+        }
+        
+        if(!envoi){
+            // Remettre les informations dans les champs
+            request.setAttribute("titreMessage",request.getParameter("titreMessage"));
+            request.setAttribute("texteMessage",request.getParameter("texteMessage"));
+        }
         
         return "messagerie";
     }
+    
+    // Fonction qui effectue les verifications necessaire au formulaires
+    // et qui cree la liste des destinataires
     private boolean ChampsValides(){
         boolean valide = true;
         
