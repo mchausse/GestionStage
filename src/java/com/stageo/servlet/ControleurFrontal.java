@@ -3,14 +3,24 @@ package com.stageo.servlet;
 //Action importer pour le controleur frontal
 import com.stageo.controleur.AbstractAction;
 import com.stageo.controleur.AfficherGestionDocumentsVueCoordinateurAction;
-import com.stageo.controleur.AfficherIncriptionAction;
+import com.stageo.controleur.AfficherInscriptionAction;
 import com.stageo.controleur.AfficherListeEtudiantsVueEmployeurAction;
 import com.stageo.controleur.AfficherListeStagesVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagerieAction;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherProfilCompagnieVueAdministrateurAction;
+import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
+import com.stageo.controleur.AfficherProfilAction;
 import com.stageo.controleur.AfficherProfilEtudiantAction;
+import com.stageo.controleur.ConnexionAction;
+import com.stageo.controleur.CreerNouveauMessageAction;
+import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
+import com.stageo.controleur.EnvoyerMessageAction;
+import com.stageo.controleur.InscriptionAction;
+import com.stageo.controleur.ModifierProfilAction;
+import com.stageo.controleur.SelectionnerMessageAction;
+
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -34,8 +44,8 @@ public class ControleurFrontal extends HttpServlet {
             case "afficherGestionOffresStagesVueEmployeur":
                 action = new AfficherGestionOffresStagesVueEmployeurAction();
                 break;
-            case "afficherIncription":
-                action = new AfficherIncriptionAction();
+            case "afficherInscription":
+                action = new AfficherInscriptionAction();
                 break;
             case "afficherListeEtudiantsVueEmployeur":
                 action = new AfficherListeEtudiantsVueEmployeurAction();
@@ -46,8 +56,32 @@ public class ControleurFrontal extends HttpServlet {
             case "afficherProfilEtudiant":
                 action = new AfficherProfilEtudiantAction();
                 break;
+            case "connexion":
+                action = new ConnexionAction();
+                break;
+            case "deconnexion":
+                action = new DeconnexionAction();
+                break;
+            case "inscription":
+                action = new InscriptionAction();
+                break;
+            case "afficherProfil":
+                action = new AfficherProfilAction();
+            break;
+            case "modifierProfil":
+                action = new ModifierProfilAction();
+                break;
+            case "selectionnerMessage":
+                action = new SelectionnerMessageAction();
+                break;
+            case "creerNouveauMessage":
+                action = new CreerNouveauMessageAction();
+                break;
             case "afficherMessagerie":
                 action = new AfficherMessagerieAction();
+                break;
+            case "envoyerMessage":
+                action = new EnvoyerMessageAction();
                 break;
             case "afficherProfilCompagnieVueAdministrateur":
                 action = new AfficherProfilCompagnieVueAdministrateurAction();

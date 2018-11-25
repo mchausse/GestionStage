@@ -1,18 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.stageo.controleur;
+/* ==== INFO ====
 
-/**
- *
- * @author Max
- */
+ * @author maxime chausse
+ * date : 23 novembre 2018
+ * cour : Hypermedia II
+ * College Rosemont
+*/
 public class AfficherMessagerieAction extends AbstractAction{
-
     @Override
     public String execute() {
+        // Retourner l'utilisateur a l'inscription si il n'est pas connecter
+        if(request.getSession().getAttribute("utilisateur") == null)
+            return "inscription";
+        
         return "messagerie";
     }
     

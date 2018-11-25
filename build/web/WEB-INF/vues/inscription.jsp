@@ -4,7 +4,9 @@
     Author     : gabri
 --%>
 
+<%@page import="com.stageo.beans.Avertissement"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,43 +19,71 @@
         <link href="./css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body onLoad="cacherInfo()">
-        <%@include  file="menu.jsp" %>
+        <c:if test="${ param.action=='inscription'}" >
+            <c:redirect url = "do?action=afficherInscription"/>
+        </c:if>
+        
+        <%@include  file="menu.jsp" %> 
         <div class="container" id="contenuInscription">
             <div class="row">
+                <!-- Si il y a une erreur : -->
+                <c:if test="${ !empty sessionScope['avertissement']}" >
+                    <c:set var = "avert" value = "${sessionScope['avertissement']}"/>
+                    <c:remove var="avertissement" scope="session" />
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <c:if test="${ avert.getType()=='erreur' && avert!=''}" > <!-- si cest une erreur -->
+                                <div class="alert alert-danger">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Erreur!</strong> ${avert.getMessage()}
+                                </div>
+                            </c:if>
+                            <c:if test="${ avert.getType()=='succes' && avert!=''}" > <!-- si cest un succes -->
+                                <div class="alert alert-success">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Succès!</strong> ${avert.getMessage()}
+                                </div>
+                            </c:if>
+                        </div>
+                    </div>
+                </c:if>
                 <div class="col-lg-6"> <!-- Contenu d'inscription-->
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h4>Inscription</h4></div>
+                        <div class="panel-heading">
+                            <h4>Inscription</h4> 
+                        </div>
                         <div class="contenuPan">
-                            <form>
+                            <form action="do?action=inscription" method="post">
                                 <div class="form-group">
                                     <div class="input-group"> <!--Nom inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </div>
-                                        <input type="text" class="form-control inscriptionInput" placeholder="Nom" required>
+                                        <input type="text" name="nomInscri" class="form-control inscriptionInput" placeholder="Nom" required>
                                     </div>
                                     <br/>
                                     <div class="input-group"> <!--Prénom inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </div>
-                                        <input type="text" class="form-control inscriptionInput" placeholder="Prénom" required>
+                                        <input type="text" name="prenomInscri" class="form-control inscriptionInput" placeholder="Prénom" required>
                                     </div>
                                     <br/>
                                     <div class="input-group"> <!--Email inscription-->
                                         <div class="input-group-addon "><span class="glyphicon glyphicon-envelope"></span> </div>
-                                        <input type="email" class="form-control inscriptionInput" placeholder="Votre@Email.ca" required>
+                                        <input type="email" name="emailInscri" class="form-control inscriptionInput" placeholder="Votre@Email.ca" required>
                                     </div>
                                     <br/>
                                     <div class="input-group"> <!--Password inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span> </div>
-                                        <input type="password" class="form-control inscriptionInput" placeholder="Mot De Passe" required>
+                                        <input type="password" name="passwordInscri" class="form-control inscriptionInput" placeholder="Mot De Passe" required>
                                     </div>
                                     <br />
                                     <div class="input-group"> <!--Password inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span> </div>
-                                        <input type="password" class="form-control inscriptionInput" placeholder="Vérification Mot De Passe" required>
+                                        <input type="password" name="password2Inscri" class="form-control inscriptionInput" placeholder="Vérification Mot De Passe" required>
                                     </div>
                                     <br/>
-                                    <select class="form-control inscriptionInput" onChange="afficheInfo()" id="selectRole"> <!--Password inscription-->
+                                    <select class="form-control inscriptionInput" name="typeInscri" onChange="afficheInfo()" id="selectRole"> <!--Password inscription-->
                                         <option value="" disabled selected>Je Suis ...</option>
-                                        <option>Étudiant</option>
+                                        <option>Etudiant</option>
                                         <option>Employeur</option>
                                     </select>
                                 </div>
@@ -61,14 +91,14 @@
                                     <input type="submit" class="btn btn-success" id="btnLogin" value="S'Inscrire" style="width:100%">
                                 </div>
                                 <div id="infoEmployeur" style="display: none">
-                                    <div class="input-group"> <!--Nom inscription-->
+                                    <div class="input-group"> <!--Telephone inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span> </div>
-                                        <input type="tel" class="form-control inscriptionInput" id="inputTel" placeholder="Téléphone" required>
+                                        <input type="tel" class="form-control inscriptionInput" name="telInscri" id="inputTel" placeholder="Téléphone" required>
                                     </div>
                                     <br/>
-                                    <div class="input-group"> <!--Nom inscription-->
+                                    <div class="input-group"> <!--Nom Entreprise inscription-->
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span> </div>
-                                        <input type="text" class="form-control inscriptionInput" id="inputEntre" placeholder="Nom de votre Entreprise" required>
+                                        <input type="text" class="form-control inscriptionInput" name="entrepriseInscri" id="inputEntre" placeholder="Nom de votre Entreprise" required>
                                     </div>
                                     <input type="submit" class="btn btn-success" id="btnLogin" value="S'Inscrire" style="width:100%">
                                 </div>
@@ -80,15 +110,15 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h4>Connexion</h4></div>
                         <div class="contenuPan">
-                            <form>
+                            <form action="do?action=connexion" method="post">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon" id="iconMailLog"><span class="glyphicon glyphicon-envelope"></span> </div>
-                                        <input type="email" class="form-control"  id="emailLog" placeholder="Votre@Email.ca" required>
+                                        <input type="email" class="form-control"  id="emailLog" name="emailLog" placeholder="Votre@Email.ca" required>
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-addon" id="iconPasslLog"><span class="glyphicon glyphicon-asterisk"></span> </div>
-                                        <input type="password" class="form-control" id="paswordLog" placeholder="Mot De Passe" required>
+                                        <input type="password" class="form-control" id="paswordLog" name="passwordLog" placeholder="Mot De Passe" required>
                                     </div>
                                     <input type="submit" class="btn btn-primary" id="btnLogin" value="Se Connecter" style="width:100%">
                                 </div>
@@ -105,7 +135,7 @@
         var e = document.getElementById("selectRole");
         var role = e.options[e.selectedIndex].value;
         
-        if(role === "Étudiant"){
+        if(role === "Etudiant"){
             document.getElementById("infoEleve").style.display = "block";
             document.getElementById("infoEmployeur").style.display = "none";
             document.getElementById("inputTel").required = false;

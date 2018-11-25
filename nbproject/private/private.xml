@@ -3,17 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherGestionOffresStagesVueEmployeurAction.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/EtudiantDAO.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherIncriptionAction.java</file>
             <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherGestionDocumentsVueCoordinateurAction.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherListeStagesVueEtudiantAction.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/index.jsp</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherProfilEtudiantAction.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherListeEtudiantsVueEmployeurAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherProfilAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/EtudiantDAO.java</file>
             <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/gestionOffresStagesVueEmployeur.jsp</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/servlet/ControleurFrontal.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherListeEtudiantsVueEmployeurAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/ConnexionAction.java</file>
             <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/EmployeurDAO.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherGestionOffresStagesVueEmployeurAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/servlet/ControleurFrontal.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/DeconnexionAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherProfilEtudiantAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/CreerNouveauMessageAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/css/style.css</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/index.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherListeStagesVueEtudiantAction.java</file>
         </group>
     </open-files>
 </project-private>

@@ -337,3 +337,56 @@
 .tag{
     height: 2px;
 }
+
+/** ====== page : profil.jsp ====== */
+.btnProfil{
+    text-decoration: none;
+    float: right; 
+    margin-left: 0.2em;
+    color: #337ab7;
+    transition: 0.5s;
+}
+.btnProfil:hover{
+    transform: scale(1.1, 1.1);
+    color: #255a88;
+}
+#btnConfirmEdit{
+    background:none; 
+    border:none;
+    padding:0; 
+    float: right;
+    color: #6FE371;
+    transition:0.5s;
+}
+#btnAdresse{
+    transition:0.5s;
+}
+#btnAdresse:hover{
+    background-color: #dbdbdb;
+    transform: scale(1.1, 1.1);
+
+}
+
+/** ====== page : messagerie.jsp ====== */
+.dateMessage{
+    float:right;
+    color:grey;
+    font-size: 12px;
+}
+#texteMessage{
+    min-height: 16em;
+    max-height: 16em;
+}
+#btnEvoyerMessage{
+    float: right;
+    margin-top:1em;
+}
+.erreurChampsMessage{
+    color:red;
+}
+#listeUtilisateurs{
+    margin-top:-3em;
+}
+#btnViderUtilisateurs{
+    margin-top:1em;
+}
