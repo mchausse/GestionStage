@@ -286,6 +286,7 @@
 .dateStage{
     color:grey;
 }
+<<<<<<< HEAD
 
 /** ====== page : profil.jsp ====== */
 .btnProfil{
@@ -316,3 +317,28 @@
 
 }
 
+=======
+/** ====== page : messagerie.jsp ====== */
+.dateMessage{
+    float:right;
+    color:grey;
+    font-size: 12px;
+}
+#texteMessage{
+    min-height: 16em;
+    max-height: 16em;
+}
+#btnEvoyerMessage{
+    float: right;
+    margin-top:1em;
+}
+.erreurChampsMessage{
+    color:red;
+}
+#listeUtilisateurs{
+    margin-top:-3em;
+}
+#btnViderUtilisateurs{
+    margin-top:1em;
+}
+>>>>>>> 0e07d73bb30e026751a43066fc822be1ecf0ac69

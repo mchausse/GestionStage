@@ -20,9 +20,7 @@ import java.util.List;
  * @author gabri
  */
 public class UtilisateurDAO extends Dao<Utilisateur>{
-    public UtilisateurDAO(){
-        super(Connexion.getInstance());
-    }
+    public UtilisateurDAO(){super(Connexion.getInstance());}
     
     public UtilisateurDAO(Connection c) {
         super(c);
