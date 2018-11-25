@@ -19,7 +19,10 @@ import java.util.List;
  * @author gabri
  */
 public class EmployeurDAO extends Dao<Employeur>{
-    public EmployeurDAO(){super(Connexion.getInstance());}
+    public EmployeurDAO(){
+        super(Connexion.getInstance());
+    }
+
     public EmployeurDAO(Connection c) {
         super(c);
     }

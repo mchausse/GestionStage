@@ -6,6 +6,7 @@
 package com.stageo.dao;
 
 import com.stageo.beans.Adresse;
+import com.stageo.singleton.Connexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,11 @@ import java.util.List;
  * @author gabri
  */
 public class AdresseDAO extends Dao<Adresse>{
-     public AdresseDAO(Connection c) {
+    public AdresseDAO(){
+        super(Connexion.getInstance());
+    } 
+    
+    public AdresseDAO(Connection c) {
         super(c);
     }
     

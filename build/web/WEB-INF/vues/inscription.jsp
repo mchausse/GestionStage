@@ -22,26 +22,32 @@
         <c:if test="${ param.action=='inscription'}" >
             <c:redirect url = "do?action=afficherInscription"/>
         </c:if>
-        <%@include  file="menu.jsp" %> 
-        <!-- Si il y a une erreur : -->
-        <c:if test="${ !empty sessionScope['avertissement']}" >
-            <c:set var = "avert" value = "${sessionScope['avertissement']}"/>
-            <c:remove var="avertissement" scope="session" />
-            <div class="row" style="margin: 10em 0em -10em 0em;">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8">
-                    <c:if test="${ avert.getType()=='erreur' && avert!=''}" >
-                        <div class="alert alert-danger">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Erreur!</strong> ${avert.getMessage()}
-                        </div>
-                    </c:if>
-                </div>
-            </div>
-        </c:if>
         
+        <%@include  file="menu.jsp" %> 
         <div class="container" id="contenuInscription">
             <div class="row">
+                <!-- Si il y a une erreur : -->
+                <c:if test="${ !empty sessionScope['avertissement']}" >
+                    <c:set var = "avert" value = "${sessionScope['avertissement']}"/>
+                    <c:remove var="avertissement" scope="session" />
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <c:if test="${ avert.getType()=='erreur' && avert!=''}" > <!-- si cest une erreur -->
+                                <div class="alert alert-danger">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Erreur!</strong> ${avert.getMessage()}
+                                </div>
+                            </c:if>
+                            <c:if test="${ avert.getType()=='succes' && avert!=''}" > <!-- si cest un succes -->
+                                <div class="alert alert-success">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Succès!</strong> ${avert.getMessage()}
+                                </div>
+                            </c:if>
+                        </div>
+                    </div>
+                </c:if>
                 <div class="col-lg-6"> <!-- Contenu d'inscription-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
