@@ -99,6 +99,21 @@
                 </div>
                 <!-- Fin de la section du menu des messages -->
                 
+                <!-- Debut de la notification de creation dun message -->
+                <c:if test="${ not empty requestScope.messageEnvoye}">
+                    <div class="col-lg-8">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                Succès
+                            </div>
+                            <div class="panel-body">
+                                Le message a bien été envoyé!
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+                <!-- Fin de la notification de creation dun message -->
+                
                 <!-- Debut de la section du formulaire pour un nouveau message -->
                 <c:if test="${ not empty requestScope.enCreation}">
                     <span class="erreurChampsMessage">${requestScope.erreurEnvoi}</span>
@@ -191,7 +206,7 @@
                 <!-- Fin de la section du formulaire pour un nouveau message -->
                 
                 <!-- Debut de la section de la liste de messages -->
-                <c:if test="${empty requestScope.enCreation}">
+                <c:if test="${empty requestScope.enCreation && empty requestScope.messageEnvoye}">
                     <div class="col-lg-3">
                         <div class="panel panel-default">
                             <div class="panel-heading">

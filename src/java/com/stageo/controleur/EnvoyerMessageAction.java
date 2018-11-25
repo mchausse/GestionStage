@@ -62,9 +62,15 @@ public class EnvoyerMessageAction extends AbstractAction{
             request.setAttribute("titreMessage",request.getParameter("titreMessage"));
             request.setAttribute("texteMessage",request.getParameter("texteMessage"));
         }
+        else {
+            request.removeAttribute("enCreation");
+            request.setAttribute("messageEnvoye",true);
+        }
         
         return "messagerie";
     }
+    
+    
     
     // Fonction qui effectue les verifications necessaire au formulaires
     // et qui cree la liste des destinataires
