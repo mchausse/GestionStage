@@ -13,11 +13,12 @@
     </head>
     <body>
         <h1>Acceuil du site</h1>
-        <a href="do?action=afficherGestionDocumentsVueCoordinateur">Gestion Documents Vue Coordinateur</a><br />
+        <a href="do?action=afficherGestionDocumentsVueCoordonnateur">Gestion Documents Vue Coordinateur</a><br />
         <a href="do?action=afficherGestionOffresStagesVueEmployeur">Offres Stages Employeur</a><br />
         <a href="do?action=afficherInscription">Incription</a><br />
         <a href="do?action=afficherListeEtudiantsVueEmployeur">Liste Etudiants Vue Employeur</a><br />
         <a href="do?action=afficherListeStagesVueEtudiant">Liste Stages Vue Etudiant</a><br />
         <a href="do?action=afficherProfilEtudiant">Profil Etudiant</a><br />
+        <a href="do?action=afficherProfilCompagnieVueAdministrateur">Profil Compagnie Vue Administrateur</a><br />
     </body>
 </html>
