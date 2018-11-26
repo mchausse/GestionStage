@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class Document {
     private String idDocument;
+    private String titre;
     private String lien;
     private String type;
     private int nbVues;
@@ -25,8 +26,9 @@ public class Document {
         this.idDocument = idDocument;
     }
 
-    public Document(String idDocument, String lien, String type, int nbVues, String idCoordonnateur, Date date) {
+    public Document(String idDocument, String titre, String lien, String type, int nbVues, String idCoordonnateur, Date date) {
         this.idDocument = idDocument;
+        this.titre = titre;
         this.lien = lien;
         this.type = type;
         this.nbVues = nbVues;
@@ -38,10 +40,18 @@ public class Document {
         return idDocument;
     }
 
-    public void setIdDocument(String idDocument) {
-        this.idDocument = idDocument;
+    public void setIdDocument(String titre) {
+        this.idDocument = titre;
+    }
+    
+    public String getTitre() {
+        return titre;
     }
 
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+    
     public String getLien() {
         return lien;
     }
