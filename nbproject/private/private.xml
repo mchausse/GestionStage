@@ -3,23 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/web/css/style.css</file>
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/web/WEB-INF/vues/menu.jsp</file>
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/web/WEB-INF/vues/inscription.jsp</file>
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/controleur/ModifierProfilAction.java</file>
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/web/WEB-INF/vues/profil.jsp</file>
-=======
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/web/WEB-INF/vues/messagerie.jsp</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/web/css/style.css</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/controleur/CreerNouveauMessageAction.java</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/dao/UtilisateurDAO.java</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/controleur/AfficherMessagerieAction.java</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/controleur/InscriptionAction.java</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/dao/MessageDAO.java</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/services/ServicesMessagerie.java</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/controleur/EnvoyerMessageAction.java</file>
->>>>>>> 0e07d73bb30e026751a43066fc822be1ecf0ac69
+            <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/src/java/com/stageo/dao/CvDAO.java</file>
+            <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/web/WEB-INF/vues/messagerie.jsp</file>
         </group>
     </open-files>
 </project-private>
