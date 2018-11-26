@@ -21,11 +21,14 @@
                 <ul class="nav navbar-nav navbar-left">
                     <c:if test="${ sessionScope['connecte'] eq true }" > <!--si l'utilisateur est connecte -->
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Employeur'}">
-                            <li><a class="#" href="">Documents</a></li>
-                            <li><a class="#" href="">Recherche Étudiant</a></li>
+                            <li><a class="#" href="do?action=afficherGestionOffresStagesVueEmployeur">Gestion des offres</a></li>
+                            <li><a class="#" href="do?action=afficherListeEtudiantsVueEmployeur">Recherche Étudiants</a></li>
                         </c:if>
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Etudiant'}">
                             <li><a class="#" href="">Offres de stage</a></li>
+                        </c:if>
+                        <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Coordinateur'}">
+                            <li><a class="#" href="">Échanges </a></li>
                         </c:if>
                         <li><a class="#" href="do?action=afficherMessagerie">Messagerie</a></li>
                         <li><a class="#" href="do?action=afficherProfil">Profil</a></li> <!-- changer le nom pour de quoi d'autre -->
