@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/web/WEB-INF/vues/profil.jsp</file>
+            <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/web/css/style.css</file>
+        </group>
+>>>>>>> cbd81542efbf895afcea8e16015fd9ce87c70e96
     </open-files>
 </project-private>
