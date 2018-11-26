@@ -19,6 +19,6 @@
         <a href="do?action=afficherListeEtudiantsVueEmployeur">Liste Etudiants Vue Employeur</a><br />
         <a href="do?action=afficherListeStagesVueEtudiant">Liste Stages Vue Etudiant</a><br />
         <a href="do?action=afficherProfilEtudiant">Profil Etudiant</a><br />
-        <a href="do?action=afficherProfilCompagnieVueAdministrateur">Profil Compagnie Vue Administrateur</a><br />
+        <a href="do?action=afficherProfilCompagnieVueEtudiant">Profil Compagnie Vue Etudiant</a><br />
     </body>
 </html>
