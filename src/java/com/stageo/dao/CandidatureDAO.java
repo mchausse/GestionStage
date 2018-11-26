@@ -51,21 +51,22 @@ public class CandidatureDAO extends Dao<Candidature>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public Candidature findByIdEtudiant(String id) {
+    public List<Candidature> findByIdEtudiant(String id) {
         try{
+            List<Candidature> liste = new ArrayList();
             String requete = "SELECT * FROM `candidature` WHERE `ID_ETUDIANT` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, id);
             ResultSet rs = requeteParam.executeQuery();
-            if(rs.next()){
+            while(rs.next()){
                 Candidature c = new Candidature();
                 c.setCandidaturePK(new CandidaturePK(rs.getString("ID_ETUDIANT"), rs.getString("ID_OFFRE")));
                 c.setDate(rs.getTimestamp("DATE"));
                 c.setStatut(rs.getString("STATUT"));
-                return c;
+                liste.add(c);
             }
-            return null;
+            return liste;
         }
         catch(SQLException e){
              Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -73,21 +74,22 @@ public class CandidatureDAO extends Dao<Candidature>{
         return null;
     }
     
-    public Candidature findByIdOffre(String id) {
+    public List<Candidature> findByIdOffre(String id) {
         try{
+            List<Candidature> liste = new ArrayList();
             String requete = "SELECT * FROM `candidature` WHERE `ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, id);
             ResultSet rs = requeteParam.executeQuery();
-            if(rs.next()){
+            while(rs.next()){
                 Candidature c = new Candidature();
                 c.setCandidaturePK(new CandidaturePK(rs.getString("ID_ETUDIANT"), rs.getString("ID_OFFRE")));
                 c.setDate(rs.getTimestamp("DATE"));
                 c.setStatut(rs.getString("STATUT"));
-                return c;
+                liste.add(c);
             }
-            return null;
+            return liste;
         }
         catch(SQLException e){
              Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -98,10 +100,11 @@ public class CandidatureDAO extends Dao<Candidature>{
     @Override
     public Candidature find(Candidature o) {
         try{
-            String requete = "SELECT * FROM `candidature` WHERE `ID_ETUDIANT` = ?";
+            String requete = "SELECT * FROM `candidature` WHERE `ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, o.getCandidaturePK().getIdEtudiant());
+            requeteParam.setString(2, o.getCandidaturePK().getIdOffre());
             ResultSet rs = requeteParam.executeQuery();
             if(rs.next()){
                 Candidature c = new Candidature();
@@ -121,15 +124,14 @@ public class CandidatureDAO extends Dao<Candidature>{
     @Override
     public boolean update(Candidature x) {
         try{
-            String requete = "UPDATE `candidature` SET `ID_ETUDIANT` = ?, `ID_OFFRE` = ?, `DATE` = ?, `STATUT` = ? "
-            + "WHERE `candidature`.`ID_ETUDIANT` = ?";
+            String requete = "UPDATE `candidature` SET `DATE` = ?, `STATUT` = ?"
+            + "WHERE `candidature`.`ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete);
             
-            requeteParam.setString(1, x.getCandidaturePK().getIdEtudiant());
-            requeteParam.setString(2, x.getCandidaturePK().getIdOffre());
-            requeteParam.setTimestamp(3, (Timestamp) x.getDate());
-            requeteParam.setString(4, x.getStatut());
-            requeteParam.setString(5, x.getCandidaturePK().getIdEtudiant());
+            requeteParam.setTimestamp(1, (Timestamp) x.getDate());
+            requeteParam.setString(2, x.getStatut());
+            requeteParam.setString(3, x.getCandidaturePK().getIdEtudiant());
+            requeteParam.setString(4, x.getCandidaturePK().getIdOffre());
             
             requeteParam.executeUpdate();
             return true;
@@ -143,10 +145,11 @@ public class CandidatureDAO extends Dao<Candidature>{
     @Override
     public boolean delete(Candidature o) {
         try{
-            String requete = "SELECT * FROM `candidature` WHERE `ID_ETUDIANT` = ?";
+            String requete = "SELECT * FROM `candidature` WHERE `ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, o.getCandidaturePK().getIdEtudiant());
+            requeteParam.setString(2, o.getCandidaturePK().getIdOffre());
             requeteParam.executeUpdate();
             return true;
         }
