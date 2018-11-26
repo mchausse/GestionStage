@@ -13,6 +13,11 @@ public class SelectionnerMessageAction extends AbstractAction{
         // Ajouter le fonction qui change lattribu LU du message
         if(request.getParameter("messageSelectionner") != null)
             request.getSession().setAttribute("messageSelectionner", request.getParameter("messageSelectionner"));
+        
+        // Retourne au bon onglet de la page
+        if(request.getParameter("messageRecu") != null) request.setAttribute("vuRecus",true);
+        if(request.getParameter("messageEnvoye") != null) request.setAttribute("vuEnvoyes",true);
+            
         return "messagerie";
     }
     

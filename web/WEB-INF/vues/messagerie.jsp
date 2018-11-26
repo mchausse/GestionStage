@@ -84,12 +84,12 @@
                                     <span class="glyphicon glyphicon-plus"> Nouveau</span>
                                 </a>
                                 <!-- Bouton pour afficher la liste de message recus -->
-                                <a href="do?action=afficherMessagerie" class="btn ${(empty requestScope.enCreation?"btn-danger":"btn-default")} btn-lg btnMenu">
+                                <a href="do?action=afficherMessagerie" class="btn ${(not empty requestScope.vuRecus?"btn-danger":"btn-default")} btn-lg btnMenu">
                                     <span class="badge">${servicesMessagerie.nbMessagesNonLus(sessionScope.utilisateur.getIdUtilisateur())}</span>
                                     <span class="glyphicon glyphicon-inbox"> Reçus</span>
                                 </a>
                                 <!-- Bouton pour afficher la liste de message envoyes -->
-                                <a href="#" class="btn btn-default btn-lg btnMenu">
+                                <a href="do?action=afficherMessagesEnvoyes" class="btn ${(not empty requestScope.vuEnvoyes?"btn-danger":"btn-default")} btn-lg btnMenu">
                                     <span class="glyphicon glyphicon-arrow-left"> Envoyés</span>
                                 </a>
                                 <!-- Bouton pour afficher les messages suavegardes -->
@@ -211,11 +211,17 @@
                 <!-- Fin de la section du formulaire pour un nouveau message -->
                 
                 <!-- Debut de la section de la liste de messages -->
-                <c:if test="${empty requestScope.enCreation && empty requestScope.messageEnvoye}">
+                <c:if test="${not empty requestScope.vuRecus}">
                     <div class="col-lg-3">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Messages recus
+                                <span id='btnDescCouleur' class='glyphicon glyphicon-triangle-bottom'></span>
+                                Messages reçus
+                                <p id='descCouleur'>
+                                    <u>Légendes des couleurs</u><br />
+                                    <span class="label label-danger label-as-badgeNus">&#8203 &#8203</span> : Le message n'a pas été vu<br />
+                                    <span class="label label-default label-as-badgeNus">&#8203 &#8203</span> : Le message a été vu<br />
+                                </p>
                             </div>
                             <div id="messages" class="panel-body">
 
@@ -227,6 +233,7 @@
                                         <!-- Informations a envoyer pour le form -->
                                         <input type="hidden" name="messageSelectionner" value="${unMessage.getIdMessage()}">
                                         <input type="hidden" name="action" value="selectionnerMessage"/>
+                                        <input type="hidden" name="messageRecu" value="true"/>
 
                                         <!-- Cree le message -->
                                         <div class="panel panel-default" onclick="selectionnerUnMessage('${unMessage.getIdMessage()}')">
@@ -260,6 +267,7 @@
                                         <!-- Informations a envoyer pour le form -->
                                         <input type="hidden" name="messageSelectionner" value="${unMessage.getIdMessage()}">
                                         <input type="hidden" name="action" value="selectionnerMessage"/>
+                                        <input type="hidden" name="messageRecu" value="true"/>
 
                                         <!-- Cree le message -->
                                         <div class="panel panel-default" onclick="selectionnerUnMessage('${unMessage.getIdMessage()}')">
@@ -288,6 +296,69 @@
                     </div>
                 </c:if>
                 <!-- Fin de la section de la liste de messages -->
+                
+                <!-- Debut de la section de la liste des messages envoyer-->
+                <c:if test="${not empty requestScope.vuEnvoyes}">
+                    <div class="col-lg-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span id='btnDescCouleur' class='glyphicon glyphicon-triangle-bottom'></span>
+                                Messages envoyes
+                                <p id='descCouleur'>
+                                    <u>Légendes des couleurs</u><br />
+                                    <span class="label label-success label-as-badgeNus">&#8203 &#8203</span> : Le message n'a pas été vu<br />
+                                    <span class="label label-default label-as-badgeNus">&#8203 &#8203</span> : Le message a été vu<br />
+                                </p>
+                            </div>
+                            <div id="messages" class="panel-body">
+                                
+                                <!-- Messaages envoyers -->
+                                <c:forEach var="unMessage" items="${servicesMessagerie.messagesEnvoyes(sessionScope.utilisateur.getIdUtilisateur())}">
+                                    <c:set var="user" value="${utilisateurDAO.findById(unMessage.getIdExpediteur())}"/>
+                                    
+                                    <form method="post" action="./do" class="message${unMessage.getIdMessage()}">
+                                        <!-- Informations a envoyer pour le form -->
+                                        <input type="hidden" name="messageSelectionner" value="${unMessage.getIdMessage()}">
+                                        <input type="hidden" name="action" value="selectionnerMessage"/>
+                                        <input type="hidden" name="messageEnvoye" value="true"/>
+
+                                        <!-- Cree le message -->
+                                        <div class="panel panel-default" onclick="selectionnerUnMessage('${unMessage.getIdMessage()}')">
+                                            <div class="panel-heading">
+                                                
+                                                <!-- Afficher le point de la bonne couleur si le message a ete vu-->
+                                                <c:choose>
+                                                    <c:when test="${unMessage.getVu() eq 1}">
+                                                        <span class="label label-default label-as-badge">&#8203 &#8203</span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="label label-success label-as-badge">&#8203 &#8203</span>   
+                                                    </c:otherwise>
+                                                </c:choose>
+
+                                                <!-- Afficher le nom de la compagnie si il est un employeur -->
+                                                <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                                                    <jsp:useBean id="employeurMoi" class="com.stageo.beans.Employeur"/>
+                                                    <c:set var="employeurMoi" value="${employeurDAO.findById(unMessage.getIdExpediteur())}"/>
+                                                    <!-- Afficher le nom de la compagnie -->
+                                                    <kbd>${compagnieDAO.findById(employeurMoi.getIdCompagnie()).getNom()}</kbd>
+                                                </c:if>
+
+                                                <!-- Aller chercher et afficher le prenom et nom du contact -->
+                                                ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
+                                                <div class="dateMessage">${unMessage.getDate()}</div>
+                                            </div>
+                                            <div class="panel-body">${unMessage.getTitre()}</div>
+                                        </div>
+                                    </form>
+                                </c:forEach>
+                                <!--Fin des messages envoyers -->
+                                
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+                <!-- Fin de la section de la liste des messages envoyer-->
                 
                 <!-- Debut de la section dun message -->
                 <c:if test="${not empty sessionScope.messageSelectionner}">
@@ -349,6 +420,7 @@
             $(document).ready(function(){
                 // Chacher le titre
                 $("#descTitrePage").hide();
+                $("#descCouleur").hide();
                 
                 $("#messages").hover(function(){
                     $(this).css("overflow-y","scroll");
@@ -380,6 +452,22 @@
                         // Changer la classe pour changer le signe du bouton
                         $("#btnDescTitrePage").removeClass("glyphicon-triangle-bottom");
                         $("#btnDescTitrePage").addClass('glyphicon-triangle-top');
+                    }
+                });
+                
+                // Pour le bouton de description des couleurs
+                $("#btnDescCouleur").click(function(){
+                    if($("#btnDescCouleur").is(".glyphicon-triangle-top")){
+                        $("#descCouleur").hide(300);
+                        // Changer la classe pour changer le signe du bouton
+                        $("#btnDescCouleur").removeClass("glyphicon-triangle-top");
+                        $("#btnDescCouleur").addClass('glyphicon-triangle-bottom');
+                    }else{
+                        // Faire apparaitre la desc
+                        $("#descCouleur").show(500);
+                        // Changer la classe pour changer le signe du bouton
+                        $("#btnDescCouleur").removeClass("glyphicon-triangle-bottom");
+                        $("#btnDescCouleur").addClass('glyphicon-triangle-top');
                     }
                 });
             });
