@@ -220,4 +220,18 @@ public class ServicesMessagerie {
         }catch(SQLException e){return null;}
     }
     public String getEmailFromParentheses(String s){return (s.split("\\(")[1]).split("\\)")[0];}
+    
+    // Fonction qui change la valeur d'un message pour lu
+    public boolean voirUnMessage(String idMessage, String idDestinataire){
+        try{
+            String requete = "UPDATE UTILISATEURMESSAGE SET LU = 1 WHERE ID_DESTINATAIRE = ? AND ID_MESSAGE = ?";
+            PreparedStatement requeteParam = CNX.prepareStatement(requete);
+
+            requeteParam.setString(1, idDestinataire);
+            requeteParam.setString(2, idMessage);
+            System.out.println(requeteParam);
+            requeteParam.executeUpdate();
+            return true;
+        }catch(SQLException e){return false;}
+    }
 }

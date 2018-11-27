@@ -25,7 +25,7 @@
                             <li><a class="#" href="do?action=afficherListeEtudiantsVueEmployeur">Recherche Étudiants</a></li>
                         </c:if>
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Etudiant'}">
-                            <li><a class="#" href="">Offres de stage</a></li>
+                            <li><a class="#" href="do?action=afficherListeStagesVueEtudiant">Offres de stage</a></li>
                         </c:if>
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Coordinateur'}">
                             <li><a class="#" href="">Échanges </a></li>

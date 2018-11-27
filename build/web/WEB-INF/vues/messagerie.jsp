@@ -93,9 +93,11 @@
                                     <span class="glyphicon glyphicon-arrow-left"> Envoyés</span>
                                 </a>
                                 <!-- Bouton pour afficher les messages suavegardes -->
+                                <!--
                                 <a href="#" class="btn btn-default btn-lg btnMenu">
                                     <span class="glyphicon glyphicon-floppy-disk"> Sauvegardés</span>
                                 </a>
+                                -->
                             </div>
                         </div>
                         <!-- Fin de la liste des options du menu -->
