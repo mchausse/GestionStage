@@ -13,6 +13,7 @@
 <jsp:useBean id="empDao" class="com.stageo.dao.EmployeurDAO" scope="page"></jsp:useBean>
 <jsp:useBean id="compDao" class="com.stageo.dao.CompagnieDAO" scope="page"></jsp:useBean>
 <jsp:useBean id="adDao" class="com.stageo.dao.AdresseDAO" scope="page"></jsp:useBean>
+<jsp:useBean id="cvDao" class="com.stageo.dao.CvDAO" scope="page"></jsp:useBean>
 
 <!-- Var User : -->
 <c:if test="${!empty sessionScope['utilisateur']}">
@@ -97,6 +98,23 @@
                                         <option>Non Disponible</option>
                                     </select>
                                 </div>
+                                <c:set var="listCv" value="${cvDao.findAllByIdEtudiant(sessionScope['utilisateur'].getIdUtilisateur())}"/>
+                                <div class="form-group" style="padding:1em;">
+                                    <label for="listeCvUser">Cv : </label>
+                                    <select class="form-control" id="listeCv" readonly>
+                                        <c:forEach items="${listCv}"   var="cv"> 
+                                           <option><c:out value="${cv.lien}" /></option>
+                                        </c:forEach> 
+                                    </select>
+                                    <div class="input-group" id="listeCv2" name="listeCvEdit" style="display: none;">
+                                        <label class="input-group-btn">
+                                            <span class="btn btn-primary">
+                                                Ajouter<input type="file" class="form-control-file" style="display: none;" multiple>
+                                            </span>
+                                        </label>
+                                        <input type="text" class="form-control" readonly id="relNoteNom">
+                                    </div>
+                                </div>    
                             </c:if>
                             <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}"> <!-- partie pour tout les Employeurs -->
                                 <c:set var="emp" value="${empDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}"/>
@@ -192,6 +210,8 @@
         if(typeUser === "Etudiant"){
             document.getElementById("statutUser").style.display = "none";
             document.getElementById("statutUser2").style.display = "block";
+            document.getElementById("listeCv").style.display = "none";
+            document.getElementById("listeCv2").style.display = "";
         }
         if(typeUser === "Employeur"){
             //Info employeur
@@ -240,6 +260,8 @@
         if(typeUser === "Etudiant"){
             document.getElementById("statutUser").style.display = "block";
             document.getElementById("statutUser2").style.display = "none";
+            document.getElementById("listeCv").style.display = "block";
+            document.getElementById("listeCv2").style.display = "none";
         }
         if(typeUser === "Employeur"){
             //Info Employeur
