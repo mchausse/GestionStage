@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /* ==== INFO ====
@@ -108,6 +110,16 @@ public class ServicesMessagerie {
             while (rs.next()){
                 messages.add(messageDAO.findById(rs.getString("ID_MESSAGE")));
             }
+            
+            // Tier les messages en ordre du plus recent
+            Collections.sort(messages, new Comparator<Message>() {
+                @Override
+                public int compare(Message message2, Message message1){
+                    return  message1.getDate().compareTo(message2.getDate());
+                }
+            });
+            
+            // Retourner les messages triers
             return messages;
         }catch(SQLException e){return null;}
     }
@@ -131,6 +143,15 @@ public class ServicesMessagerie {
             while (rs.next()){
                 messages.add(messageDAO.findById(rs.getString("ID_MESSAGE")));
             }
+            
+            // Tier les messages en ordre du plus recent
+            Collections.sort(messages, new Comparator<Message>() {
+                @Override
+                public int compare(Message message2, Message message1){
+                    return  message1.getDate().compareTo(message2.getDate());
+                }
+            });
+            
             return messages;
         }catch(SQLException e){return null;}
     }
@@ -199,4 +220,18 @@ public class ServicesMessagerie {
         }catch(SQLException e){return null;}
     }
     public String getEmailFromParentheses(String s){return (s.split("\\(")[1]).split("\\)")[0];}
+    
+    // Fonction qui change la valeur d'un message pour lu
+    public boolean voirUnMessage(String idMessage, String idDestinataire){
+        try{
+            String requete = "UPDATE UTILISATEURMESSAGE SET LU = 1 WHERE ID_DESTINATAIRE = ? AND ID_MESSAGE = ?";
+            PreparedStatement requeteParam = CNX.prepareStatement(requete);
+
+            requeteParam.setString(1, idDestinataire);
+            requeteParam.setString(2, idMessage);
+            System.out.println(requeteParam);
+            requeteParam.executeUpdate();
+            return true;
+        }catch(SQLException e){return false;}
+    }
 }

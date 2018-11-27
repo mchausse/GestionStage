@@ -6,7 +6,8 @@ package com.stageo.controleur;
  * cour : Hypermedia II
  * College Rosemont
 */
-public class AfficherMessagerieAction extends AbstractAction{
+public class AfficherMessagesEnvoyesAction extends AbstractAction {
+
     @Override
     public String execute() {
         // Retourner l'utilisateur a l'inscription si il n'est pas connecter
@@ -14,7 +15,7 @@ public class AfficherMessagerieAction extends AbstractAction{
             return "inscription";
         
         // Retourne au bon onglet de la page
-        request.setAttribute("vuRecus",true);
+        request.setAttribute("vuEnvoyes",true);
         
         return "messagerie";
     }
