@@ -5,14 +5,12 @@
         <group>
             <file>file:/C:/DefiLecure/defiLecture2/GestionStage/web/WEB-INF/vues/messagerie.jsp</file>
             <file>file:/C:/DefiLecure/defiLecture2/GestionStage/web/css/style.css</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/controleur/CreerNouveauMessageAction.java</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/dao/UtilisateurDAO.java</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/controleur/AfficherMessagerieAction.java</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/controleur/InscriptionAction.java</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/controleur/ConnexionAction.java</file>
-            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/dao/MessageDAO.java</file>
+            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/web/WEB-INF/vues/gestionOffresStagesVueEmployeur.jsp</file>
+            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/servlet/ControleurFrontal.java</file>
+            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/web/WEB-INF/vues/menu.jsp</file>
             <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/services/ServicesMessagerie.java</file>
             <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/controleur/EnvoyerMessageAction.java</file>
+            <file>file:/C:/DefiLecure/defiLecture2/GestionStage/src/java/com/stageo/controleur/SelectionnerMessageAction.java</file>
         </group>
     </open-files>
 </project-private>

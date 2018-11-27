@@ -937,11 +937,14 @@ exists or setup the property manually. For example like this:
             <classpath path="${java.home}/../lib/tools.jar:${libs.jsp-compiler.classpath}:${libs.jsp-compilation.classpath}"/>
         </java>
         <mkdir dir="${build.generated.dir}/classes"/>
+<<<<<<< HEAD
         <webproject2:javac classpath="${build.classes.dir}:${libs.jsp-compilation.classpath}:${javac.classpath}:${j2ee.platform.classpath}" destdir="${build.generated.dir}/classes" srcdir="${build.generated.dir}/src">
             <customize>
                 <patternset includes="${javac.jsp.includes}"/>
             </customize>
         </webproject2:javac>
+=======
+>>>>>>> 388c59c8890164fdbac9a6516baaffa4545dcad1
     </target>
     <target name="compile-single-jsp">
         <fail unless="jsp.includes">Must select a file in the IDE or set jsp.includes</fail>
@@ -985,17 +988,25 @@ exists or setup the property manually. For example like this:
     <target depends="init,compile,compile-jsps,-pre-dist,-do-dist-with-manifest,-do-dist-without-manifest" name="do-dist"/>
     <target depends="init" if="dist.ear.dir" name="library-inclusion-in-manifest">
         <copyfiles files="${file.reference.mysql-connector-java-8.0.12.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+<<<<<<< HEAD
+=======
         <copyfiles files="${file.reference.commons-codec-1.7.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.javax.servlet.jsp.jstl-1.2.2.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.javax.servlet.jsp.jstl-api-1.2.1.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+>>>>>>> 388c59c8890164fdbac9a6516baaffa4545dcad1
+        <copyfiles files="${file.reference.servlet-api.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
         <copyfiles files="${file.reference.mysql-connector-java-8.0.12.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+<<<<<<< HEAD
+=======
         <copyfiles files="${file.reference.commons-codec-1.7.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.javax.servlet.jsp.jstl-1.2.2.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.javax.servlet.jsp.jstl-api-1.2.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+>>>>>>> 388c59c8890164fdbac9a6516baaffa4545dcad1
+        <copyfiles files="${file.reference.servlet-api.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
         <delete dir="${build.web.dir}/WEB-INF/lib"/>

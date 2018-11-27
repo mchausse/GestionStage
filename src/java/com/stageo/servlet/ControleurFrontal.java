@@ -2,13 +2,14 @@ package com.stageo.servlet;
 
 //Action importer pour le controleur frontal
 import com.stageo.controleur.AbstractAction;
-import com.stageo.controleur.AfficherGestionDocumentsVueCoordinateurAction;
+import com.stageo.controleur.AfficherGestionDocumentsVueCoordonnateurAction;
 import com.stageo.controleur.AfficherInscriptionAction;
 import com.stageo.controleur.AfficherListeEtudiantsVueEmployeurAction;
 import com.stageo.controleur.AfficherListeStagesVueEtudiantAction;
-import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherMessagerieAction;
 import com.stageo.controleur.AfficherMessagesEnvoyesAction;
+import com.stageo.controleur.AfficherProfilCompagnieVueAdministrateurAction;
+import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherProfilAction;
 import com.stageo.controleur.AfficherProfilEtudiantAction;
 import com.stageo.controleur.ConnexionAction;
@@ -38,7 +39,7 @@ public class ControleurFrontal extends HttpServlet {
         
         switch (actionAFaire) {
             case "afficherGestionDocumentsVueCoordinateur":
-                action = new AfficherGestionDocumentsVueCoordinateurAction();
+                action = new AfficherGestionDocumentsVueCoordonnateurAction();
                 break;
             case "afficherGestionOffresStagesVueEmployeur":
                 action = new AfficherGestionOffresStagesVueEmployeurAction();
@@ -84,6 +85,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherMessagesEnvoyes":
                 action = new AfficherMessagesEnvoyesAction();
+                break;
+            case "afficherProfilCompagnieVueAdministrateur":
+                action = new AfficherProfilCompagnieVueAdministrateurAction();
                 break;
             default :
                 action = new DefaultAction();
