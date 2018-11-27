@@ -243,6 +243,9 @@
     margin-top: -10px;
     margin-right: -20px;
 }
+.label-as-badgeNus{
+    border-radius: 1em;
+}
 
 /** ====== page : inscription.jsp ====== */
 #contenuInscription{
@@ -285,6 +288,57 @@
 /** ====== page : gestionDocumentsAdministrateur.jsp ====== */
 .dateStage{
     color:grey;
+}
+/* Page Profil Compagnie Vue Administrateur*/
+.conteneur{
+    margin-top: 9em;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.infoCon{
+    margin-top: 1em;
+    margin-left: 2em;
+}
+.nomCompagnie{
+    margin-bottom: 3em;
+}
+.conteneurStageCompagnie{
+    margin-top: 1em;
+}
+.roleCompagnie{
+    margin-left: 5%;
+    margin-right:5%;
+}
+.description{
+    width: 50%;
+    margin-bottom: 3em;
+}
+.informationC{
+    padding: 0.5em;
+}
+.listeCompetence{
+    
+}
+.stageInfo{
+    overflow:scroll;
+}
+.titreStage{
+    font-size:19px;
+}
+.sousTitre{
+    font-size:17px;
+}
+.pourcentageCompatible{
+    font-size:16px;
+    color: green;
+}
+.comp{
+    margin-left: 5%;
+    margin-right:5%;
+}
+
+.tag{
+    height: 2px;
 }
 
 /** ====== page : profil.jsp ====== */

@@ -9,11 +9,11 @@ package com.stageo.controleur;
  *
  * @author Max
  */
-public class AfficherGestionDocumentsVueCoordinateurAction extends AbstractAction{
+public class AfficherGestionDocumentsVueCoordonnateurAction extends AbstractAction{
     
     @Override
     public String execute() {
-        return "gestionDocumentsVueCoordinateur";
+        return "gestionDocumentsVueCoordonnateur";
     }
     
 }
