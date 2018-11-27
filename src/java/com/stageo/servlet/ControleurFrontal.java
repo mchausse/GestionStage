@@ -7,7 +7,7 @@ import com.stageo.controleur.AfficherInscriptionAction;
 import com.stageo.controleur.AfficherListeEtudiantsVueEmployeurAction;
 import com.stageo.controleur.AfficherListeStagesVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagerieAction;
-import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
+import com.stageo.controleur.AfficherMessagesEnvoyesAction;
 import com.stageo.controleur.AfficherProfilCompagnieVueAdministrateurAction;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherProfilAction;
@@ -83,10 +83,12 @@ public class ControleurFrontal extends HttpServlet {
             case "envoyerMessage":
                 action = new EnvoyerMessageAction();
                 break;
+            case "afficherMessagesEnvoyes":
+                action = new AfficherMessagesEnvoyesAction();
+                break;
             case "afficherProfilCompagnieVueAdministrateur":
                 action = new AfficherProfilCompagnieVueAdministrateurAction();
                 break;
-                    
             default :
                 action = new DefaultAction();
         }

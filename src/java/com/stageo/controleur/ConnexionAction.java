@@ -72,6 +72,7 @@ public class ConnexionAction extends AbstractAction{
                         request.getSession().setAttribute("utilisateur", currentUser);
                     }
                     request.getSession().setAttribute("connecte", true);
+                    request.setAttribute("vuRecus", true);
                     return "messagerie";
                 }
                 else{
