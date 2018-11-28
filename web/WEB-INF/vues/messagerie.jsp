@@ -1,5 +1,5 @@
 <%-- 
-    Document   : Communiquer
+    Document   : Messagerie
     Created on : Nov 9, 2018, 3:07:46 PM
     Author     : mchausse
 
