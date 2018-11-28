@@ -41,12 +41,32 @@
     <body>
         <!-- Barre de navigation -->
         <%@include  file="menu.jsp" %>
-        <!-- Fin de la barre de navigation -->
         
         <!-- Contenu de la page --> 
         <div class='container-fluid'>
             <div id="contenuPage">
-                
+                <!-- Si il y a un message à montrer -->
+                <c:if test="${ !empty sessionScope['avertissement']}" >
+                    <c:set var = "avert" value = "${sessionScope['avertissement']}"/>
+                    <c:remove var="avertissement" scope="session" />
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <c:if test="${ avert.getType()=='erreur' && avert!=''}" > <!-- si cest une erreur -->
+                                <div class="alert alert-danger">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Erreur!</strong> ${avert.getMessage()}
+                                </div>
+                            </c:if>
+                            <c:if test="${ avert.getType()=='succes' && avert!=''}" > <!-- si cest un succes -->
+                                <div class="alert alert-success">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Succès!</strong> ${avert.getMessage()}
+                                </div>
+                            </c:if>
+                        </div>
+                    </div>
+                </c:if>
                 <!-- Titre de la page -->
                 <div class="row">
                     <div class="col-lg-1"></div><!-- Sert de margin -->
@@ -58,6 +78,7 @@
                                     Gestion des offres de stage
                                    <!-- TEST : <c:out value="${user.getIdUtilisateur()}" /> -->
                                    <!-- TEST : <c:out value="${fn:length(listeStages)}" /> -->
+                                   <!--<c:if test="${ !empty sessionScope['avertissement']}" >MARCHE</c:if>-->
                                 </h3>
                                 <p id='descTitrePage'>
                                     Ici, vous pouvez voir vos offres que vous avez publiées, 
@@ -87,7 +108,6 @@
                             </div>
                         </div>
                         <!-- Fin de la liste des options du menu -->
-                        
                     </div>
                 </div>
                 <!-- Fin de la section du menu des stages -->
@@ -157,7 +177,6 @@
                     <c:forEach items="${listeStages}" var="item">
                         <!-- Debut d'une offre -->
                         <div class="panel panel-default">
-
                             <div class="panel-heading">
                                 <!-- Pour afficher un voyant de couleur -->
                                 <c:if test="${item.getActive() eq true}">
@@ -169,26 +188,36 @@
                                 <div class='row'>
                                     <div class="col-lg-12 dateStage">Publié le ${item.getDate()}</div>
                                     <div class="col-lg-7"><kbd>${comp.getNom()}</kbd> ${item.getTitre()}</div>
-                                    <div class="col-lg-3">
-                                        Status : 
-                                        <c:if test="${item.getActive() eq true}">
-                                            Active
-                                        </c:if>
-                                        <c:if test="${item.getActive() eq false}">
-                                            Inactive
-                                        </c:if>
+                                    <div class="col-lg-3"> <!--Affiche le Active -->
+                                        <div id="${item.getIdOffre()}ActiveAff">
+                                            Status : 
+                                            <c:if test="${item.getActive() eq true}">
+                                                Active
+                                            </c:if>
+                                            <c:if test="${item.getActive() eq false}">
+                                                Inactive
+                                            </c:if>
+                                        </div>
+                                        <!-- Edit le Active -->
+                                        <select class="form-control" id="${item.getIdOffre()}ActiveEdit" name="activeEdit" style="display: none">
+                                            <option>Active</option>
+                                            <option>Inactive</option>
+                                        </select>
                                     </div>
+                                    <!-- Les BTNs : -->
                                     <div class="col-lg-2">
-                                        <a href="" class="btn btn-default btn-md btnModStage">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </a>
-                                        <a href="do?action=deleteOffre&id=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage">
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </a>
+                                        <!-- BTN avant de edit -->
+                                        <div id="${item.getIdOffre()}BtnAvEdit">
+                                            <a onclick="modifOffre('${item.getIdOffre()}')" class="btn btn-default btn-md btnModStage">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                            <a href="do?action=deleteOffre&id=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="panel-body">
                                 <div class='row'>
                                     <!-- Premiere section de l'offre-->
@@ -224,7 +253,15 @@
         <!-- Footer -->
         <%@include  file="footer.jsp" %>
         <!-- Fin footer -->
-        
+        <script type="text/javascript">
+            function modifOffre(idOffre){
+                //Edit
+                document.getElementById((idOffre+"ActiveAff")).style.display = "none";
+                document.getElementById((idOffre+"ActiveEdit")).style.display = "block";
+                
+                document.getElementById((idOffre+"BtnAvEdit")).style.display = "none"
+            }
+        </script>
         <script>
             $(document).ready(function(){
                 // Cacher le formulaire de stage
