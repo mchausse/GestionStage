@@ -6,6 +6,7 @@
 package com.stageo.dao;
 
 import com.stageo.beans.Coordonnateur;
+import com.stageo.singleton.Connexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,9 @@ import java.util.logging.Logger;
  * @author Max
  */
 public class CoordonnateurDAO extends Dao<Coordonnateur>{
-
+    public CoordonnateurDAO(){
+        super(Connexion.getInstance());
+    }
     public CoordonnateurDAO(Connection cnx) {
         super(cnx);
     }
