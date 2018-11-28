@@ -35,7 +35,7 @@
                 
                 <!-- Titre de la page -->
                 <div class="row">
-                <div class="col-lg-1"></div><!-- Sert de margin -->
+                    <div class="col-lg-1"></div><!-- Sert de margin -->
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -51,6 +51,79 @@
                     </div>
                 </div>
                 <!-- Fin du titre de la page-->
+                
+                <!-- Debut barre de recherche -->
+                <div class="row">
+                    <div class="col-lg-1"></div><!-- Sert de margin -->
+                    <div class="col-lg-5">
+                        
+                        <!-- Barre de recherche -->
+                        <div class="input-group">
+                            <div class="col-lg-4">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Rechercher par
+                                </button>
+                                <ul class="dropdown-menu" id="liste">
+                                    <li><a href="#">Destinataire</a></li>
+                                    <li><a href="#">Expediteur</a></li>
+                                    <li><a href="#">Date</a></li>
+                                    <li><a href="#">Titre</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-8">
+                                <input id="msg" type="text" class="form-control" name="msg" placeholder="Envoyeur       ">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-1"></div><!-- Sert de margin -->
+                </div>
+                <!-- Fin barre de recherche -->
+                
+                <!-- Debut listes des messages -->
+                <div class="row">
+                    <div class="col-lg-1"></div><!-- Sert de margin -->
+                    <div class="col-lg-10">
+                        
+                        <!-- Tableau des messages -->
+                        <table class="table table-striped table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <label class="container">
+                                    <td>Date <input type="checkbox" checked></td>
+                                    <td>Envoyeur/Receveur <input type="checkbox" checked></td>
+                                    <td>Titre <input type="checkbox" checked></td>
+                                    <td>Description <input type="checkbox" checked></td>
+                                </label>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10/10/1010</td>
+                                <td>Maxime Chausse -> (Apple) Jean Ti-popaul</td>
+                                <td>Hey toe, jaime ton nom</td>
+                                <td>Jaimerais ca avoir un stage remunerer chez toe</td>
+                            </tr>
+                            <tr>
+                                <td>10/10/1010</td>
+                                <td>Maxime Chausse -> (Apple) Jean Ti-popaul</td>
+                                <td>Hey toe, jaime ton nom</td>
+                                <td>Jaimerais ca avoir un stage remunerer chez toe</td>
+                            </tr>
+                            <tr>
+                                <td>10/10/1010</td>
+                                <td>Maxime Chausse -> (Apple) Jean Ti-popaul</td>
+                                <td>Hey toe, jaime ton nom</td>
+                                <td>Jaimerais ca avoir un stage remunerer chez toe</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <!-- Fin du tableau des messages -->
+                        
+                    </div>
+                    <div class="col-lg-1"></div><!-- Sert de margin -->
+                </div>
+                <!-- Fin listes des messages -->
             </div>
         </div>
         
