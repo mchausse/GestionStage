@@ -16,7 +16,7 @@ import java.util.UUID;
  *
  * @author gabri
  */
-public class CreateStageAction extends AbstractAction{
+public class CreateOffreAction extends AbstractAction{
     @Override
     public String execute() {
         try{

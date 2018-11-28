@@ -23,6 +23,10 @@
 <!-- Liste des stages de l'employeur : -->
 <c:set var="listeStages" value="${offreDao.findByUserId(user.getIdUtilisateur())}" />
 
+<!-- pour eviter les double submits : -->
+<c:if test="${ param.action!='afficherGestionOffresStagesVueEmployeur'}" >
+    <c:redirect url = "do?action=afficherGestionOffresStagesVueEmployeur"/>
+</c:if>
 
 <html>
     <head>
@@ -93,7 +97,7 @@
                     
                     <!--  Formulaire d'ajout de stage -->
                     <div id="ajouterStage">
-                        <form action="do?action=createStage" method="post">
+                        <form action="do?action=createOffre" method="post">
                             <!-- Debut d'une offre -->
                             <div class="panel panel-default">
 
@@ -156,15 +160,32 @@
 
                             <div class="panel-heading">
                                 <!-- Pour afficher un voyant de couleur -->
-                                <!-- Tester le statut ici -->
-                                <span class="label label-success label-as-badge">&#8203 &#8203</span>
+                                <c:if test="${item.getActive() eq true}">
+                                    <span class="label label-success label-as-badge">&#8203 &#8203</span>
+                                </c:if>
+                                <c:if test="${item.getActive() eq false}">
+                                    <span class="label label-danger label-as-badge">&#8203 &#8203</span>
+                                </c:if>
                                 <div class='row'>
                                     <div class="col-lg-12 dateStage">Publié le ${item.getDate()}</div>
-                                    <div class="col-lg-8"><kbd>${comp.getNom()}</kbd> ${item.getTitre()}</div>
-                                    <div class="col-lg-3">Status : Active</div>
-                                    <a href="#" class="btn btn-default btn-md btnModStage">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </a>
+                                    <div class="col-lg-7"><kbd>${comp.getNom()}</kbd> ${item.getTitre()}</div>
+                                    <div class="col-lg-3">
+                                        Status : 
+                                        <c:if test="${item.getActive() eq true}">
+                                            Active
+                                        </c:if>
+                                        <c:if test="${item.getActive() eq false}">
+                                            Inactive
+                                        </c:if>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <a href="" class="btn btn-default btn-md btnModStage">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <a href="do?action=deleteOffre&id=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -175,7 +196,7 @@
                                         <a href="${item.getLienDocument()}">LienDocument.txt</a>
                                     </div>
                                     <div class="col-lg-4">
-                                        <a href="https://${item.getLienWeb()}">LienWeb</a>
+                                        <a href="https://${item.getLienWeb()}">${item.getLienWeb()}</a>
                                     </div>
                                     <div class="col-lg-4">
                                         Vue : ${item.getNbVues()}
@@ -185,8 +206,6 @@
                                         <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
                                         Description :
                                         <textarea class="form-control" rows="3" disabled>${item.getDescription()}</textarea>
-                                        
-                                        <!--<pre id='descriptionXX'></pre>-->
                                     </div>
                                 </div>
                             </div>

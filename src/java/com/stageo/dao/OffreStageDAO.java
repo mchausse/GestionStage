@@ -140,7 +140,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
     @Override
     public boolean delete(OffreStage x) {
         try{
-            String requete = "DELETE * FROM `offrestage` WHERE `ID_OFFRE` = ?";
+            String requete = "DELETE FROM `offrestage` WHERE `offrestage`.`ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, x.getIdOffre());
@@ -152,6 +152,21 @@ public class OffreStageDAO extends Dao<OffreStage> {
              Logger.getLogger(OffreStageDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         return false;
+    }
+    public String deleteById(String id) {
+        try{
+            String requete = "DELETE FROM `offrestage` WHERE `offrestage`.`ID_OFFRE` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
+            
+            requeteParam.setString(1, id);
+            requeteParam.executeUpdate();
+            return "Fait";
+        }
+        catch(SQLException e){
+             Logger.getLogger(OffreStageDAO.class.getName()).log(Level.SEVERE, null, e);
+             return "" + e;
+        }
+        
     }
 
     @Override
