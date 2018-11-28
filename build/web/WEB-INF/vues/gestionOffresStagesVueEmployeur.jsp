@@ -74,136 +74,69 @@
                     
                     <!--  Formulaire d'ajout de stage -->
                     <div id="ajouterStage">
-                        <!-- Debut d'une offre -->
-                        <div class="panel panel-default">
+                        <form>
+                            <!-- Debut d'une offre -->
+                            <div class="panel panel-default">
 
-                            <div class="panel-heading">
-                                <!-- Pour afficher un voyant de couleur -->
-                                <span class="label label-default label-as-badge">&#8203 &#8203</span>
-                                <div class='row'>
-                                    <div class="col-lg-8">
-                                        <div class="col-lg-8"><input type="text" class="form-control" id="nom" placeholder="Titre"></div>
-                                    </div>
-                                    <div class="col-lg-3">Status : Creation</div>
-                                </div>
-                            </div>
-
-                            <div class="panel-body">
-                                <div class='row'>
-                                    <!-- Premiere section de l'offre-->
-                                    <div class="col-lg-4">
-                                    <div class="col-sm-11 input-group">
-                                        <label class="input-group-btn">
-                                            <span class="btn btn-primary">
-                                                Ajouter
-                                                <input type="file" lass="form-control-file" accept="application/pdf" style="display: none;" id="cv">
-                                            </span>
-                                        </label>
-                                        <input type="text" class="form-control" readonly id="relNoteNom">
-                                    </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <input type="text" class="form-control" id="nom" placeholder="www.votreLien.ca">
-                                    </div>
-                                    <div class="col-lg-4">
-                                        Vue : 0
-                                    </div>
-                                    <!-- Deuxieme section de l'offre-->
-                                    <div class="col-lg-12">
-                                        <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
-                                        Description
-                                        <textarea class="form-control" rows="3"></textarea>
+                                <div class="panel-heading">
+                                    <!-- Pour afficher un voyant de couleur -->
+                                    <span class="label label-default label-as-badge">&#8203 &#8203</span>
+                                    <div class='row'>
+                                        <div class="col-lg-8">
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control" id="nom" placeholder="Titre" name="nomStage">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">Status : Creation</div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </div>
-                        <!-- Fin d'une offre -->
-                        <hr />
+                                <div class="panel-body">
+                                    <div class='row'>
+                                        <!-- Premiere section de l'offre-->
+                                        <div class="col-lg-4">
+                                            <div class="col-sm-11 input-group">
+                                                <label class="input-group-btn">
+                                                    <span class="btn btn-primary">
+                                                        Ajouter
+                                                        <input type="file" lass="form-control-file" accept="application/pdf" style="display: none;" name="docuStage">
+                                                    </span>
+                                                </label>
+                                                <input type="text" class="form-control" readonly id="relNoteNom">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" id="nom" placeholder="www.votreLien.ca" name="lienStage">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            Vue : 0
+                                        </div>
+                                        <!-- Deuxieme section de l'offre-->
+                                        <div class="col-lg-12">
+                                            <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
+                                            Description
+                                            <textarea class="form-control" rows="3" name="descStage"></textarea>
+                                        </div>
+                                        <!-- Troisième section de l'offre-->
+                                        <div class="col-lg-12" style="margin-top: 1em;">
+                                            <div class="col-lg-4">
+                                                Date : <input class="form-control" type="date" name="dateStage"/>
+                                            </div>
+                                            <div class="col-lg-4" style="margin-top: 1.4em;"> 
+                                                <input type="submit" value="Créer" class="btn btn-primary" style="width: 10em;"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin d'une offre -->
+                            <hr />
+                        </form>
                     </div>
                     <!--  Fin du formulaire d'ajout de stage -->
-                    
-                    <!-- Debut d'une offre -->
-                    <div class="panel panel-default">
-                        
-                        <div class="panel-heading">
-                            <!-- Pour afficher un voyant de couleur -->
-                            <span class="label label-success label-as-badge">&#8203 &#8203</span>
-                            <div class='row'>
-                                <div class="col-lg-12 dateStage">Publié le 10-18-2018</div>
-                                <div class="col-lg-8"><kbd>Compagnie</kbd> Salut, je suis une tres longue offre de stage</div>
-                                <div class="col-lg-3">Status : Active</div>
-                                <a href="#" class="btn btn-default btn-md btnModStage">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="panel-body">
-                            <div class='row'>
-                                <!-- Premiere section de l'offre-->
-                                <div class="col-lg-4">
-                                    <a>LienDocument.txt</a>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a>LienWeb</a>
-                                </div>
-                                <div class="col-lg-4">
-                                    Vue : 500
-                                </div>
-                                <!-- Deuxieme section de l'offre-->
-                                <div class="col-lg-12">
-                                    <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
-                                    Description
-                                    <!--<pre id='descriptionXX'></pre>-->
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <!-- Fin d'une offre -->
-                    
-                    <!-- Debut d'une offre -->
-                    <div class="panel panel-default">
-                        
-                        <div class="panel-heading">
-                            <!-- Pour afficher un voyant de couleur -->
-                            <span class="label label-danger label-as-badge">&#8203 &#8203</span>
-                            <div class='row'>
-                                <div class="col-lg-12 dateStage">Publié le 10-18-2018</div>
-                                <div class="col-lg-8"><kbd>Compagnie</kbd> Titre de l'offre</div>
-                                <div class="col-lg-3">Status : Inactive</div>
-                                <a href="#" class="btn btn-default btn-md btnModStage">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="panel-body">
-                            <div class='row'>
-                                <!-- Premiere section de l'offre-->
-                                <div class="col-lg-4">
-                                    <a>LienDocument.txt</a>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a>LienWeb</a>
-                                </div>
-                                <div class="col-lg-4">
-                                    Vue : 50
-                                </div>
-                                <!-- Deuxieme section de l'offre-->
-                                <div class="col-lg-12">
-                                    <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
-                                    Description
-                                    <!--<pre id='descriptionXX'></pre>-->
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <!-- Fin d'une offre -->
                 </div>
                 <!-- Fin de la section des stages -->
+                
                 
             </div>
         </div>
