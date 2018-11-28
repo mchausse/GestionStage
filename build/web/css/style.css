@@ -296,21 +296,19 @@
     margin-right: 5%;
 }
 .infoCon{
-    margin-top: 1em;
-    margin-left: 2em;
+    height: 100%;
 }
 .nomCompagnie{
     margin-bottom: 3em;
 }
 .conteneurStageCompagnie{
-    margin-top: 1em;
+    height: 100%;
 }
 .roleCompagnie{
     margin-left: 5%;
     margin-right:5%;
 }
 .description{
-    width: 50%;
     margin-bottom: 3em;
 }
 .informationC{

@@ -20,65 +20,68 @@
     <body>
         <%@include  file="menu.jsp" %>
         <div class="container-fluid conteneur" >
+            
+            <div class="nomCompagnie">
+                <h1>Max Compagnie</h1>
+            </div>
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                <div class="row entete">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 nomCompagnie">
-                        <h1>Max Compagnie</h1>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="infoCon">
-                            <div class="row lienSite">
-                                    <a>www.max.com</a>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infoCon">
+                    <div class="panel panel-default">
+                        <div class="panel-heading sousTitre">
+                            Information
+                        </div>
+                        <div class="panel-body">
+                            <div class=" AdresseCourriel">
+                                Courriel: <a>Max@hot.ca</a>
                             </div>
-                            <div class="row infoContact">
-                                    <span class="nomEmployeur">Gabriel Laverdure </span>
-                                    <span class="numeroEmployeur"> 514-990-9921</span>
+                             <div class="nomEmployeur">
+                                Nom: Gabriel Laverdure 
                             </div>
-                            <div class="row AdresseCourriel">
-                                    <a>Max@hot.ca</a>
+                            <div class="numeroEmployeur">
+                                Numero: 514-990-9921
+                            </div>
+                            <div class=" lienSite">
+                                Site: <a>www.max.com</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                    <div class="panel panel-default description">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                    <div class="panel panel-default">
                         <div class="panel-heading sousTitre">
                             Description
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body infoCon">
                             Cette compagnie ce spécialise en ...
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="panel panel-default ">
-                            <div class="panel-heading sousTitre">
-                                Stages offerts
-                            </div>
-                            <div class="stageInfo">
+                    <div class="panel panel-default ">
+                        <div class="panel-heading sousTitre">
+                            Stages offerts
+                        </div>
+                        <div class="stageInfo">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <td>Compagnie <a href="#" class="fa fa-arrows-alt-v"></a></td>
                                         <td>Spécialité <a href="#" class="fa fa-arrows-alt-v"></a></td>
                                         <td>Poste <a href="#" class="fa fa-arrows-alt-v"></a></td>
                                         <td>Places <a href="#" class="fa fa-arrows-alt-v"></a></td>
                                         <td>Rémunération <a href="#" class="fa fa-arrows-alt-v"></a></td>
                                         <td>Match <a href="#" class="fa fa-arrows-alt-v"></a></td>
-                                        <td>Statut <a href="#" class="fa fa-arrows-alt-v"></a></td>
+                                        <td></td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="pomme.com">pomme</a></td>
                                         <td>Programmation</td>
                                         <td>Programmeur Web</td>
                                         <td>1</td>
                                         <td>0$/hr</td>
                                         <td>87%</td>
-                                        <td>1</td>
+                                        <td><a>Afficher</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -89,7 +92,7 @@
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 conteneurStageCompagnie">
                 <div class="panel panel-default">
                     <div class="panel-heading titreStage">
-                            Information stage:
+                            Information sur le stage:
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -123,11 +126,11 @@
                             Rémunération: 0$/h
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <button class="btn btn-default" value="Postuler">Postuler</button>
+                            <button class="btn btn-danger" value="Postuler">Postuler</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>   
     </body>
 </html>
