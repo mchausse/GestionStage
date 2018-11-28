@@ -3,7 +3,7 @@ package com.stageo.controleur;
 import com.stageo.beans.Message;
 import com.stageo.beans.Utilisateur;
 import com.stageo.dao.UtilisateurDAO;
-import com.stageo.services.ServicesMessagerie; 
+import com.stageo.services.ServicesMessages; 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +51,7 @@ public class EnvoyerMessageAction extends AbstractAction{
         
         // Envoyer le message
         boolean envoi = false;
-        ServicesMessagerie servicesMessagerie = new ServicesMessagerie();
+        ServicesMessages servicesMessagerie = new ServicesMessages();
         for(Utilisateur destinataire : destinataires){
             envoi = servicesMessagerie.envoyerNouveauMessage(message, destinataire);
             if(!envoi) request.setAttribute("erreurEnvoi","Une erreure est survenue lors de l'envoi");
@@ -62,9 +62,15 @@ public class EnvoyerMessageAction extends AbstractAction{
             request.setAttribute("titreMessage",request.getParameter("titreMessage"));
             request.setAttribute("texteMessage",request.getParameter("texteMessage"));
         }
+        else {
+            request.removeAttribute("enCreation");
+            request.setAttribute("messageEnvoye",true);
+        }
         
         return "messagerie";
     }
+    
+    
     
     // Fonction qui effectue les verifications necessaire au formulaires
     // et qui cree la liste des destinataires

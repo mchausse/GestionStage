@@ -6,9 +6,11 @@
 package com.stageo.controleur;
 
 import com.stageo.beans.Avertissement;
+import com.stageo.beans.Coordonnateur;
 import com.stageo.beans.Employeur;
 import com.stageo.beans.Etudiant;
 import com.stageo.beans.Utilisateur;
+import com.stageo.dao.CoordonnateurDAO;
 import com.stageo.dao.EmployeurDAO;
 import com.stageo.dao.EtudiantDAO;
 import com.stageo.dao.UtilisateurDAO;
@@ -71,7 +73,23 @@ public class ConnexionAction extends AbstractAction{
                         currentUser.setIdEtudiant(etuTemp.getIdEtudiant());
                         request.getSession().setAttribute("utilisateur", currentUser);
                     }
+                    if("Coordonnateur".equals(temp.getTypeUtilisateur())){
+                        CoordonnateurDAO coordonnateurDAO = new CoordonnateurDAO(Connexion.getInstance());
+                        Coordonnateur coorTemp = coordonnateurDAO.findById(temp.getIdUtilisateur());
+                        Coordonnateur currentUser = new Coordonnateur();
+                        //Set les attributs d'utilisateur
+                        currentUser.setIdUtilisateur(temp.getIdUtilisateur());
+                        currentUser.setMotDePasse(temp.getMotDePasse());
+                        currentUser.setCourriel(temp.getCourriel());
+                        currentUser.setNom(temp.getNom());
+                        currentUser.setPrenom(temp.getPrenom());
+                        currentUser.setTypeUtilisateur("Coordonnateur");
+                        //Set les attributs d'un coordonnateur
+                        currentUser.setIdCoordonnateur(coorTemp.getIdCoordonnateur());
+                        request.getSession().setAttribute("utilisateur", currentUser);
+                    }
                     request.getSession().setAttribute("connecte", true);
+                    request.setAttribute("vuRecus", true);
                     return "messagerie";
                 }
                 else{

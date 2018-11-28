@@ -20,6 +20,8 @@
     <!-- Liste des liens -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav" id="barreNav">
+            
+            <!-- Section pour les utilisateurs etudiants-->
             <li class="nav-item">
                 <a class="nav-link lienBarre" href="#">Mon profil</a>
             </li>
@@ -32,6 +34,37 @@
             <li class="nav-item">
                 <a class="nav-link lienBarre" href="#">Paramètres</a>
             </li>
+            
+            <!-- Section pour les utilisateurs employeur -->
+            <li class="nav-item">
+                <a class="nav-link lienBarre" href="#">Mon profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link lienBarre" href="#">Offres de stage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link lienBarre" href="#">Paramètres</a>
+            </li>
+            
+            <!-- Section pour les utilisateurs coordinateur -->
+            <li class="nav-item">
+                <a class="nav-link lienBarre" href="#">Mon profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link lienBarre" href="#">Offres de stage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link lienBarre" href="#">Documents</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link lienBarre" href="#">Paramètres</a>
+            </li>
+            
+            <!-- La messagerie est pour tous les utilisateurs -->
+            <li class="nav-item">
+                <a class="nav-link lienBarre" href="#">Messagerie</a>
+            </li>
+            
         </ul>
     </div>
 </nav>

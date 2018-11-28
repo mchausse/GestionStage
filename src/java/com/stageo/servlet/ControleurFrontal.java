@@ -2,6 +2,7 @@ package com.stageo.servlet;
 
 //Action importer pour le controleur frontal
 import com.stageo.controleur.AbstractAction;
+import com.stageo.controleur.AfficherCommunicationsAction;
 import com.stageo.controleur.AfficherGestionDocumentsVueCoordonnateurAction;
 import com.stageo.controleur.AfficherInscriptionAction;
 import com.stageo.controleur.AfficherListeEtudiantsVueEmployeurAction;
@@ -9,6 +10,7 @@ import com.stageo.controleur.AfficherListeStagesVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagerieAction;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherProfilCompagnieVueEtudiantAction;
+import com.stageo.controleur.AfficherMessagesEnvoyesAction;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherProfilAction;
 import com.stageo.controleur.AfficherProfilCompagnieVueCoordonnateurAction;
@@ -68,7 +70,7 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
-            break;
+                break;
             case "modifierProfil":
                 action = new ModifierProfilAction();
                 break;
@@ -90,6 +92,12 @@ public class ControleurFrontal extends HttpServlet {
             
             case "afficherProfilCompagnieVueCoordonnateur":
                 action = new AfficherProfilCompagnieVueCoordonnateurAction();
+                break;
+            case "afficherMessagesEnvoyes":
+                action = new AfficherMessagesEnvoyesAction();
+                break;
+            case "afficherCommunications":
+                action = new AfficherCommunicationsAction();
                 break;
             default :
                 action = new DefaultAction();
