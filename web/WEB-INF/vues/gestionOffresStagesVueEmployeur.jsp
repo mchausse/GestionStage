@@ -3,9 +3,27 @@
     Created on : Nov 13, 2018, 7:54:34 PM
     Author     : mchausse
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.stageo.dao.UtilisateurDAO" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!-- DAOs : -->
+<jsp:useBean id="userDao" class="com.stageo.dao.UtilisateurDAO" scope="page"></jsp:useBean>
+<jsp:useBean id="empDao" class="com.stageo.dao.EmployeurDAO" scope="page"></jsp:useBean>
+<jsp:useBean id="offreDao" class="com.stageo.dao.OffreStageDAO" scope="page"></jsp:useBean>
+<jsp:useBean id="compDao" class="com.stageo.dao.CompagnieDAO" scope="page"></jsp:useBean>
+
+<!-- Var du User : -->
+<c:if test="${!empty sessionScope['utilisateur']}">
+    <c:set var="user" value="${userDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}" />
+    <c:set var="emp" value="${empDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}" />
+    <c:set var="comp" value="${compDao.findById(emp.getIdCompagnie())}"/>
+</c:if>
+<!-- Liste des stages de l'employeur : -->
+<c:set var="listeStages" value="${offreDao.findByUserId(user.getIdUtilisateur())}" />
+
+
 <html>
     <head>
         <title>Stages | Stages</title>
@@ -21,8 +39,7 @@
         <%@include  file="menu.jsp" %>
         <!-- Fin de la barre de navigation -->
         
-        <!-- Contenu de la page -->
-        
+        <!-- Contenu de la page --> 
         <div class='container-fluid'>
             <div id="contenuPage">
                 
@@ -35,6 +52,8 @@
                                 <h3>
                                     <span id='btnDescTitrePage' class='glyphicon glyphicon-triangle-bottom'></span>
                                     Gestion des offres de stage
+                                   <!-- TEST : <c:out value="${user.getIdUtilisateur()}" /> -->
+                                   <!-- TEST : <c:out value="${fn:length(listeStages)}" /> -->
                                 </h3>
                                 <p id='descTitrePage'>
                                     Ici, vous pouvez voir vos offres que vous avez publiées, 
@@ -74,7 +93,7 @@
                     
                     <!--  Formulaire d'ajout de stage -->
                     <div id="ajouterStage">
-                        <form>
+                        <form action="do?action=createStage" method="post">
                             <!-- Debut d'une offre -->
                             <div class="panel panel-default">
 
@@ -84,7 +103,7 @@
                                     <div class='row'>
                                         <div class="col-lg-8">
                                             <div class="col-lg-8">
-                                                <input type="text" class="form-control" id="nom" placeholder="Titre" name="nomStage">
+                                                <input type="text" class="form-control" id="nom" placeholder="Titre" name="titreStage">
                                             </div>
                                         </div>
                                         <div class="col-lg-3">Status : Creation</div>
@@ -119,9 +138,6 @@
                                         </div>
                                         <!-- Troisième section de l'offre-->
                                         <div class="col-lg-12" style="margin-top: 1em;">
-                                            <div class="col-lg-4">
-                                                Date : <input class="form-control" type="date" name="dateStage"/>
-                                            </div>
                                             <div class="col-lg-4" style="margin-top: 1.4em;"> 
                                                 <input type="submit" value="Créer" class="btn btn-primary btnAnime" style="width: 10em;"/>
                                             </div>
@@ -134,6 +150,50 @@
                         </form>
                     </div>
                     <!--  Fin du formulaire d'ajout de stage -->
+                    <c:forEach items="${listeStages}" var="item">
+                        <!-- Debut d'une offre -->
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading">
+                                <!-- Pour afficher un voyant de couleur -->
+                                <!-- Tester le statut ici -->
+                                <span class="label label-success label-as-badge">&#8203 &#8203</span>
+                                <div class='row'>
+                                    <div class="col-lg-12 dateStage">Publié le ${item.getDate()}</div>
+                                    <div class="col-lg-8"><kbd>${comp.getNom()}</kbd> ${item.getTitre()}</div>
+                                    <div class="col-lg-3">Status : Active</div>
+                                    <a href="#" class="btn btn-default btn-md btnModStage">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class='row'>
+                                    <!-- Premiere section de l'offre-->
+                                    <div class="col-lg-4">
+                                        <a href="${item.getLienDocument()}">LienDocument.txt</a>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <a href="https://${item.getLienWeb()}">LienWeb</a>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        Vue : ${item.getNbVues()}
+                                    </div>
+                                    <!-- Deuxieme section de l'offre-->
+                                    <div class="col-lg-12">
+                                        <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
+                                        Description :
+                                        <textarea class="form-control" rows="3" disabled>${item.getDescription()}</textarea>
+                                        
+                                        <!--<pre id='descriptionXX'></pre>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Fin d'une offre -->
+                    </c:forEach>
                 </div>
                 <!-- Fin de la section des stages -->
                 
