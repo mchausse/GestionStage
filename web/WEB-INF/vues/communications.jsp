@@ -6,6 +6,10 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="servicesMessages" class="com.stageo.services.ServicesMessages" scope="page" />
+<jsp:useBean id="utilisateurDAO" class="com.stageo.dao.UtilisateurDAO" scope="page"/>
+<jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
+<jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
 
 
 <!-- Verifier que le user est toujours connecter -->
@@ -90,32 +94,34 @@
                         <thead>
                             <tr>
                                 <label class="container">
-                                    <td>Date <input type="checkbox" checked></td>
-                                    <td>Envoyeur/Receveur <input type="checkbox" checked></td>
-                                    <td>Titre <input type="checkbox" checked></td>
-                                    <td>Description <input type="checkbox" checked></td>
+                                    <td>Date </td>
+                                    <td>Envoyeur/Receveur </td>
+                                    <td>Titre </td>
+                                    <td>Message </td>
                                 </label>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>10/10/1010</td>
-                                <td>Maxime Chausse -> (Apple) Jean Ti-popaul</td>
-                                <td>Hey toe, jaime ton nom</td>
-                                <td>Jaimerais ca avoir un stage remunerer chez toe</td>
-                            </tr>
-                            <tr>
-                                <td>10/10/1010</td>
-                                <td>Maxime Chausse -> (Apple) Jean Ti-popaul</td>
-                                <td>Hey toe, jaime ton nom</td>
-                                <td>Jaimerais ca avoir un stage remunerer chez toe</td>
-                            </tr>
-                            <tr>
-                                <td>10/10/1010</td>
-                                <td>Maxime Chausse -> (Apple) Jean Ti-popaul</td>
-                                <td>Hey toe, jaime ton nom</td>
-                                <td>Jaimerais ca avoir un stage remunerer chez toe</td>
-                            </tr>
+                            <!-- Passer au traver de la liste des messages-->
+                            <c:forEach  var="message" items="${servicesMessages.messagesEnvoyes()}">
+                                <c:set var="expediteur" value="${utilisateurDAO.findById(message.getIdExpediteur())}"/>
+                                <c:set var="destinataire" value="${utilisateurDAO.findById(message.getIdDestinataire())}"/>
+                                <tr>
+                                    <td>${message.getDate()} ${message.getHeure()}</td>
+                                    <td>
+                                        ${expediteur.getNom()} ${expediteur.getPrenom()} -> 
+                                        <c:if test="${destinataire.getTypeUtilisateur() eq 'Employeur'}">
+                                            <c:set var="employeur" value="${employeurDAO.findById(destinataire.getIdUtilisateur())}"/>
+
+                                            <!-- Afficher le nom de la compagnie -->
+                                            <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd> 
+                                        </c:if>
+                                        ${destinataire.getNom()} ${destinataire.getPrenom()}
+                                    </td>
+                                    <td>${message.getTitre()}</td>
+                                    <td>${message.getMessage()}</td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                         </table>
                         <!-- Fin du tableau des messages -->
