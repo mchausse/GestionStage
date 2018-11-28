@@ -103,6 +103,7 @@
                         </thead>
                         <tbody>
                             <!-- Passer au traver de la liste des messages-->
+                            <c:set var="i" value="${0}" />
                             <c:forEach  var="message" items="${servicesMessages.messagesEnvoyes()}">
                                 <c:set var="expediteur" value="${utilisateurDAO.findById(message.getIdExpediteur())}"/>
                                 <c:set var="destinataire" value="${utilisateurDAO.findById(message.getIdDestinataire())}"/>
@@ -118,8 +119,29 @@
                                         </c:if>
                                         ${destinataire.getNom()} ${destinataire.getPrenom()}
                                     </td>
-                                    <td>${message.getTitre()}</td>
-                                    <td>${message.getMessage()}</td>
+                                    
+                                    <c:set var='titre' value="${message.getTitre()}"/>
+                                    <td id="case${i}" class="caseTitreTableauCommunication" onclick="afficherTitreComplet('${i}','${titre}')">
+                                        <c:if test="${titre.length() >= 25}">
+                                            ${titre.substring(0,22)}...
+                                        </c:if>
+                                        <c:if test="${titre.length() < 25}">
+                                            ${titre}
+                                        </c:if>
+                                    </td>
+                                    <c:set var="i" value="${i+=1}" />
+                                    
+                                    <c:set var='texte' value="${message.getMessage()}"/>
+                                    <td id="case${i}" class="caseTexteTableauCommunication" onclick="afficherTexteComplet('${i}','${texte}')">
+                                        <c:if test="${texte.length() >= 35}">
+                                            ${texte.substring(0,32)}...
+                                        </c:if>
+                                        <c:if test="${texte.length() < 35}">
+                                            ${texte}
+                                        </c:if>
+                                    </td>
+                                    <c:set var="i" value="${i+=1}" />
+                                    
                                 </tr>
                             </c:forEach>
                         </tbody>
@@ -140,6 +162,8 @@
             $(document).ready(function(){
                 // Chacher le titre
                 $("#descTitrePage").hide();
+                $(".td").animate(300);
+                
                 // Pour le bouton de description du titre
                 $("#btnDescTitrePage").click(function(){
                     if($("#btnDescTitrePage").is(".glyphicon-triangle-top")){
@@ -156,6 +180,17 @@
                     }
                 });
             });
+            
+            function afficherTitreComplet(id,texte){
+                if(document.getElementById("case"+id).innerHTML !== texte)
+                    document.getElementById("case"+id).innerHTML=texte;
+                else document.getElementById("case"+id).innerHTML=texte.substring(0,22)+"...";
+            }
+            function afficherTexteComplet(id,texte){
+                if(document.getElementById("case"+id).innerHTML !== texte)
+                    document.getElementById("case"+id).innerHTML=texte;
+                else document.getElementById("case"+id).innerHTML=texte.substring(0,32)+"...";
+            }
         </script>
     </body>
 </html>
