@@ -20,5 +20,6 @@
         <a href="do?action=afficherListeStagesVueEtudiant">Liste Stages Vue Etudiant</a><br />
         <a href="do?action=afficherProfilEtudiant">Profil Etudiant</a><br />
         <a href="do?action=afficherProfilCompagnieVueEtudiant">Profil Compagnie Vue Etudiant</a><br />
+        <a href="do?action=afficherProfilCompagnieVueCoordonnateur">Profil Compagnie Vue Coordonnateur</a><br />
     </body>
 </html>
