@@ -1,5 +1,5 @@
 <%-- 
-    Document   : Communiquer
+    Document   : Messagerie
     Created on : Nov 9, 2018, 3:07:46 PM
     Author     : mchausse
 
@@ -8,7 +8,7 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="com.stageo.services.ServicesMessagerie"%>
+<%@page import="com.stageo.services.ServicesMessages"%>
 <%@page import="com.stageo.dao.UtilisateurDAO"%>
 <%@page import="com.stageo.dao.EmployeurDAO"%>
 <%@page import="com.stageo.dao.CompagnieDAO"%>
@@ -18,7 +18,7 @@
 <%@page import="com.stageo.beans.Message"%>
 
 <!-- Initialiser les dao utiliser dans la page -->
-<jsp:useBean id="servicesMessagerie" class="com.stageo.services.ServicesMessagerie" scope="page" />
+<jsp:useBean id="servicesMessagerie" class="com.stageo.services.ServicesMessages" scope="page" />
 <jsp:useBean id="utilisateurDAO" class="com.stageo.dao.UtilisateurDAO" scope="page"/>
 <jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
 <jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>

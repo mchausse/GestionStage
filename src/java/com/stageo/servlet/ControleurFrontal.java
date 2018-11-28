@@ -2,6 +2,7 @@ package com.stageo.servlet;
 
 //Action importer pour le controleur frontal
 import com.stageo.controleur.AbstractAction;
+import com.stageo.controleur.AfficherCommunicationsAction;
 import com.stageo.controleur.AfficherGestionDocumentsVueCoordonnateurAction;
 import com.stageo.controleur.AfficherInscriptionAction;
 import com.stageo.controleur.AfficherListeEtudiantsVueEmployeurAction;
@@ -67,7 +68,7 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
-            break;
+                break;
             case "modifierProfil":
                 action = new ModifierProfilAction();
                 break;
@@ -88,6 +89,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherProfilCompagnieVueAdministrateur":
                 action = new AfficherProfilCompagnieVueAdministrateurAction();
+                break;
+            case "afficherCommunications":
+                action = new AfficherCommunicationsAction();
                 break;
             default :
                 action = new DefaultAction();
