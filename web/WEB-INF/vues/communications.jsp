@@ -59,26 +59,38 @@
                 <!-- Debut barre de recherche -->
                 <div class="row">
                     <div class="col-lg-1"></div><!-- Sert de margin -->
-                    <div class="col-lg-5">
+                    <div class="col-lg-10">
                         
                         <!-- Barre de recherche -->
                         <div class="input-group">
-                            <div class="col-lg-4">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Rechercher par
-                                </button>
-                                <ul class="dropdown-menu" id="liste">
-                                    <li><a href="#">Destinataire</a></li>
-                                    <li><a href="#">Expediteur</a></li>
-                                    <li><a href="#">Date</a></li>
-                                    <li><a href="#">Titre</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-8">
-                                <input id="msg" type="text" class="form-control" name="msg" placeholder="Envoyeur       ">
-                            </div>
+                            
+                            <form method="post" action="./do">
+                                <input type="hidden" name="action" value="afficherCommunications"/>
+                                
+                                <div class="col-lg-2">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                        Rechercher par
+                                    </button>
+                                    <ul class="dropdown-menu" id="liste">
+                                        <li><a onclick="setRecherche()">Destinataire</a></li>
+                                        <li><a href="#">Expediteur</a></li>
+                                        <li><a href="#">Date</a></li>
+                                        <li><a href="#">Titre</a></li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="strRecherche" size="70">
+                                </div>
+                                
+                                <div class="col-lg-1">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </div>
+                            </form>
+                            
                         </div>
-                        
                     </div>
                     <div class="col-lg-1"></div><!-- Sert de margin -->
                 </div>
@@ -94,28 +106,40 @@
                         <thead>
                             <tr>
                                 <label class="container">
-                                    <td>Date </td>
-                                    <td>Envoyeur/Receveur </td>
-                                    <td>Titre </td>
-                                    <td>Message </td>
+                                    <td><b>Date</b> <span class="glyphicon glyphicon-sort"></span></td>
+                                    <td><b>Envoyeur/Receveur</b> <span class="glyphicon glyphicon-sort"></span></td>
+                                    <td><b>Titre</b> <span class="glyphicon glyphicon-sort"></span></td>
+                                    <td><b>Message</b> <span class="glyphicon glyphicon-sort"></span></td>
                                 </label>
                             </tr>
                         </thead>
                         <tbody>
+                            <c:set var="i" value="${0}" /> <!-- incrementeur pour les id de td-->
+                            
+                            <!-- Valider celon quel parametre  de recherche on doit afficher les resultats-->
+                            <c:choose>
+                                <c:when test="${sessionScope.typeRecherche eq 'Date'}">
+                                    <c:set var="messages" value="${servicesMessages.messagesEnvoyesSelonDate(sessionScope.typeRecherche)}"/> 
+                                </c:when>
+                                <c:when test="${sessionScope.typeRecherche eq 'nd'}">
+                                    <c:set var="messages" value="${servicesMessages.messagesEnvoyes()}"/> 
+                                </c:when>
+                            </c:choose>
+                            
                             <!-- Passer au traver de la liste des messages-->
-                            <c:set var="i" value="${0}" />
-                            <c:forEach  var="message" items="${servicesMessages.messagesEnvoyes()}">
+                            <c:forEach  var="message" items="${messages}">
                                 <c:set var="expediteur" value="${utilisateurDAO.findById(message.getIdExpediteur())}"/>
                                 <c:set var="destinataire" value="${utilisateurDAO.findById(message.getIdDestinataire())}"/>
                                 <tr>
                                     <td>${message.getDate()} ${message.getHeure()}</td>
                                     <td>
-                                        ${expediteur.getNom()} ${expediteur.getPrenom()} -> 
+                                        ${expediteur.getNom()} ${expediteur.getPrenom()}
+                                        <span class="glyphicon glyphicon-arrow-right"></span>
                                         <c:if test="${destinataire.getTypeUtilisateur() eq 'Employeur'}">
                                             <c:set var="employeur" value="${employeurDAO.findById(destinataire.getIdUtilisateur())}"/>
 
                                             <!-- Afficher le nom de la compagnie -->
-                                            <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd> 
+                                            <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd>
                                         </c:if>
                                         ${destinataire.getNom()} ${destinataire.getPrenom()}
                                     </td>
@@ -162,7 +186,6 @@
             $(document).ready(function(){
                 // Chacher le titre
                 $("#descTitrePage").hide();
-                $(".td").animate(300);
                 
                 // Pour le bouton de description du titre
                 $("#btnDescTitrePage").click(function(){
