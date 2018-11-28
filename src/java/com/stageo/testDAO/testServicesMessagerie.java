@@ -4,7 +4,7 @@ import com.stageo.beans.Message;
 import com.stageo.beans.Utilisateur;
 import com.stageo.dao.MessageDAO;
 import com.stageo.dao.UtilisateurDAO;
-import com.stageo.services.ServicesMessagerie;
+import com.stageo.services.ServicesMessages;
 import com.stageo.singleton.Connexion;
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
 */
 public class testServicesMessagerie {
     public static void main(String[] args) {
-        ServicesMessagerie servicesMessagerie = new ServicesMessagerie();
+        ServicesMessages servicesMessagerie = new ServicesMessages();
         MessageDAO messageDAO = new MessageDAO(Connexion.getInstance());
         UtilisateurDAO utilisateurDAO = new UtilisateurDAO(Connexion.getInstance());
         

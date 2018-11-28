@@ -29,9 +29,9 @@
                             <li><a class="#" href="">Mes candidatures</a></li><!--Maxime Y-->
                             <li><a class="#" href="do?action=afficherListeStagesVueEtudiant">Offres de stage</a></li><!--Maxime C-->
                         </c:if>
-                        <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Coordonateur'}">
-                            <li><a class="#" href="">Candidature</a></li> <!--Maxime Y-->
-                            <li><a class="#" href="">Communiquation</a></li><!--Maxime C-->
+                        <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Coordonnateur'}">
+                            <li><a class="#" href="">Candidatures</a></li> <!--Maxime Y-->
+                            <li><a class="#" href="do?action=afficherCommunications">Communications</a></li><!--Maxime C-->
                             <li><a class="#" href="">Documents</a></li><!--Maxime Y-->
                         </c:if>
                         <li><a class="#" href="do?action=afficherMessagerie">Messagerie</a></li>
