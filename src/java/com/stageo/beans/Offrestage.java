@@ -20,7 +20,7 @@ public class Offrestage {
     private String lienDocument;
     private Date date;
     private int nbVues;
-    private short active;
+    private boolean active;
     private String idEmployeur;
 
     public Offrestage() {}
@@ -29,7 +29,7 @@ public class Offrestage {
         this.idOffre = idOffre;
     }
 
-    public Offrestage(String idOffre, String titre, String description, String lienWeb, String lienDocument, Date date, int nbVues, short active, String idEmployeur) {
+    public Offrestage(String idOffre, String titre, String description, String lienWeb, String lienDocument, Date date, int nbVues, boolean active, String idEmployeur) {
         this.idOffre = idOffre;
         this.titre = titre;
         this.description = description;
@@ -97,11 +97,11 @@ public class Offrestage {
         this.nbVues = nbVues;
     }
 
-    public short getActive() {
+    public boolean getActive() {
         return active;
     }
 
-    public void setActive(short active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 

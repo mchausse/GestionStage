@@ -6,6 +6,7 @@
 package com.stageo.dao;
 
 import com.stageo.beans.Document;
+import com.stageo.singleton.Connexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,9 @@ import java.util.logging.Logger;
  * @author Max
  */
 public class DocumentDAO extends Dao<Document>{
-
+    public DocumentDAO(){
+        super(Connexion.getInstance());
+    }
     public DocumentDAO(Connection cnx) {
         super(cnx);
     }
