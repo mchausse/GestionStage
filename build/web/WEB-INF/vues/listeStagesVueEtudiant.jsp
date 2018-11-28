@@ -4,7 +4,15 @@
     Author     : mchausse
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!-- Initialiser les dao utiliser dans la page -->
+<jsp:useBean id="offreStageDAO" class="com.stageo.dao.OffreStageDAO" scope="page"/>
+<jsp:useBean id="utilisateurDAO" class="com.stageo.dao.UtilisateurDAO" scope="page"/>
+<jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
+<jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,6 +31,25 @@
 
         <!-- Contenu de la page -->
         <div class="container-fluid" id="contenuPage">
+            
+            <!-- Titre de la page -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3>
+                                <span id='btnDescTitrePage' class='glyphicon glyphicon-triangle-bottom'></span>
+                                Offres de stage
+                            </h3>
+                            <p id='descTitrePage'>
+                                Ici, vous pouvez voir toutes les offre de stage publie par des employeur
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin du titre de la page-->
+                
             <!-- Section de recherche par competences -->
             <div class="row">
                 <div class="col-lg-4">
@@ -79,69 +106,52 @@
                     </div>
                     <!-- Fin de la barre de recherche -->
                 </div>
-                <div class="col-lg-12">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <td>Compagnie <a href="#" class="fa fa-arrows-alt-v"></a></td>
-                                    <td>Spécialité <a href="#" class="fa fa-arrows-alt-v"></a></td>
-                                    <td>Poste <a href="#" class="fa fa-arrows-alt-v"></a></td>
-                                    <td>Places <a href="#" class="fa fa-arrows-alt-v"></a></td>
-                                    <td>Rémunération <a href="#" class="fa fa-arrows-alt-v"></a></td>
-                                    <td>Match <a href="#" class="fa fa-arrows-alt-v"></a></td>
-                                    <td>Statut <a href="#" class="fa fa-arrows-alt-v"></a></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><a href="pomme.com">pomme</a></td>
-                                    <td>Programmation</td>
-                                    <td>Programmeur Web</td>
-                                    <td>1</td>
-                                    <td>0$/hr</td>
-                                    <td>87%</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="internet.com">Le meilleur internet</a></td>
-                                    <td>Reseau</td>
-                                    <td>Programmeur Reseau</td>
-                                    <td>1</td>
-                                    <td>-1$/hr</td>
-                                    <td>1%</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="https://downloadmoreram.com/">Download more ram</a></td>
-                                    <td>RAM</td>
-                                    <td>Programmeur de ram</td>
-                                    <td>1</td>
-                                    <td>π$/hr</td>
-                                    <td>101%</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="pommes.com">pomme</a></td>
-                                    <td>Programmation</td>
-                                    <td>Programmeur Web</td>
-                                    <td>1</td>
-                                    <td>0$/hr</td>
-                                    <td>87%</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="pommes.com">pomme</a></td>
-                                    <td>Programmation</td>
-                                    <td>Programmeur Web</td>
-                                    <td>1</td>
-                                    <td>0$/hr</td>
-                                    <td>87%</td>
-                                    <td>1</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="row">
+                    <div class='col-lg-1'></div>
+                    
+                    <!-- Debut d'une offre -->
+                    <div class='col-lg-5'>
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading">
+                                <!-- Pour afficher un voyant de couleur -->
+                                <span class="label label-success label-as-badge">&#8203 &#8203</span>
+                                <div class='row'>
+                                    <div class="col-lg-12 dateStage">Publié le 10-18-2018</div>
+                                    <div class="col-lg-8"><kbd>Compagnie</kbd> Salut, je suis une tres longue offre de stage</div>
+                                    <div class="col-lg-3">Status : Active</div>
+                                    <a href="#" class="btn btn-default btn-md btnModStage">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class='row'>
+                                    <!-- Premiere section de l'offre-->
+                                    <div class="col-lg-4">
+                                        <a>LienDocument.txt</a>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <a>LienWeb</a>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        Vue : 500
+                                    </div>
+                                    <!-- Deuxieme section de l'offre-->
+                                    <div class="col-lg-12">
+                                        <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
+                                        Description
+                                        <!--<pre id='descriptionXX'></pre>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+                    <!-- Fin d'une offre -->
+                    
+                    <div class='col-lg-1'></div>
                 </div>
             </div>
             <!-- Fin de la section de recherche des stages -->
@@ -151,6 +161,26 @@
         <%@include  file="footer.jsp" %>
         <!-- Fin footer -->
         <script>
+            $(document).ready(function(){
+                // Chacher le titre
+                $("#descTitrePage").hide();
+                // Pour le bouton de description du titre
+                $("#btnDescTitrePage").click(function(){
+                    if($("#btnDescTitrePage").is(".glyphicon-triangle-top")){
+                        $("#descTitrePage").hide(300);
+                        // Changer la classe pour changer le signe du bouton
+                        $("#btnDescTitrePage").removeClass("glyphicon-triangle-top");
+                        $("#btnDescTitrePage").addClass('glyphicon-triangle-bottom');
+                    }else{
+                        // Faire apparaitre la desc
+                        $("#descTitrePage").show(500);
+                        // Changer la classe pour changer le signe du bouton
+                        $("#btnDescTitrePage").removeClass("glyphicon-triangle-bottom");
+                        $("#btnDescTitrePage").addClass('glyphicon-triangle-top');
+                    }
+                });
+            });
+                
             var nbComp = 0;
             function ajouterCompetence(nom){
                 document.getElementById("conteneurCompetences").innerHTML += "<span class='competence' id='competence"+nbComp+"'>"+nom+" <a class='fas fa-times' onclick='enleverCompetence("+nbComp+")'></a></span>";

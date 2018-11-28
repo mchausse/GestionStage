@@ -48,7 +48,9 @@
                                     Comminications
                                 </h3>
                                 <p id='descTitrePage'>
-                                    Ici, vous pouvez voir vos messages reçus et envoyés ainsi que les brouillons sauvegardés.
+                                    Ici, vous pouvez voir tous les messages qui ont été envoyés par les utilisateurs aux autres utilisateurs. 
+                                    <br /><br />
+                                    Vous pouvez cliquer sur les cases pour afficher le reste du message si il est trop long.
                                 </p>
                             </div>
                         </div>
