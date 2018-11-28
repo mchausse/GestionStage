@@ -1,7 +1,7 @@
 package com.stageo.controleur;
 
 import com.stageo.beans.Utilisateur;
-import com.stageo.services.ServicesMessagerie;
+import com.stageo.services.ServicesMessages;
 
 /* ==== INFO ====
 
@@ -22,7 +22,7 @@ public class SelectionnerMessageAction extends AbstractAction{
             request.getSession().setAttribute("messageSelectionner", request.getParameter("messageSelectionner"));
         
         // Changer l'attribut Vu et lu du message
-        ServicesMessagerie servicesMessagerie = new ServicesMessagerie();
+        ServicesMessages servicesMessagerie = new ServicesMessages();
         servicesMessagerie.voirUnMessage(request.getParameter("messageSelectionner"), ((Utilisateur)request.getSession().getAttribute("utilisateur")).getIdUtilisateur());
         
         // Retourne au bon onglet de la page

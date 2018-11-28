@@ -25,7 +25,7 @@ import java.util.List;
  * cour : Hypermedia II
  * College Rosemont
 */
-public class ServicesMessagerie {
+public class ServicesMessages {
     private final Connection CNX = Connexion.getInstance();
     
     // Cree un nouveau message et l'envoyer a un autre utilisateur
