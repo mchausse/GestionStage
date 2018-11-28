@@ -48,7 +48,6 @@ public class CoordonnateurDAO extends Dao<Coordonnateur>{
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, id);
-            System.out.println(requeteParam);
             ResultSet rs = requeteParam.executeQuery();
             if(rs.next()){
                 Coordonnateur c = new Coordonnateur();
