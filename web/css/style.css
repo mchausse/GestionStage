@@ -393,3 +393,11 @@
 #btnViderUtilisateurs{
     margin-top:1em;
 }
+
+/** ====== page : gestionOffreStageVueEmployeur.jsp ====== */
+.btnAnime{
+    transition:0.5s;
+}
+.btnAnime:hover{
+    transform: scale(1.1, 1.1);
+}

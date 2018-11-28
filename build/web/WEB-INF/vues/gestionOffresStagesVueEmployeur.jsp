@@ -123,7 +123,7 @@
                                                 Date : <input class="form-control" type="date" name="dateStage"/>
                                             </div>
                                             <div class="col-lg-4" style="margin-top: 1.4em;"> 
-                                                <input type="submit" value="Créer" class="btn btn-primary" style="width: 10em;"/>
+                                                <input type="submit" value="Créer" class="btn btn-primary btnAnime" style="width: 10em;"/>
                                             </div>
                                         </div>
                                     </div>
