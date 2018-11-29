@@ -80,6 +80,7 @@
             <!-- Fin de section de recherche par competances -->
 
             <!-- Section de recherche des stages -->
+            <h2>Resultats </h2>
             <c:set var="i" value="${0}"/>
             <c:forEach var="offre" items="${offreStageDAO.findAll()}">
                 
@@ -87,7 +88,7 @@
                 <c:if test="${(offre.getActive() && sessionScope.utilisateur.getTypeUtilisateur() eq 'Etudiant') || sessionScope.utilisateur.getTypeUtilisateur() eq 'Coordonnateur'}">
                 
                     <!-- Debut d'une offre -->
-                    <div class='col-lg-4 col-md-6 col-sm-6 uneOffre'>
+                    <div class='col-lg-6 col-md-6 col-sm-12 uneOffre'>
                         <div class="panel panel-default">
 
                             <div class="panel-heading">
@@ -99,11 +100,21 @@
                                     <span class="label label-default label-as-badge">&#8203 &#8203</span>
                                 </c:if>
                                 <div class='row'>
-                                    <div class="col-lg-12 dateStage">Publié le ${offre.getDate().toString().substring(0,10)}</div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8"><kbd>${compagnieDAO.findById(employeurDAO.findById(offre.getIdEmployeur()).getIdCompagnie()).getNom()}</kbd> ${offre.getTitre()}</div>
+                                    
+                                    <!-- Afficher les date dans le haut de l'offre-->
+                                    <div class="col-lg-12 dateStage">
+                                        Publié: ${offre.getDate().toString().substring(0,10)},
+                                        valide du: ${offre.getDateDebut().toString().substring(0,10)} 
+                                        au ${offre.getDateFin().toString().substring(0,10)}
+                                    </div>
+                                    
+                                    <!-- Afficher la compagnie-->
+                                    <div class="col-lg-9 col-md-8 col-sm-8"><kbd>${compagnieDAO.findById(employeurDAO.findById(offre.getIdEmployeur()).getIdCompagnie()).getNom()}</kbd> ${offre.getTitre()}</div>
+                                    
+                                    <!-- Aller chercher tous les critere de loffre et les afficher dans un dropdown list-->
                                     <div class="col-lg-3 col-md-3 col-sm-3">
                                         <div class="dropdown">
-                                            <button class="btn btn-default dropdown-toggle btn-sm" type="button" data-toggle="dropdown">Tags                                                <span class="caret"></span></button>
+                                            <button class="btn btn-default dropdown-toggle btn-md" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-tags"></span>                                                <span class="caret"></span></button>
                                             <ul class="dropdown-menu">
                                                 <c:forEach var="critere" items="${servicesCritere.findAllCriteresOffre(offre.getIdOffre())}">
                                                     <li><a href="#">${critere.getNom()}</a></li>
@@ -118,29 +129,25 @@
                                 <div class="col-lg-12">
                                     <div class='row'>
                                         <!-- Premiere section de l'offre-->
-                                        <div class="col-lg-4 col-md-6 col-sm-6">
-                                            <a>${offre.getLienDocument()}</a>
+                                        <div class="col-lg-10 col-md-6 col-sm-6">
+                                            <span class="glyphicon glyphicon-file"><a class="lienOffre"> ${offre.getLienDocument()}</a></span>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6">
-                                            <a>${offre.getLienWeb()}</a>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <div class="col-lg-2 col-md-6 col-sm-6">
                                             Vues : ${offre.getNbVues()}
                                         </div>
-                                        <!-- Deuxieme section de l'offre-->
-                                        <div class="col-lg-12">
-                                            Description
+                                        <div class="col-lg-10 col-md-6 col-sm-6">
+                                            <span class="glyphicon glyphicon-globe"><a class="lienOffre"> ${offre.getLienWeb()}</a></span>
                                         </div>
                                     </div>
                                 </div>
                                         
                                 <div class="col-lg-12">
-                                    <div class="col-lg-9 col-md-9 col-sm-9">
-                                            <textarea class="form-control descOffre" rows="1" id='${offre.getIdOffre()}'>${offre.getDescription()}</textarea>
+                                    <div class="col-lg-10 col-md-9 col-sm-9">
+                                            <textarea class="form-control descOffre" rows="4" id='${offre.getIdOffre()}'>${offre.getDescription()}</textarea>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
                                         <c:if test="${sessionScope.utilisateur.getTypeUtilisateur() eq 'Etudiant'}">
-                                            <button class="btn btn-danger dropdown-toggle btn-sm btnPostuler" type="button" data-toggle="dropdown">Postuler</button>
+                                            <button class="btn btn-danger dropdown-toggle btn-md btnPostuler" type="button" data-toggle="dropdown">Postuler</button>
                                         </c:if>
                                     </div>
                                 </div>
