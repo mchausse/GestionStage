@@ -15,9 +15,6 @@ public class DeconnexionAction extends AbstractAction{
     
     @Override
     public String execute() {
-        request.removeAttribute("connecte");
-        HttpSession session = request.getSession(true);
-        session.invalidate();
         request.getSession().invalidate();
         return "inscription";
     }
