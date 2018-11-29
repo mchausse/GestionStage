@@ -11,7 +11,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -173,7 +172,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
     public List<OffreStage> findAll() {
         try{
             List<OffreStage> liste = new ArrayList();
-            String requete = "SELECT * FROM `offrestage`";
+            String requete = "SELECT * FROM `offrestage` ORDER BY OFFRESTAGE.DATE DESC";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             ResultSet rs = requeteParam.executeQuery();
             

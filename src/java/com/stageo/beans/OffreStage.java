@@ -15,9 +15,13 @@ public class OffreStage {
     private String idOffre;
     private String titre;
     private String description;
+    private Date date;
+    private Date dateDebut;
+    private Date dateFin;
+    private int dureeEnJours;
+    private boolean remunere;
     private String lienWeb;
     private String lienDocument;
-    private Date date;
     private int nbVues;
     private boolean active;
     private String idEmployeur;
@@ -26,6 +30,23 @@ public class OffreStage {
 
     public OffreStage(String idOffre) {
         this.idOffre = idOffre;
+    }
+
+    
+    public OffreStage(String idOffre, String titre, String description, Date date, Date dateDebut, Date dateFin, int dureeEnJours, boolean remunere, String lienWeb, String lienDocument, int nbVues, boolean active, String idEmployeur) {
+        this.idOffre = idOffre;
+        this.titre = titre;
+        this.description = description;
+        this.date = date;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.dureeEnJours = dureeEnJours;
+        this.remunere = remunere;
+        this.lienWeb = lienWeb;
+        this.lienDocument = lienDocument;
+        this.nbVues = nbVues;
+        this.active = active;
+        this.idEmployeur = idEmployeur;
     }
 
     public OffreStage(String idOffre, String titre, String description, String lienWeb, String lienDocument, Date date, int nbVues, boolean active, String idEmployeur) {
@@ -110,6 +131,39 @@ public class OffreStage {
 
     public void setIdEmployeur(String idEmployeur) {
         this.idEmployeur = idEmployeur;
+    }
+    
+
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public int getDureeEnJours() {
+        return dureeEnJours;
+    }
+
+    public void setDureeEnJours(int dureeEnJours) {
+        this.dureeEnJours = dureeEnJours;
+    }
+
+    public boolean isRemunere() {
+        return remunere;
+    }
+
+    public void setRemunere(boolean remunere) {
+        this.remunere = remunere;
     }
 
     @Override

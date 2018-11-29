@@ -6,6 +6,10 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="servicesMessages" class="com.stageo.services.ServicesMessages" scope="page" />
+<jsp:useBean id="utilisateurDAO" class="com.stageo.dao.UtilisateurDAO" scope="page"/>
+<jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
+<jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
 
 
 <!-- Verifier que le user est toujours connecter -->
@@ -44,7 +48,9 @@
                                     Comminications
                                 </h3>
                                 <p id='descTitrePage'>
-                                    Ici, vous pouvez voir vos messages reçus et envoyés ainsi que les brouillons sauvegardés.
+                                    Ici, vous pouvez voir tous les messages qui ont été envoyés par les utilisateurs aux autres utilisateurs. 
+                                    <br /><br />
+                                    Vous pouvez cliquer sur les cases pour afficher le reste du message si il est trop long.
                                 </p>
                             </div>
                         </div>
@@ -55,26 +61,38 @@
                 <!-- Debut barre de recherche -->
                 <div class="row">
                     <div class="col-lg-1"></div><!-- Sert de margin -->
-                    <div class="col-lg-5">
+                    <div class="col-lg-10">
                         
                         <!-- Barre de recherche -->
                         <div class="input-group">
-                            <div class="col-lg-4">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Rechercher par
-                                </button>
-                                <ul class="dropdown-menu" id="liste">
-                                    <li><a href="#">Destinataire</a></li>
-                                    <li><a href="#">Expediteur</a></li>
-                                    <li><a href="#">Date</a></li>
-                                    <li><a href="#">Titre</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-8">
-                                <input id="msg" type="text" class="form-control" name="msg" placeholder="Envoyeur       ">
-                            </div>
+                            
+                            <form method="post" action="./do">
+                                <input type="hidden" name="action" value="afficherCommunications"/>
+                                
+                                <div class="col-lg-2">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                        Rechercher par
+                                    </button>
+                                    <ul class="dropdown-menu" id="liste">
+                                        <li><a onclick="setRecherche()">Destinataire</a></li>
+                                        <li><a href="#">Expediteur</a></li>
+                                        <li><a href="#">Date</a></li>
+                                        <li><a href="#">Titre</a></li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="strRecherche" size="70">
+                                </div>
+                                
+                                <div class="col-lg-1">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </div>
+                            </form>
+                            
                         </div>
-                        
                     </div>
                     <div class="col-lg-1"></div><!-- Sert de margin -->
                 </div>
@@ -90,32 +108,68 @@
                         <thead>
                             <tr>
                                 <label class="container">
-                                    <td>Date <input type="checkbox" checked></td>
-                                    <td>Envoyeur/Receveur <input type="checkbox" checked></td>
-                                    <td>Titre <input type="checkbox" checked></td>
-                                    <td>Description <input type="checkbox" checked></td>
+                                    <td><b>Date</b> <span class="glyphicon glyphicon-sort"></span></td>
+                                    <td><b>Envoyeur/Receveur</b> <span class="glyphicon glyphicon-sort"></span></td>
+                                    <td><b>Titre</b> <span class="glyphicon glyphicon-sort"></span></td>
+                                    <td><b>Message</b> <span class="glyphicon glyphicon-sort"></span></td>
                                 </label>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>10/10/1010</td>
-                                <td>Maxime Chausse -> (Apple) Jean Ti-popaul</td>
-                                <td>Hey toe, jaime ton nom</td>
-                                <td>Jaimerais ca avoir un stage remunerer chez toe</td>
-                            </tr>
-                            <tr>
-                                <td>10/10/1010</td>
-                                <td>Maxime Chausse -> (Apple) Jean Ti-popaul</td>
-                                <td>Hey toe, jaime ton nom</td>
-                                <td>Jaimerais ca avoir un stage remunerer chez toe</td>
-                            </tr>
-                            <tr>
-                                <td>10/10/1010</td>
-                                <td>Maxime Chausse -> (Apple) Jean Ti-popaul</td>
-                                <td>Hey toe, jaime ton nom</td>
-                                <td>Jaimerais ca avoir un stage remunerer chez toe</td>
-                            </tr>
+                            <c:set var="i" value="${0}" /> <!-- incrementeur pour les id de td-->
+                            
+                            <!-- Valider celon quel parametre  de recherche on doit afficher les resultats-->
+                            <c:choose>
+                                <c:when test="${sessionScope.typeRecherche eq 'Date'}">
+                                    <c:set var="messages" value="${servicesMessages.messagesEnvoyesSelonDate(sessionScope.typeRecherche)}"/> 
+                                </c:when>
+                                <c:when test="${sessionScope.typeRecherche eq 'nd'}">
+                                    <c:set var="messages" value="${servicesMessages.messagesEnvoyes()}"/> 
+                                </c:when>
+                            </c:choose>
+                            
+                            <!-- Passer au traver de la liste des messages-->
+                            <c:forEach  var="message" items="${messages}">
+                                <c:set var="expediteur" value="${utilisateurDAO.findById(message.getIdExpediteur())}"/>
+                                <c:set var="destinataire" value="${utilisateurDAO.findById(message.getIdDestinataire())}"/>
+                                <tr>
+                                    <td>${message.getDate()} ${message.getHeure()}</td>
+                                    <td>
+                                        ${expediteur.getNom()} ${expediteur.getPrenom()}
+                                        <span class="glyphicon glyphicon-arrow-right"></span>
+                                        <c:if test="${destinataire.getTypeUtilisateur() eq 'Employeur'}">
+                                            <c:set var="employeur" value="${employeurDAO.findById(destinataire.getIdUtilisateur())}"/>
+
+                                            <!-- Afficher le nom de la compagnie -->
+                                            <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd>
+                                        </c:if>
+                                        ${destinataire.getNom()} ${destinataire.getPrenom()}
+                                    </td>
+                                    
+                                    <c:set var='titre' value="${message.getTitre()}"/>
+                                    <td id="case${i}" class="caseTitreTableauCommunication" onclick="afficherTitreComplet('${i}','${titre}')">
+                                        <c:if test="${titre.length() >= 25}">
+                                            ${titre.substring(0,22)}...
+                                        </c:if>
+                                        <c:if test="${titre.length() < 25}">
+                                            ${titre}
+                                        </c:if>
+                                    </td>
+                                    <c:set var="i" value="${i+=1}" />
+                                    
+                                    <c:set var='texte' value="${message.getMessage()}"/>
+                                    <td id="case${i}" class="caseTexteTableauCommunication" onclick="afficherTexteComplet('${i}','${texte}')">
+                                        <c:if test="${texte.length() >= 35}">
+                                            ${texte.substring(0,32)}...
+                                        </c:if>
+                                        <c:if test="${texte.length() < 35}">
+                                            ${texte}
+                                        </c:if>
+                                    </td>
+                                    <c:set var="i" value="${i+=1}" />
+                                    
+                                </tr>
+                            </c:forEach>
                         </tbody>
                         </table>
                         <!-- Fin du tableau des messages -->
@@ -134,6 +188,7 @@
             $(document).ready(function(){
                 // Chacher le titre
                 $("#descTitrePage").hide();
+                
                 // Pour le bouton de description du titre
                 $("#btnDescTitrePage").click(function(){
                     if($("#btnDescTitrePage").is(".glyphicon-triangle-top")){
@@ -150,6 +205,17 @@
                     }
                 });
             });
+            
+            function afficherTitreComplet(id,texte){
+                if(document.getElementById("case"+id).innerHTML !== texte)
+                    document.getElementById("case"+id).innerHTML=texte;
+                else document.getElementById("case"+id).innerHTML=texte.substring(0,22)+"...";
+            }
+            function afficherTexteComplet(id,texte){
+                if(document.getElementById("case"+id).innerHTML !== texte)
+                    document.getElementById("case"+id).innerHTML=texte;
+                else document.getElementById("case"+id).innerHTML=texte.substring(0,32)+"...";
+            }
         </script>
     </body>
 </html>

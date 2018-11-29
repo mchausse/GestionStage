@@ -18,8 +18,11 @@ public class AfficherCommunicationsAction extends AbstractAction{
             return "inscription";
         
         // Retourner l'utilisateur a l'inscription si il n'est pas un coordonateur
-        if(("Coordonnateur".equals(((Utilisateur)request.getSession().getAttribute("utilisateur")).getTypeUtilisateur())))
+        if(("Coordonnateur".equals(((Utilisateur)request.getSession().getAttribute("utilisateur")).getTypeUtilisateur()))){
+            if(request.getSession().getAttribute("typeRecherche") == null)
+                request.getSession().setAttribute("typeRecherche", "nd");
             return "communications";
+        }
         
         return "inscription";
     }

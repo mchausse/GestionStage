@@ -107,9 +107,22 @@
                 <!-- Fin de la section du menu des messages -->
                 
                 <!-- Debut de la notification de creation dun message -->
-                <c:if test="${ not empty requestScope.messageEnvoye}">
+                <c:if test="${not empty requestScope.messageEnvoye}">
                     <div class="col-lg-8">
                         <div class="panel panel-success">
+                            <div class="panel-heading">
+                                Succès
+                            </div>
+                            <div class="panel-body">
+                                Le message a bien été envoyé!
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+                    
+                <c:if test="${not empty requestScope.erreurEnvoi}">
+                    <div class="col-lg-8">
+                        <div class="panel panel-danger">
                             <div class="panel-heading">
                                 Succès
                             </div>

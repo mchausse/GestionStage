@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.stageo.beans;
 
 import java.util.Date;
@@ -19,6 +14,24 @@ public class Message{
     private Date date;
     private Date heure;
     private String idExpediteur;
+    private String idDestinataire;
+    private short lu;
+
+    public String getIdDestinataire() {
+        return idDestinataire;
+    }
+
+    public void setIdDestinataire(String idDestinataire) {
+        this.idDestinataire = idDestinataire;
+    }
+
+    public short getLu() {
+        return lu;
+    }
+
+    public void setLu(short lu) {
+        this.lu = lu;
+    }
 
     public Message() {}
 
