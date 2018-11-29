@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/OffreStageDAO.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/servlet/ControleurFrontal.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/beans/Compagnie.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/beans/Employeur.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/UtilisateurDAO.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/candidatures.jsp</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/beans/Utilisateur.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/css/style.css</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/navBar.jsp</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/menu.jsp</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/messagerie.jsp</file>
         </group>
     </open-files>
 </project-private>

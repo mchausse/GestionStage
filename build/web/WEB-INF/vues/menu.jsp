@@ -26,11 +26,11 @@
                             <li><a class="#" href="do?action=afficherListeEtudiantsVueEmployeur">Recherche etudiants</a></li><!-- Sam -->
                         </c:if>
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Etudiant'}">
-                            <li><a class="#" href="">Mes candidatures</a></li><!--Maxime Y-->
+                            <li><a class="#" href="do?action=afficherCandidature">Mes candidatures</a></li><!--Maxime Y-->
                             <li><a class="#" href="do?action=afficherListeStagesVueEtudiant">Offres de stage</a></li><!--Maxime C-->
                         </c:if>
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Coordonnateur'}">
-                            <li><a class="#" href="">Candidatures</a></li> <!--Maxime Y-->
+                            <li><a class="#" href="do?action=afficherCandidature">Candidatures</a></li> <!--Maxime Y-->
                             <li><a class="#" href="do?action=afficherCommunications">Communications</a></li><!--Maxime C-->
                             <li><a class="#" href="">Documents</a></li><!--Maxime Y-->
                         </c:if>
