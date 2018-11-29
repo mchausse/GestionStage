@@ -158,7 +158,7 @@ public class OffreStageDAO extends Dao<Offrestage> {
     public List<Offrestage> findAll() {
         try{
             List<Offrestage> liste = new ArrayList();
-            String requete = "SELECT * FROM `offrestage`";
+            String requete = "SELECT * FROM `offrestage` ORDER BY OFFRESTAGE.DATE DESC";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             ResultSet rs = requeteParam.executeQuery();
             

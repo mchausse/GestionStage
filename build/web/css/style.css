@@ -407,3 +407,17 @@
 .input-group{
     margin-top:1em;
 }
+.btnPostuler{
+    margin:1em 1em 1em 1em;
+}
+.bodyOffre{
+    padding:1em 0em 0em 0em;
+}
+.uneOffre{
+    margin-bottom: 2em;
+    min-height: 16em;
+    max-height: 16em;
+}
+.descOffre{
+    height:2em;
+}
