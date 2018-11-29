@@ -33,7 +33,7 @@
                         <thead>
                           <tr>
                               <th>Nom <a class="sortBy" href="#"><span class="glyphicon glyphicon-sort-by-alphabet"></span></a></th>
-                              <th>Spécialité <a class="sortBy" href="#"><span class="glyphicon glyphicon-sort-by-alphabet"></span></a></th>
+                             
                               <th>Match <a class="sortBy" href="#"><span class="glyphicon glyphicon-sort-by-order"></span></a></th>
                               <th>Consulté <a class="sortBy" href="#"><span class="glyphicon glyphicon-sort"></span></a></th>
                           </tr>
@@ -41,31 +41,26 @@
                         <tbody>
                             <tr>
                                 <td>Billy Bob</td>
-                                <td>Réseau</td>
                                 <td>88%</td>
                                 <td><input type="checkbox" checked disabled></td>
                             </tr>
                             <tr>
                                 <td>Georges Dupont</td>
-                                <td>Programmation Web</td>
                                 <td>70%</td>
                                 <td><input type="checkbox" disabled></td>
                             </tr>
                             <tr>
                                 <td>Slaver Dure</td>
-                                <td>Gestion</td>
                                 <td>90%</td>
                                 <td><input type="checkbox" checked disabled></td>
                             </tr>
                             <tr>
                                 <td>Jeff Jefferson</td>
-                                <td>Programmation Web</td>
                                 <td>99%</td>
                                 <td><input type="checkbox" disabled></td>
                             </tr>
                             <tr>
                                 <td>Pablo Esobar</td>
-                                <td>Gestion</td>
                                 <td>100%</td>
                                 <td><input type="checkbox" checked disabled></td>
                             </tr>
