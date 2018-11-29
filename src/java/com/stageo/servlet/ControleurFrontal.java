@@ -17,9 +17,11 @@ import com.stageo.controleur.AfficherProfilAction;
 import com.stageo.controleur.AfficherProfilCompagnieVueCoordonnateurAction;
 import com.stageo.controleur.AfficherProfilEtudiantAction;
 import com.stageo.controleur.ConnexionAction;
+import com.stageo.controleur.CreateOffreAction;
 import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
+import com.stageo.controleur.DeleteOffreAction;
 import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
 import com.stageo.controleur.ModifierProfilAction;
@@ -90,7 +92,6 @@ public class ControleurFrontal extends HttpServlet {
             case "afficherProfilCompagnieVueEtudiant":
                 action = new AfficherProfilCompagnieVueEtudiantAction();
                 break;
-            
             case "afficherProfilCompagnieVueCoordonnateur":
                 action = new AfficherProfilCompagnieVueCoordonnateurAction();
                 break;
@@ -102,6 +103,12 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherCandidature":
                 action = new AfficherCandidatureAction();
+                break;
+            case "createOffre":
+                action = new CreateOffreAction();
+                break;
+            case "deleteOffre":
+                action = new DeleteOffreAction();
                 break;
             default :
                 action = new DefaultAction();

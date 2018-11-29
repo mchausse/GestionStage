@@ -9,7 +9,7 @@
 <%@page import="com.stageo.beans.Employeur"%>
 <%@page import="com.stageo.beans.Compagnie"%>
 <%@page import="com.stageo.beans.Utilisateur"%>
-<%@page import="com.stageo.beans.Offrestage"%>
+<%@page import="com.stageo.beans.OffreStage"%>
 <%@page import="com.stageo.beans.Candidature"%>
 <jsp:useBean id="candidatureDAO" class="com.stageo.dao.CandidatureDAO" scope="page"/>
 <jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
