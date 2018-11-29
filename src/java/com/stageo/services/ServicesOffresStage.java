@@ -5,7 +5,7 @@
  */
 package com.stageo.services;
 
-import com.stageo.beans.Offrestage;
+import com.stageo.beans.OffreStage;
 import com.stageo.dao.OffreStageDAO;
 import com.stageo.singleton.Connexion;
 import java.sql.Connection;
@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 public class ServicesOffresStage {
     private final Connection CNX = Connexion.getInstance();
     
-    public List<Offrestage> findAllByCritere() {
+    public List<OffreStage> findAllByCritere() {
 //        try{
 //            // Aller chercher toutes les offres de stage
 //            OffreStageDAO offreStageDAO = new OffreStageDAO();

@@ -5,13 +5,12 @@
  */
 package com.stageo.dao;
 
-import com.stageo.beans.Offrestage;
+import com.stageo.beans.OffreStage;
 import com.stageo.singleton.Connexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author usager
  */
-public class OffreStageDAO extends Dao<Offrestage> {
+public class OffreStageDAO extends Dao<OffreStage> {
     public OffreStageDAO(){
         super(Connexion.getInstance());
     }
@@ -30,7 +29,7 @@ public class OffreStageDAO extends Dao<Offrestage> {
     }
 
     @Override
-    public boolean create(Offrestage x) {
+    public boolean create(OffreStage x) {
         try{
             String requete = "INSERT INTO `offrestage` (`ID_OFFRE`,`TITRE`,`DESCRIPTION`,`LIEN_WEB`, `LIEN_DOCUMENT`, `DATE`, `NB_VUES`, `ACTIVE`, `ID_EMPLOYEUR`) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
@@ -40,7 +39,7 @@ public class OffreStageDAO extends Dao<Offrestage> {
             requeteParam.setString(3, x.getDescription());
             requeteParam.setString(4, x.getLienWeb());
             requeteParam.setString(5, x.getLienDocument());
-            requeteParam.setTimestamp(6, (Timestamp) x.getDate());
+            requeteParam.setDate(6, new java.sql.Date(x.getDate().getTime()));
             requeteParam.setInt(7, x.getNbVues());
             requeteParam.setInt(8, (x.getActive())?1:0);
             requeteParam.setString(9, x.getIdEmployeur());
@@ -54,7 +53,7 @@ public class OffreStageDAO extends Dao<Offrestage> {
     }
 
     @Override
-    public Offrestage findById(String id) {
+    public OffreStage findById(String id) {
         try{
             String requete = "SELECT * FROM `offrestage` WHERE `ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
@@ -62,13 +61,13 @@ public class OffreStageDAO extends Dao<Offrestage> {
             requeteParam.setString(1, id);
             ResultSet rs = requeteParam.executeQuery();
             if(rs.next()){
-                Offrestage o = new Offrestage();
+                OffreStage o = new OffreStage();
                 o.setIdOffre(rs.getString("ID_OFFRE"));
                 o.setTitre(rs.getString("TITRE"));
                 o.setDescription(rs.getString("DESCRIPTION"));
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
                 o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
-                o.setDate(rs.getTimestamp("DATE"));
+                o.setDate(rs.getDate("DATE"));
                 o.setNbVues(rs.getInt("NB_VUES"));
                 o.setActive(rs.getInt("ACTIVE")==1);
                 o.setIdEmployeur(rs.getString("ID_EMPLOYEUR"));
@@ -83,7 +82,7 @@ public class OffreStageDAO extends Dao<Offrestage> {
     }
 
     @Override
-    public Offrestage find(Offrestage x) {
+    public OffreStage find(OffreStage x) {
         try{
             String requete = "SELECT * FROM `offrestage` WHERE `ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
@@ -91,13 +90,13 @@ public class OffreStageDAO extends Dao<Offrestage> {
             requeteParam.setString(1, x.getIdOffre());
             ResultSet rs = requeteParam.executeQuery();
             if(rs.next()){
-                Offrestage o = new Offrestage();
+                OffreStage o = new OffreStage();
                 o.setIdOffre(rs.getString("ID_OFFRE"));
                 o.setTitre(rs.getString("TITRE"));
                 o.setDescription(rs.getString("DESCRIPTION"));
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
                 o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
-                o.setDate(rs.getTimestamp("DATE"));
+                o.setDate(rs.getDate("DATE"));
                 o.setNbVues(rs.getInt("NB_VUES"));
                 o.setActive(rs.getInt("ACTIVE")==1);
                 o.setIdEmployeur(rs.getString("ID_EMPLOYEUR"));
@@ -112,7 +111,7 @@ public class OffreStageDAO extends Dao<Offrestage> {
     }
 
     @Override
-    public boolean update(Offrestage x) {
+    public boolean update(OffreStage x) {
         try{
             String requete = "UPDATE `offrestage` SET `TITRE` = ?, `DESCRIPTION` = ?, `LIEN_WEB` = ?, `LIEN_DOCUMENT` = ?, `DATE` = ?, `NB_VUES` = ?, `ACTIVE` = ?, `ID_EMPLOYEUR` = ?"
             + "WHERE `offrestage`.`ID_OFFRE` = ?";
@@ -122,7 +121,7 @@ public class OffreStageDAO extends Dao<Offrestage> {
             requeteParam.setString(2, x.getDescription());
             requeteParam.setString(3, x.getLienWeb());
             requeteParam.setString(4, x.getLienDocument());
-            requeteParam.setTimestamp(5, (Timestamp) x.getDate());
+            requeteParam.setDate(5, new java.sql.Date(x.getDate().getTime()));
             requeteParam.setInt(6, x.getNbVues());
             requeteParam.setInt(7, (x.getActive())?1:0);
             requeteParam.setString(8, x.getIdEmployeur());
@@ -138,9 +137,9 @@ public class OffreStageDAO extends Dao<Offrestage> {
     }
 
     @Override
-    public boolean delete(Offrestage x) {
+    public boolean delete(OffreStage x) {
         try{
-            String requete = "DELETE * FROM `offrestage` WHERE `ID_OFFRE` = ?";
+            String requete = "DELETE FROM `offrestage` WHERE `offrestage`.`ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, x.getIdOffre());
@@ -153,23 +152,66 @@ public class OffreStageDAO extends Dao<Offrestage> {
         }
         return false;
     }
+    public String deleteById(String id) {
+        try{
+            String requete = "DELETE FROM `offrestage` WHERE `offrestage`.`ID_OFFRE` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
+            
+            requeteParam.setString(1, id);
+            requeteParam.executeUpdate();
+            return "Fait";
+        }
+        catch(SQLException e){
+             Logger.getLogger(OffreStageDAO.class.getName()).log(Level.SEVERE, null, e);
+             return "" + e;
+        }
+        
+    }
 
     @Override
-    public List<Offrestage> findAll() {
+    public List<OffreStage> findAll() {
         try{
-            List<Offrestage> liste = new ArrayList();
+            List<OffreStage> liste = new ArrayList();
             String requete = "SELECT * FROM `offrestage` ORDER BY OFFRESTAGE.DATE DESC";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             ResultSet rs = requeteParam.executeQuery();
             
             while(rs.next()){
-                Offrestage o = new Offrestage();
+                OffreStage o = new OffreStage();
                 o.setIdOffre(rs.getString("ID_OFFRE"));
                 o.setTitre(rs.getString("TITRE"));
                 o.setDescription(rs.getString("DESCRIPTION"));
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
                 o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
-                o.setDate(rs.getTimestamp("DATE"));
+                o.setDate(rs.getDate("DATE"));
+                o.setNbVues(rs.getInt("NB_VUES"));
+                o.setActive(rs.getInt("ACTIVE")==1);
+                o.setIdEmployeur(rs.getString("ID_EMPLOYEUR"));
+                liste.add(o);
+            }
+            return liste;
+        }
+        catch(SQLException e){
+             Logger.getLogger(OffreStageDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
+        public List<OffreStage> findByUserId(String id) {
+        try{
+            List<OffreStage> liste = new ArrayList();
+            String requete = "SELECT * FROM `offrestage` WHERE ID_EMPLOYEUR=?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
+            requeteParam.setString(1, id);
+            ResultSet rs = requeteParam.executeQuery();
+            
+            while(rs.next()){
+                OffreStage o = new OffreStage();
+                o.setIdOffre(rs.getString("ID_OFFRE"));
+                o.setTitre(rs.getString("TITRE"));
+                o.setDescription(rs.getString("DESCRIPTION"));
+                o.setLienWeb(rs.getString("LIEN_WEB"));                
+                o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
+                o.setDate(rs.getDate("DATE"));
                 o.setNbVues(rs.getInt("NB_VUES"));
                 o.setActive(rs.getInt("ACTIVE")==1);
                 o.setIdEmployeur(rs.getString("ID_EMPLOYEUR"));

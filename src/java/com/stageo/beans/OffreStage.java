@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package com.stageo.beans;
-
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
  * @author mchausse
  */
-public class Offrestage {
+public class OffreStage {
 
     private String idOffre;
     private String titre;
@@ -27,13 +26,14 @@ public class Offrestage {
     private boolean active;
     private String idEmployeur;
 
-    public Offrestage() {}
+    public OffreStage() {}
 
-    public Offrestage(String idOffre) {
+    public OffreStage(String idOffre) {
         this.idOffre = idOffre;
     }
 
-    public Offrestage(String idOffre, String titre, String description, Date date, Date dateDebut, Date dateFin, int dureeEnJours, boolean remunere, String lienWeb, String lienDocument, int nbVues, boolean active, String idEmployeur) {
+    
+    public OffreStage(String idOffre, String titre, String description, Date date, Date dateDebut, Date dateFin, int dureeEnJours, boolean remunere, String lienWeb, String lienDocument, int nbVues, boolean active, String idEmployeur) {
         this.idOffre = idOffre;
         this.titre = titre;
         this.description = description;
@@ -49,7 +49,7 @@ public class Offrestage {
         this.idEmployeur = idEmployeur;
     }
 
-    public Offrestage(String idOffre, String titre, String description, String lienWeb, String lienDocument, Date date, int nbVues, boolean active, String idEmployeur) {
+    public OffreStage(String idOffre, String titre, String description, String lienWeb, String lienDocument, Date date, int nbVues, boolean active, String idEmployeur) {
         this.idOffre = idOffre;
         this.titre = titre;
         this.description = description;
@@ -176,10 +176,10 @@ public class Offrestage {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Offrestage)) {
+        if (!(object instanceof OffreStage)) {
             return false;
         }
-        Offrestage other = (Offrestage) object;
+        OffreStage other = (OffreStage) object;
         if ((this.idOffre == null && other.idOffre != null) || (this.idOffre != null && !this.idOffre.equals(other.idOffre))) {
             return false;
         }

@@ -421,3 +421,10 @@
 .descOffre{
     height:2em;
 }
+/** ====== page : gestionOffreStageVueEmployeur.jsp ====== */
+.btnAnime{
+    transition:0.5s;
+}
+.btnAnime:hover{
+    transform: scale(1.1, 1.1);
+}
