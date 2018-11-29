@@ -1,7 +1,6 @@
  package com.stageo.services;
 
 import com.stageo.beans.Critere;
-import com.stageo.beans.Utilisateur;
 import com.stageo.singleton.Connexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +12,7 @@ import java.util.List;
 /* ==== INFO ====
 
  * @author maxime chausse
- * date : 22 novembre 2018
+ * date : 29 novembre 2018
  * cour : Hypermedia II
  * College Rosemont
 */

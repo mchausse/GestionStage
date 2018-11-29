@@ -63,7 +63,7 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Compétences <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <c:forEach var="critere" items="${critereDAO.findAll()}">
-                                <li><a href="#">${critere.getNom()}</a></li>
+                                <li onclick='ajouterCompetence("${critere.getNom()}")'><a href="#">${critere.getNom()}</a></li>
                             </c:forEach>
                         </ul>
                     </div>
@@ -74,6 +74,7 @@
                             <div class="panel-body" id="conteneurCompetences"></div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
             <!-- Fin de section de recherche par competances -->
