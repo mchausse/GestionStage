@@ -148,7 +148,7 @@ public class CandidatureDAO extends Dao<Candidature>{
     @Override
     public boolean delete(Candidature o) {
         try{
-            String requete = "SELECT * FROM `candidature` WHERE `ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
+            String requete = "SELECT * FROM `candidature` WHERE `candidature`.`ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, o.getCandidaturePK().getIdEtudiant());

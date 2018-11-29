@@ -32,18 +32,22 @@ public class OffreStageDAO extends Dao<OffreStage> {
     @Override
     public boolean create(OffreStage x) {
         try{
-            String requete = "INSERT INTO `offrestage` (`ID_OFFRE`,`TITRE`,`DESCRIPTION`,`LIEN_WEB`, `LIEN_DOCUMENT`, `DATE`, `NB_VUES`, `ACTIVE`, `ID_EMPLOYEUR`) VALUES (?,?,?,?,?,?,?,?,?)";
+            String requete = "INSERT INTO `offrestage` (`ID_OFFRE`,`TITRE`,`DESCRIPTION`,`DATE_DEBUT` ,`DATE_FIN` ,`DUREE_EN_JOURS` ,`REMUNERE` ,`LIEN_WEB`, `LIEN_DOCUMENT`, `DATE`, `NB_VUES`, `ACTIVE`, `ID_EMPLOYEUR`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, x.getIdOffre());
             requeteParam.setString(2, x.getTitre());
             requeteParam.setString(3, x.getDescription());
-            requeteParam.setString(4, x.getLienWeb());
-            requeteParam.setString(5, x.getLienDocument());
-            requeteParam.setDate(6, new java.sql.Date(x.getDate().getTime()));
-            requeteParam.setInt(7, x.getNbVues());
-            requeteParam.setInt(8, (x.getActive())?1:0);
-            requeteParam.setString(9, x.getIdEmployeur());
+            requeteParam.setDate(4, new java.sql.Date(x.getDateDebut().getTime()));
+            requeteParam.setDate(5, new java.sql.Date(x.getDateFin().getTime()));
+            requeteParam.setInt(6, x.getDureeEnJours());
+            requeteParam.setInt(7, (x.getRemunere())?1:0);
+            requeteParam.setString(8, x.getLienWeb());
+            requeteParam.setString(9, x.getLienDocument());
+            requeteParam.setDate(10, new java.sql.Date(x.getDate().getTime()));
+            requeteParam.setInt(11, x.getNbVues());
+            requeteParam.setInt(12, (x.getActive())?1:0);
+            requeteParam.setString(13, x.getIdEmployeur());
             requeteParam.executeUpdate();
             return true;
         }
@@ -66,6 +70,10 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setIdOffre(rs.getString("ID_OFFRE"));
                 o.setTitre(rs.getString("TITRE"));
                 o.setDescription(rs.getString("DESCRIPTION"));
+                o.setDateDebut(rs.getDate("DATE_DEBUT")); 
+                o.setDateFin(rs.getDate("DATE_FIN")); 
+                o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
+                o.setRemunere(rs.getInt("REMUNERE")==1); 
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
                 o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
                 o.setDate(rs.getDate("DATE"));
@@ -95,6 +103,10 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setIdOffre(rs.getString("ID_OFFRE"));
                 o.setTitre(rs.getString("TITRE"));
                 o.setDescription(rs.getString("DESCRIPTION"));
+                o.setDateDebut(rs.getDate("DATE_DEBUT")); 
+                o.setDateFin(rs.getDate("DATE_FIN")); 
+                o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
+                o.setRemunere(rs.getInt("REMUNERE")==1);
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
                 o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
                 o.setDate(rs.getDate("DATE"));
@@ -120,6 +132,10 @@ public class OffreStageDAO extends Dao<OffreStage> {
             
             requeteParam.setString(1, x.getTitre());
             requeteParam.setString(2, x.getDescription());
+            requeteParam.setDate(4, new java.sql.Date(x.getDateDebut().getTime()));
+            requeteParam.setDate(5, new java.sql.Date(x.getDateFin().getTime()));
+            requeteParam.setInt(6, x.getDureeEnJours());
+            requeteParam.setInt(7, (x.getRemunere())?1:0);
             requeteParam.setString(3, x.getLienWeb());
             requeteParam.setString(4, x.getLienDocument());
             requeteParam.setDate(5, new java.sql.Date(x.getDate().getTime()));
@@ -182,6 +198,10 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setIdOffre(rs.getString("ID_OFFRE"));
                 o.setTitre(rs.getString("TITRE"));
                 o.setDescription(rs.getString("DESCRIPTION"));
+                o.setDateDebut(rs.getDate("DATE_DEBUT")); 
+                o.setDateFin(rs.getDate("DATE_FIN")); 
+                o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
+                o.setRemunere(rs.getInt("REMUNERE")==1);
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
                 o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
                 o.setDate(rs.getDate("DATE"));
@@ -210,6 +230,10 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setIdOffre(rs.getString("ID_OFFRE"));
                 o.setTitre(rs.getString("TITRE"));
                 o.setDescription(rs.getString("DESCRIPTION"));
+                o.setDateDebut(rs.getDate("DATE_DEBUT")); 
+                o.setDateFin(rs.getDate("DATE_FIN")); 
+                o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
+                o.setRemunere(rs.getInt("REMUNERE")==1);
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
                 o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
                 o.setDate(rs.getDate("DATE"));
