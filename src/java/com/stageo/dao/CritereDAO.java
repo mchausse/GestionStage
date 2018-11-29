@@ -105,7 +105,7 @@ public class CritereDAO extends Dao<Critere>{
     public List<Critere> findAll() {
         try{
             List<Critere> liste = new ArrayList();
-            String requete = "SELECT * FROM `critere`";
+            String requete = "SELECT * FROM `critere` ORDER BY CRITERE.NOM";
             PreparedStatement requeteParam = cnx.prepareStatement(requete);
             
             ResultSet rs = requeteParam.executeQuery();
