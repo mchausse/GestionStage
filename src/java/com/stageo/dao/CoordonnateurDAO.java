@@ -94,7 +94,7 @@ public class CoordonnateurDAO extends Dao<Coordonnateur>{
     @Override
     public boolean delete(Coordonnateur x) {
         try{
-            String requete = "DELETE * FROM `coordonnateur` WHERE `ID_COORDINNATEUR` = ?";
+            String requete = "DELETE * FROM `coordonnateur` WHERE `coordonnateur`.`ID_COORDINNATEUR` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, x.getIdCoordonnateur());

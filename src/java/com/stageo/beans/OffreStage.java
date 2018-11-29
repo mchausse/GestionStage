@@ -158,7 +158,7 @@ public class OffreStage {
         this.dureeEnJours = dureeEnJours;
     }
 
-    public boolean isRemunere() {
+    public boolean getRemunere() {
         return remunere;
     }
 

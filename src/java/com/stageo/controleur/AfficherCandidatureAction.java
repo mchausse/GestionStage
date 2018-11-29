@@ -5,17 +5,15 @@
  */
 package com.stageo.controleur;
 
-import javax.servlet.http.HttpSession;
-
 /**
  *
- * @author gabri
+ * @author usager
  */
-public class DeconnexionAction extends AbstractAction{
-    
+public class AfficherCandidatureAction extends AbstractAction{
+
     @Override
     public String execute() {
-        request.getSession().invalidate();
-        return "inscription";
+        return "candidatures";
     }
+    
 }

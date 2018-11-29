@@ -132,7 +132,7 @@ public class DocumentDAO extends Dao<Document>{
     @Override
     public boolean delete(Document x) {
         try{
-            String requete = "SELECT * FROM `document` WHERE `ID_DOCUMENT` = ?";
+            String requete = "DELETE * FROM `document` WHERE `document`.`ID_DOCUMENT` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, x.getIdDocument());
@@ -149,7 +149,7 @@ public class DocumentDAO extends Dao<Document>{
     public List<Document> findAll() {
         try{
             List<Document> liste = new ArrayList();
-            String requete = "SELECT * FROM `candidature`";
+            String requete = "SELECT * FROM `document`";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             ResultSet rs = requeteParam.executeQuery();
 

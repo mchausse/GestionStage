@@ -289,56 +289,73 @@
 .dateStage{
     color:grey;
 }
-/* Page Profil Compagnie Vue Administrateur*/
-.conteneur{
+/* Page Candidature*/
+.candidature{
     margin-top: 9em;
     margin-left: 5%;
     margin-right: 5%;
 }
-.infoCon{
-    height: 100%;
+.tableCandidature{
 }
-.nomCompagnie{
-    margin-bottom: 3em;
+.titreCandidature{
+        font-size: 32px;
+        font-weight: bold;
 }
-.conteneurStageCompagnie{
-    height: 100%;
+.titreTableCandidature{
+    font-size: 14px;
+    font-weight: bold;
+        
 }
-.roleCompagnie{
-    margin-left: 5%;
-    margin-right:5%;
-}
-.description{
-    margin-bottom: 3em;
-}
-.informationC{
-    padding: 0.5em;
-}
-.listeCompetence{
-    
-}
-.stageInfo{
-    overflow:scroll;
-}
-.titreStage{
-    font-size:19px;
+.contenuTableCandidature{
+        font-size: 13px;
 }
 .sousTitre{
-    font-size:17px;
+    font-size: 16px;
+    font-weight: bold;
 }
-.pourcentageCompatible{
-    font-size:16px;
-    color: green;
+.compC{
+    margin-left: 2%;
 }
-.comp{
-    margin-left: 5%;
-    margin-right:5%;
+@media screen and (max-width: 1200px) {
+    .titreCandidature{
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .titreTableCandidature{
+        font-size: 13px;
+        font-weight: bold;   
+    }
+    .contenuTableCandidature{
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .titreCandidature{
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .titreTableCandidature{
+        font-size: 12px;
+        font-weight: bold;   
+    }
+    .contenuTableCandidature{
+        font-size: 11px;
+    }
 }
 
-.tag{
-    height: 2px;
+@media screen and (max-width: 600px) {
+    .titreCandidature{
+        font-size: 22px;
+        font-weight: bold;
+    }
+    .titreTableCandidature{
+        font-size: 11px;
+        font-weight: bold;   
+    }
+    .contenuTableCandidature{
+        font-size: 11px;
+    }
 }
-
 /** ====== page : profil.jsp ====== */
 .btnProfil{
     text-decoration: none;
