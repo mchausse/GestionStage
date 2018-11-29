@@ -12,6 +12,7 @@
 <jsp:useBean id="utilisateurDAO" class="com.stageo.dao.UtilisateurDAO" scope="page"/>
 <jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
 <jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
+<jsp:useBean id="critereDAO" class="com.stageo.dao.CritereDAO" scope="page"/>
 
 <!DOCTYPE html>
 <html>
@@ -60,22 +61,9 @@
                     <div class="col-lg-2">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Compétences <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">Programmation</li>
-                            <li onclick="ajouterCompetence('php')"><a href="#">php</a></li>
-                            <li onclick="ajouterCompetence('html')"><a href="#">html</a></li>
-                            <li onclick="ajouterCompetence('java')"><a href="#">java</a></li>
-                            <li onclick="ajouterCompetence('c')"><a href="#">c</a></li>
-                            <li onclick="ajouterCompetence('c++')"><a href="#">c++</a></li>
-                            <li onclick="ajouterCompetence('c#')"><a href="#">c#</a></li>
-                            <li onclick="ajouterCompetence('python')"><a href="#">python</a></li>
-                            <li onclick="ajouterCompetence('VB')"><a href="#">VB</a></li>
-                            <li onclick="ajouterCompetence('java EE')"><a href="#">java EE</a></li>
-                            <li onclick="ajouterCompetence('ruby')"><a href="#">ruby</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Réseau</li>
-                            <li onclick="ajouterCompetence('CCNA')"><a href="#">CCNA</a></li>
-                            <li onclick="ajouterCompetence('CCNT')"><a href="#">CCNT</a></li>
-                            <li onclick="ajouterCompetence('Sécurité')"><a href="#">Sécurité</a></li>
+                            <c:forEach var="critere" items="${critereDAO.findAll()}">
+                                <li><a href="#">${critere.getNom()}</a></li>
+                            </c:forEach>
                         </ul>
                     </div>
                     
@@ -112,9 +100,9 @@
                                     <div class="dropdown">
                                         <button class="btn btn-default dropdown-toggle btn-sm" type="button" data-toggle="dropdown">Tags                                                <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">HTML</a></li>
-                                            <li><a href="#">CSS</a></li>
-                                            <li><a href="#">JavaScript</a></li>
+                                            <c:forEach var="critere" items="${critereDAO.findAll()}">
+                                                <li><a href="#">${critere.getNom()}</a></li>
+                                            </c:forEach>
                                         </ul>
                                     </div>
                                 </div>
