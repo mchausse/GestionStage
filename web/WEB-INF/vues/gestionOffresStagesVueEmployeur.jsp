@@ -174,6 +174,8 @@
                         </form>
                     </div>
                     <!--  Fin du formulaire d'ajout de stage -->
+                    
+                    <!-- Affiche les offres de l'employeur -->
                     <c:forEach items="${listeStages}" var="item">
                         <!-- Debut d'une offre -->
                         <div class="panel panel-default">
@@ -187,7 +189,22 @@
                                 </c:if>
                                 <div class='row'>
                                     <div class="col-lg-12 dateStage">Publié le ${item.getDate()}</div>
-                                    <div class="col-lg-7"><kbd>${comp.getNom()}</kbd> ${item.getTitre()}</div>
+                                    <div class="col-lg-7">
+                                        <!-- Affichage titre -->
+                                        <div id="${item.getIdOffre()}TitreAff">
+                                            <kbd>${comp.getNom()}</kbd> 
+                                            ${item.getTitre()}
+                                        </div>
+                                        <!-- Titre Edit -->
+                                        <div id="${item.getIdOffre()}TitreEdit" style="display:none;">
+                                            <div class="col-lg-3">
+                                                <kbd>${comp.getNom()}</kbd> 
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <input type="text" class="form-control" placeholder="Titre" value="${item.getTitre()}">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-lg-3"> <!--Affiche le Active -->
                                         <div id="${item.getIdOffre()}ActiveAff">
                                             Status : 
@@ -198,21 +215,36 @@
                                                 Inactive
                                             </c:if>
                                         </div>
-                                        <!-- Edit le Active -->
-                                        <select class="form-control" id="${item.getIdOffre()}ActiveEdit" name="activeEdit" style="display: none">
-                                            <option>Active</option>
-                                            <option>Inactive</option>
+                                        <!-- Edit le Active et faire que sa change selon le Active de l'item -->
+                                        <select class="form-control" id="${item.getIdOffre()}ActiveEdit" name="activeEdit" style="display: none;">
+                                            <c:if test="${item.getActive() eq true}">
+                                                <option selected>Active</option>
+                                                    <option>Inactive</option>
+                                            </c:if>
+                                            <c:if test="${item.getActive() eq false}">
+                                                    <option>Active</option>
+                                                    <option selected>Inactive</option>
+                                            </c:if>
                                         </select>
                                     </div>
                                     <!-- Les BTNs : -->
                                     <div class="col-lg-2">
                                         <!-- BTN avant de edit -->
                                         <div id="${item.getIdOffre()}BtnAvEdit">
-                                            <a onclick="modifOffre('${item.getIdOffre()}')" class="btn btn-default btn-md btnModStage">
+                                            <a onclick="modifOffre('${item.getIdOffre()}')" class="btn btn-default btn-md btnModStage btnAnime">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
-                                            <a href="do?action=deleteOffre&id=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage">
+                                            <a href="do?action=deleteOffre&id=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage btnAnime">
                                                 <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                        </div>
+                                        <!-- BTN apres de edit -->
+                                        <div id="${item.getIdOffre()}BtnApEdit" style="display:none; margin-top: 0.9em;">
+                                            <a onclick="cancelModif('${item.getIdOffre()}')" class="btn btn-default btn-md btnModStage btnAnime">
+                                                <span class="glyphicon glyphicon-remove btnAnime"></span>
+                                            </a>
+                                            <a href="do?action=editOffre&id=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage btnAnime">
+                                                <span class="glyphicon glyphicon-ok"></span>
                                             </a>
                                         </div>
                                     </div>
@@ -222,10 +254,24 @@
                                 <div class='row'>
                                     <!-- Premiere section de l'offre-->
                                     <div class="col-lg-4">
-                                        <a href="${item.getLienDocument()}">LienDocument.txt</a>
+                                        <!--Document Affichage -->
+                                        <a href="${item.getLienDocument()}" id="${item.getIdOffre()}DocAff">
+                                            LienDocument.txt
+                                        </a>
+                                        <!--Document Edit -->
+                                        <button type="file" id="${item.getIdOffre()}DocEdit" class="btn btn-primary btnAnime" style="display: none;">
+                                            Changer de fichier ...
+                                        </button>
                                     </div>
                                     <div class="col-lg-4">
-                                        <a href="https://${item.getLienWeb()}">${item.getLienWeb()}</a>
+                                        <!--Lien affichage -->
+                                        <a href="https://${item.getLienWeb()}" id="${item.getIdOffre()}SiteAff">
+                                            ${item.getLienWeb()}
+                                        </a>
+                                        <!--Lien Edit -->
+                                        <input type="text" id="${item.getIdOffre()}SiteEdit" class="form-control" 
+                                               placeholder="www.votreLien.ca" value="${item.getLienWeb()}" 
+                                               style="display:none;">
                                     </div>
                                     <div class="col-lg-4">
                                         Vue : ${item.getNbVues()}
@@ -234,7 +280,10 @@
                                     <div class="col-lg-12">
                                         <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
                                         Description :
-                                        <textarea class="form-control" rows="3" disabled>${item.getDescription()}</textarea>
+                                        <!--Description Affichage -->
+                                        <textarea id="${item.getIdOffre()}DescAff" class="form-control" rows="3" disabled>${item.getDescription()}</textarea>
+                                        <!--Description Edit -->
+                                        <textarea id="${item.getIdOffre()}DescEdit" class="form-control" rows="3" style="display:none;" Enabled>${item.getDescription()}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -244,8 +293,6 @@
                     </c:forEach>
                 </div>
                 <!-- Fin de la section des stages -->
-                
-                
             </div>
         </div>
         <!-- Fin du contenu de la page -->
@@ -255,11 +302,44 @@
         <!-- Fin footer -->
         <script type="text/javascript">
             function modifOffre(idOffre){
-                //Edit
+                //Active
                 document.getElementById((idOffre+"ActiveAff")).style.display = "none";
                 document.getElementById((idOffre+"ActiveEdit")).style.display = "block";
-                
-                document.getElementById((idOffre+"BtnAvEdit")).style.display = "none"
+                //BTNs
+                document.getElementById((idOffre+"BtnAvEdit")).style.display = "none";
+                document.getElementById((idOffre+"BtnApEdit")).style.display = "block";
+                //Titre
+                document.getElementById((idOffre+"TitreAff")).style.display = "none";
+                document.getElementById((idOffre+"TitreEdit")).style.display = "block";
+                //Description
+                document.getElementById((idOffre+"DescAff")).style.display = "none";
+                document.getElementById((idOffre+"DescEdit")).style.display = "block";
+                //SiteWeb
+                document.getElementById((idOffre+"SiteAff")).style.display = "none";
+                document.getElementById((idOffre+"SiteEdit")).style.display = "block";
+                //Document
+                document.getElementById((idOffre+"DocAff")).style.display = "none";
+                document.getElementById((idOffre+"DocEdit")).style.display = "block";
+            }
+            function cancelModif(idOffre){
+                //Active
+                document.getElementById((idOffre+"ActiveAff")).style.display = "block";
+                document.getElementById((idOffre+"ActiveEdit")).style.display = "none";
+                //BTNs
+                document.getElementById((idOffre+"BtnAvEdit")).style.display = "block";
+                document.getElementById((idOffre+"BtnApEdit")).style.display = "none";
+                //Titre
+                document.getElementById((idOffre+"TitreAff")).style.display = "block";
+                document.getElementById((idOffre+"TitreEdit")).style.display = "none";
+                //Description
+                document.getElementById((idOffre+"DescAff")).style.display = "block";
+                document.getElementById((idOffre+"DescEdit")).style.display = "none";
+                //SiteWeb
+                document.getElementById((idOffre+"SiteAff")).style.display = "block";
+                document.getElementById((idOffre+"SiteEdit")).style.display = "none";
+                //Document
+                document.getElementById((idOffre+"DocAff")).style.display = "block";
+                document.getElementById((idOffre+"DocEdit")).style.display = "none";
             }
         </script>
         <script>

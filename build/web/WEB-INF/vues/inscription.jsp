@@ -26,7 +26,7 @@
         <%@include  file="menu.jsp" %> 
         <div class="container" id="contenuInscription">
             <div class="row">
-                <!-- Si il y a une erreur : -->
+                <!-- Si il y a un message à montrer -->
                 <c:if test="${ !empty sessionScope['avertissement']}" >
                     <c:set var = "avert" value = "${sessionScope['avertissement']}"/>
                     <c:remove var="avertissement" scope="session" />
