@@ -88,72 +88,95 @@
                 <c:if test="${(offre.getActive() && sessionScope.utilisateur.getTypeUtilisateur() eq 'Etudiant') || sessionScope.utilisateur.getTypeUtilisateur() eq 'Coordonnateur'}">
                 
                     <!-- Debut d'une offre -->
-                    <div class='col-lg-6 col-md-6 col-sm-12 uneOffre'>
-                        <div class="panel panel-default">
+                    <form>
+                        <div class='col-lg-6 col-md-6 col-sm-12 uneOffre'>
+                            <div class="panel panel-default">
 
-                            <div class="panel-heading">
-                                <!-- Pour afficher un voyant de couleur -->
-                                <c:if test="${offre.getActive()}">
-                                    <span class="label label-success label-as-badge">&#8203 &#8203</span>
-                                </c:if>
-                                <c:if test="${not offre.getActive()}">
-                                    <span class="label label-default label-as-badge">&#8203 &#8203</span>
-                                </c:if>
-                                <div class='row'>
-                                    
-                                    <!-- Afficher les date dans le haut de l'offre-->
-                                    <div class="col-lg-12 dateStage">
-                                        Publié: ${offre.getDate().toString().substring(0,10)},
-                                        valide du: ${offre.getDateDebut().toString().substring(0,10)} 
-                                        au ${offre.getDateFin().toString().substring(0,10)}
-                                    </div>
-                                    
-                                    <!-- Afficher la compagnie-->
-                                    <div class="col-lg-9 col-md-8 col-sm-8"><kbd>${compagnieDAO.findById(employeurDAO.findById(offre.getIdEmployeur()).getIdCompagnie()).getNom()}</kbd> ${offre.getTitre()}</div>
-                                    
-                                    <!-- Aller chercher tous les critere de loffre et les afficher dans un dropdown list-->
-                                    <div class="col-lg-3 col-md-3 col-sm-3">
-                                        <div class="dropdown">
-                                            <button class="btn btn-default dropdown-toggle btn-md" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-tags"></span>                                                <span class="caret"></span></button>
-                                            <ul class="dropdown-menu">
-                                                <c:forEach var="critere" items="${servicesCritere.findAllCriteresOffre(offre.getIdOffre())}">
-                                                    <li><a href="#">${critere.getNom()}</a></li>
-                                                </c:forEach>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel-body bodyOffre">
-                                <div class="col-lg-12">
+                                <div class="panel-heading">
+                                    <!-- Pour afficher un voyant de couleur -->
+                                    <c:if test="${offre.getActive()}">
+                                        <span class="label label-success label-as-badge">&#8203 &#8203</span>
+                                    </c:if>
+                                    <c:if test="${not offre.getActive()}">
+                                        <span class="label label-default label-as-badge">&#8203 &#8203</span>
+                                    </c:if>
                                     <div class='row'>
-                                        <!-- Premiere section de l'offre-->
-                                        <div class="col-lg-10 col-md-6 col-sm-6">
-                                            <span class="glyphicon glyphicon-file"><a class="lienOffre"> ${offre.getLienDocument()}</a></span>
+
+                                        <!-- Afficher les date dans le haut de l'offre-->
+                                        <div class="col-lg-12 dateStage">
+                                            Publié: ${offre.getDate().toString().substring(0,10)},
+                                            valide du: ${offre.getDateDebut().toString().substring(0,10)} 
+                                            au ${offre.getDateFin().toString().substring(0,10)}
                                         </div>
-                                        <div class="col-lg-2 col-md-6 col-sm-6">
-                                            Vues : ${offre.getNbVues()}
-                                        </div>
-                                        <div class="col-lg-10 col-md-6 col-sm-6">
-                                            <span class="glyphicon glyphicon-globe"><a class="lienOffre"> ${offre.getLienWeb()}</a></span>
+
+                                        <!-- Afficher la compagnie-->
+                                        <div class="col-lg-9 col-md-8 col-sm-8"><kbd>${compagnieDAO.findById(employeurDAO.findById(offre.getIdEmployeur()).getIdCompagnie()).getNom()}</kbd> ${offre.getTitre()}</div>
+
+                                        <!-- Aller chercher tous les critere de loffre et les afficher dans un dropdown list-->
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <div class="dropdown">
+                                                <button class="btn btn-default dropdown-toggle btn-md" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-tags"></span>                                                <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <c:forEach var="critere" items="${servicesCritere.findAllCriteresOffre(offre.getIdOffre())}">
+                                                        <li><a href="#">${critere.getNom()}</a></li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                        
-                                <div class="col-lg-12">
-                                    <div class="col-lg-10 col-md-9 col-sm-9">
-                                            <textarea class="form-control descOffre" rows="4" id='${offre.getIdOffre()}'>${offre.getDescription()}</textarea>
+
+                                <div class="panel-body bodyOffre">
+                                    <div class="col-lg-12">
+                                        <div class='row'>
+
+                                            <!-- Liens vers le doc-->
+                                            <div class="col-lg-9 col-md-6 col-sm-6">
+                                                <span class="glyphicon glyphicon-file"><a class="lienOffre"> ${offre.getLienDocument()}</a></span>
+                                            </div>
+                                            <!-- Rémunération-->
+                                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                                <c:if test="${offre.getRemunere()}">
+                                                    <button class="btn btn-success btn-sm">Rémunéré <span class='glyphicon glyphicon-ok'></span></button>
+                                                </c:if>
+                                                <c:if test="${not offre.getRemunere()}">
+                                                    <button class="btn btn-danger btn-sm">Rémunéré <span class='glyphicon glyphicon-remove'></span></button>
+                                                </c:if>
+                                            </div>
+
+                                            <!-- Liens vers le site-->
+                                            <div class="col-lg-9 col-md-6 col-sm-6">
+                                                <span class="glyphicon glyphicon-globe"><a class="lienOffre"> ${offre.getLienWeb()}</a></span>
+                                            </div>
+
+                                            <!-- Nombre de vues-->
+                                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                                Vues : ${offre.getNbVues()}
+                                            </div>
+
+                                            <!-- Durée du stage-->
+                                            <div class="col-lg-9 col-md-6 col-sm-6">
+                                                Duree de ${offre.getDureeEnJours()} jours
+                                            </div>
+
+
+                                        </div>
                                     </div>
-                                    <div class="col-lg-2 col-md-2 col-sm-2">
-                                        <c:if test="${sessionScope.utilisateur.getTypeUtilisateur() eq 'Etudiant'}">
-                                            <button class="btn btn-danger dropdown-toggle btn-md btnPostuler" type="button" data-toggle="dropdown">Postuler</button>
-                                        </c:if>
+
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                <textarea class="form-control descOffre" rows="4" id='${offre.getIdOffre()}'>${offre.getDescription()}</textarea>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2">
+                                            <c:if test="${sessionScope.utilisateur.getTypeUtilisateur() eq 'Etudiant'}">
+                                                <button class="btn btn-danger dropdown-toggle btn-md btnPostuler" type="button" data-toggle="dropdown">Postuler</button>
+                                            </c:if>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </c:if>
                 <!-- Fin d'une offre -->
             </c:forEach>
