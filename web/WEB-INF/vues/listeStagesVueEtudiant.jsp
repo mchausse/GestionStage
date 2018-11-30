@@ -15,6 +15,11 @@
 <jsp:useBean id="critereDAO" class="com.stageo.dao.CritereDAO" scope="page"/>
 <jsp:useBean id="servicesCritere" class="com.stageo.services.ServicesCritere" scope="page"/>
 
+<!-- Verifier que le user est toujours connecter -->
+<c:if test="${empty sessionScope.utilisateur}">
+    <c:redirect url="do?action=afficherInscription"/>
+</c:if>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -51,6 +56,46 @@
                 </div>
             </div>
             <!-- Fin du titre de la page-->
+            
+            <!-- Debut de la notification lors de la soumission d'une candidature -->
+            <!-- Verifier que le message ne soit pas null -->
+            <c:if test="${not empty requestScope.envoye}">
+                
+                <!-- Si il ny a pas eu derreur -->
+                <c:if test="${requestScope.envoye}">
+                    <div class='row'>
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    Succès
+                                </div>
+                                <div class="panel-body">
+                                    Votre candidature a bien ete envoyee!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+                
+                <!-- Si il y a eu une erreur -->
+                <c:if test="${not requestScope.envoye}">
+                    <div class='row'>
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    Erreur
+                                </div>
+                                <div class="panel-body">
+                                    Une erreur est survenu lors de l'envoi de la candidature
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+            </c:if>
+            <!-- Fin de la notification lors de la soumission d'une candidature -->
                 
             <!-- Section de recherche par competences -->
             <div class="row">
@@ -88,7 +133,12 @@
                 <c:if test="${(offre.getActive() && sessionScope.utilisateur.getTypeUtilisateur() eq 'Etudiant') || sessionScope.utilisateur.getTypeUtilisateur() eq 'Coordonnateur'}">
                 
                     <!-- Debut d'une offre -->
-                    <form>
+                    <form method="post" action="./do">
+                        <!-- Champs necessaires pour lactions -->
+                        <input type="hidden" name="idOffre" value="${offre.getIdOffre()}">
+                        <input type="hidden" name="action" value="envoyerCandidature"/>
+                        
+                        
                         <div class='col-lg-6 col-md-6 col-sm-12 uneOffre'>
                             <div class="panel panel-default">
 
@@ -169,7 +219,7 @@
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-sm-2">
                                             <c:if test="${sessionScope.utilisateur.getTypeUtilisateur() eq 'Etudiant'}">
-                                                <button class="btn btn-danger dropdown-toggle btn-md btnPostuler" type="button" data-toggle="dropdown">Postuler</button>
+                                                <button class="btn btn-danger dropdown-toggle btn-md btnPostuler" type="submit">Postuler</button>
                                             </c:if>
                                         </div>
                                     </div>
