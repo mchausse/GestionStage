@@ -11,7 +11,6 @@
     <class>com.stageo.beans.Document</class>
     <class>com.stageo.beans.Offrestagecritere</class>
     <class>com.stageo.beans.Notification</class>
-    <class>com.stageo.beans.Offrestage</class>
     <class>com.stageo.beans.Compagnie</class>
     <class>com.stageo.beans.Candidature</class>
     <class>com.stageo.beans.Utilisateur</class>
@@ -21,6 +20,7 @@
     <class>com.stageo.dao.MessageDAO</class>
     <class>com.stageo.dao.EmployeurDAO</class>
     <class>com.stageo.dao.UtilisateurDAO</class>
+    <class>com.stageo.beans.OffreStage</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/stageo?zeroDateTimeBehavior=convertToNull"/>

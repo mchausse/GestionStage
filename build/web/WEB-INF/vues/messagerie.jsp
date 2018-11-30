@@ -1,5 +1,5 @@
 <%-- 
-    Document   : Communiquer
+    Document   : Messagerie
     Created on : Nov 9, 2018, 3:07:46 PM
     Author     : mchausse
 
@@ -8,7 +8,7 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="com.stageo.services.ServicesMessagerie"%>
+<%@page import="com.stageo.services.ServicesMessages"%>
 <%@page import="com.stageo.dao.UtilisateurDAO"%>
 <%@page import="com.stageo.dao.EmployeurDAO"%>
 <%@page import="com.stageo.dao.CompagnieDAO"%>
@@ -18,7 +18,7 @@
 <%@page import="com.stageo.beans.Message"%>
 
 <!-- Initialiser les dao utiliser dans la page -->
-<jsp:useBean id="servicesMessagerie" class="com.stageo.services.ServicesMessagerie" scope="page" />
+<jsp:useBean id="servicesMessagerie" class="com.stageo.services.ServicesMessages" scope="page" />
 <jsp:useBean id="utilisateurDAO" class="com.stageo.dao.UtilisateurDAO" scope="page"/>
 <jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
 <jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
@@ -107,9 +107,22 @@
                 <!-- Fin de la section du menu des messages -->
                 
                 <!-- Debut de la notification de creation dun message -->
-                <c:if test="${ not empty requestScope.messageEnvoye}">
+                <c:if test="${not empty requestScope.messageEnvoye}">
                     <div class="col-lg-8">
                         <div class="panel panel-success">
+                            <div class="panel-heading">
+                                Succès
+                            </div>
+                            <div class="panel-body">
+                                Le message a bien été envoyé!
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+                    
+                <c:if test="${not empty requestScope.erreurEnvoi}">
+                    <div class="col-lg-8">
+                        <div class="panel panel-danger">
                             <div class="panel-heading">
                                 Succès
                             </div>

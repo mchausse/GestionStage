@@ -289,58 +289,73 @@
 .dateStage{
     color:grey;
 }
-/* Page Profil Compagnie Vue Administrateur*/
-.conteneur{
+/* Page Candidature*/
+.candidature{
     margin-top: 9em;
     margin-left: 5%;
     margin-right: 5%;
 }
-.infoCon{
-    margin-top: 1em;
-    margin-left: 2em;
+.tableCandidature{
 }
-.nomCompagnie{
-    margin-bottom: 3em;
+.titreCandidature{
+        font-size: 32px;
+        font-weight: bold;
 }
-.conteneurStageCompagnie{
-    margin-top: 1em;
+.titreTableCandidature{
+    font-size: 14px;
+    font-weight: bold;
+        
 }
-.roleCompagnie{
-    margin-left: 5%;
-    margin-right:5%;
-}
-.description{
-    width: 50%;
-    margin-bottom: 3em;
-}
-.informationC{
-    padding: 0.5em;
-}
-.listeCompetence{
-    
-}
-.stageInfo{
-    overflow:scroll;
-}
-.titreStage{
-    font-size:19px;
+.contenuTableCandidature{
+        font-size: 13px;
 }
 .sousTitre{
-    font-size:17px;
+    font-size: 16px;
+    font-weight: bold;
 }
-.pourcentageCompatible{
-    font-size:16px;
-    color: green;
+.compC{
+    margin-left: 2%;
 }
-.comp{
-    margin-left: 5%;
-    margin-right:5%;
+@media screen and (max-width: 1200px) {
+    .titreCandidature{
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .titreTableCandidature{
+        font-size: 13px;
+        font-weight: bold;   
+    }
+    .contenuTableCandidature{
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .titreCandidature{
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .titreTableCandidature{
+        font-size: 12px;
+        font-weight: bold;   
+    }
+    .contenuTableCandidature{
+        font-size: 11px;
+    }
 }
 
-.tag{
-    height: 2px;
+@media screen and (max-width: 600px) {
+    .titreCandidature{
+        font-size: 22px;
+        font-weight: bold;
+    }
+    .titreTableCandidature{
+        font-size: 11px;
+        font-weight: bold;   
+    }
+    .contenuTableCandidature{
+        font-size: 11px;
+    }
 }
-
 /** ====== page : profil.jsp ====== */
 #bodyProfil{
     margin-top: 10em;
@@ -411,4 +426,41 @@
 }
 #btnViderUtilisateurs{
     margin-top:1em;
+}
+
+/** ====== page : messagerie.jsp ====== */
+.caseTexteTableauCommunication{
+    max-width: 20em;
+    width:20em;
+    word-wrap: break-word;
+    
+}
+.caseTitreTableauCommunication{
+    max-width: 15em;
+    width:15em;
+    word-wrap: break-word;
+}
+.input-group{
+    margin-top:1em;
+}
+.btnPostuler{
+    margin:1em 1em 1em 1em;
+}
+.bodyOffre{
+    padding:1em 0em 0em 0em;
+}
+.uneOffre{
+    margin-bottom: 2em;
+    min-height: 16em;
+    max-height: 16em;
+}
+.descOffre{
+    height:2em;
+}
+/** ====== page : gestionOffreStageVueEmployeur.jsp ====== */
+.btnAnime{
+    transition:0.5s;
+}
+.btnAnime:hover{
+    transform: scale(1.1, 1.1);
 }

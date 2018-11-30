@@ -23,8 +23,14 @@ import java.util.logging.Logger;
  * @author Max
  */
 public class CandidatureDAO extends Dao<Candidature>{
+<<<<<<< HEAD
     
     public CandidatureDAO(){super(Connexion.getInstance());}
+=======
+    public CandidatureDAO(){
+        super(Connexion.getInstance());
+    }
+>>>>>>> d869feadcb609a40f044255facb8e0d9b8a6b182
     public CandidatureDAO(Connection cnx) {
         super(cnx);
     }
@@ -147,7 +153,7 @@ public class CandidatureDAO extends Dao<Candidature>{
     @Override
     public boolean delete(Candidature o) {
         try{
-            String requete = "SELECT * FROM `candidature` WHERE `ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
+            String requete = "SELECT * FROM `candidature` WHERE `candidature`.`ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, o.getCandidaturePK().getIdEtudiant());

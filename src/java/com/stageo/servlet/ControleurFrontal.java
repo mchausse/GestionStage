@@ -2,20 +2,26 @@ package com.stageo.servlet;
 
 //Action importer pour le controleur frontal
 import com.stageo.controleur.AbstractAction;
+import com.stageo.controleur.AfficherCandidatureAction;
+import com.stageo.controleur.AfficherCommunicationsAction;
 import com.stageo.controleur.AfficherGestionDocumentsVueCoordonnateurAction;
 import com.stageo.controleur.AfficherInscriptionAction;
 import com.stageo.controleur.AfficherListeEtudiantsVueEmployeurAction;
 import com.stageo.controleur.AfficherListeStagesVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagerieAction;
+import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
+import com.stageo.controleur.AfficherProfilCompagnieVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagesEnvoyesAction;
-import com.stageo.controleur.AfficherProfilCompagnieVueAdministrateurAction;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherProfilAction;
+import com.stageo.controleur.AfficherProfilCompagnieVueCoordonnateurAction;
 import com.stageo.controleur.AfficherProfilEtudiantAction;
 import com.stageo.controleur.ConnexionAction;
+import com.stageo.controleur.CreateOffreAction;
 import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
+import com.stageo.controleur.DeleteOffreAction;
 import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
 import com.stageo.controleur.ModifierProfilAction;
@@ -67,7 +73,7 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
-            break;
+                break;
             case "modifierProfil":
                 action = new ModifierProfilAction();
                 break;
@@ -83,11 +89,26 @@ public class ControleurFrontal extends HttpServlet {
             case "envoyerMessage":
                 action = new EnvoyerMessageAction();
                 break;
+            case "afficherProfilCompagnieVueEtudiant":
+                action = new AfficherProfilCompagnieVueEtudiantAction();
+                break;
+            case "afficherProfilCompagnieVueCoordonnateur":
+                action = new AfficherProfilCompagnieVueCoordonnateurAction();
+                break;
             case "afficherMessagesEnvoyes":
                 action = new AfficherMessagesEnvoyesAction();
                 break;
-            case "afficherProfilCompagnieVueAdministrateur":
-                action = new AfficherProfilCompagnieVueAdministrateurAction();
+            case "afficherCommunications":
+                action = new AfficherCommunicationsAction();
+                break;
+            case "afficherCandidature":
+                action = new AfficherCandidatureAction();
+                break;
+            case "createOffre":
+                action = new CreateOffreAction();
+                break;
+            case "deleteOffre":
+                action = new DeleteOffreAction();
                 break;
             default :
                 action = new DefaultAction();

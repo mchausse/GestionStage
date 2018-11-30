@@ -25,7 +25,7 @@ import java.util.List;
  * cour : Hypermedia II
  * College Rosemont
 */
-public class ServicesMessagerie {
+public class ServicesMessages {
     private final Connection CNX = Connexion.getInstance();
     
     // Cree un nouveau message et l'envoyer a un autre utilisateur
@@ -233,5 +233,80 @@ public class ServicesMessagerie {
             requeteParam.executeUpdate();
             return true;
         }catch(SQLException e){return false;}
+    }
+    
+    // Fonction pour afficher tous les messages envoyer par les utilisateurs
+    public List<Message> messagesEnvoyes(){
+        List messages = new ArrayList<>();
+        String requete = "SELECT DISTINCT MESSAGE.ID_MESSAGE,\n" +
+                            "MESSAGE.TITRE,\n" +
+                            "MESSAGE.MESSAGE,\n" +
+                            "MESSAGE.DATE,\n" +
+                            "MESSAGE.HEURE,\n" +
+                            "MESSAGE.VU,\n" +
+                            "MESSAGE.ID_EXPEDITEUR,\n" +
+                            "UTILISATEURMESSAGE.ID_DESTINATAIRE,\n" +
+                            "UTILISATEURMESSAGE.LU\n" +
+                        "FROM MESSAGE, UTILISATEURMESSAGE\n" +
+                        "WHERE MESSAGE.ID_MESSAGE = UTILISATEURMESSAGE.ID_MESSAGE\n" +
+                        "ORDER BY MESSAGE.DATE DESC, MESSAGE.HEURE DESC;";
+        
+        try{
+            PreparedStatement requeteParam = CNX.prepareStatement(requete);
+            ResultSet rs = requeteParam.executeQuery();
+            
+            while (rs.next()){
+                Message message = new Message();
+                message.setIdMessage(rs.getString("ID_MESSAGE"));
+                message.setTitre(rs.getString("TITRE"));
+                message.setMessage(rs.getString("MESSAGE"));
+                message.setVu(Short.valueOf(rs.getString("VU")));
+                message.setDate(rs.getDate("DATE"));
+                message.setHeure(rs.getTime("HEURE"));
+                message.setIdExpediteur(rs.getString("ID_EXPEDITEUR"));
+                message.setIdDestinataire(rs.getString("ID_DESTINATAIRE"));
+                message.setVu(Short.valueOf(rs.getString("LU")));
+                messages.add(message);
+            }
+            return messages;
+        }catch(SQLException e){return null;}
+    }
+    
+    public List<Message> messagesEnvoyesSelonDate(String date){
+        List messages = new ArrayList<>();
+        String requete = "SELECT DISTINCT MESSAGE.ID_MESSAGE,\n" +
+                            "MESSAGE.TITRE,\n" +
+                            "MESSAGE.MESSAGE,\n" +
+                            "MESSAGE.DATE,\n" +
+                            "MESSAGE.HEURE,\n" +
+                            "MESSAGE.VU,\n" +
+                            "MESSAGE.ID_EXPEDITEUR,\n" +
+                            "UTILISATEURMESSAGE.ID_DESTINATAIRE,\n" +
+                            "UTILISATEURMESSAGE.LU\n" +
+                        "FROM MESSAGE, UTILISATEURMESSAGE\n" +
+                        "WHERE MESSAGE.ID_MESSAGE = UTILISATEURMESSAGE.ID_MESSAGE\n" +
+                        "AND MESSAGE.DATE LIKE '%?%'\n" +
+                        "ORDER BY MESSAGE.DATE DESC, MESSAGE.HEURE DESC;";
+        
+        try{
+            PreparedStatement requeteParam = CNX.prepareStatement(requete);
+            requeteParam.setString(1, date);
+            ResultSet rs = requeteParam.executeQuery();
+            
+            while (rs.next()){
+                Message message = new Message();
+                message.setIdMessage(rs.getString("ID_MESSAGE"));
+                message.setTitre(rs.getString("TITRE"));
+                message.setMessage(rs.getString("MESSAGE"));
+                message.setVu(Short.valueOf(rs.getString("VU")));
+                message.setDate(rs.getDate("DATE"));
+                message.setHeure(rs.getTime("HEURE"));
+                message.setIdExpediteur(rs.getString("ID_EXPEDITEUR"));
+                message.setIdDestinataire(rs.getString("ID_DESTINATAIRE"));
+                message.setVu(Short.valueOf(rs.getString("LU")));
+                messages.add(message);
+            }
+            return messages;
+        }catch(SQLException e){return null;}
     }
 }

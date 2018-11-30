@@ -5,6 +5,8 @@
  */
 package com.stageo.controleur;
 
+import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author gabri

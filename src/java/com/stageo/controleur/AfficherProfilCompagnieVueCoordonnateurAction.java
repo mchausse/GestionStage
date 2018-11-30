@@ -9,10 +9,11 @@ package com.stageo.controleur;
  *
  * @author usager
  */
-public class AfficherProfilCompagnieVueAdministrateurAction extends AbstractAction{
+public class AfficherProfilCompagnieVueCoordonnateurAction extends AbstractAction{
+
     @Override
     public String execute() {
-        return "profilCompagnieVueAdministrateur";
+        return "profilCompagnieVueCoordonnateur";
     }
     
 }

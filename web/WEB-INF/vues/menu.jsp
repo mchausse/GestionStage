@@ -26,12 +26,18 @@
                             <li><a class="#" href="do?action=afficherListeEtudiantsVueEmployeur">Recherche etudiants</a></li><!-- Sam -->
                         </c:if>
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Etudiant'}">
-                            <li><a class="#" href="">Mes candidatures</a></li><!--Maxime Y-->
+                            <li><a class="#" href="do?action=afficherCandidature">Mes candidatures</a></li><!--Maxime Y-->
                             <li><a class="#" href="do?action=afficherListeStagesVueEtudiant">Offres de stage</a></li><!--Maxime C-->
                         </c:if>
-                        <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Coordonateur'}">
-                            <li><a class="#" href="">Candidature</a></li> <!--Maxime Y-->
-                            <li><a class="#" href="">Communiquation</a></li><!--Maxime C-->
+                        <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Coordonnateur'}">
+<<<<<<< HEAD
+                            <li><a class="#" href="do?action=afficherCandidature">Candidatures</a></li> <!--Maxime Y-->
+                            <li><a class="#" href="do?action=afficherCommunications">Communications</a></li><!--Maxime C-->
+=======
+                            <li><a class="#" href="">Candidatures</a></li> <!--Maxime Y-->
+                            <li><a class="#" href="do?action=afficherListeStagesVueEtudiant">Offres de stage</a></li><!--Maxime C-->
+                            <li><a class="#" href="do?action=afficherCommunications">Communications</a></li>
+>>>>>>> f98bdb1c8d52a28ace5714f496b44a08b0bee454
                             <li><a class="#" href="">Documents</a></li><!--Maxime Y-->
                         </c:if>
                         <li><a class="#" href="do?action=afficherMessagerie">Messagerie</a></li>
