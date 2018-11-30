@@ -13,7 +13,9 @@
 <jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
 <jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
 <jsp:useBean id="critereDAO" class="com.stageo.dao.CritereDAO" scope="page"/>
+<jsp:useBean id="candidatureDAO" class="com.stageo.dao.CandidatureDAO" scope="page"/>
 <jsp:useBean id="servicesCritere" class="com.stageo.services.ServicesCritere" scope="page"/>
+<jsp:useBean id="servicesOffresStage" class="com.stageo.services.ServicesOffresStage" scope="page"/>
 
 <!-- Verifier que le user est toujours connecter -->
 <c:if test="${empty sessionScope.utilisateur}">
@@ -103,22 +105,34 @@
                     <h2>Recherche par compétences</h2>
                 </div>
                 <div class="col-lg-7" id='sectionCompetences'>
-                    <!-- bouton pour la liste -->
-                    <div class="col-lg-2">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Compétences <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <c:forEach var="critere" items="${critereDAO.findAll()}">
-                                <li onclick='ajouterCompetence("${critere.getNom()}")'><a href="#">${critere.getNom()}</a></li>
-                            </c:forEach>
-                        </ul>
-                    </div>
                     
-                    <!-- Conteneur de comperence -->
-                    <div class="col-lg-10">
-                        <div  class="panel panel-default">
-                            <div class="panel-body" id="conteneurCompetences"></div>
+                    <form method="post" action="./do">
+                        <!-- Champs necessaires pour lactions -->
+                        <input type="hidden" name="idOffre" value="${offre.getIdOffre()}">
+                        <input type="hidden" name="action" value="rechercheParCritere"/>
+                        <input id="listeCriteres" type="hidden" name="listeCriteres"/>
+                        
+                        <!-- bouton pour la liste -->
+                        <div class="col-lg-2">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Compétences <span class="caret"></span></button>
+                            <button class="btn btn-default" type="submit">Rechercher <span class="glyphicon glyphicon-search"></span></button>
+                            <ul class="dropdown-menu">
+                                
+                                <!-- Remplir la liste de critere disponibles avec les critere de la bd-->
+                                <c:forEach var="critere" items="${critereDAO.findAll()}">
+                                    <li onclick='ajouterCompetence("${critere.getNom()}","${critere.getIdCritere()}")'><a href="#">${critere.getNom()}</a></li>
+                                </c:forEach>
+                                    
+                            </ul>
                         </div>
-                    </div>
+
+                        <!-- Conteneur de comperence -->
+                        <div class="col-lg-10">
+                            <div  class="panel panel-default">
+                                <div class="panel-body" id="conteneurCompetences"></div>
+                            </div>
+                        </div>
+                    </form>
                     
                 </div>
             </div>
@@ -127,7 +141,17 @@
             <!-- Section de recherche des stages -->
             <h2>Resultats </h2>
             <c:set var="i" value="${0}"/>
-            <c:forEach var="offre" items="${offreStageDAO.findAll()}">
+            
+            <!-- Si aucun criteres de recherche est specifier, on recherche selon les cirtere-->
+            <c:if test="${not empty requestScope.criteresRecherche && requestScope.criteresRecherche.size() >0}">
+                <c:set var="listeOffres" value="${servicesOffresStage.findAllSelonCritere(requestScope.criteresRecherche)}"/>
+            </c:if>
+            <!-- Si aucun criteres de recherche n'est specifier, on recher tous les offres-->
+            <c:if test="${empty requestScope.criteresRecherche || requestScope.criteresRecherche.isEmpty()}">
+                <c:set var="listeOffres" value="${offreStageDAO.findAll()}"/>
+            </c:if>
+            
+            <c:forEach var="offre" items="${listeOffres}">
                 
                 <!-- Afficher les offres inactives seulement si l'utilisateur est un coordonnateur-->
                 <c:if test="${(offre.getActive() && sessionScope.utilisateur.getTypeUtilisateur() eq 'Etudiant') || sessionScope.utilisateur.getTypeUtilisateur() eq 'Coordonnateur'}">
@@ -143,6 +167,7 @@
                             <div class="panel panel-default">
 
                                 <div class="panel-heading">
+                                    
                                     <!-- Pour afficher un voyant de couleur -->
                                     <c:if test="${offre.getActive()}">
                                         <span class="label label-success label-as-badge">&#8203 &#8203</span>
@@ -167,9 +192,11 @@
                                             <div class="dropdown">
                                                 <button class="btn btn-default dropdown-toggle btn-md" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-tags"></span>                                                <span class="caret"></span></button>
                                                 <ul class="dropdown-menu">
+                                                    
                                                     <c:forEach var="critere" items="${servicesCritere.findAllCriteresOffre(offre.getIdOffre())}">
                                                         <li><a href="#">${critere.getNom()}</a></li>
                                                     </c:forEach>
+                                                        
                                                 </ul>
                                             </div>
                                         </div>
@@ -186,12 +213,15 @@
                                             </div>
                                             <!-- Rémunération-->
                                             <div class="col-lg-3 col-md-6 col-sm-6">
+                                                
+                                                <!-- Afficher un label different si le stage est payer ou pas-->
                                                 <c:if test="${offre.getRemunere()}">
-                                                    <button class="btn btn-success btn-sm">Rémunéré <span class='glyphicon glyphicon-ok'></span></button>
+                                                    <label class="btn btn-success btn-sm">Rémunéré <span class='glyphicon glyphicon-ok'></span></label>
                                                 </c:if>
                                                 <c:if test="${not offre.getRemunere()}">
-                                                    <button class="btn btn-danger btn-sm">Rémunéré <span class='glyphicon glyphicon-remove'></span></button>
+                                                    <label class="btn btn-danger btn-sm">Rémunéré <span class='glyphicon glyphicon-remove'></span></label>
                                                 </c:if>
+                                                    
                                             </div>
 
                                             <!-- Liens vers le site-->
@@ -219,7 +249,16 @@
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-sm-2">
                                             <c:if test="${sessionScope.utilisateur.getTypeUtilisateur() eq 'Etudiant'}">
-                                                <button class="btn btn-danger dropdown-toggle btn-md btnPostuler" type="submit">Postuler</button>
+                                                
+                                                <!-- Afficher l'option de postuler pour un stage juste si on n'a pas deja postuler-->
+                                                <c:set var="dejaPostule" value="${candidatureDAO.exists(sessionScope.utilisateur.getIdUtilisateur(),offre.getIdOffre())}"/>
+                                                <c:if test="${dejaPostule eq false}">
+                                                    <button class="btn btn-danger dropdown-toggle btn-md btnPostuler" type="submit">Postuler</button>
+                                                </c:if >
+                                                <c:if test="${dejaPostule eq true}">
+                                                    <button class="btn btn-default btn-md btnPostuler" type="button" disabled>Déjà postulé</button>
+                                                </c:if >
+                                                
                                             </c:if>
                                         </div>
                                     </div>
@@ -258,10 +297,16 @@
             });
                 
             var nbComp = 0;
-            function ajouterCompetence(nom){
+            function ajouterCompetence(nom,id){
+                // Ajouter le tag dans la liste de tag pour la recherche
                 document.getElementById("conteneurCompetences").innerHTML += "<span class='competence' id='competence"+nbComp+"'>"+nom+" <a class='fas fa-times' onclick='enleverCompetence("+nbComp+")'></a></span>";
+                
+                // lui donner la bonne classe
                 $(".competence").addClass("alert alert-info")
                         .css("padding","5px 8px 5px 8px");
+                
+                // Ajouter la competance dans le input pour le passer en parametre lors de la recherche
+                document.getElementById("listeCriteres").value+=id+";";
                 nbComp++;
             };
             
