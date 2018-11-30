@@ -25,7 +25,7 @@
 <jsp:useBean id="messageDAO" class="com.stageo.dao.MessageDAO" scope="page"/>
 
 <!-- Verifier que le user est toujours connecter -->
-<c:if test="${empty sessionScope.utilisateur}">
+<c:if test="${empty sessionScope.utilisateur || sessionScope.utilisateur.getIdUtilisateur() eq null}">
     <c:redirect url="do?action=afficherInscription"/>
 </c:if>
 

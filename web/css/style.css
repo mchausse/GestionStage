@@ -425,18 +425,20 @@
     margin-top:1em;
 }
 .btnPostuler{
-    margin:1em 1em 1em 1em;
+    margin:6em 0em 1em 0em;
 }
 .bodyOffre{
     padding:1em 0em 0em 0em;
 }
 .uneOffre{
-    margin-bottom: 2em;
-    min-height: 16em;
-    max-height: 16em;
+    margin:1em 0em 8em 0em;
+    min-height: 15em;
+    max-height: 15em;
 }
 .descOffre{
-    height:2em;
+    height:3em;
+    margin-top:0.5em;
+    margin-bottom:1em;
 }
 /** ====== page : gestionOffreStageVueEmployeur.jsp ====== */
 .btnAnime{
@@ -444,4 +446,12 @@
 }
 .btnAnime:hover{
     transform: scale(1.1, 1.1);
+}
+.dateStage{
+    margin-top:-0.5em;
+    margin-bottom:0.5em;
+}
+.lienOffre{
+    font-family: arial;
+    color:black;
 }
