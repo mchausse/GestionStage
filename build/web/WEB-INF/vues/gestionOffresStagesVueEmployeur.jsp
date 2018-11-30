@@ -249,7 +249,12 @@
                                         <div class="col-lg-4">
                                             <!-- Remunerer Edit -->
                                             <div id="${item.getIdOffre()}RemunereAff">
-                                                <b>Remunéré :</b> ${item.getRemunere()}
+                                                <c:if test="${item.getRemunere() eq true}">
+                                                    <b>Remunéré :</b> Oui
+                                                </c:if>
+                                                <c:if test="${item.getRemunere() eq false}">
+                                                    <b>Remunéré :</b> Non
+                                                </c:if>
                                             </div>
                                             <div id="${item.getIdOffre()}RemunereEdit" style="display:none;">
                                             <!-- Remunere Edit-->

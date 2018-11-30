@@ -22,6 +22,7 @@ import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
 import com.stageo.controleur.DeleteOffreAction;
+import com.stageo.controleur.EditOffreAction;
 import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
 import com.stageo.controleur.ModifierProfilAction;
@@ -109,6 +110,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "deleteOffre":
                 action = new DeleteOffreAction();
+                break;
+            case "editOffre":
+                action = new EditOffreAction();
                 break;
             default :
                 action = new DefaultAction();

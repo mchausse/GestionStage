@@ -36,8 +36,8 @@ public class CreateOffreAction extends AbstractAction{
                 private String titre; X
                 private String description; X
                 private Date date; X
-                private Date dateDebut;
-                private Date dateFin;
+                private Date dateDebut; X
+                private Date dateFin; X
                 private int dureeEnJours; X
                 private boolean remunere;
                 private String lienWeb; X
