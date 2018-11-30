@@ -210,7 +210,7 @@
                                 </c:if>
                                 <div class='row'>
                                     <div class="col-lg-12 dateStage">Publié le ${item.getDate()}</div>
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-4">
                                         <!-- Affichage titre -->
                                         <div id="${item.getIdOffre()}TitreAff">
                                             <kbd>${comp.getNom()}</kbd> 
@@ -248,6 +248,9 @@
                                             </c:if>
                                         </select>
                                     </div>
+                                    <div class="col-lg-3">
+                                        <b>Remunéré :</b> ${item.getRemunere()}
+                                    </div>
                                     <!-- Les BTNs : -->
                                     <div class="col-lg-2">
                                         <!-- BTN avant de edit -->
@@ -284,7 +287,7 @@
                                             Changer de fichier ...
                                         </button>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 alignCenter">
                                         <!--Lien affichage -->
                                         <a href="https://${item.getLienWeb()}" id="${item.getIdOffre()}SiteAff">
                                             ${item.getLienWeb()}
@@ -294,7 +297,7 @@
                                                placeholder="www.votreLien.ca" value="${item.getLienWeb()}" 
                                                style="display:none;">
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 alignCenter">
                                         Vue : ${item.getNbVues()}
                                     </div>
                                     <!-- Deuxieme section de l'offre-->
@@ -305,6 +308,22 @@
                                         <textarea id="${item.getIdOffre()}DescAff" class="form-control" rows="3" disabled>${item.getDescription()}</textarea>
                                         <!--Description Edit -->
                                         <textarea id="${item.getIdOffre()}DescEdit" class="form-control" rows="3" style="display:none;" Enabled>${item.getDescription()}</textarea>
+                                    </div>
+                                    <div>
+                                        <div class="col-lg-4 dateAff" style="margin-top:1em;">
+                                            <b>Debut :</b> ${item.getDateDebut()}
+                                        </div>
+                                        <div class="col-lg-4 dateAff" style="margin-top:1em;">
+                                            <b>Fin :</b> ${item.getDateFin()}
+                                        </div>
+                                        <div class="col-lg-4 dateAff">
+                                            <c:if test="${item.getDureeEnJours() > 1}" >
+                                                <b>Nombre de jours :</b> ${item.getDureeEnJours()}
+                                            </c:if>
+                                            <c:if test="${item.getDureeEnJours() < 2}" >
+                                                <b>Nombre de jour :</b> ${item.getDureeEnJours()}
+                                            </c:if>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

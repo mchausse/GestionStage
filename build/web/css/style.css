@@ -252,6 +252,13 @@
 .labDate{
     padding-top: 1.5em;
 }
+.dateAff{
+    margin-top: 1em;
+    text-align: center;
+}
+.alignCenter{
+    text-align: center;
+}
 
 /** ====== page : inscription.jsp ====== */
 #contenuInscription{
