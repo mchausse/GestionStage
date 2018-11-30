@@ -5,6 +5,7 @@
  */
 package com.stageo.beans;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -50,7 +51,7 @@ public class Cv {
     public void setLien(String lien) {
         this.lien = lien;
     }
-
+    
     public String getLangue() {
         return langue;
     }

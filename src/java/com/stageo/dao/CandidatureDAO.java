@@ -7,6 +7,7 @@ package com.stageo.dao;
 
 import com.stageo.beans.Candidature;
 import com.stageo.beans.CandidaturePK;
+import com.stageo.singleton.Connexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +23,8 @@ import java.util.logging.Logger;
  * @author Max
  */
 public class CandidatureDAO extends Dao<Candidature>{
-
+    
+    public CandidatureDAO(){super(Connexion.getInstance());}
     public CandidatureDAO(Connection cnx) {
         super(cnx);
     }
