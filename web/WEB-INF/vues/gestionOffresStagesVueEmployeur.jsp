@@ -1,5 +1,5 @@
 <%-- 
-    Document   : OffresStageEmployeur
+    Document   : gestionOffresStageEmployeur
     Created on : Nov 13, 2018, 7:54:34 PM
     Author     : mchausse
 --%>
@@ -199,137 +199,172 @@
                     <!-- Affiche les offres de l'employeur -->
                     <c:forEach items="${listeStages}" var="item">
                         <!-- Debut d'une offre -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <!-- Pour afficher un voyant de couleur -->
-                                <c:if test="${item.getActive() eq true}">
-                                    <span class="label label-success label-as-badge">&#8203 &#8203</span>
-                                </c:if>
-                                <c:if test="${item.getActive() eq false}">
-                                    <span class="label label-danger label-as-badge">&#8203 &#8203</span>
-                                </c:if>
-                                <div class='row'>
-                                    <div class="col-lg-12 dateStage">Publié le ${item.getDate()}</div>
-                                    <div class="col-lg-4">
-                                        <!-- Affichage titre -->
-                                        <div id="${item.getIdOffre()}TitreAff">
-                                            <kbd>${comp.getNom()}</kbd> 
-                                            ${item.getTitre()}
-                                        </div>
-                                        <!-- Titre Edit -->
-                                        <div id="${item.getIdOffre()}TitreEdit" style="display:none;">
-                                            <div class="col-lg-3">
+                        <form action="do?action=editOffre&id=${item.getIdOffre()}" method="post">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <!-- Pour afficher un voyant de couleur -->
+                                    <c:if test="${item.getActive() eq true}">
+                                        <span class="label label-success label-as-badge">&#8203 &#8203</span>
+                                    </c:if>
+                                    <c:if test="${item.getActive() eq false}">
+                                        <span class="label label-danger label-as-badge">&#8203 &#8203</span>
+                                    </c:if>
+                                    <div class='row'>
+                                        <div class="col-lg-12 dateStage">Publié le ${item.getDate()}</div>
+                                        <div class="col-lg-4">
+                                            <!-- Affichage titre -->
+                                            <div id="${item.getIdOffre()}TitreAff">
                                                 <kbd>${comp.getNom()}</kbd> 
+                                                ${item.getTitre()}
                                             </div>
-                                            <div class="col-lg-9">
-                                                <input type="text" class="form-control" placeholder="Titre" value="${item.getTitre()}">
+                                            <!-- Titre Edit -->
+                                            <div id="${item.getIdOffre()}TitreEdit" style="display:none;">
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control" placeholder="Titre" name="${item.getIdOffre()}TitreEdit" value="${item.getTitre()}">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-3"> <!--Affiche le Active -->
-                                        <div id="${item.getIdOffre()}ActiveAff">
-                                            Status : 
-                                            <c:if test="${item.getActive() eq true}">
-                                                Active
-                                            </c:if>
-                                            <c:if test="${item.getActive() eq false}">
-                                                Inactive
-                                            </c:if>
+                                        <div class="col-lg-2"> <!--Affiche le Active -->
+                                            <div id="${item.getIdOffre()}ActiveAff">
+                                                Status : 
+                                                <c:if test="${item.getActive() eq true}">
+                                                    Active
+                                                </c:if>
+                                                <c:if test="${item.getActive() eq false}">
+                                                    Inactive
+                                                </c:if>
+                                            </div>
+                                            <!-- Edit le Active et faire que sa change selon le Active de l'item -->
+                                            <select class="form-control" id="${item.getIdOffre()}ActiveEdit" name="${item.getIdOffre()}ActiveEdit" style="display: none;">
+                                                <c:if test="${item.getActive() eq true}">
+                                                    <option selected>Active</option>
+                                                        <option>Inactive</option>
+                                                </c:if>
+                                                <c:if test="${item.getActive() eq false}">
+                                                        <option>Active</option>
+                                                        <option selected>Inactive</option>
+                                                </c:if>
+                                            </select>
                                         </div>
-                                        <!-- Edit le Active et faire que sa change selon le Active de l'item -->
-                                        <select class="form-control" id="${item.getIdOffre()}ActiveEdit" name="activeEdit" style="display: none;">
-                                            <c:if test="${item.getActive() eq true}">
-                                                <option selected>Active</option>
-                                                    <option>Inactive</option>
-                                            </c:if>
-                                            <c:if test="${item.getActive() eq false}">
-                                                    <option>Active</option>
-                                                    <option selected>Inactive</option>
-                                            </c:if>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <b>Remunéré :</b> ${item.getRemunere()}
-                                    </div>
-                                    <!-- Les BTNs : -->
-                                    <div class="col-lg-2">
-                                        <!-- BTN avant de edit -->
-                                        <div id="${item.getIdOffre()}BtnAvEdit">
-                                            <a onclick="modifOffre('${item.getIdOffre()}')" class="btn btn-default btn-md btnModStage btnAnime">
-                                                <span class="glyphicon glyphicon-pencil"></span>
-                                            </a>
-                                            <a href="do?action=deleteOffre&id=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage btnAnime">
-                                                <span class="glyphicon glyphicon-trash"></span>
-                                            </a>
+                                        <div class="col-lg-4">
+                                            <!-- Remunerer Edit -->
+                                            <div id="${item.getIdOffre()}RemunereAff">
+                                                <b>Remunéré :</b> ${item.getRemunere()}
+                                            </div>
+                                            <div id="${item.getIdOffre()}RemunereEdit" style="display:none;">
+                                            <!-- Remunere Edit-->
+                                            <div class="col-lg-6" style="margin-top:0.5em; text-align: right;">
+                                                <b>Remunéré :</b>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <select class="form-control" name="${item.getIdOffre()}RemunereEdit">
+                                                    <option>Oui</option>
+                                                    <option>Non</option>
+                                                </select>
+                                            </div>
+                                            </div>
                                         </div>
-                                        <!-- BTN apres de edit -->
-                                        <div id="${item.getIdOffre()}BtnApEdit" style="display:none; margin-top: 0.9em;">
-                                            <a onclick="cancelModif('${item.getIdOffre()}')" class="btn btn-default btn-md btnModStage btnAnime">
-                                                <span class="glyphicon glyphicon-remove btnAnime"></span>
-                                            </a>
-                                            <a href="do?action=editOffre&id=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage btnAnime">
-                                                <span class="glyphicon glyphicon-ok"></span>
-                                            </a>
+                                        <!-- Les BTNs : -->
+                                        <div class="col-lg-2">
+                                            <!-- BTN avant de edit -->
+                                            <div id="${item.getIdOffre()}BtnAvEdit">
+                                                <a onclick="modifOffre('${item.getIdOffre()}')" class="btn btn-default btn-md btnModStage btnAnime">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </a>
+                                                <a href="do?action=deleteOffre&id=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage btnAnime">
+                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                </a>
+                                            </div>
+                                            <!-- BTN apres de edit -->
+                                            <div id="${item.getIdOffre()}BtnApEdit" style="display:none; margin-top: 0.9em;">
+                                                <a onclick="cancelModif('${item.getIdOffre()}')" class="btn btn-default btn-md btnModStage btnAnime">
+                                                    <span class="glyphicon glyphicon-remove btnAnime"></span>
+                                                </a>
+                                                <button type="submit" class="btn btn-default btn-md btnModStage btnAnime">
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class='row'>
-                                    <!-- Premiere section de l'offre-->
-                                    <div class="col-lg-4">
-                                        <!--Document Affichage -->
-                                        <a href="${item.getLienDocument()}" id="${item.getIdOffre()}DocAff">
-                                            LienDocument.txt
-                                        </a>
-                                        <!--Document Edit -->
-                                        <button type="file" id="${item.getIdOffre()}DocEdit" class="btn btn-primary btnAnime" style="display: none;">
-                                            Changer de fichier ...
-                                        </button>
-                                    </div>
-                                    <div class="col-lg-4 alignCenter">
-                                        <!--Lien affichage -->
-                                        <a href="https://${item.getLienWeb()}" id="${item.getIdOffre()}SiteAff">
-                                            ${item.getLienWeb()}
-                                        </a>
-                                        <!--Lien Edit -->
-                                        <input type="text" id="${item.getIdOffre()}SiteEdit" class="form-control" 
-                                               placeholder="www.votreLien.ca" value="${item.getLienWeb()}" 
-                                               style="display:none;">
-                                    </div>
-                                    <div class="col-lg-4 alignCenter">
-                                        Vue : ${item.getNbVues()}
-                                    </div>
-                                    <!-- Deuxieme section de l'offre-->
-                                    <div class="col-lg-12">
-                                        <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
-                                        Description :
-                                        <!--Description Affichage -->
-                                        <textarea id="${item.getIdOffre()}DescAff" class="form-control" rows="3" disabled>${item.getDescription()}</textarea>
-                                        <!--Description Edit -->
-                                        <textarea id="${item.getIdOffre()}DescEdit" class="form-control" rows="3" style="display:none;" Enabled>${item.getDescription()}</textarea>
-                                    </div>
-                                    <div>
-                                        <div class="col-lg-4 dateAff" style="margin-top:1em;">
-                                            <b>Debut :</b> ${item.getDateDebut()}
+                                <div class="panel-body">
+                                    <div class='row'>
+                                        <!-- Premiere section de l'offre-->
+                                        <div class="col-lg-4">
+                                            <!--Document Affichage -->
+                                            <a href="${item.getLienDocument()}" id="${item.getIdOffre()}DocAff">
+                                                LienDocument.txt
+                                            </a>
+                                            <!--Document Edit -->
+                                            <button type="file" id="${item.getIdOffre()}DocEdit" class="btn btn-primary btnAnime" style="display: none;">
+                                                Changer de fichier ...
+                                            </button>
                                         </div>
-                                        <div class="col-lg-4 dateAff" style="margin-top:1em;">
-                                            <b>Fin :</b> ${item.getDateFin()}
+                                        <div class="col-lg-4 alignCenter">
+                                            <!--Lien affichage -->
+                                            <a href="https://${item.getLienWeb()}" id="${item.getIdOffre()}SiteAff">
+                                                ${item.getLienWeb()}
+                                            </a>
+                                            <!--Lien Edit -->
+                                            <input type="text" id="${item.getIdOffre()}SiteEdit" class="form-control" 
+                                                   placeholder="www.votreLien.ca" value="${item.getLienWeb()}" 
+                                                   style="display:none;" name="${item.getIdOffre()}LienEdit" />
                                         </div>
-                                        <div class="col-lg-4 dateAff">
-                                            <c:if test="${item.getDureeEnJours() > 1}" >
-                                                <b>Nombre de jours :</b> ${item.getDureeEnJours()}
-                                            </c:if>
-                                            <c:if test="${item.getDureeEnJours() < 2}" >
-                                                <b>Nombre de jour :</b> ${item.getDureeEnJours()}
-                                            </c:if>
+                                        <div class="col-lg-4 alignCenter">
+                                            Vue : ${item.getNbVues()}
+                                        </div>
+                                        <!-- Deuxieme section de l'offre-->
+                                        <div class="col-lg-12">
+                                            <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
+                                            Description :
+                                            <!--Description Affichage -->
+                                            <textarea id="${item.getIdOffre()}DescAff" class="form-control" rows="3" disabled
+                                                      >${item.getDescription()} 
+                                            </textarea> <!-- Obliger de mettre le > sur la meme ligne sinon affichage Fucked -->
+                                            <!--Description Edit -->
+                                            <textarea id="${item.getIdOffre()}DescEdit" name="${item.getIdOffre()}DescEdit" class="form-control" rows="3" style="display:none;" Enabled
+                                                      >${item.getDescription()}</textarea>
+                                        </div>
+                                        <div>
+                                            <!-- Date affichage -->
+                                            <div class="col-lg-12" id="${item.getIdOffre()}DateAff">
+                                                <div class="col-lg-4 dateAff" style="margin-top:1em;">
+                                                    <b>Debut :</b> ${item.getDateDebut()}
+                                                </div>
+                                                <div class="col-lg-4 dateAff" style="margin-top:1em;">
+                                                    <b>Fin :</b> ${item.getDateFin()}
+                                                </div>
+                                                <div class="col-lg-4 dateAff">
+                                                    <c:if test="${item.getDureeEnJours() > 1}" >
+                                                        <b>Nombre de jours :</b> ${item.getDureeEnJours()}
+                                                    </c:if>
+                                                    <c:if test="${item.getDureeEnJours() < 2}" >
+                                                        <b>Nombre de jour :</b> ${item.getDureeEnJours()}
+                                                    </c:if>
+                                                </div>
+                                            </div>
+                                            <!-- Date Edit-->
+                                            <div class="col-lg-12" id="${item.getIdOffre()}DateEdit" style="margin-top: 1em; display: none;">
+                                                <div class="col-lg-6">
+                                                    <div class="col-lg-4 labDate">Date de debut :</div>
+                                                    <div class="col-lg-8">
+                                                        <input type="date" class="form-control datePick" name="${item.getIdOffre()}DateDebutEdit" value="${item.getDateDebut()}"required/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="col-lg-4 labDate">Date de fin : </div>
+                                                    <div class="col-lg-8">
+                                                        <input type="date" class="form-control datePick" name="${item.getIdOffre()}DateFinEdit" value="${item.getDateFin()}"required/>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </div>
+                            </div>
                         <!-- Fin d'une offre -->
+                        </form>
                     </c:forEach>
                 </div>
                 <!-- Fin de la section des stages -->
@@ -360,6 +395,13 @@
                 //Document
                 document.getElementById((idOffre+"DocAff")).style.display = "none";
                 document.getElementById((idOffre+"DocEdit")).style.display = "block";
+                //Dates
+                document.getElementById((idOffre+"DateAff")).style.display = "none";
+                document.getElementById((idOffre+"DateEdit")).style.display = "block";
+                //Remunere
+                document.getElementById((idOffre+"RemunereAff")).style.display = "none";
+                document.getElementById((idOffre+"RemunereEdit")).style.display = "block";
+                
             }
             function cancelModif(idOffre){
                 //Active
@@ -380,6 +422,12 @@
                 //Document
                 document.getElementById((idOffre+"DocAff")).style.display = "block";
                 document.getElementById((idOffre+"DocEdit")).style.display = "none";
+                //Dates
+                document.getElementById((idOffre+"DateAff")).style.display = "block";
+                document.getElementById((idOffre+"DateEdit")).style.display = "none";
+                //Remunere
+                document.getElementById((idOffre+"RemunereAff")).style.display = "block";
+                document.getElementById((idOffre+"RemunereEdit")).style.display = "none";
             }
         </script>
         <script>
