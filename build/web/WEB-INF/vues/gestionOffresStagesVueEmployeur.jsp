@@ -114,20 +114,18 @@
                 
                 <!-- Debut de la section des stages -->
                 <div class="col-lg-7">
-                    
                     <!--  Formulaire d'ajout de stage -->
                     <div id="ajouterStage">
                         <form action="do?action=createOffre" method="post">
                             <!-- Debut d'une offre -->
                             <div class="panel panel-default">
-
                                 <div class="panel-heading">
                                     <!-- Pour afficher un voyant de couleur -->
                                     <span class="label label-default label-as-badge">&#8203 &#8203</span>
                                     <div class='row'>
                                         <div class="col-lg-8">
                                             <div class="col-lg-8">
-                                                <input type="text" class="form-control" id="nom" placeholder="Titre" name="titreStage">
+                                                <input type="text" class="form-control" id="nom" placeholder="Titre" name="titreStage" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">Status : Creation</div>
@@ -152,8 +150,16 @@
                                             <input type="text" class="form-control" id="nom" placeholder="www.votreLien.ca" name="lienStage">
                                         </div>
                                         <div class="col-lg-4">
-                                            Vue : 0
-                                        </div>
+                                            <div class="col-lg-6" style="margin-top:0.5em;">
+                                                Rémunération :
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <select class="form-control" name="remunere">
+                                                    <option>Oui</option>
+                                                    <option>Non</option>
+                                                </select>
+                                            </div>
+                                         </div>
                                         <!-- Deuxieme section de l'offre-->
                                         <div class="col-lg-12">
                                             <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
@@ -162,8 +168,23 @@
                                         </div>
                                         <!-- Troisième section de l'offre-->
                                         <div class="col-lg-12" style="margin-top: 1em;">
-                                            <div class="col-lg-4" style="margin-top: 1.4em;"> 
-                                                <input type="submit" value="Créer" class="btn btn-primary btnAnime" style="width: 10em;"/>
+                                            <div class="col-lg-6">
+                                                <div class="col-lg-4 labDate">Date de debut :</div>
+                                                <div class="col-lg-8">
+                                                    <input type="date" class="form-control datePick" name="dateDebut" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="col-lg-4 labDate">Date de fin : </div>
+                                                <div class="col-lg-8">
+                                                    <input type="date" class="form-control datePick" name="dateFin" required/>
+                                                </div>
+                                            </div>
+                                            <!--Quatrième section-->
+                                            <div class="col-lg-12" style="margin-top: 1em;">
+                                                <div class="col-lg-4" style="margin-top: 1.4em;"> 
+                                                    <input type="submit" value="Créer" class="btn btn-primary btnAnime" style="width: 10em;"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

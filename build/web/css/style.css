@@ -246,6 +246,12 @@
 .label-as-badgeNus{
     border-radius: 1em;
 }
+.datePick{
+    height: 4em;
+}
+.labDate{
+    padding-top: 1.5em;
+}
 
 /** ====== page : inscription.jsp ====== */
 #contenuInscription{
@@ -421,9 +427,11 @@
     width:15em;
     word-wrap: break-word;
 }
+/*
 .input-group{
     margin-top:1em;
 }
+*/
 .btnPostuler{
     margin:1em 1em 1em 1em;
 }
