@@ -128,7 +128,7 @@
                                                 <input type="text" class="form-control" id="nom" placeholder="Titre" name="titreStage" required>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">Status : Creation</div>
+                                        <div class="col-lg-3">Statut : Creation</div>
                                     </div>
                                 </div>
 
@@ -226,7 +226,7 @@
                                         </div>
                                         <div class="col-lg-2"> <!--Affiche le Active -->
                                             <div id="${item.getIdOffre()}ActiveAff">
-                                                Status : 
+                                                Statut : 
                                                 <c:if test="${item.getActive() eq true}">
                                                     Active
                                                 </c:if>
@@ -250,16 +250,16 @@
                                             <!-- Remunerer Edit -->
                                             <div id="${item.getIdOffre()}RemunereAff">
                                                 <c:if test="${item.getRemunere() eq true}">
-                                                    <b>Remunéré :</b> Oui
+                                                    <b>Remunéré:</b> Oui
                                                 </c:if>
                                                 <c:if test="${item.getRemunere() eq false}">
-                                                    <b>Remunéré :</b> Non
+                                                    <b>Remunéré:</b> Non
                                                 </c:if>
                                             </div>
                                             <div id="${item.getIdOffre()}RemunereEdit" style="display:none;">
                                             <!-- Remunere Edit-->
                                             <div class="col-lg-6" style="margin-top:0.5em; text-align: right;">
-                                                <b>Remunéré :</b>
+                                                <b>Remunéré:</b>
                                             </div>
                                             <div class="col-lg-6">
                                                 <select class="form-control" name="${item.getIdOffre()}RemunereEdit">
@@ -313,7 +313,7 @@
                                             <!--Lien Edit -->
                                             <input type="text" id="${item.getIdOffre()}SiteEdit" class="form-control" 
                                                    placeholder="www.votreLien.ca" value="${item.getLienWeb()}" 
-                                                   style="display:none;" name="${item.getIdOffre()}LienEdit" />
+                                                   style="display:none;" name="${item.getIdOffre()}LienWebEdit" />
                                         </div>
                                         <div class="col-lg-4 alignCenter">
                                             Vue : ${item.getNbVues()}

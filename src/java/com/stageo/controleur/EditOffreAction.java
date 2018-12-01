@@ -30,16 +30,26 @@ public class EditOffreAction extends AbstractAction{
             if("Active".equals(request.getParameter(idOffre+"ActiveEdit"))){
                 offreTemp.setActive(true);
             }
-            else{
+            else if("Inactive".equals(request.getParameter(idOffre+"ActiveEdit"))){
                 offreTemp.setActive(false);
-            } //FAIRE LA SECURITÉ ICI
+            }
+            else{
+                Avertissement aver = new Avertissement("Valeur de statut invalide.", "erreur");
+                request.getSession().setAttribute("avertissement", aver);
+                return "gestionOffresStagesVueEmployeur";
+            }
             //Remuneré
             if("Oui".equals(request.getParameter(idOffre+"RemunereEdit"))){
                 offreTemp.setRemunere(true);
             }
-            else{
+            else if("Non".equals(request.getParameter(idOffre+"RemunereEdit"))){
                 offreTemp.setRemunere(false);
-            } //FAIRE LA SECURITÉ ICI
+            }            
+            else{
+                Avertissement aver = new Avertissement("Valeur de rémunération invalide.", "erreur");
+                request.getSession().setAttribute("avertissement", aver);
+                return "gestionOffresStagesVueEmployeur";
+            }
             //Dates
             DateTimeFormatter dFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate d1 = LocalDate.parse(request.getParameter(idOffre+"DateDebutEdit"), dFormat);
@@ -49,10 +59,15 @@ public class EditOffreAction extends AbstractAction{
             offreTemp.setDureeEnJours(Math.toIntExact(nbJours));
             offreTemp.setDateDebut(java.sql.Date.valueOf(d1));
             offreTemp.setDateFin(java.sql.Date.valueOf(d2));
-
+            
+            //Reste
+            offreTemp.setLienWeb(request.getParameter(idOffre+"LienWebEdit"));
+            offreTemp.setDescription(request.getParameter(idOffre+"DescEdit"));
+            offreTemp.setTitre(request.getParameter(idOffre+"TitreEdit"));
+            
             offreDao.update(offreTemp);
             return "gestionOffresStagesVueEmployeur";
-            //return "" + offreTemp.getRemunere(); 
+
         }
         else{
             Avertissement aver = new Avertissement("La tâche ne vous appartient pas ou elle n'existe pas.", "erreur");
