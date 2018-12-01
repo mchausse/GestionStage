@@ -37,10 +37,10 @@
         <link href="./css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <%@include  file="menu.jsp" %>
-        <form action="do?action=modifierProfil" method="post">
-            <div class="container">
-                <div class="row row-centered offset-lg-1" id="bodyProfil" >
+    <%@include  file="menu.jsp" %>
+        <div class="container">
+            <div class="row row-centered offset-lg-1" id="bodyProfil" >
+                <form action="do?action=modifierProfil" method="post">
                     <div class="row row-centered" id="top">
                         <div class="col-lg-12 col-centered">
                             <div class="panel panel-default">
@@ -112,7 +112,7 @@
                                         <div class="input-group" id="listeCv2" name="listeCvEdit" style="display: none;">
                                             <label class="input-group-btn">
                                                 <span class="btn btn-primary">
-                                                    Ajouter<input type="file" id="btnAjouterCv" class="form-control-file" style="display: none;" multiple  accept=".doc, .docx, application/pdf">
+                                                    Ajouter<input type="file" id="btnAjouterCv" name="fichierCV" class="form-control-file" style="display: none;" multiple  accept=".doc, .docx, application/pdf" size="50">
                                                 </span>
                                             </label>
                                             <input type="text" class="form-control" readonly id="cvNom">
@@ -223,9 +223,9 @@
                             </c:if>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
     </body>
 </html>
 <script type="text/javascript">

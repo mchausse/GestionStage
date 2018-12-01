@@ -13,11 +13,7 @@ import java.sql.SQLException;
 */
 public class Connexion {
     private static Connection cnx;
-<<<<<<< HEAD
     private static String   url = "jdbc:mysql://localhost/stageo?user=root&password=root&serverTimezone=EST",
-=======
-    private static String   url = "jdbc:mysql://localhost/stageo?user=root&password=&serverTimezone=EST",
->>>>>>> d869feadcb609a40f044255facb8e0d9b8a6b182
                             user = "", 
                             password="";
     
