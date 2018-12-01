@@ -259,6 +259,24 @@
 .alignCenter{
     text-align: center;
 }
+/* sinon les btns était stack un sur l'autre*/
+@media screen and (max-width: 1285px) {
+    .btnModStage{
+        margin-top: 0em;
+    }
+}
+/* quand bootstrap est en medium display */
+@media screen and (max-width: 1199px) { 
+    .btnModStage{ 
+        margin-top: -1em;
+    }
+}
+/* sinon les btns était stack un sur l'autre*/
+@media screen and (max-width: 790px) {
+    .btnModStage{
+        margin-top: 0em;
+    }
+}
 
 /** ====== page : inscription.jsp ====== */
 #contenuInscription{

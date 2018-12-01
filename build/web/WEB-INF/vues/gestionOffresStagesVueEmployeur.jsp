@@ -1,7 +1,7 @@
 <%-- 
     Document   : gestionOffresStageEmployeur
-    Created on : Nov 13, 2018, 7:54:34 PM
-    Author     : mchausse
+    Created on : 2018-11-27
+    Author     : gabri
 --%>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -210,8 +210,8 @@
                                         <span class="label label-danger label-as-badge">&#8203 &#8203</span>
                                     </c:if>
                                     <div class='row'>
-                                        <div class="col-lg-12 dateStage">Publié le ${item.getDate()}</div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 dateStage">Publié le ${item.getDate()}</div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <!-- Affichage titre -->
                                             <div id="${item.getIdOffre()}TitreAff">
                                                 <kbd>${comp.getNom()}</kbd> 
@@ -219,12 +219,12 @@
                                             </div>
                                             <!-- Titre Edit -->
                                             <div id="${item.getIdOffre()}TitreEdit" style="display:none;">
-                                                <div class="col-lg-9">
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                                     <input type="text" class="form-control" placeholder="Titre" name="${item.getIdOffre()}TitreEdit" value="${item.getTitre()}">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-2"> <!--Affiche le Active -->
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"> <!--Affiche le Active -->
                                             <div id="${item.getIdOffre()}ActiveAff">
                                                 Statut : 
                                                 <c:if test="${item.getActive() eq true}">
@@ -246,8 +246,8 @@
                                                 </c:if>
                                             </select>
                                         </div>
-                                        <div class="col-lg-4">
-                                            <!-- Remunerer Edit -->
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <!-- Remunerer Affichage -->
                                             <div id="${item.getIdOffre()}RemunereAff">
                                                 <c:if test="${item.getRemunere() eq true}">
                                                     <b>Remunéré:</b> Oui
@@ -258,10 +258,10 @@
                                             </div>
                                             <div id="${item.getIdOffre()}RemunereEdit" style="display:none;">
                                             <!-- Remunere Edit-->
-                                            <div class="col-lg-6" style="margin-top:0.5em; text-align: right;">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-top:0.5em; text-align: right;">
                                                 <b>Remunéré:</b>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <select class="form-control" name="${item.getIdOffre()}RemunereEdit">
                                                     <option>Oui</option>
                                                     <option>Non</option>
@@ -270,7 +270,7 @@
                                             </div>
                                         </div>
                                         <!-- Les BTNs : -->
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                                             <!-- BTN avant de edit -->
                                             <div id="${item.getIdOffre()}BtnAvEdit">
                                                 <a onclick="modifOffre('${item.getIdOffre()}')" class="btn btn-default btn-md btnModStage btnAnime">
@@ -295,7 +295,7 @@
                                 <div class="panel-body">
                                     <div class='row'>
                                         <!-- Premiere section de l'offre-->
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 alignCenter">
                                             <!--Document Affichage -->
                                             <a href="${item.getLienDocument()}" id="${item.getIdOffre()}DocAff">
                                                 LienDocument.txt
@@ -305,7 +305,7 @@
                                                 Changer de fichier ...
                                             </button>
                                         </div>
-                                        <div class="col-lg-4 alignCenter">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 alignCenter">
                                             <!--Lien affichage -->
                                             <a href="https://${item.getLienWeb()}" id="${item.getIdOffre()}SiteAff">
                                                 ${item.getLienWeb()}
@@ -315,11 +315,11 @@
                                                    placeholder="www.votreLien.ca" value="${item.getLienWeb()}" 
                                                    style="display:none;" name="${item.getIdOffre()}LienWebEdit" />
                                         </div>
-                                        <div class="col-lg-4 alignCenter">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 alignCenter">
                                             Vue : ${item.getNbVues()}
                                         </div>
                                         <!-- Deuxieme section de l'offre-->
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
                                             <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
                                             Description :
                                             <!--Description Affichage -->
@@ -332,14 +332,14 @@
                                         </div>
                                         <div>
                                             <!-- Date affichage -->
-                                            <div class="col-lg-12" id="${item.getIdOffre()}DateAff">
-                                                <div class="col-lg-4 dateAff" style="margin-top:1em;">
+                                            <div class="col-lg-12 col-md-12 col-sm-12" id="${item.getIdOffre()}DateAff">
+                                                <div class="col-lg-4 col-md-4  col-sm-4 dateAff" style="margin-top:1em;">
                                                     <b>Debut :</b> ${item.getDateDebut()}
                                                 </div>
-                                                <div class="col-lg-4 dateAff" style="margin-top:1em;">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 dateAff" style="margin-top:1em;">
                                                     <b>Fin :</b> ${item.getDateFin()}
                                                 </div>
-                                                <div class="col-lg-4 dateAff">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 dateAff">
                                                     <c:if test="${item.getDureeEnJours() > 1}" >
                                                         <b>Nombre de jours :</b> ${item.getDureeEnJours()}
                                                     </c:if>
@@ -349,16 +349,16 @@
                                                 </div>
                                             </div>
                                             <!-- Date Edit-->
-                                            <div class="col-lg-12" id="${item.getIdOffre()}DateEdit" style="margin-top: 1em; display: none;">
-                                                <div class="col-lg-6">
-                                                    <div class="col-lg-4 labDate">Date de debut :</div>
-                                                    <div class="col-lg-8">
+                                            <div class="col-lg-12 col-md-12 col-sm-12" id="${item.getIdOffre()}DateEdit" style="margin-top: 1em; display: none;">
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 labDate">Date de debut :</div>
+                                                    <div class="col-lg-8 col-md-8 col-sm-8">
                                                         <input type="date" class="form-control datePick" name="${item.getIdOffre()}DateDebutEdit" value="${item.getDateDebut()}"required/>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
-                                                    <div class="col-lg-4 labDate">Date de fin : </div>
-                                                    <div class="col-lg-8">
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="col-lg-4 col-md-4 labDate">Date de fin : </div>
+                                                    <div class="col-lg-8 col-md-8">
                                                         <input type="date" class="form-control datePick" name="${item.getIdOffre()}DateFinEdit" value="${item.getDateFin()}"required/>
                                                     </div>
                                                 </div>
