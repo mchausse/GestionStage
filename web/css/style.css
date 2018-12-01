@@ -357,6 +357,10 @@
     }
 }
 /** ====== page : profil.jsp ====== */
+#bodyProfil{
+    margin-top: 10em;
+    
+}
 .btnProfil{
     text-decoration: none;
     float: right; 
@@ -383,6 +387,21 @@
     background-color: #dbdbdb;
     transform: scale(1.1, 1.1);
 
+}
+.informationEtu{
+    padding:1em;
+}
+.informationEtu #cvNom{
+    background-color: white;
+}
+.informationEtu .competence alert alert-info{
+    padding: 5px 8px 5px 8px;
+}
+.informationEtu #conteneurCompetences{
+    background-color: #EEEEEE;
+}
+.informationEtu #conteneurCompetencesEdit{
+    height: 8em;
 }
 
 /** ====== page : messagerie.jsp ====== */

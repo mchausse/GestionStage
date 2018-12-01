@@ -143,4 +143,26 @@ public class CvDAO extends Dao<Cv>{
             return liste;
         }catch(SQLException e){return null;}
     }
+    public List<Cv> findAllByIdEtudiant(String id) {
+        try{
+            List<Cv> liste = new ArrayList();
+            String requete = "SELECT * FROM `cv` WHERE `ID_ETUDIANT` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            requeteParam.setString(1, id);
+            
+            ResultSet rs = requeteParam.executeQuery();
+            while (rs.next()){
+                Cv temp = new Cv();
+                temp.setIdCv(rs.getString("ID_CV"));
+                temp.setLien(rs.getString("LIEN"));
+                temp.setLangue(rs.getString("LANGUE"));
+                temp.setNbVues(rs.getInt("NBVUES"));
+                temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
+                temp.setDate(rs.getDate("DATE"));
+
+                liste.add(temp);
+            }
+            return liste;
+        }catch(SQLException e){return null;}
+    }
 }

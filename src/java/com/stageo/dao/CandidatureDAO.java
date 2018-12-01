@@ -23,9 +23,8 @@ import java.util.logging.Logger;
  * @author Max
  */
 public class CandidatureDAO extends Dao<Candidature>{
-    public CandidatureDAO(){
-        super(Connexion.getInstance());
-    }
+    
+    public CandidatureDAO(){super(Connexion.getInstance());}
     public CandidatureDAO(Connection cnx) {
         super(cnx);
     }

@@ -55,6 +55,25 @@ public class CritereDAO extends Dao<Critere>{
                 Critere temp = new Critere();
                 temp.setIdCritere(rs.getString("ID_CRITERE"));
                 temp.setNom(rs.getString("NOM"));         
+<<<<<<< HEAD
+                return temp;
+            }
+            return null;
+        }catch(SQLException e){return new Critere(""+e);} //Pour voir l'erreur
+    }
+    public Critere findByName(String name) {
+        try{
+            String requete = "SELECT * FROM `critere` WHERE `NOM`=?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            requeteParam.setString(1, name);
+            ResultSet rs = requeteParam.executeQuery();
+            
+            if(rs.next()){
+                Critere temp = new Critere();
+                temp.setIdCritere(rs.getString("ID_CRITERE"));
+                temp.setNom(rs.getString("NOM"));         
+=======
+>>>>>>> 87b7da7867cff629f4280d80853ef63ac0d535d9
                 return temp;
             }
             return null;
@@ -112,7 +131,24 @@ public class CritereDAO extends Dao<Critere>{
             while (rs.next()){
                 Critere temp = new Critere();
                 temp.setIdCritere(rs.getString("ID_CRITERE"));
-                temp.setNom(rs.getString("Nom"));
+                temp.setNom(rs.getString("NOM"));
+
+                liste.add(temp);
+            }
+            return liste;
+        }catch(SQLException e){return null;}
+    }
+     public List<Critere> findAllById(String id) {
+        try{
+            List<Critere> liste = new ArrayList();
+            String requete = "SELECT * FROM `critere`WHERE ID_CRITERE=?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            requeteParam.setString(1,id);
+            ResultSet rs = requeteParam.executeQuery();
+            while (rs.next()){
+                Critere temp = new Critere();
+                temp.setIdCritere(rs.getString("ID_CRITERE"));
+                temp.setNom(rs.getString("NOM"));
 
                 liste.add(temp);
             }

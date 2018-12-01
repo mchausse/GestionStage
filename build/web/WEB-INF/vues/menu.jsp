@@ -23,7 +23,7 @@
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Employeur'}">
                             <li><a class="#" href="do?action=afficherGestionOffresStagesVueEmployeur">Mes offres de stage</a></li><!-- Gab + candidature pour offre de stage -->
                             <!-- Gab + candidature pour offre de stage -->
-                            <li><a class="#" href="do?action=afficherListeEtudiantsVueEmployeur">Recherche etudiants</a></li><!-- Sam -->
+                            <li><a class="#" href="do?action=afficherListeEtudiantsVueEmployeur">Recherche etudiants</a></li><!-- Gab -->
                         </c:if>
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Etudiant'}">
                             <li><a class="#" href="do?action=afficherCandidature">Mes candidatures</a></li><!--Maxime Y-->
@@ -31,12 +31,21 @@
                         </c:if>
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Coordonnateur'}">
                             <li><a class="#" href="do?action=afficherCandidature">Candidatures</a></li> <!--Maxime Y-->
+<<<<<<< HEAD
+                            <li><a class="#" href="do?action=afficherCommunications">Communications</a></li><!--Maxime C-->
+                            <li><a class="#" href="do?action=afficherListeStagesVueEtudiant">Offres de stage</a></li><!--Maxime C-->
+                            <li><a class="#" href="">Documents</a></li><!--Sam-->
+                        </c:if>
+                        <li><a class="#" href="do?action=afficherMessagerie">Messagerie</a></li>
+                        <li><a class="#" href="do?action=afficherProfil">Profil</a></li> <!-- Sam -->
+=======
                             <li><a class="#" href="do?action=afficherListeStagesVueEtudiant">Offres de stage</a></li><!--Maxime C-->
                             <li><a class="#" href="do?action=afficherCommunications">Communications</a></li><!--Maxime C-->
                             <li><a class="#" href="">Documents</a></li><!--Maxime Y-->
                         </c:if>
                         <li><a class="#" href="do?action=afficherMessagerie">Messagerie</a></li><!--Maxime C-->
                         <li><a class="#" href="do?action=afficherProfil">Profil</a></li> <!-- changer le nom pour de quoi d'autre -->
+>>>>>>> 87b7da7867cff629f4280d80853ef63ac0d535d9
                         <li><a class="#" href="do?action=deconnexion">Deconnexion</a></li>
                     </c:if>
                     <c:if test="${ empty sessionScope['connecte'] || sessionScope['connecte'] eq false }" > <!-- il est deco -->
