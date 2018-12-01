@@ -77,17 +77,16 @@ public class CreateOffreAction extends AbstractAction{
             else{
                 offreTemp.setRemunere(false);
             }
-
-            
             //POUR DOCUMENT
             Part filePart;
             String idDocu = UUID.randomUUID().toString();
             filePart = request.getPart("docuStage");
             InputStream fileContent = filePart.getInputStream();
+            //Pas trouver encore de solution pour check que sa soit pas null / empty
             OffreStageDocuDAO docuDao = new OffreStageDocuDAO();
             docuDao.create(idOffre, idDocu, fileContent);
             offreTemp.setLienDocument(idDocu);
-            
+
             offreDao.create(offreTemp);
             Avertissement aver = new Avertissement("L'offre à été créé.", "succes");
             request.getSession().setAttribute("avertissement", aver);

@@ -43,34 +43,29 @@ public class OffreStageDocuDAO extends Dao<OffreStage> {
             return "" + ex;
         }
     }
-    @Override
-    public boolean create(OffreStage x) {
-
-        return false;
+    public String delete(String idDocu){ //String pour mieu debugger
+        try {
+            String requete = "DELETE FROM `offrestagedocument` WHERE `offrestagedocument`.`ID_DOCUMENT` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            
+            requeteParam.setString(1, idDocu);
+            requeteParam.executeUpdate();
+            return "oui";
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreStageDocuDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return "" + ex;
+        }
     }
     @Override
-    public OffreStage findById(String id) {
-
-        return null;
-    }
+    public boolean create(OffreStage x) {return false;}
     @Override
-    public OffreStage find(OffreStage x) {
-
-        return null;
-    }
+    public OffreStage findById(String id) {return null;}
     @Override
-    public boolean update(OffreStage x) {
-
-        return false;
-    }
+    public OffreStage find(OffreStage x) {return null;}
     @Override
-    public boolean delete(OffreStage x) {
-
-        return false;
-    }
+    public boolean update(OffreStage x) {return false;}
     @Override
-    public List<OffreStage> findAll() {
-
-        return null;
-    }
+    public boolean delete(OffreStage x) {return false;}
+    @Override
+    public List<OffreStage> findAll() {return null;}
 }
