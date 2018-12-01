@@ -41,8 +41,7 @@
     <body>
         <!-- Barre de navigation -->
         <%@include  file="menu.jsp" %>
-        
-        <!-- Contenu de la page --> 
+        <!-- Contenu de la page -->
         <div class='container-fluid'>
             <div id="contenuPage">
                 <!-- Si il y a un message à montrer -->
@@ -116,7 +115,7 @@
                 <div class="col-lg-7">
                     <!--  Formulaire d'ajout de stage -->
                     <div id="ajouterStage">
-                        <form action="do?action=createOffre" method="post">
+                        <form action="do?action=createOffre" method="post" enctype="multipart/form-data">
                             <!-- Debut d'une offre -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -136,15 +135,17 @@
                                     <div class='row'>
                                         <!-- Premiere section de l'offre-->
                                         <div class="col-lg-4">
-                                            <div class="col-sm-11 input-group">
-                                                <label class="input-group-btn">
-                                                    <span class="btn btn-primary">
-                                                        Ajouter
-                                                        <input type="file" lass="form-control-file" accept="application/pdf" style="display: none;" name="docuStage">
-                                                    </span>
-                                                </label>
-                                                <input type="text" class="form-control" readonly id="relNoteNom">
+                                        <!-- Style bootstrap
+                                            <div class="col-lg-3" style="margin-top:0.5em;">
+                                                Fichier:
                                             </div>
+                                            <div class="col-lg-9">
+                                                <label class="btn btn-default btn-file btnAnime">
+                                                    Parcourir <input type="file" style="display: none;" ccept="application/pdf" name="docuStage">
+                                                </label>
+                                            </div>
+                                        -->
+                                            <input type="file" accept="application/pdf" name="docuStage">
                                         </div>
                                         <div class="col-lg-4">
                                             <input type="text" class="form-control" id="nom" placeholder="www.votreLien.ca" name="lienStage">

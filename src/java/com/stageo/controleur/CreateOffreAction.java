@@ -8,14 +8,21 @@ import com.stageo.beans.Avertissement;
 import com.stageo.beans.OffreStage;
 import com.stageo.beans.Utilisateur;
 import com.stageo.dao.OffreStageDAO;
+import com.stageo.dao.OffreStageDocuDAO;
 import com.stageo.singleton.Connexion;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.util.Duration;
+import javax.servlet.ServletException;
+import javax.servlet.http.Part;
 
 
 
@@ -41,7 +48,7 @@ public class CreateOffreAction extends AbstractAction{
                 private int dureeEnJours; X
                 private boolean remunere;
                 private String lienWeb; X
-                private String lienDocument;
+                private String lienDocument; -------- A FAIRE LE CALICE
                 private int nbVues; X
                 private boolean active; X
                 private String idEmployeur; X
@@ -59,7 +66,6 @@ public class CreateOffreAction extends AbstractAction{
             offreTemp.setTitre(request.getParameter("titreStage"));
             offreTemp.setDescription(request.getParameter("descStage"));
             offreTemp.setLienWeb(request.getParameter("lienStage"));
-            offreTemp.setLienDocument("");
             offreTemp.setDate(java.sql.Date.valueOf(LocalDate.now()));
             offreTemp.setActive(true);
             offreTemp.setNbVues(0);
@@ -71,16 +77,31 @@ public class CreateOffreAction extends AbstractAction{
             else{
                 offreTemp.setRemunere(false);
             }
+
+            
+            //POUR DOCUMENT
+            Part filePart;
+            String idDocu = UUID.randomUUID().toString();
+            filePart = request.getPart("docuStage");
+            InputStream fileContent = filePart.getInputStream();
+            OffreStageDocuDAO docuDao = new OffreStageDocuDAO();
+            docuDao.create(idOffre, idDocu, fileContent);
+            offreTemp.setLienDocument(idDocu);
+            
             offreDao.create(offreTemp);
             Avertissement aver = new Avertissement("L'offre à été créé.", "succes");
             request.getSession().setAttribute("avertissement", aver);
             return "gestionOffresStagesVueEmployeur";
-            
-        }catch(Exception e){
-            Avertissement aver = new Avertissement(""+e, "erreur");
+
+        } catch (IOException ex) {
+            Logger.getLogger(CreateOffreAction.class.getName()).log(Level.SEVERE, null, ex);
+             Avertissement aver = new Avertissement(""+ex, "erreur");
             request.getSession().setAttribute("avertissement", aver);
-            return "gestionOffresStagesVueEmployeur";
-        }
+            return ""+ex;
+        } catch (ServletException ex) {
+            Logger.getLogger(CreateOffreAction.class.getName()).log(Level.SEVERE, null, ex);
+            return ""+ex;
+        }   
     }
+ }
     
-}

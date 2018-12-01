@@ -9,7 +9,6 @@ import com.stageo.controleur.AfficherInscriptionAction;
 import com.stageo.controleur.AfficherListeEtudiantsVueEmployeurAction;
 import com.stageo.controleur.AfficherListeStagesVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagerieAction;
-import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherProfilCompagnieVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagesEnvoyesAction;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
