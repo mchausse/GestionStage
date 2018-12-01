@@ -6,11 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="com.stageo.beans.Employeur"%>
-<%@page import="com.stageo.beans.Compagnie"%>
-<%@page import="com.stageo.beans.Utilisateur"%>
-<%@page import="com.stageo.beans.OffreStage"%>
-<%@page import="com.stageo.beans.Candidature"%>
 <jsp:useBean id="candidatureDAO" class="com.stageo.dao.CandidatureDAO" scope="page"/>
 <jsp:useBean id="employeurDAO" class="com.stageo.dao.EmployeurDAO" scope="page"/>
 <jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
@@ -39,48 +34,49 @@
             <br />
             <div class="row">
                 <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Etudiant'}">
-                    <form>
-                        <div class="sousTitre">
-                            Recherche:
+                    <div class="sousTitre">
+                        Recherche:
+                    </div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            Nom Compagnie:  <input class="form-control" type="text" name="Compagnie" />
                         </div>
-                        <span class="">
-                            Nom Compagnie  <input type="text" name="Compagnie" />
-                        </span>
-                        <span class="compC"> 
-                            Statut <select>
+                        <div class="form-group"> 
+                            Statut: <select class="form-control">
                                 <option>--------</option>
                                 <option value="accepter">Accepter</option>
                                 <option value="attente">En attente</option>
                                 <option value="refuser">Refuser</option>
                             </select>
-                        </span>
-                        <span class="compC">
-                            <input type="submit" name="recherche" value="Rechercher" />
-                        </span>
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-danger" type="submit" name="recherche" value="Rechercher" />
+                        </div>
                     </form>
                 </c:if>
                 <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Coordonnateur'}">
-                    <form>
-                        <div class="sousTitre">
-                            Recherche:
+                    
+                    <div class="sousTitre">
+                        Recherche:
+                    </div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            Nom Étudiant:  <input class="form-control" type="text" name="nomEtudiant" />
                         </div>
-                        <span class="">
-                            Nom Étudiant  <input type="text" name="nomEtudiant" />
-                        </span>
-                        <span class="compC">
-                            Nom Compagnie  <input type="text" name="Compagnie" />
-                        </span>
-                        <span class="compC">
-                            Statut <select>
+                        <div class="form-group">
+                            Nom Compagnie:  <input class="form-control" type="text" name="Compagnie" />
+                        </div>
+                        <div class="form-group">
+                            Statut: <select class="form-control">
                                 <option>--------</option>
                                 <option value="accepter">Accepter</option>
                                 <option value="attente">En attente</option>
                                 <option value="refuser">Refuser</option>
                             </select>
-                        </span>
-                        <span class="compC">
-                            <input type="submit" name="recherche" value="Rechercher" />
-                        </span>
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-danger" type="submit" name="recherche" value="Rechercher" />
+                        </div>
                     </form>
                 </c:if>
             </div>
@@ -106,7 +102,7 @@
                                     <tr>
                                         <td>${compagnie.getNom()}</td>
                                         <td>${employeur.getNom()} ${employeur.getPrenom()}</td>
-                                        <td>${offre.getTitre()}</td>
+                                        <td><a href="?action=afficherProfilOffreStage&offreStage=${offre.getIdOffre()}">${offre.getTitre()}<a></td>
                                         <td>${can.getDate()}</td>
                                         <td>${can.getStatut()}</td>
                                     </tr>
@@ -157,7 +153,7 @@
                                         <td>${compagnie.getNom()}</td>
                                         <td>${employeur.getNom()} ${employeur.getPrenom()}</td>
                                         <td>${etudiant.getNom()} ${etudiant.getPrenom()}</td>
-                                        <td>${offre.getTitre()}</td>
+                                        <td><a href="?action=afficherProfilOffreStage&offreStage=${offre.getIdOffre()}">${offre.getTitre()}</a></td>
                                         <td>${can.getDate()}</td>
                                         <td>${can.getStatut()}</td>
                                     </tr>

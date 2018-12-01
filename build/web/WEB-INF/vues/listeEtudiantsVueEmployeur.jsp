@@ -71,22 +71,22 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 colInfoEleve"> 
                     <br>
                     <label>Prénom :</label>
-                    <div class="divInfoEleve">
+                    <div class="divInfoEleve2">
                         <p>Pablo</p>
                     </div>
                     <br>
                     <label>Nom :</label>
-                    <div class="divInfoEleve">
+                    <div class="divInfoEleve2">
                         <p>Escobar</p>
                     </div>
                                         <br>
                     <label>Téléphone :</label>
-                    <div class="divInfoEleve">
+                    <div class="divInfoEleve2">
                         <p>514-666-9119</p>
                     </div>
                     <br>
                     <label>Courriel :</label>
-                    <div class="divInfoEleve">
+                    <div class="divInfoEleve2">
                         <p>Pablo@Escobar.col</p>
                     </div>
                     <br>
@@ -103,12 +103,12 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 colInfoEleve">
                     <br>
                     <label>Spécialité :</label>
-                    <div class="divInfoEleve">
+                    <div class="divInfoEleve2">
                         <p>Gestion</p>
                     </div>
                     <br>
                     <label>Ce que je recherche :</label>
-                    <div class="divInfoEleve">
+                    <div class="divInfoEleve2">
                         <p> 
                             &#xb7; Temps plein <br>
                             &#xb7; Payé (110$/h et +) <br>
