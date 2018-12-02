@@ -30,6 +30,7 @@ public class Cv {
         this.idCv = idCv;
     }
 
+
     public Cv(String idCv, InputStream fichier, String lien, String langue, int nbVues, String idEtudiant, Date date) {
         this.idCv = idCv;
         this.fichier = fichier;

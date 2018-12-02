@@ -30,7 +30,7 @@ public class CvDAO extends Dao<Cv>{
     @Override
     public Cv find(Cv o) {
         try{
-            String requete = "SELECT * FROM cv WHERE ID_CV=?";
+            String requete = "SELECT * FROM `cv` WHERE ID_CV=?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete);
             requeteParam.setString(1, o.getIdCv());
             ResultSet rs = requeteParam.executeQuery();
@@ -148,7 +148,7 @@ public class CvDAO extends Dao<Cv>{
     public List<Cv> findAllByIdEtudiant(String id) {
         try{
             List<Cv> liste = new ArrayList();
-            String requete = "SELECT * FROM `cv` WHERE `ID_ETUDIANT` = ?";
+            String requete = "SELECT * FROM `cv` WHERE ID_ETUDIANT=?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete);
             requeteParam.setString(1, id);
             
