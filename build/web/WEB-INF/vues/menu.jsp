@@ -33,7 +33,7 @@
                             <li><a class="#" href="do?action=afficherCandidature">Candidatures</a></li> <!--Maxime Y-->
                             <li><a class="#" href="do?action=afficherCommunications">Communications</a></li><!--Maxime C-->
                             <li><a class="#" href="do?action=afficherListeStagesVueEtudiant">Offres de stage</a></li><!--Maxime C-->
-                            <li><a class="#" href="">Documents</a></li><!--Sam-->
+                            <li><a class="#" href="do?action=afficherGestionDocumentsVueCoordinateur">Documents</a></li><!--Sam-->
                         </c:if>
                         <li><a class="#" href="do?action=afficherMessagerie">Messagerie</a></li>
                         <li><a class="#" href="do?action=afficherProfil">Profil</a></li> <!-- Sam -->

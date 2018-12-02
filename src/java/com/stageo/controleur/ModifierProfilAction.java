@@ -10,16 +10,24 @@ import com.stageo.beans.Employeur;
 import com.stageo.beans.Etudiant;
 import com.stageo.beans.Compagnie;
 import com.stageo.beans.Critere;
+import com.stageo.beans.Cv;
 import com.stageo.beans.EtudiantcriterePK;
 import com.stageo.beans.Utilisateur;
 import com.stageo.dao.AdresseDAO;
 import com.stageo.dao.CompagnieDAO;
 import com.stageo.dao.CritereDAO;
+import com.stageo.dao.CvDAO;
 import com.stageo.dao.EmployeurDAO;
 import com.stageo.dao.EtudiantCritereDAO;
 import com.stageo.dao.UtilisateurDAO;
 import com.stageo.dao.EtudiantDAO;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -34,6 +42,7 @@ public class ModifierProfilAction extends AbstractAction{
 
     @Override
     public String execute() {
+
         //Modifier le compte Utilisateur
         Utilisateur currentUser = (Utilisateur)request.getSession().getAttribute("utilisateur");
         UtilisateurDAO userDao = new UtilisateurDAO();
@@ -67,6 +76,24 @@ public class ModifierProfilAction extends AbstractAction{
                     }
                 }
                 if(critEtuDao.find(etuCrit)!=null && !verif){critEtuDao.delete(etuCrit);}
+            }
+            String cvVerif = request.getParameter("cvNom").trim();
+            if(!cvVerif.equals("")){
+                //Ajout du cv
+                CvDAO cvDao = new CvDAO();
+                Part filePart;
+                try {filePart = request.getPart("fichierCV");} catch (IOException | ServletException ex) {
+                    return "profil";
+                }
+
+                try(InputStream filecontent = filePart.getInputStream();){
+                        String idCv = UUID.randomUUID().toString();
+                        Cv cv = new Cv(idCv,filecontent,request.getParameter("cvNom"),"FR",0,currentUser.getIdUtilisateur(),java.sql.Date.valueOf(LocalDate.now()));
+                        cvDao.create(cv);
+
+                    } 
+                catch (IOException ex) {return "profil";}  
+            
             }
         }
         
