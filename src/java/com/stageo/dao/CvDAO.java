@@ -38,9 +38,10 @@ public class CvDAO extends Dao<Cv>{
             if(rs.next()){
                 Cv temp = new Cv();
                 temp.setIdCv(rs.getString("ID_CV"));
-                temp.setLien(rs.getBinaryStream("LIEN"));
+                temp.setFichier(rs.getBinaryStream("FICHIER"));
+                temp.setLien(rs.getString("LIEN"));
                 temp.setLangue(rs.getString("LANGUE"));
-                temp.setNbVues(rs.getInt("NBVUES"));
+                temp.setNbVues(rs.getInt("NB_VUES"));
                 temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
                 temp.setDate(rs.getDate("DATE"));
                 return temp;
@@ -59,7 +60,8 @@ public class CvDAO extends Dao<Cv>{
             if(rs.next()){
                 Cv temp = new Cv();
                 temp.setIdCv(rs.getString("ID_CV"));
-                temp.setLien(rs.getBinaryStream("LIEN"));
+                temp.setFichier(rs.getBinaryStream("FICHIER"));
+                temp.setLien(rs.getString("LIEN"));
                 temp.setLangue(rs.getString("LANGUE"));
                 temp.setNbVues(rs.getInt("NB_VUES"));
                 temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
@@ -71,41 +73,40 @@ public class CvDAO extends Dao<Cv>{
     }
     @Override
     public boolean create(Cv o) {
-        if(this.findById(o.getIdCv())==null){ //Si le cv n'existe pas
-            try{
-                String requete = "INSERT INTO `cv` "
-                        + "(`ID_CV`, `LIEN`, `LANGUE`, `NBVUES`, `ID_ETUDIANT`, `DATE`) "
-                        + "VALUES (?, ?, ?, ?, ?, ?)";
-                PreparedStatement requeteParam = cnx.prepareStatement(requete);
+        try{
+            String requete = "INSERT INTO `cv` "
+                    + "(`ID_CV`, `FICHIER`, `LIEN`, `LANGUE`, `NB_VUES`, `ID_ETUDIANT`, `DATE`) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
 
-                requeteParam.setString(1, o.getIdCv());
-                requeteParam.setBinaryStream(2, o.getLien());
-                requeteParam.setString(3, o.getLangue());
-                requeteParam.setInt(4, o.getNbVues());
-                requeteParam.setString(5, o.getIdEtudiant());
-                requeteParam.setDate(6, (Date) o.getDate());
-                requeteParam.executeUpdate();
-                return true;
-            }catch(SQLException e){return false;}
-        }
-        return false;
+            requeteParam.setString(1, o.getIdCv());
+            requeteParam.setBinaryStream(2, o.getFichier());
+            requeteParam.setString(3, o.getLien());
+            requeteParam.setString(4, o.getLangue());
+            requeteParam.setInt(5, o.getNbVues());
+            requeteParam.setString(6, o.getIdEtudiant());
+            requeteParam.setDate(7, (Date) o.getDate());
+            requeteParam.executeUpdate();
+            return true;
+        }catch(SQLException e){return false;}
     }
     
     @Override
     public boolean update(Cv o) {
         try{
             String requete = "UPDATE `cv` "
-                    + "SET `ID_CV` = ?, `LIEN` = ?, "
-                    + "`LANGUE` = ?, `NBVUES` = ?, `ID_ETUDIANT` = ?, "
+                    + "SET `ID_CV` = ?, `LIEN` = ?, `FICHIER` = ?"
+                    + "`LANGUE` = ?, `NB_VUES` = ?, `ID_ETUDIANT` = ?, "
                     + "`DATE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete);
 
             requeteParam.setString(1, o.getIdCv());
-            requeteParam.setBinaryStream(2, o.getLien());
-            requeteParam.setString(3, o.getLangue());
-            requeteParam.setInt(4, o.getNbVues());
-            requeteParam.setString(5, o.getIdEtudiant());
-            requeteParam.setDate(6, (Date) o.getDate());
+            requeteParam.setBinaryStream(2, o.getFichier());
+            requeteParam.setString(3, o.getLien());
+            requeteParam.setString(4, o.getLangue());
+            requeteParam.setInt(5, o.getNbVues());
+            requeteParam.setString(6, o.getIdEtudiant());
+            requeteParam.setDate(7, (Date) o.getDate());
             requeteParam.executeUpdate();
             return true;
         }catch(SQLException e){return false;}
@@ -132,9 +133,10 @@ public class CvDAO extends Dao<Cv>{
             while (rs.next()){
                 Cv temp = new Cv();
                 temp.setIdCv(rs.getString("ID_CV"));
-                temp.setLien(rs.getBinaryStream("LIEN"));
+                temp.setFichier(rs.getBinaryStream("FICHIER"));
+                temp.setLien(rs.getString("LIEN"));
                 temp.setLangue(rs.getString("LANGUE"));
-                temp.setNbVues(rs.getInt("NBVUES"));
+                temp.setNbVues(rs.getInt("NB_VUES"));
                 temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
                 temp.setDate(rs.getDate("DATE"));
 
@@ -154,7 +156,8 @@ public class CvDAO extends Dao<Cv>{
             while (rs.next()){
                 Cv temp = new Cv();
                 temp.setIdCv(rs.getString("ID_CV"));
-                temp.setLien(rs.getBinaryStream("LIEN"));
+                temp.setFichier(rs.getBinaryStream("FICHIER"));
+                temp.setLien(rs.getString("LIEN"));
                 temp.setLangue(rs.getString("LANGUE"));
                 temp.setNbVues(rs.getInt("NB_VUES"));
                 temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));

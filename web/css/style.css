@@ -391,9 +391,6 @@
 .informationEtu{
     padding:1em;
 }
-.informationEtu #cvNom{
-    background-color: white;
-}
 .informationEtu .competence alert alert-info{
     padding: 5px 8px 5px 8px;
 }
@@ -402,6 +399,17 @@
 }
 .informationEtu #conteneurCompetencesEdit{
     height: 8em;
+}
+.informationEtu .col-centered{
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+    text-align: center;
+    background-color: #ccc;
+    border: 1px solid #ddd;
 }
 
 /** ====== page : messagerie.jsp ====== */

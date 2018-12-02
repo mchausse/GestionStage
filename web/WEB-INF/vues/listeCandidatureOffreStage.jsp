@@ -57,7 +57,7 @@
                                         <c:forEach var="candidature" items="${candidatureDAO.findByIdOffre(offreStage.getIdOffre())}">
                                             <c:set var="etudiant" value="${utilisateurDAO.findById(candidature.getCandidaturePK().getIdEtudiant())}" />
                                             
-                                            <tr onclick="info('${etudiant.getPrenom()}','${etudiant.getNom()}','<c:forEach var="critere" items="${etudiantCritereDAO.findByIdEtudiant(etudiant.getIdUtilisateur())}">${critereDAO.findById(critere.getEtudiantcriterePK().getIdCritere()).getNom()},</c:forEach>','<c:forEach var="cv" items="${cvDAO.findAllByIdEtudiant(candidature.getCandidaturePK().getIdEtudiant())}">${cv.getIdCv()},${cv.getLangue()},</c:forEach>')" id="${candidature.getCandidaturePK().getIdEtudiant()}" class="etu">
+                                            <tr onclick="info('${etudiant.getPrenom()}','${etudiant.getNom()}','<c:forEach var="critere" items="${etudiantCritereDAO.findByIdEtudiant(etudiant.getIdUtilisateur())}">${critereDAO.findById(critere.getEtudiantcriterePK().getIdCritere()).getNom()},</c:forEach>','<c:forEach var="cv" items="${cvDAO.findAllByIdEtudiant(candidature.getCandidaturePK().getIdEtudiant())}">${cv.getIdCv()},${cv.getLien()},${cv.getLangue()},</c:forEach>')" id="${candidature.getCandidaturePK().getIdEtudiant()}" class="etu">
                                                 <td>${etudiant.getPrenom()} ${etudiant.getNom()}</td>
                                                 <td>${candidature.getDate()}</td>
                                             </tr>
@@ -153,8 +153,8 @@
                                     '<select class="form-control comptv" name="cvId">'+
                                         '<option value="choisir" id="cacher" selected disabled>Choisir un CV</option>';
                                         if(listecomp.length > 1){
-                                            for(i =0;i+1<listecv.length;i+=2){
-                                                text += '<option value="'+listecv[i]+'">'+listecv[i+1]+'</option>';
+                                            for(i =0;i+1<listecv.length;i+=3){
+                                                text += '<option value="'+listecv[i]+'">'+listecv[i+1]+' | '+listecv[i+2]+'</option>';
                                             }
                                         }
                                         else{

@@ -34,10 +34,12 @@ import com.stageo.controleur.SelectionnerMessageAction;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@MultipartConfig    //Nécessaire pour que la servlet puisse accéder au fichier attaché.
 public class ControleurFrontal extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

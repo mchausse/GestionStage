@@ -17,8 +17,8 @@ import javax.servlet.http.Part;
 public class Cv {
 
     private String idCv;
-    private Part fichier;
-    private InputStream lien;
+    private InputStream fichier;
+    private String lien;
     private String langue;
     private int nbVues;
     private String idEtudiant;
@@ -30,7 +30,8 @@ public class Cv {
         this.idCv = idCv;
     }
 
-    public Cv(String idCv,InputStream lien, String langue, int nbVues, String idEtudiant, Date date) {
+
+    public Cv(String idCv, InputStream fichier, String lien, String langue, int nbVues, String idEtudiant, Date date) {
         this.idCv = idCv;
         this.fichier = fichier;
         this.lien = lien;
@@ -48,20 +49,19 @@ public class Cv {
         this.idCv = idCv;
     }
 
-    public Part getFichier() {
+    public InputStream getFichier() {
         return fichier;
     }
 
-    public void setFichier(Part fichier) {
+    public void setFichier(InputStream fichier) {
         this.fichier = fichier;
     }
-    
 
-    public InputStream getLien() {
+    public String getLien() {
         return lien;
     }
 
-    public void setLien(InputStream lien) {
+    public void setLien(String lien) {
         this.lien = lien;
     }
     
