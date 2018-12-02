@@ -7,6 +7,7 @@ package com.stageo.dao;
 
 import com.stageo.beans.OffreStage;
 import com.stageo.singleton.Connexion;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,7 +43,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
             requeteParam.setInt(6, x.getDureeEnJours());
             requeteParam.setInt(7, (x.getRemunere())?1:0);
             requeteParam.setString(8, x.getLienWeb());
-            requeteParam.setString(9, x.getLienDocument());
+            requeteParam.setBinaryStream(9, x.getLienDocument());
             requeteParam.setDate(10, new java.sql.Date(x.getDate().getTime()));
             requeteParam.setInt(11, x.getNbVues());
             requeteParam.setInt(12, (x.getActive())?1:0);
@@ -74,7 +75,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
                 o.setRemunere(rs.getInt("REMUNERE")==1); 
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
-                o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
+                o.setLienDocument(rs.getBinaryStream("LIEN_DOCUMENT"));
                 o.setDate(rs.getDate("DATE"));
                 o.setNbVues(rs.getInt("NB_VUES"));
                 o.setActive(rs.getInt("ACTIVE")==1);
@@ -107,7 +108,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
                 o.setRemunere(rs.getInt("REMUNERE")==1);
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
-                o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
+                o.setLienDocument(rs.getBinaryStream("LIEN_DOCUMENT"));
                 o.setDate(rs.getDate("DATE"));
                 o.setNbVues(rs.getInt("NB_VUES"));
                 o.setActive(rs.getInt("ACTIVE")==1);
@@ -140,7 +141,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
             requeteParam.setInt(6, x.getDureeEnJours());
             requeteParam.setInt(7, (x.getRemunere())?1:0);
             requeteParam.setString(8, x.getLienWeb());
-            requeteParam.setString(9, x.getLienDocument());
+            requeteParam.setBinaryStream(9, x.getLienDocument());
             requeteParam.setDate(10, new java.sql.Date(x.getDate().getTime()));
             requeteParam.setInt(11, x.getNbVues());
             requeteParam.setInt(12, (x.getActive())?1:0);
@@ -206,7 +207,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
                 o.setRemunere(rs.getInt("REMUNERE")==1);
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
-                o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
+                o.setLienDocument(rs.getBinaryStream("LIEN_DOCUMENT"));
                 o.setDate(rs.getDate("DATE"));
                 o.setNbVues(rs.getInt("NB_VUES"));
                 o.setActive(rs.getInt("ACTIVE")==1);
@@ -238,7 +239,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
                 o.setRemunere(rs.getInt("REMUNERE")==1);
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
-                o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
+                o.setLienDocument(rs.getBinaryStream("LIEN_DOCUMENT"));
                 o.setDate(rs.getDate("DATE"));
                 o.setNbVues(rs.getInt("NB_VUES"));
                 o.setActive(rs.getInt("ACTIVE")==1);

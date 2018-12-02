@@ -8,22 +8,17 @@ import com.stageo.beans.Avertissement;
 import com.stageo.beans.OffreStage;
 import com.stageo.beans.Utilisateur;
 import com.stageo.dao.OffreStageDAO;
-import com.stageo.dao.OffreStageDocuDAO;
 import com.stageo.singleton.Connexion;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.util.Duration;
 import javax.servlet.ServletException;
 import javax.servlet.http.Part;
-
 
 
 /**
@@ -38,25 +33,16 @@ public class CreateOffreAction extends AbstractAction{
             OffreStage offreTemp = new OffreStage();
             String idOffre = UUID.randomUUID().toString();
             OffreStageDAO offreDao = new OffreStageDAO(Connexion.getInstance());
-            /*
-                private String idOffre; X
-                private String titre; X
-                private String description; X
-                private Date date; X
-                private Date dateDebut; X
-                private Date dateFin; X
-                private int dureeEnJours; X
-                private boolean remunere;
-                private String lienWeb; X
-                private String lienDocument; -------- A FAIRE LE CALICE
-                private int nbVues; X
-                private boolean active; X
-                private String idEmployeur; X
-            */
+
             //Date calcule
             DateTimeFormatter dFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate d1 = LocalDate.parse(request.getParameter("dateDebut"), dFormat);
             LocalDate d2 = LocalDate.parse(request.getParameter("dateFin"), dFormat);
+            if(!d1.isBefore(d2)){
+                Avertissement aver = new Avertissement("La date de depart doit être avant la date de fin.", "erreur");
+                request.getSession().setAttribute("avertissement", aver);
+                return "gestionOffresStagesVueEmployeur";
+            }
             long nbJours = ChronoUnit.DAYS.between(d1, d2);
             
             offreTemp.setIdOffre(idOffre);
@@ -82,19 +68,16 @@ public class CreateOffreAction extends AbstractAction{
             String idDocu = UUID.randomUUID().toString();
             filePart = request.getPart("docuStage");
             InputStream fileContent = filePart.getInputStream();
-            //Pas trouver encore de solution pour check que sa soit pas null / empty
-            OffreStageDocuDAO docuDao = new OffreStageDocuDAO();
-            docuDao.create(idOffre, idDocu, fileContent);
-            offreTemp.setLienDocument(idDocu);
-
+            offreTemp.setLienDocument(fileContent);
             offreDao.create(offreTemp);
+            
             Avertissement aver = new Avertissement("L'offre à été créé.", "succes");
             request.getSession().setAttribute("avertissement", aver);
             return "gestionOffresStagesVueEmployeur";
 
         } catch (IOException ex) {
             Logger.getLogger(CreateOffreAction.class.getName()).log(Level.SEVERE, null, ex);
-             Avertissement aver = new Avertissement(""+ex, "erreur");
+            Avertissement aver = new Avertissement(""+ex, "erreur");
             request.getSession().setAttribute("avertissement", aver);
             return ""+ex;
         } catch (ServletException ex) {

@@ -1,8 +1,7 @@
-<%-- 
-    Document   : gestionOffresStageEmployeur
-    Created on : 2018-11-27
-    Author     : gabri
---%>
+/*
+*
+* @author gabri
+*/
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.stageo.dao.UtilisateurDAO" %>
@@ -135,16 +134,6 @@
                                     <div class='row'>
                                         <!-- Premiere section de l'offre-->
                                         <div class="col-lg-4">
-                                        <!-- Style bootstrap
-                                            <div class="col-lg-3" style="margin-top:0.5em;">
-                                                Fichier:
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <label class="btn btn-default btn-file btnAnime">
-                                                    Parcourir <input type="file" style="display: none;" ccept="application/pdf" name="docuStage">
-                                                </label>
-                                            </div>
-                                        -->
                                             <input type="file" accept="application/pdf" name="docuStage">
                                         </div>
                                         <div class="col-lg-4">
@@ -163,7 +152,6 @@
                                          </div>
                                         <!-- Deuxieme section de l'offre-->
                                         <div class="col-lg-12">
-                                            <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
                                             Description
                                             <textarea class="form-control" rows="3" name="descStage"></textarea>
                                         </div>
@@ -297,9 +285,9 @@
                                     <div class='row'>
                                         <!-- Premiere section de l'offre-->
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 alignCenter">
-                                            <!--Document Affichage -->
-                                            <a href="${item.getLienDocument()}" id="${item.getIdOffre()}DocAff">
-                                                LienDocument.txt
+                                            <!--Document Affichage MARCHE PAS !!-->
+                                            <a target="_blank" href="do?action=readStageDocu&id=${item.getIdOffre()}" id="${item.getIdOffre()}DocAff">
+                                                Ouvrir Document...
                                             </a>
                                             <!--Document Edit -->
                                             <button type="file" id="${item.getIdOffre()}DocEdit" class="btn btn-primary btnAnime" style="display: none;">
@@ -308,7 +296,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 alignCenter">
                                             <!--Lien affichage -->
-                                            <a href="https://${item.getLienWeb()}" id="${item.getIdOffre()}SiteAff">
+                                            <a target="${item.getLienWeb()}.pdf" href="https://${item.getLienWeb()}" id="${item.getIdOffre()}SiteAff">
                                                 ${item.getLienWeb()}
                                             </a>
                                             <!--Lien Edit -->

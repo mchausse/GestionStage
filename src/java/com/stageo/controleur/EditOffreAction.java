@@ -26,35 +26,42 @@ public class EditOffreAction extends AbstractAction{
         OffreStageDAO offreDao = new OffreStageDAO();
         OffreStage offreTemp = offreDao.findById(idOffre);
         if(offreTemp!=null && offreTemp.getIdEmployeur().equals(currentUser.getIdUtilisateur())){ //Pour etre sur que cest le bon user
-            //Actif inactif
-            if("Active".equals(request.getParameter(idOffre+"ActiveEdit"))){
-                offreTemp.setActive(true);
-            }
-            else if("Inactive".equals(request.getParameter(idOffre+"ActiveEdit"))){
-                offreTemp.setActive(false);
-            }
-            else{
-                Avertissement aver = new Avertissement("Valeur de statut invalide.", "erreur");
-                request.getSession().setAttribute("avertissement", aver);
-                return "gestionOffresStagesVueEmployeur";
-            }
-            //Remuneré
-            if("Oui".equals(request.getParameter(idOffre+"RemunereEdit"))){
-                offreTemp.setRemunere(true);
-            }
-            else if("Non".equals(request.getParameter(idOffre+"RemunereEdit"))){
-                offreTemp.setRemunere(false);
-            }            
-            else{
-                Avertissement aver = new Avertissement("Valeur de rémunération invalide.", "erreur");
-                request.getSession().setAttribute("avertissement", aver);
-                return "gestionOffresStagesVueEmployeur";
-            }
             //Dates
             DateTimeFormatter dFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate d1 = LocalDate.parse(request.getParameter(idOffre+"DateDebutEdit"), dFormat);
             LocalDate d2 = LocalDate.parse(request.getParameter(idOffre+"DateFinEdit"), dFormat);
             long nbJours = ChronoUnit.DAYS.between(d1, d2);
+            if(!d1.isBefore(d2)){
+                Avertissement aver = new Avertissement("La date de depart doit être avant la date de fin.", "erreur");
+                request.getSession().setAttribute("avertissement", aver);
+                return "gestionOffresStagesVueEmployeur";
+            }
+            //Actif inactif
+            switch (request.getParameter(idOffre+"ActiveEdit")) {
+                case "Active":
+                    offreTemp.setActive(true);
+                    break;
+                case "Inactive":
+                    offreTemp.setActive(false);
+                    break;
+                default:
+                    Avertissement aver = new Avertissement("Valeur de statut invalide.", "erreur");
+                    request.getSession().setAttribute("avertissement", aver);
+                    return "gestionOffresStagesVueEmployeur";
+            }
+            //Remuneration
+            switch (request.getParameter(idOffre+"RemunereEdit")) {
+                case "Oui":
+                    offreTemp.setRemunere(true);
+                    break;
+                case "Non":
+                    offreTemp.setRemunere(false);
+                    break;
+                default:
+                    Avertissement aver = new Avertissement("Valeur de rémunération invalide.", "erreur");
+                    request.getSession().setAttribute("avertissement", aver);
+                    return "gestionOffresStagesVueEmployeur";
+            }
             
             offreTemp.setDureeEnJours(Math.toIntExact(nbJours));
             offreTemp.setDateDebut(java.sql.Date.valueOf(d1));
@@ -67,7 +74,6 @@ public class EditOffreAction extends AbstractAction{
             
             offreDao.update(offreTemp);
             return "gestionOffresStagesVueEmployeur";
-
         }
         else{
             Avertissement aver = new Avertissement("La tâche ne vous appartient pas ou elle n'existe pas.", "erreur");

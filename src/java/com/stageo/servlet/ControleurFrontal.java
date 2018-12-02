@@ -25,6 +25,7 @@ import com.stageo.controleur.EditOffreAction;
 import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
 import com.stageo.controleur.ModifierProfilAction;
+import com.stageo.controleur.ReadStageDocuAction;
 import com.stageo.controleur.SelectionnerMessageAction;
 
 
@@ -112,6 +113,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "editOffre":
                 action = new EditOffreAction();
+                break;
+            case "readStageDocu":
+                action = new ReadStageDocuAction();
                 break;
             default :
                 action = new DefaultAction();
