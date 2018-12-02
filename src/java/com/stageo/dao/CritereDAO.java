@@ -54,11 +54,7 @@ public class CritereDAO extends Dao<Critere>{
             if(rs.next()){
                 Critere temp = new Critere();
                 temp.setIdCritere(rs.getString("ID_CRITERE"));
-<<<<<<< HEAD
-                temp.setNom(rs.getString("NOM"));         
-=======
                 temp.setNom(rs.getString("NOM"));
->>>>>>> 555dc97dc664ea2227f31f7551c55c52f62f43b0
                 return temp;
             }
             return null;
@@ -74,11 +70,7 @@ public class CritereDAO extends Dao<Critere>{
             if(rs.next()){
                 Critere temp = new Critere();
                 temp.setIdCritere(rs.getString("ID_CRITERE"));
-<<<<<<< HEAD
-                temp.setNom(rs.getString("NOM"));         
-=======
                 temp.setNom(rs.getString("NOM"));
->>>>>>> 555dc97dc664ea2227f31f7551c55c52f62f43b0
                 return temp;
             }
             return null;
