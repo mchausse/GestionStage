@@ -35,7 +35,7 @@
 .sortBy:hover{
     color: #A6002B;
 }
-.divInfoEleve{
+.divInfoEleve2{
     background-color: #FAFAFA;
     border: solid 2px;
     border-color: #949494;
@@ -473,6 +473,34 @@
 }
 .btnAnime:hover{
     transform: scale(1.1, 1.1);
+}
+.compoff{
+    background: #cce6ff;
+    color: #4682b4;
+    border-color: #add8e6;
+    border: solid 0.1px;
+    border-radius: 8px;
+    height: 25px;
+    padding: 6px;
+}
+.divInfoEleve2{
+    background-color: #FAFAFA;
+    border: solid 2px;
+    border-color: #949494;
+    border-radius: 10px;
+    max-width: 100%;
+    text-align: center;
+    font-size: 15px;
+    padding: 1em;
+    transition: 0.5s;
+}
+
+.titreop{
+    font-size: 16px;
+    margin-left: 3px;
+}
+.buttonop{
+    margin-bottom: 10px;
 }
 .dateStage{
     margin-top:-0.5em;

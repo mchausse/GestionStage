@@ -5,6 +5,7 @@
  */
 package com.stageo.dao;
 
+import com.stageo.beans.Etudiantcritere;
 import com.stageo.beans.EtudiantcriterePK;
 import com.stageo.singleton.Connexion;
 import java.sql.Connection;
@@ -13,11 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author usager
- */
 public class EtudiantCritereDAO extends Dao<EtudiantcriterePK>{
     public EtudiantCritereDAO(){
         super(Connexion.getInstance());
@@ -49,6 +48,49 @@ public class EtudiantCritereDAO extends Dao<EtudiantcriterePK>{
     public EtudiantcriterePK findById(String id) {
         return null;
     }
+    //-----------------
+    public List<Etudiantcritere> findByIdCritere(String id) {
+        try{
+            List<Etudiantcritere> liste = new ArrayList();
+            String requete = "SELECT * FROM `etudiantcritere` WHERE `ID_CRITERE` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
+            
+            requeteParam.setString(1, id);
+            ResultSet rs = requeteParam.executeQuery();
+            while(rs.next()){
+                Etudiantcritere e = new Etudiantcritere();
+                e.setEtudiantcriterePK(new EtudiantcriterePK(rs.getString("ID_ETUDIANT"), rs.getString("ID_CRITERE")));
+                liste.add(e);
+            }
+            return liste;
+        }
+        catch(SQLException e){
+             Logger.getLogger(EtudiantCritereDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
+    
+    public List<Etudiantcritere> findByIdEtudiant(String id) {
+         try{
+            List<Etudiantcritere> liste = new ArrayList();
+            String requete = "SELECT * FROM `etudiantcritere` WHERE `ID_ETUDIANT` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
+            
+            requeteParam.setString(1, id);
+            ResultSet rs = requeteParam.executeQuery();
+            while(rs.next()){
+                Etudiantcritere e = new Etudiantcritere();
+                e.setEtudiantcriterePK(new EtudiantcriterePK(rs.getString("ID_ETUDIANT"), rs.getString("ID_CRITERE")));
+                liste.add(e);
+            }
+            return liste;
+        }
+        catch(SQLException e){
+             Logger.getLogger(EtudiantCritereDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
+    //-----------------
     @Override
     public boolean create(EtudiantcriterePK o) {
         if(this.find(o)==null){ //Si le critere n'existe pas
