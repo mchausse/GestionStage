@@ -40,7 +40,7 @@
     <%@include  file="menu.jsp" %>
         <div class="container">
             <div class="row row-centered offset-lg-1" id="bodyProfil" >
-                <form action="do?action=modifierProfil" method="post">
+                <form action="do?action=modifierProfil" method="post" enctype="multipart/form-data">
                     <div class="row row-centered" id="top">
                         <div class="col-lg-12 col-centered">
                             <div class="panel panel-default">
@@ -106,16 +106,16 @@
                                         <label for="listeCvUser">Cv : </label>
                                         <select class="form-control" id="listeCv" readonly>
                                             <c:forEach items="${listCv}"   var="cv"> 
-                                               <option>${cv.lien}</option>
+                                               <option>${cv.lien} <span class="glyphicon glyphicon-ok btnProfil" id="editConfirm"></span></option>
                                             </c:forEach> 
                                         </select>
                                         <div class="input-group" id="listeCv2" name="listeCvEdit" style="display: none;">
                                             <label class="input-group-btn">
                                                 <span class="btn btn-primary">
-                                                    Ajouter<input type="file" id="btnAjouterCv" name="fichierCV" class="form-control-file" style="display: none;" multiple  accept=".doc, .docx, application/pdf" size="50">
+                                                    Ajouter<input type="file" id="file" name="fichierCV" class="form-control-file" style="display: none;" accept=".doc, .docx, application/pdf" size="50">
                                                 </span>
                                             </label>
-                                            <input type="text" class="form-control" readonly id="cvNom">
+                                            <input type="text" class="form-control" id="cvNom" name="cvNom">
                                         </div>
                                         <br/>
                                         <div id="listeComp">
@@ -344,7 +344,7 @@
         }
     }
     //Ajout du nom du fichier dans l'input du cv
-    $('#btnAjouterCv').change(function () {
+    $('#file').change(function () {
         var fichier = [];
         for(var i = 0; i< $(this).get(0).files.length;++i){
             fichier.push($(this).get(0).files[i].name);  
@@ -353,7 +353,7 @@
             if(fichier.length > 1){$('#cvNom').val(fichier.length + " fichiers sélectionnés");}
             else{$('#cvNom').val(fichier);}        
         }
-        else{$('#cvNom').val("Aucun fichier sélectionné");}
+        else{$('#cvNom').val("");}
     });
      function ajouterComp(id){
         if(document.getElementById(id)=== null){
