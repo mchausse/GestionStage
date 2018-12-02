@@ -22,7 +22,7 @@
     <c:set var="user" value="${userDao.findById(sessionScope['utilisateur'].getIdUtilisateur())}" />
 </c:if>
 
-<c:if test="${ param.action=='modifierProfil'}" > <!-- eviter des bug -->
+<c:if test="${ param.action =='modifierProfil'}" > <!-- eviter des bug -->
     <c:redirect url = "do?action=afficherProfil"/>
 </c:if>
 <!DOCTYPE html>
@@ -96,29 +96,52 @@
                                         <h4> Infomation Étudiant</h4>
                                     </div>
                                     <div class="form-group informationEtu">
-                                        <label for="statutUser">Statut : </label>
-                                        <input type="text" class="form-control" id="statutUser"  value="${etu.getStatutRecherche()}" disabled />
-                                        <select class="form-control" id="statutUser2" name="statutEdit" style="display: none;">
-                                            <option>En Recherche</option>
-                                            <option>Non Disponible</option>
-                                        </select>
-                                        <br/>
-                                        <label for="listeCvUser">Cv : </label>
-                                        <select class="form-control" id="listeCv" readonly>
-                                            <c:forEach items="${listCv}"   var="cv"> 
-                                               <option>${cv.lien} <span class="glyphicon glyphicon-ok btnProfil" id="editConfirm"></span></option>
-                                            </c:forEach> 
-                                        </select>
-                                        <div class="input-group" id="listeCv2" name="listeCvEdit" style="display: none;">
-                                            <label class="input-group-btn">
-                                                <span class="btn btn-primary">
-                                                    Ajouter<input type="file" id="file" name="fichierCV" class="form-control-file" style="display: none;" accept=".doc, .docx, application/pdf" size="50">
-                                                </span>
-                                            </label>
-                                            <input type="text" class="form-control" id="cvNom" name="cvNom">
+                                        <div class="row infoEtuRow">
+                                            <label for="statutUser">Statut : </label>
+                                            <input type="text" class="form-control" id="statutUser"  value="${etu.getStatutRecherche()}" disabled />
+                                            <select class="form-control" id="statutUser2" name="statutEdit" style="display: none;">
+                                                <option>En Recherche</option>
+                                                <option>Non Disponible</option>
+                                            </select>
                                         </div>
-                                        <br/>
-                                        <div id="listeComp">
+                                        <div class="row infoEtuRow" id="listeCv">
+                                            <label>Cv : </label>
+                                            <div class="btn-group">
+                                                <span class="glyphicon glyphicon-chevron-down dropdown-toggle" data-toggle="dropdown"></span>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <c:forEach items="${listCv}"   var="cv"> 
+                                                       <li>${cv.lien}</li>
+                                                    </c:forEach> 
+                                                </ul>  
+                                            </div>
+                                        </div>
+                                        <div class="row infoEtuRow" id="listeCv2" style="display: none;">
+                                            <label>Cv : </label>
+                                            <div class="btn-group">
+                                                <span class="glyphicon glyphicon-chevron-down dropdown-toggle" data-toggle="dropdown"></span>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <c:forEach items="${listCv}" var="cv">
+                                                       <li id="${cv.lien}">${cv.lien}<span class="glyphicon glyphicon-remove iconList" onclick='enleverCv("${cv.lien}")'></span>
+                                                           <input class="form-control" type="hidden" name="${cv.lien}">
+                                                       </li>
+                                                    </c:forEach> 
+                                                </ul>  
+                                            </div>
+                                            <div class="input-group" name="listeCvEdit">
+                                                <label class="input-group-btn">
+                                                    <span class="btn btn-primary">
+                                                        Ajouter<input type="file" id="file" name="fichierCV" class="form-control-file" style="display: none;" accept=".doc, .docx, application/pdf" size="50">
+                                                    </span>
+                                                </label>
+                                                <input type="text" class="form-control" id="cvNom" name="cvNom">
+                                                <span class="input-group-addon">Langue:</span>
+                                                <select class="form-control" name="langueEdit">
+                                                    <option>Fran&#231ais</option>
+                                                    <option>Anglais</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div id="listeComp" class="row infoEtuRow">
                                             <label for="conteneurCompetences">Compétences : <span class='competence alert alert-info'>${listCritByEtu.size()}</span></label>
                                             <div  class="panel panel-default" id="conteneurCompetences">
                                                 <div class="panel-body">
@@ -129,7 +152,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="listeComp2" name="listeCompEdit" style="display: none;">
+                                        <div class="row infoEtuRowComp" id="listeComp2" name="listeCompEdit" style="display: none;">
                                             <label for="conteneurCompetences">Compétences :</label>
                                             <div class="btn-group">
                                                 <span class="glyphicon glyphicon-plus dropdown-toggle" data-toggle="dropdown"></span>
@@ -362,6 +385,9 @@
         }
     }
     function enleverCompetence(id){
+        document.getElementById(id).remove();   
+    }
+    function enleverCv(id){
         document.getElementById(id).remove();
         
     }

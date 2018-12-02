@@ -71,6 +71,27 @@ public class CvDAO extends Dao<Cv>{
             return null;
         }catch(SQLException e){return new Cv(""+e);} //Pour voir l'erreur
     }
+    public Cv findByName(String name) {
+        try{
+            String requete = "SELECT * FROM cv WHERE LIEN=?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            requeteParam.setString(1, name);
+            ResultSet rs = requeteParam.executeQuery();
+            
+            if(rs.next()){
+                Cv temp = new Cv();
+                temp.setIdCv(rs.getString("ID_CV"));
+                temp.setFichier(rs.getBinaryStream("FICHIER"));
+                temp.setLien(rs.getString("LIEN"));
+                temp.setLangue(rs.getString("LANGUE"));
+                temp.setNbVues(rs.getInt("NB_VUES"));
+                temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
+                temp.setDate(rs.getDate("DATE"));
+                return temp;
+            }
+            return null;
+        }catch(SQLException e){return new Cv(""+e);} //Pour voir l'erreur
+    }
     @Override
     public boolean create(Cv o) {
         try{

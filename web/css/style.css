@@ -400,16 +400,14 @@
 .informationEtu #conteneurCompetencesEdit{
     height: 8em;
 }
-.informationEtu .col-centered{
-    display:inline-block;
-    float:none;
-    /* reset the text-align */
-    text-align:left;
-    /* inline-block space fix */
-    margin-right:-4px;
-    text-align: center;
-    background-color: #ccc;
-    border: 1px solid #ddd;
+.infoEtuRow{
+    margin: 0 1em 1em 1em;
+}
+.infoEtuRowComp{
+    margin: 0 1em -10px 1em;
+}
+.informationEtu .iconList{
+    margin-left: 1em;
 }
 
 /** ====== page : messagerie.jsp ====== */
