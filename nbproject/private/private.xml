@@ -3,9 +3,53 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/web/WEB-INF/vues/profil.jsp</file>
             <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/src/java/com/stageo/controleur/ModifierProfilAction.java</file>
             <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/web/css/style.css</file>
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/web/WEB-INF/vues/profil.jsp</file>
+            <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/src/java/com/stageo/controleur/ModifierProfilAction.java</file>
+            <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/web/css/style.css</file>
+=======
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/profilOffreStage.jsp</file>
+>>>>>>> 9529ca05efe2266249d919d03f2bedb70e911b7a
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/candidatures.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/listeCandidatureOffreStage.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/beans/Candidature.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherListeCandidatureOffreStageAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherCandidatureAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/listeEtudiantsVueEmployeur.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/beans/Etudiantcritere.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/CvDAO.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/listeStagesVueEtudiant.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/singleton/Connexion.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/communications.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/beans/Etudiant.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/gestionOffresStagesVueEmployeur.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/CritereDAO.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/profilOffreStage.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/CandidatureDAO.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/beans/Utilisateur.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/beans/OffreStage.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/beans/EtudiantcriterePK.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/EtudiantCritereDAO.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherProfilOffreStageAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/profil.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/css/style.css</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/AfficherGestionOffresStagesVueEmployeurAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/menu.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/servlet/ControleurFrontal.java</file>
+<<<<<<< HEAD
+=======
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/CritereDAO.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/OffreStageCritereDAO.java</file>
+>>>>>>> 1087a71fe9da64f60606c73fad3df32cc48dc7d3
+>>>>>>> 9529ca05efe2266249d919d03f2bedb70e911b7a
+>>>>>>> 555dc97dc664ea2227f31f7551c55c52f62f43b0
         </group>
     </open-files>
 </project-private>

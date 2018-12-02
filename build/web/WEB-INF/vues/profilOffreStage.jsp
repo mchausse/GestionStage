@@ -49,64 +49,48 @@
                         <c:set var="compagnie" value="${compagnieDAO.findById(employeurDAO.findById(offreStage.getIdEmployeur()).getIdCompagnie())}" />
                         <div class='col-lg-6 col-xs-12'>
                             <label class='titreop'>Nom compagnie:</label>
-                            <div class="divInfoEleve2">
-                                ${compagnie.getNom()}
-                            </div>
+                                <input type="text" class="form-control" value="${compagnie.getNom()}" disabled />
                             <label class='titreop'>Nom employeur:</label>
-                            <div class="divInfoEleve2">
-                                ${employeur.getPrenom()} ${employeur.getNom()}
-                            </div>
+                                <input type="text" class="form-control" value="${employeur.getPrenom()} ${employeur.getNom()}" disabled />
                             <label class='titreop'>Description:</label>
-                            <div class="divInfoEleve2">
-                                ${offreStage.getDescription()}
-                            </div>
+                                <input type="text" class="form-control" value="${offreStage.getDescription()}" disabled /> 
                             <label class='titreop'>Critere:</label>
-                            <div class="divInfoEleve2">
-                                <c:if test="${offreStageCritereDAO.findByIdOffre(offreStage.getIdOffre()).size() == 0}">
-                                    Il n'y a pas de critères qui sont demandé pour cette offre !
-                                </c:if>
-                                <c:forEach var="offreCritere" items="${offreStageCritereDAO.findByIdOffre(offreStage.getIdOffre())}">
-                                    <c:set var="critere" value="${critereDAO.findById(offreCritere.getOffrestagecriterePK().getIdCritere())}" />
-                                    <span class='compoff'>${critere.getNom()}</span>
-                                </c:forEach>
+                            <div  class="panel panel-default">
+                                <div class="panel-body comptv">
+                                    <c:if test="${offreStageCritereDAO.findByIdOffre(offreStage.getIdOffre()).size() == 0}">
+                                        Il n'y a pas de critères qui sont demandé pour cette offre !
+                                    </c:if>
+                                    <c:forEach var="offreCritere" items="${offreStageCritereDAO.findByIdOffre(offreStage.getIdOffre())}">
+                                        <c:set var="critere" value="${critereDAO.findById(offreCritere.getOffrestagecriterePK().getIdCritere())}" />
+                                        <span class='compoff'>${critere.getNom()}</span>
+                                    </c:forEach>
+                                </div>
                             </div>
                         </div>
                         <div class='col-lg-6 col-xs-12 buttonop'>
                             <label class='titreop'>Date de début:</label>
-                            <div class="divInfoEleve2">
-                                ${offreStage.getDateDebut()}
-                            </div>
+                                <input type="text" class="form-control" value="${offreStage.getDateDebut()}" disabled />
                             <label class='titreop'>Date de fin:</label>
-                            <div class="divInfoEleve2">
-                                ${offreStage.getDateFin()}
-                            </div>
+                                <input type="text" class="form-control" value="${offreStage.getDateFin()}" disabled />
                             <label class='titreop'>Durée du stage:</label>
-                            <div class="divInfoEleve2">
-                                ${offreStage.getDureeEnJours()}
-                            </div>
+                                <input type="text" class="form-control" value="${offreStage.getDureeEnJours()}" disabled />
                             <label class='titreop'>Rémunere:</label>
-                            <div class="divInfoEleve2">
-                                ${(offreStage.getRemunere())?"Oui":"Non"}
-                            </div>
+                                <input type="text" class="form-control" value="${(offreStage.getRemunere())?"Oui":"Non"}" disabled />
                             <label class='titreop'>Lien web:</label>
-                            <div class="divInfoEleve2">
 
-                                <c:if test="${offreStage.getLienWeb()!=null}">
-                                        ${offreStage.getLienWeb()}
+                                <c:if test="${!(offreStage.getLienWeb() eq '')}">
+                                    <input type="text" class="form-control" value="${offreStage.getLienWeb()}" disabled />
                                 </c:if>
-                                <c:if test="${offreStage.getLienWeb()==null || offreStage.getLienWeb() eq '' }">
-                                        Il n'y a pas de document pour cette offre !
+                                <c:if test="${offreStage.getLienWeb() eq '' }">
+                                    <input type="text" class="form-control" value="Il n'y a pas de document pour cette offre !" disabled /> 
                                 </c:if>
-                            </div>
                             <label class='titreop'>Lien document:</label>
-                            <div class="divInfoEleve2">
-                                <c:if test="${offreStage.getLienDocument()!=null}">
-                                        ${offreStage.getLienDocument()}
+                                <c:if test="${!(offreStage.getLienDocument() eq '')}">
+                                    <input type="text" class="form-control" value="${offreStage.getLienDocument()}" disabled />
                                 </c:if>
-                                <c:if test="${offreStage.getLienDocument()==null || offreStage.getLienDocument() eq '' }">
-                                        Il n'y a pas de document pour cette offre !
+                                <c:if test="${offreStage.getLienDocument() eq '' }">
+                                    <input type="text" class="form-control" value="Il n'y a pas de document pour cette offre !" disabled /> 
                                 </c:if>
-                            </div>
                         </div>
                         <div class='row'>
                             <div>

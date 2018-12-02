@@ -508,3 +508,21 @@
     font-family: arial;
     color:black;
 }
+
+.selecte{
+    color: blue;
+    font-weight: bold;
+}
+.comptv{
+    background-color: #EEEEEE;
+}
+#acccan{
+    float: left;
+}
+#supcan{
+    float: right;
+}
+
+#cacher{
+    display:none;
+}
