@@ -216,7 +216,8 @@ public class OffreStageDAO extends Dao<OffreStage> {
         }
         return null;
     }
-        public List<OffreStage> findByUserId(String id) {
+    
+    public List<OffreStage> findByUserId(String id) {
         try{
             List<OffreStage> liste = new ArrayList();
             String requete = "SELECT * FROM `offrestage` WHERE ID_EMPLOYEUR=?";

@@ -5,11 +5,8 @@
  */
 package com.stageo.dao;
 
-import com.stageo.beans.Etudiant;
 import com.stageo.beans.Etudiantcritere;
 import com.stageo.beans.EtudiantcriterePK;
-import com.stageo.beans.Offrestagecritere;
-import com.stageo.beans.OffrestagecriterePK;
 import com.stageo.singleton.Connexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,27 +17,38 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Max
- */
-public class EtudiantCritereDAO extends Dao<Etudiantcritere> {
+public class EtudiantCritereDAO extends Dao<EtudiantcriterePK>{
     public EtudiantCritereDAO(){
         super(Connexion.getInstance());
+    } 
+    
+    public EtudiantCritereDAO(Connection c) {
+        super(c);
     }
-    public EtudiantCritereDAO(Connection cnx) {
-        super(cnx);
-    }
-
+    
     @Override
-    public boolean create(Etudiantcritere x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public EtudiantcriterePK find(EtudiantcriterePK o) {
+        try{
+            String requete = "SELECT * FROM etudiantcritere WHERE ID_ETUDIANT=? AND ID_CRITERE=?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            requeteParam.setString(1, o.getIdEtudiant());
+            requeteParam.setString(2, o.getIdCritere());
+            ResultSet rs = requeteParam.executeQuery();
+            
+            if(rs.next()){
+                EtudiantcriterePK temp = new EtudiantcriterePK();
+                temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
+                temp.setIdCritere(rs.getString("ID_CRITERE"));
+                return temp;
+            }
+            return null;
+        }catch(SQLException e){return null;}
     }
-
     @Override
-    public Etudiantcritere findById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public EtudiantcriterePK findById(String id) {
+        return null;
     }
+    //-----------------
     public List<Etudiantcritere> findByIdCritere(String id) {
         try{
             List<Etudiantcritere> liste = new ArrayList();
@@ -82,24 +90,73 @@ public class EtudiantCritereDAO extends Dao<Etudiantcritere> {
         }
         return null;
     }
+    //-----------------
     @Override
-    public Etudiantcritere find(Etudiantcritere o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public boolean create(EtudiantcriterePK o) {
+        if(this.find(o)==null){ //Si le critere n'existe pas
+            try{
+                String requete = "INSERT INTO `etudiantcritere`"
+                        + "(`ID_ETUDIANT`, `ID_CRITERE`) "
+                        + "VALUES (?, ?)";
+                PreparedStatement requeteParam = cnx.prepareStatement(requete);
 
-    @Override
-    public boolean update(Etudiantcritere x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                requeteParam.setString(1, o.getIdEtudiant());
+                requeteParam.setString(2, o.getIdCritere());
+                requeteParam.executeUpdate();
+                return true;
+            }catch(SQLException e){return false;}
+        }
+        return false;
     }
+    @Override
+    public boolean update(EtudiantcriterePK o) {
+        return false;
+    }
+    @Override
+    public boolean delete(EtudiantcriterePK o) {
+        try{
+            String requete = "DELETE FROM etudiantcritere WHERE ID_ETUDIANT=? AND ID_CRITERE=?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            
+            requeteParam.setString(1,o.getIdEtudiant());
+            requeteParam.setString(2,o.getIdCritere());
+            requeteParam.executeUpdate();
+            return true;
+        }catch(SQLException e){return false;}
+    }
+    @Override
+    public List<EtudiantcriterePK> findAll() {
+        try{
+            List<EtudiantcriterePK> liste = new ArrayList();
+            String requete = "SELECT * FROM `etudiantcritere`";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            
+            ResultSet rs = requeteParam.executeQuery();
+            while (rs.next()){
+                EtudiantcriterePK temp = new EtudiantcriterePK();
+                temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
+                temp.setIdCritere(rs.getString("ID_CRITERE"));
 
-    @Override
-    public boolean delete(Etudiantcritere x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                liste.add(temp);
+            }
+            return liste;
+        }catch(SQLException e){return null;}
     }
+    public List<EtudiantcriterePK> findAllByIdEtudiant(String id) {
+        try{
+            List<EtudiantcriterePK> liste = new ArrayList();
+            String requete = "SELECT * FROM `etudiantcritere` WHERE ID_ETUDIANT=?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            requeteParam.setString(1,id);
+            ResultSet rs = requeteParam.executeQuery();
+            while (rs.next()){
+                EtudiantcriterePK temp = new EtudiantcriterePK();
+                temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
+                temp.setIdCritere(rs.getString("ID_CRITERE"));
 
-    @Override
-    public List<Etudiantcritere> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                liste.add(temp);
+            }
+            return liste;
+        }catch(SQLException e){return null;}
     }
-   
 }

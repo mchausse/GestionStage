@@ -357,6 +357,10 @@
     }
 }
 /** ====== page : profil.jsp ====== */
+#bodyProfil{
+    margin-top: 10em;
+    
+}
 .btnProfil{
     text-decoration: none;
     float: right; 
@@ -383,6 +387,21 @@
     background-color: #dbdbdb;
     transform: scale(1.1, 1.1);
 
+}
+.informationEtu{
+    padding:1em;
+}
+.informationEtu #cvNom{
+    background-color: white;
+}
+.informationEtu .competence alert alert-info{
+    padding: 5px 8px 5px 8px;
+}
+.informationEtu #conteneurCompetences{
+    background-color: #EEEEEE;
+}
+.informationEtu #conteneurCompetencesEdit{
+    height: 8em;
 }
 
 /** ====== page : messagerie.jsp ====== */
@@ -425,18 +444,20 @@
     margin-top:1em;
 }
 .btnPostuler{
-    margin:1em 1em 1em 1em;
+    margin:6em 0em 1em 0em;
 }
 .bodyOffre{
     padding:1em 0em 0em 0em;
 }
 .uneOffre{
-    margin-bottom: 2em;
-    min-height: 16em;
-    max-height: 16em;
+    margin:1em 0em 8em 0em;
+    min-height: 15em;
+    max-height: 15em;
 }
 .descOffre{
-    height:2em;
+    height:3em;
+    margin-top:0.5em;
+    margin-bottom:1em;
 }
 /** ====== page : gestionOffreStageVueEmployeur.jsp ====== */
 .btnAnime{
@@ -472,4 +493,12 @@
 }
 .buttonop{
     margin-bottom: 10px;
+}
+.dateStage{
+    margin-top:-0.5em;
+    margin-bottom:0.5em;
+}
+.lienOffre{
+    font-family: arial;
+    color:black;
 }

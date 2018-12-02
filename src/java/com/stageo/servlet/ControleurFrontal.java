@@ -23,9 +23,11 @@ import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
 import com.stageo.controleur.DeleteOffreAction;
+import com.stageo.controleur.EnvoyerCandidatureAction;
 import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
 import com.stageo.controleur.ModifierProfilAction;
+import com.stageo.controleur.RechercheParCritereAction;
 import com.stageo.controleur.SelectionnerMessageAction;
 
 
@@ -113,6 +115,12 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherProfilOffreStage":
                 action = new AfficherProfilOffreStageAction();
+                break;
+            case "envoyerCandidature":
+                action = new EnvoyerCandidatureAction();
+                break;
+            case "rechercheParCritere":
+                action = new RechercheParCritereAction();
                 break;
             default :
                 action = new DefaultAction();

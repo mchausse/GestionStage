@@ -131,7 +131,7 @@
                         </c:if>
                     </c:if>
                     <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Coordonnateur'}">
-                        <c:if test="${ candidatureDAO.findByIdEtudiant(sessionScope['utilisateur'].getIdUtilisateur())!=null}">
+                        <c:if test="${ candidatureDAO.findAll().size()>0}">
                             <thead class="titreTableCandidature">
                                 <tr>
                                     <td>Compagnie <a href="#" class="fa fa-arrows-alt-v"></a></td>
@@ -160,7 +160,7 @@
                                 </c:forEach>
                             </tbody>
                         </c:if>
-                        <c:if test="${ candidatureDAO.findByIdEtudiant(sessionScope['utilisateur'].getIdUtilisateur())==null}">
+                        <c:if test="${ candidatureDAO.findAll().size()<=0}">
                             <thead class="titreTableCandidature">
                                 <tr>
                                     <td>Compagnie <a href="#" class="fa fa-arrows-alt-v"></a></td>

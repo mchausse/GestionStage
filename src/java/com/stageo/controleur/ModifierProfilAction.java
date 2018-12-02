@@ -9,12 +9,22 @@ import com.stageo.beans.Adresse;
 import com.stageo.beans.Employeur;
 import com.stageo.beans.Etudiant;
 import com.stageo.beans.Compagnie;
+import com.stageo.beans.Critere;
+import com.stageo.beans.EtudiantcriterePK;
 import com.stageo.beans.Utilisateur;
 import com.stageo.dao.AdresseDAO;
 import com.stageo.dao.CompagnieDAO;
+import com.stageo.dao.CritereDAO;
 import com.stageo.dao.EmployeurDAO;
+import com.stageo.dao.EtudiantCritereDAO;
 import com.stageo.dao.UtilisateurDAO;
 import com.stageo.dao.EtudiantDAO;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import javax.servlet.ServletException;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -36,14 +46,30 @@ public class ModifierProfilAction extends AbstractAction{
         userTemp.setIdUtilisateur(currentUser.getIdUtilisateur());
         userTemp.setMotDePasse(currentUser.getMotDePasse());
         userDao.update(userTemp);
-        
         //Modifier le compte de l'élève
         if("Etudiant".equals(currentUser.getTypeUtilisateur())){
             EtudiantDAO etuDao = new EtudiantDAO();
             Etudiant etuTemp = etuDao.findById(currentUser.getIdUtilisateur());
             etuTemp.setStatutRecherche(request.getParameter("statutEdit"));
             etuDao.update(etuTemp);
+            //Ajout de compétence
+            EtudiantCritereDAO critEtuDao = new EtudiantCritereDAO();
+            CritereDAO critDao = new CritereDAO();
+            List<Critere> critList = critDao.findAll();
+            List<String> parameterNames = new ArrayList<>(request.getParameterMap().keySet());
+            for(Critere crit : critList){
+                boolean verif = false;
+                EtudiantcriterePK etuCrit = new EtudiantcriterePK(currentUser.getIdUtilisateur(),crit.getIdCritere());
+                for(String name : parameterNames){
+                    if(name.equals(crit.getNom())){
+                        if(critEtuDao.find(etuCrit)==null){critEtuDao.create(etuCrit);}
+                        verif = true;
+                    }
+                }
+                if(critEtuDao.find(etuCrit)!=null && !verif){critEtuDao.delete(etuCrit);}
+            }
         }
+        
         //Modifier le compte Employeur
         else if("Employeur".equals(currentUser.getTypeUtilisateur())){
             EmployeurDAO empDao = new EmployeurDAO();

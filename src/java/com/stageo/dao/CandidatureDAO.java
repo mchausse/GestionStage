@@ -23,9 +23,8 @@ import java.util.logging.Logger;
  * @author Max
  */
 public class CandidatureDAO extends Dao<Candidature>{
-    public CandidatureDAO(){
-        super(Connexion.getInstance());
-    }
+    
+    public CandidatureDAO(){super(Connexion.getInstance());}
     public CandidatureDAO(Connection cnx) {
         super(cnx);
     }
@@ -87,12 +86,13 @@ public class CandidatureDAO extends Dao<Candidature>{
                 c.setStatut(rs.getString("STATUT"));
                 liste.add(c);
             }
+            if(liste.size()<1)return null;
             return liste;
         }
         catch(SQLException e){
-             Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
         }
-        return null;
     }
     
     public List<Candidature> findByIdOffre(String id) {
@@ -208,4 +208,20 @@ public class CandidatureDAO extends Dao<Candidature>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public boolean exists(String idUtilisateur, String idCandidature) {
+        try{
+            String requete = "SELECT * FROM `candidature` WHERE `ID_OFFRE` = ? AND ID_ETUDIANT = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
+            
+            requeteParam.setString(1, idCandidature);
+            requeteParam.setString(2, idUtilisateur);
+            System.out.println(requeteParam);
+            ResultSet rs = requeteParam.executeQuery();
+            return rs.first();
+        }
+        catch(SQLException e){
+             Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return false;
+    }
 }

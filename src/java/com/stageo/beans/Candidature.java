@@ -5,6 +5,7 @@
  */
 package com.stageo.beans;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -80,6 +81,11 @@ public class Candidature {
     @Override
     public String toString() {
         return "com.stageo.modele.Candidature[ candidaturePK=" + candidaturePK + " ]";
+    }
+    public String getDateStr() {
+        Date dateCand = this.date;
+        SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy");
+        return ft.format(dateCand);
     }
     
 }
