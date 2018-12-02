@@ -126,7 +126,7 @@
                                                 <input type="text" class="form-control" id="nom" placeholder="Titre" name="titreStage" required>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">Statut : Creation</div>
+                                        <div class="col-lg-3"><b>Statut :</b> Creation</div>
                                     </div>
                                 </div>
 
@@ -215,7 +215,7 @@
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"> <!--Affiche le Active -->
                                             <div id="${item.getIdOffre()}ActiveAff">
-                                                Statut : 
+                                                <b>Statut :</b> 
                                                 <c:if test="${item.getActive() eq true}">
                                                     Active
                                                 </c:if>

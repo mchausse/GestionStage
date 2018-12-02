@@ -62,7 +62,6 @@ public class EditOffreAction extends AbstractAction{
                     request.getSession().setAttribute("avertissement", aver);
                     return "gestionOffresStagesVueEmployeur";
             }
-            
             offreTemp.setDureeEnJours(Math.toIntExact(nbJours));
             offreTemp.setDateDebut(java.sql.Date.valueOf(d1));
             offreTemp.setDateFin(java.sql.Date.valueOf(d2));
