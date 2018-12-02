@@ -6,6 +6,7 @@
 package com.stageo.beans;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.Date;
 import javax.servlet.http.Part;
 
@@ -17,7 +18,7 @@ public class Cv {
 
     private String idCv;
     private Part fichier;
-    private String lien;
+    private InputStream lien;
     private String langue;
     private int nbVues;
     private String idEtudiant;
@@ -29,7 +30,7 @@ public class Cv {
         this.idCv = idCv;
     }
 
-    public Cv(String idCv, Part fichier, String lien, String langue, int nbVues, String idEtudiant, Date date) {
+    public Cv(String idCv,InputStream lien, String langue, int nbVues, String idEtudiant, Date date) {
         this.idCv = idCv;
         this.fichier = fichier;
         this.lien = lien;
@@ -56,11 +57,11 @@ public class Cv {
     }
     
 
-    public String getLien() {
+    public InputStream getLien() {
         return lien;
     }
 
-    public void setLien(String lien) {
+    public void setLien(InputStream lien) {
         this.lien = lien;
     }
     

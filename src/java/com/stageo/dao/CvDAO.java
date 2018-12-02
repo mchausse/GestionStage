@@ -30,7 +30,7 @@ public class CvDAO extends Dao<Cv>{
     @Override
     public Cv find(Cv o) {
         try{
-            String requete = "SELECT * FROM cv WHERE ID_CV=?";
+            String requete = "SELECT * FROM `cv` WHERE ID_CV=?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete);
             requeteParam.setString(1, o.getIdCv());
             ResultSet rs = requeteParam.executeQuery();
@@ -38,7 +38,7 @@ public class CvDAO extends Dao<Cv>{
             if(rs.next()){
                 Cv temp = new Cv();
                 temp.setIdCv(rs.getString("ID_CV"));
-                temp.setLien(rs.getString("LIEN"));
+                temp.setLien(rs.getBinaryStream("LIEN"));
                 temp.setLangue(rs.getString("LANGUE"));
                 temp.setNbVues(rs.getInt("NBVUES"));
                 temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
@@ -59,9 +59,9 @@ public class CvDAO extends Dao<Cv>{
             if(rs.next()){
                 Cv temp = new Cv();
                 temp.setIdCv(rs.getString("ID_CV"));
-                temp.setLien(rs.getString("LIEN"));
+                temp.setLien(rs.getBinaryStream("LIEN"));
                 temp.setLangue(rs.getString("LANGUE"));
-                temp.setNbVues(rs.getInt("NBVUES"));
+                temp.setNbVues(rs.getInt("NB_VUES"));
                 temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
                 temp.setDate(rs.getDate("DATE"));
                 return temp;
@@ -79,7 +79,7 @@ public class CvDAO extends Dao<Cv>{
                 PreparedStatement requeteParam = cnx.prepareStatement(requete);
 
                 requeteParam.setString(1, o.getIdCv());
-                requeteParam.setString(2, o.getLien());
+                requeteParam.setBinaryStream(2, o.getLien());
                 requeteParam.setString(3, o.getLangue());
                 requeteParam.setInt(4, o.getNbVues());
                 requeteParam.setString(5, o.getIdEtudiant());
@@ -101,7 +101,7 @@ public class CvDAO extends Dao<Cv>{
             PreparedStatement requeteParam = cnx.prepareStatement(requete);
 
             requeteParam.setString(1, o.getIdCv());
-            requeteParam.setString(2, o.getLien());
+            requeteParam.setBinaryStream(2, o.getLien());
             requeteParam.setString(3, o.getLangue());
             requeteParam.setInt(4, o.getNbVues());
             requeteParam.setString(5, o.getIdEtudiant());
@@ -132,7 +132,7 @@ public class CvDAO extends Dao<Cv>{
             while (rs.next()){
                 Cv temp = new Cv();
                 temp.setIdCv(rs.getString("ID_CV"));
-                temp.setLien(rs.getString("LIEN"));
+                temp.setLien(rs.getBinaryStream("LIEN"));
                 temp.setLangue(rs.getString("LANGUE"));
                 temp.setNbVues(rs.getInt("NBVUES"));
                 temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
@@ -146,7 +146,7 @@ public class CvDAO extends Dao<Cv>{
     public List<Cv> findAllByIdEtudiant(String id) {
         try{
             List<Cv> liste = new ArrayList();
-            String requete = "SELECT * FROM `cv` WHERE `ID_ETUDIANT` = ?";
+            String requete = "SELECT * FROM `cv` WHERE ID_ETUDIANT=?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete);
             requeteParam.setString(1, id);
             
@@ -154,9 +154,9 @@ public class CvDAO extends Dao<Cv>{
             while (rs.next()){
                 Cv temp = new Cv();
                 temp.setIdCv(rs.getString("ID_CV"));
-                temp.setLien(rs.getString("LIEN"));
+                temp.setLien(rs.getBinaryStream("LIEN"));
                 temp.setLangue(rs.getString("LANGUE"));
-                temp.setNbVues(rs.getInt("NBVUES"));
+                temp.setNbVues(rs.getInt("NB_VUES"));
                 temp.setIdEtudiant(rs.getString("ID_ETUDIANT"));
                 temp.setDate(rs.getDate("DATE"));
 

@@ -193,7 +193,7 @@
                                         <!-- Affichage titre -->
                                         <div id="${item.getIdOffre()}TitreAff">
                                             <kbd>${comp.getNom()}</kbd> 
-                                            ${item.getTitre()}
+                                            <a href="?action=afficherListeCandidatureOffreStage&offreStage=${item.getIdOffre()}">${item.getTitre()}</a>
                                         </div>
                                         <!-- Titre Edit -->
                                         <div id="${item.getIdOffre()}TitreEdit" style="display:none;">
