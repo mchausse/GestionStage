@@ -158,6 +158,16 @@ public class OffreStageCritereDAO extends Dao<Offrestagecritere> {
     public boolean delete(Offrestagecritere x) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    public boolean deleteByIdOffre(String idOffre) {
+        try{
+            String requete = "DELETE FROM `offrestagecritere` WHERE `offrestagecritere`.`ID_OFFRE` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            
+            requeteParam.setString(1, idOffre);
+            requeteParam.executeUpdate();
+            return true;
+        }catch(SQLException e){return false;}
+    }
 
     @Override
     public List<Offrestagecritere> findAll() {
