@@ -1,7 +1,8 @@
-/*
-*
-* @author gabri
-*/
+<%-- 
+    Document   : gestionOffresStagesVueEmployeur
+    Created on : 2018-11-27, 11:57:50
+    Author     : gabri
+--%>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.stageo.dao.UtilisateurDAO" %>
@@ -12,6 +13,9 @@
 <jsp:useBean id="empDao" class="com.stageo.dao.EmployeurDAO" scope="page"></jsp:useBean>
 <jsp:useBean id="offreDao" class="com.stageo.dao.OffreStageDAO" scope="page"></jsp:useBean>
 <jsp:useBean id="compDao" class="com.stageo.dao.CompagnieDAO" scope="page"></jsp:useBean>
+<jsp:useBean id="crDao" class="com.stageo.dao.CritereDAO" scope="page"></jsp:useBean>
+<jsp:useBean id="offreCritDao" class="com.stageo.dao.OffreStageCritereDAO" scope="page"></jsp:useBean>
+<c:set var="listCrit" value="${crDao.findAll()}"/>
 
 <!-- Var du User : -->
 <c:if test="${!empty sessionScope['utilisateur']}">
@@ -151,9 +155,32 @@
                                             </div>
                                          </div>
                                         <!-- Deuxieme section de l'offre-->
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-6">
                                             Description
                                             <textarea class="form-control" rows="3" name="descStage"></textarea>
+                                        </div>
+                                        <div class="col-lg-5 infoEtuRow" style="margin-top:0.5em;">
+                                            <label for="conteneurCompetences">Compétences :</label>
+                                            <div class="btn-group">
+                                                <span class="glyphicon glyphicon-plus dropdown-toggle" data-toggle="dropdown"></span>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <c:forEach items="${listCrit}" var="critere">
+                                                        <li class="critere"><a href="#" onclick="ajouterComp('${critere.nom}')">${critere.nom}</a></li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
+                                            <div  class="panel panel-default" id="conteneurCompetencesEdit" style="padding-bottom: 1em;">
+                                                <div class="panel-body" style="margin-top:-1em;">
+                                                    <c:forEach items="${listCritByEtu}"  var="critereEtu">
+                                                        <c:set var="critere" value="${crDao.findById(critereEtu.getIdCritere())}"/>
+                                                        <span class='competence alert alert-info' id="${critere.nom}">
+                                                            ${critere.nom}
+                                                            <a class='glyphicon glyphicon-remove' onclick='enleverCompetence("${critere.nom}")'></a>
+                                                            <input class="form-control" type="hidden" id="competence${critere.nom}" name="${critere.nom}">
+                                                        </span>
+                                                    </c:forEach>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!-- Troisième section de l'offre-->
                                         <div class="col-lg-12" style="margin-top: 1em;">
@@ -188,7 +215,6 @@
                     <!-- Affiche les offres de l'employeur -->
                     <c:forEach items="${listeStages}" var="item">
                         <!-- Debut d'une offre -->
-<<<<<<< HEAD
                         <form action="do?action=editOffre&id=${item.getIdOffre()}" method="post">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -204,28 +230,6 @@
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <!-- Affichage titre -->
                                             <div id="${item.getIdOffre()}TitreAff">
-=======
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <!-- Pour afficher un voyant de couleur -->
-                                <c:if test="${item.getActive() eq true}">
-                                    <span class="label label-success label-as-badge">&#8203 &#8203</span>
-                                </c:if>
-                                <c:if test="${item.getActive() eq false}">
-                                    <span class="label label-danger label-as-badge">&#8203 &#8203</span>
-                                </c:if>
-                                <div class='row'>
-                                    <div class="col-lg-12 dateStage">Publié le ${item.getDate()}</div>
-                                    <div class="col-lg-7">
-                                        <!-- Affichage titre -->
-                                        <div id="${item.getIdOffre()}TitreAff">
-                                            <kbd>${comp.getNom()}</kbd> 
-                                            <a href="?action=afficherListeCandidatureOffreStage&offreStage=${item.getIdOffre()}">${item.getTitre()}</a>
-                                        </div>
-                                        <!-- Titre Edit -->
-                                        <div id="${item.getIdOffre()}TitreEdit" style="display:none;">
-                                            <div class="col-lg-3">
->>>>>>> 8cad3419d62428d0bb2b397084c051f18043358b
                                                 <kbd>${comp.getNom()}</kbd> 
                                                 ${item.getTitre()}
                                             </div>
@@ -331,7 +335,7 @@
                                             Vue : ${item.getNbVues()}
                                         </div>
                                         <!-- Deuxieme section de l'offre-->
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
                                             <span onclick="ouvrirDesc()" class='glyphicon glyphicon-triangle-bottom'></span>
                                             Description :
                                             <!--Description Affichage -->
@@ -341,6 +345,18 @@
                                             <!--Description Edit -->
                                             <textarea id="${item.getIdOffre()}DescEdit" name="${item.getIdOffre()}DescEdit" class="form-control" rows="3" style="display:none;" Enabled
                                                       >${item.getDescription()}</textarea>
+                                        </div>
+                                        <div id="${item.getIdOffre()}CritAff" class="col-lg-6">
+                                            <c:set var="listCritByOffre" value="${offreCritDao.findByOffrePK(item.getIdOffre())}"/>
+                                            <label for="conteneurCompetences">Compétences : <span class='competence alert alert-info'>${listCritByOffre.size()}</span></label>
+                                            <div  class="panel panel-default" id="conteneurCompetences">
+                                                <div class="panel-body">
+                                                    <c:forEach items="${listCritByOffre}"   var="critOffre">
+                                                        <c:set var="critere" value="${crDao.findById(critOffre.getIdCritere())}"/>
+                                                        <span class='competence alert alert-info'>${critere.nom}</span>
+                                                    </c:forEach> 
+                                                </div>
+                                            </div>
                                         </div>
                                         <div>
                                             <!-- Date affichage -->
@@ -393,6 +409,15 @@
         <%@include  file="footer.jsp" %>
         <!-- Fin footer -->
         <script type="text/javascript">
+            function ajouterComp(id){
+                if(document.getElementById(id)=== null){
+                    document.getElementById("conteneurCompetencesEdit").innerHTML += "<span class='competence' id='"+id+"'>"+id+" <a class='glyphicon glyphicon-remove' onclick='enleverCompetence(" + '"' + id + '"' + ")'></a><input class='form-control' type='hidden' id='competence" + id +"'" +" name='"+id+"'></span>";
+                    $(".competence").addClass("alert alert-info");
+                }
+            }
+            function enleverCompetence(id){
+                document.getElementById(id).remove();   
+            }
             function modifOffre(idOffre){
                 //Active
                 document.getElementById((idOffre+"ActiveAff")).style.display = "none";

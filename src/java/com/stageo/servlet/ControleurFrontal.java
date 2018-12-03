@@ -23,19 +23,17 @@ import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
 import com.stageo.controleur.DeleteOffreAction;
-<<<<<<< HEAD
+
 import com.stageo.controleur.EditOffreAction;
-import com.stageo.controleur.EnvoyerMessageAction;
-import com.stageo.controleur.InscriptionAction;
-import com.stageo.controleur.ModifierProfilAction;
+
 import com.stageo.controleur.ReadStageDocuAction;
-=======
+
 import com.stageo.controleur.EnvoyerCandidatureAction;
 import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
 import com.stageo.controleur.ModifierProfilAction;
 import com.stageo.controleur.RechercheParCritereAction;
->>>>>>> 8cad3419d62428d0bb2b397084c051f18043358b
+
 import com.stageo.controleur.SelectionnerMessageAction;
 
 
@@ -123,13 +121,12 @@ public class ControleurFrontal extends HttpServlet {
             case "deleteOffre":
                 action = new DeleteOffreAction();
                 break;
-<<<<<<< HEAD
             case "editOffre":
                 action = new EditOffreAction();
                 break;
             case "readStageDocu":
                 action = new ReadStageDocuAction();
-=======
+                break;
             case "afficherProfilOffreStage":
                 action = new AfficherProfilOffreStageAction();
                 break;
@@ -141,7 +138,6 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherListeCandidatureOffreStage":
                 action = new AfficherListeCandidatureOffreStageAction();
->>>>>>> 8cad3419d62428d0bb2b397084c051f18043358b
                 break;
             default :
                 action = new DefaultAction();

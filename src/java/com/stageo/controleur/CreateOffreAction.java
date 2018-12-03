@@ -5,8 +5,12 @@
  */
 package com.stageo.controleur;
 import com.stageo.beans.Avertissement;
+import com.stageo.beans.Critere;
 import com.stageo.beans.OffreStage;
+import com.stageo.beans.OffrestagecriterePK;
 import com.stageo.beans.Utilisateur;
+import com.stageo.dao.CritereDAO;
+import com.stageo.dao.OffreStageCritereDAO;
 import com.stageo.dao.OffreStageDAO;
 import com.stageo.singleton.Connexion;
 import java.io.IOException;
@@ -14,6 +18,8 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,6 +76,23 @@ public class CreateOffreAction extends AbstractAction{
             InputStream fileContent = filePart.getInputStream();
             offreTemp.setLienDocument(fileContent);
             offreDao.create(offreTemp);
+            
+            //Ajout de compétence
+            OffreStageCritereDAO critOffreDao = new OffreStageCritereDAO();
+            CritereDAO critDao = new CritereDAO();
+            List<Critere> critList = critDao.findAll();
+            List<String> parameterNames = new ArrayList<>(request.getParameterMap().keySet());
+            for(Critere crit : critList){
+                boolean verif = false;
+                OffrestagecriterePK offreCrit = new OffrestagecriterePK(idOffre,crit.getIdCritere());
+                for(String name : parameterNames){
+                    if(name.equals(crit.getNom())){
+                        if(critOffreDao.findPK(offreCrit)==null){critOffreDao.createPK(offreCrit);}
+                        verif = true;
+                    }
+                }
+                if(critOffreDao.findPK(offreCrit)!=null && !verif){critOffreDao.deletePK(offreCrit);}
+            }
             
             Avertissement aver = new Avertissement("L'offre à été créé.", "succes");
             request.getSession().setAttribute("avertissement", aver);
