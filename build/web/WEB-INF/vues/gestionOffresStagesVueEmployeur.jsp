@@ -282,7 +282,7 @@
                                                 <a onclick="modifOffre('${item.getIdOffre()}')" class="btn btn-default btn-md btnModStage btnAnime">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </a>
-                                                <a href="do?action=deleteOffre&id=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage btnAnime">
+                                                <a onclick="confirmDelete('${item.getIdOffre()}')"class="btn btn-default btn-md btnModStage btnAnime">
                                                     <span class="glyphicon glyphicon-trash"></span>
                                                 </a>
                                                 <a href="do?action=afficherListeCandidatureOffreStage&offreStage=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage btnAnime">
@@ -428,6 +428,12 @@
         <%@include  file="footer.jsp" %>
         <!-- Fin footer -->
         <script type="text/javascript">
+            function confirmDelete(idOffre){
+                var question = window.confirm("Êtes-vous sur de vouloir supprimer cette offre?");
+                if (question) {
+                    window.location.href = "do?action=deleteOffre&id="+idOffre+"";
+                }
+            }
             function ajouterComp(id){
                 if(document.getElementById(id)=== null){
                     document.getElementById("conteneurCompetencesEdit").innerHTML += "<span class='competence' id='"+id+"'>"+id+" <a class='glyphicon glyphicon-remove' onclick='enleverCompetence(" + '"' + id + '"' + ")'></a><input class='form-control' type='hidden' id='competence" + id +"'" +" name='"+id+"'></span>";
