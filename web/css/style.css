@@ -259,20 +259,20 @@
 .alignCenter{
     text-align: center;
 }
-/* sinon les btns était stack un sur l'autre*/
-@media screen and (max-width: 1285px) {
-    .btnModStage{
-        margin-top: 0em;
-    }
+.btnAddComp{
+    transform: scale(1.2, 1.2);
+    color: #337ab7;
+    transition: 0.5s;
 }
-/* quand bootstrap est en medium display */
-@media screen and (max-width: 1199px) { 
-    .btnModStage{ 
-        margin-top: -1em;
-    }
+.btnAddComp:hover{
+    transform: scale(1.3, 1.3);
+    color: #23527c;
+}
+.btnDelComp{
+    text-decoration: none;
 }
 /* sinon les btns était stack un sur l'autre*/
-@media screen and (max-width: 790px) {
+@media screen and (max-width: 1800px) {
     .btnModStage{
         margin-top: 0em;
     }

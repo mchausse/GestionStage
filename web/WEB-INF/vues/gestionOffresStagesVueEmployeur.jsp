@@ -285,6 +285,9 @@
                                                 <a href="do?action=deleteOffre&id=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage btnAnime">
                                                     <span class="glyphicon glyphicon-trash"></span>
                                                 </a>
+                                                <a href="do?action=afficherListeCandidatureOffreStage&offreStage=${item.getIdOffre()}" class="btn btn-default btn-md btnModStage btnAnime">
+                                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                                </a>
                                             </div>
                                             <!-- BTN apres de edit -->
                                             <div id="${item.getIdOffre()}BtnApEdit" style="display:none; margin-top: 0.9em;">
@@ -337,7 +340,7 @@
                                                       >${item.getDescription()}</textarea>
                                         </div>
                                         <!-- Critere Affichage -->
-                                        <div id="${item.getIdOffre()}CritAff" class="col-lg-6">
+                                        <div id="${item.getIdOffre()}CritAff" class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                             <c:set var="listCritByOffre" value="${offreCritDao.findByOffrePK(item.getIdOffre())}"/>
                                             <label for="conteneurCompetences">Compétences : <span class='competence alert alert-info'>${listCritByOffre.size()}</span></label>
                                             <div  class="panel panel-default" id="conteneurCompetences">
@@ -350,10 +353,10 @@
                                             </div>
                                         </div>
                                         <!-- Critere Edit -->
-                                        <div id="${item.getIdOffre()}CritEdit" class="col-lg-5" style="margin-top:0.5em; display: none;">
+                                        <div id="${item.getIdOffre()}CritEdit" class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="margin-top:0.5em; display: none;">
                                             <label for="conteneurCompetences">Compétences :</label>
                                             <div class="btn-group">
-                                                <span class="glyphicon glyphicon-plus dropdown-toggle" data-toggle="dropdown"></span>
+                                                <span class="glyphicon glyphicon-plus dropdown-toggle btnAddComp" data-toggle="dropdown"></span>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <c:forEach items="${listCrit}" var="critere">
                                                         <li class="critere"><a href="#" onclick="ajouterCompEdit('${critere.nom}', '${item.getIdOffre()}')">${critere.nom}</a></li>
@@ -366,7 +369,7 @@
                                                         <c:set var="critere" value="${crDao.findById(critOffre.getIdCritere())}"/>
                                                         <span class='competence alert alert-info' id="${item.getIdOffre()}${critere.nom}">
                                                             ${critere.nom}
-                                                            <a class='glyphicon glyphicon-remove' onclick='enleverCompetence("${item.getIdOffre()}${critere.nom}")'></a>
+                                                            <a class='glyphicon glyphicon-remove btnAnime' onclick='enleverCompetence("${item.getIdOffre()}${critere.nom}")'></a>
                                                             <input class="form-control" type="hidden" id="competence${critere.nom}" name="${critere.nom}">
                                                         </span>
                                                     </c:forEach>
