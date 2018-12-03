@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.stageo.beans;
+import java.io.InputStream;
 import java.sql.Date;
 
 /**
@@ -21,7 +22,7 @@ public class OffreStage {
     private int dureeEnJours;
     private boolean remunere;
     private String lienWeb;
-    private String lienDocument;
+    private InputStream lienDocument;
     private int nbVues;
     private boolean active;
     private String idEmployeur;
@@ -33,7 +34,7 @@ public class OffreStage {
     }
 
     
-    public OffreStage(String idOffre, String titre, String description, Date date, Date dateDebut, Date dateFin, int dureeEnJours, boolean remunere, String lienWeb, String lienDocument, int nbVues, boolean active, String idEmployeur) {
+    public OffreStage(String idOffre, String titre, String description, Date date, Date dateDebut, Date dateFin, int dureeEnJours, boolean remunere, String lienWeb, InputStream lienDocument, int nbVues, boolean active, String idEmployeur) {
         this.idOffre = idOffre;
         this.titre = titre;
         this.description = description;
@@ -49,7 +50,7 @@ public class OffreStage {
         this.idEmployeur = idEmployeur;
     }
 
-    public OffreStage(String idOffre, String titre, String description, String lienWeb, String lienDocument, Date date, int nbVues, boolean active, String idEmployeur) {
+    public OffreStage(String idOffre, String titre, String description, String lienWeb, InputStream lienDocument, Date date, int nbVues, boolean active, String idEmployeur) {
         this.idOffre = idOffre;
         this.titre = titre;
         this.description = description;
@@ -93,11 +94,11 @@ public class OffreStage {
         this.lienWeb = lienWeb;
     }
 
-    public String getLienDocument() {
+    public InputStream getLienDocument() {
         return lienDocument;
     }
 
-    public void setLienDocument(String lienDocument) {
+    public void setLienDocument(InputStream lienDocument) {
         this.lienDocument = lienDocument;
     }
 

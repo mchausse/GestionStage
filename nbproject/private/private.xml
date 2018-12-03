@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/controleur/CreateOffreAction.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/controleur/EditOffreAction.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/web/WEB-INF/vues/gestionOffresStagesVueEmployeur.jsp</file>
+=======
             <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/web/WEB-INF/vues/profil.jsp</file>
             <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/src/java/com/stageo/controleur/ModifierProfilAction.java</file>
             <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/src/java/com/stageo/dao/CritereDAO.java</file>
             <file>file:/G:/Session4/Hypermédia/TP1_gestionStages/TP1/GestionStage/web/css/style.css</file>
+>>>>>>> 8cad3419d62428d0bb2b397084c051f18043358b
         </group>
     </open-files>
 </project-private>

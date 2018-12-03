@@ -9,7 +9,6 @@ import com.stageo.controleur.AfficherInscriptionAction;
 import com.stageo.controleur.AfficherListeEtudiantsVueEmployeurAction;
 import com.stageo.controleur.AfficherListeStagesVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagerieAction;
-import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherProfilCompagnieVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagesEnvoyesAction;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
@@ -24,11 +23,17 @@ import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
 import com.stageo.controleur.DeleteOffreAction;
+
+import com.stageo.controleur.EditOffreAction;
+
+import com.stageo.controleur.ReadStageDocuAction;
+
 import com.stageo.controleur.EnvoyerCandidatureAction;
 import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
 import com.stageo.controleur.ModifierProfilAction;
 import com.stageo.controleur.RechercheParCritereAction;
+
 import com.stageo.controleur.SelectionnerMessageAction;
 
 
@@ -115,6 +120,12 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "deleteOffre":
                 action = new DeleteOffreAction();
+                break;
+            case "editOffre":
+                action = new EditOffreAction();
+                break;
+            case "readStageDocu":
+                action = new ReadStageDocuAction();
                 break;
             case "afficherProfilOffreStage":
                 action = new AfficherProfilOffreStageAction();
