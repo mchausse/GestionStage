@@ -2,6 +2,7 @@ package com.stageo.servlet;
 
 //Action importer pour le controleur frontal
 import com.stageo.controleur.AbstractAction;
+import com.stageo.controleur.AccepterCandidatureAction;
 import com.stageo.controleur.AfficherCandidatureAction;
 import com.stageo.controleur.AfficherCommunicationsAction;
 import com.stageo.controleur.AfficherGestionDocumentsVueCoordonnateurAction;
@@ -9,7 +10,6 @@ import com.stageo.controleur.AfficherInscriptionAction;
 import com.stageo.controleur.AfficherListeEtudiantsVueEmployeurAction;
 import com.stageo.controleur.AfficherListeStagesVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagerieAction;
-import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
 import com.stageo.controleur.AfficherProfilCompagnieVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagesEnvoyesAction;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
@@ -28,8 +28,11 @@ import com.stageo.controleur.EnvoyerCandidatureAction;
 import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
 import com.stageo.controleur.ModifierProfilAction;
+import com.stageo.controleur.PostulerOffreStageAction;
 import com.stageo.controleur.RechercheParCritereAction;
+import com.stageo.controleur.RefuserCandidatureAction;
 import com.stageo.controleur.SelectionnerMessageAction;
+import com.stageo.controleur.TelechargerCvAction;
 
 
 import java.io.IOException;
@@ -127,6 +130,18 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherListeCandidatureOffreStage":
                 action = new AfficherListeCandidatureOffreStageAction();
+                break;
+            case "telechargerCVCandidature":
+                action = new TelechargerCvAction();
+                break;
+            case "postulerOffreStage":
+                action = new PostulerOffreStageAction();
+                break;
+            case "accepterCandidature":
+                action = new AccepterCandidatureAction();
+                break;
+            case "refuserCandidature":
+                action = new RefuserCandidatureAction();
                 break;
             default :
                 action = new DefaultAction();

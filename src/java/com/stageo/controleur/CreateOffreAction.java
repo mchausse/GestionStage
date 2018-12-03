@@ -19,6 +19,8 @@ import java.util.UUID;
 public class CreateOffreAction extends AbstractAction{
     @Override
     public String execute() {
+        if(request.getSession().getAttribute("utilisateur") == null)
+            return "inscription";
         try{
             Utilisateur currentUser = (Utilisateur)request.getSession().getAttribute("utilisateur");
             OffreStage offreTemp = new OffreStage();

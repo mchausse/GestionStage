@@ -13,6 +13,8 @@ public class AfficherGestionDocumentsVueCoordonnateurAction extends AbstractActi
     
     @Override
     public String execute() {
+        if(request.getSession().getAttribute("utilisateur") == null)
+            return "inscription";
         return "gestionDocumentsVueCoordonnateur";
     }
     

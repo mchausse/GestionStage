@@ -14,6 +14,8 @@ import com.stageo.dao.OffreStageDAO;
 public class AfficherListeCandidatureOffreStageAction extends AbstractAction {
     @Override
     public String execute() {
+        if(request.getSession().getAttribute("utilisateur") == null)
+            return "inscription";
         OffreStageDAO offreStageDAO = new OffreStageDAO();
         request.setAttribute("offreStage", offreStageDAO.findById(request.getParameter("offreStage")));
         return "listeCandidatureOffreStage";

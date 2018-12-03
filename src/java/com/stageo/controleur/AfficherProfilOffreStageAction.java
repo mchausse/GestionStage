@@ -5,6 +5,7 @@
  */
 package com.stageo.controleur;
 
+import com.stageo.beans.OffreStage;
 import com.stageo.dao.OffreStageDAO;
 
 /**
@@ -15,8 +16,13 @@ public class AfficherProfilOffreStageAction extends AbstractAction {
 
     @Override
     public String execute() {
+        if(request.getSession().getAttribute("utilisateur") == null)
+            return "inscription";
         OffreStageDAO offreStageDAO = new OffreStageDAO();
-        request.setAttribute("offreStage", offreStageDAO.findById(request.getParameter("offreStage")));
+        OffreStage o = offreStageDAO.findById(request.getParameter("offreStage"));
+        o.setNbVues(o.getNbVues()+1);
+        offreStageDAO.update(o);
+        request.setAttribute("offreStage", o);
         return "profilOffreStage";
     }
     
