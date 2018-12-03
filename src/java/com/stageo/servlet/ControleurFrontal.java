@@ -12,29 +12,41 @@ import com.stageo.controleur.AfficherMessagerieAction;
 import com.stageo.controleur.AfficherProfilCompagnieVueEtudiantAction;
 import com.stageo.controleur.AfficherMessagesEnvoyesAction;
 import com.stageo.controleur.AfficherGestionOffresStagesVueEmployeurAction;
+import com.stageo.controleur.AfficherListeCandidatureOffreStageAction;
 import com.stageo.controleur.AfficherProfilAction;
 import com.stageo.controleur.AfficherProfilCompagnieVueCoordonnateurAction;
 import com.stageo.controleur.AfficherProfilEtudiantAction;
+import com.stageo.controleur.AfficherProfilOffreStageAction;
 import com.stageo.controleur.ConnexionAction;
 import com.stageo.controleur.CreateOffreAction;
 import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
 import com.stageo.controleur.DeleteOffreAction;
+<<<<<<< HEAD
 import com.stageo.controleur.EditOffreAction;
 import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
 import com.stageo.controleur.ModifierProfilAction;
 import com.stageo.controleur.ReadStageDocuAction;
+=======
+import com.stageo.controleur.EnvoyerCandidatureAction;
+import com.stageo.controleur.EnvoyerMessageAction;
+import com.stageo.controleur.InscriptionAction;
+import com.stageo.controleur.ModifierProfilAction;
+import com.stageo.controleur.RechercheParCritereAction;
+>>>>>>> 8cad3419d62428d0bb2b397084c051f18043358b
 import com.stageo.controleur.SelectionnerMessageAction;
 
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@MultipartConfig    //Nécessaire pour que la servlet puisse accéder au fichier attaché.
 public class ControleurFrontal extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -111,11 +123,25 @@ public class ControleurFrontal extends HttpServlet {
             case "deleteOffre":
                 action = new DeleteOffreAction();
                 break;
+<<<<<<< HEAD
             case "editOffre":
                 action = new EditOffreAction();
                 break;
             case "readStageDocu":
                 action = new ReadStageDocuAction();
+=======
+            case "afficherProfilOffreStage":
+                action = new AfficherProfilOffreStageAction();
+                break;
+            case "envoyerCandidature":
+                action = new EnvoyerCandidatureAction();
+                break;
+            case "rechercheParCritere":
+                action = new RechercheParCritereAction();
+                break;
+            case "afficherListeCandidatureOffreStage":
+                action = new AfficherListeCandidatureOffreStageAction();
+>>>>>>> 8cad3419d62428d0bb2b397084c051f18043358b
                 break;
             default :
                 action = new DefaultAction();

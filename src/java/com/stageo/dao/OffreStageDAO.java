@@ -126,6 +126,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
     @Override
     public boolean update(OffreStage x) {
         try{
+<<<<<<< HEAD
             String requete = "UPDATE `offrestage` SET `ID_OFFRE` = ?, `TITRE` = ?, "
                     + "`DESCRIPTION` = ?, `DATE_DEBUT` = ?, `DATE_FIN` = "
                     + "?, `DUREE_EN_JOURS` = ?, `REMUNERE` = ?, `LIEN_WEB` = ?, "
@@ -147,6 +148,25 @@ public class OffreStageDAO extends Dao<OffreStage> {
             requeteParam.setInt(12, (x.getActive())?1:0);
             requeteParam.setString(13, x.getIdEmployeur());
             requeteParam.setString(14, x.getIdOffre());
+=======
+            String requete = "UPDATE `offrestage` SET `TITRE` = ?, `DESCRIPTION` = ?,`DATE_DEBUT` = ? , `DATE_FIN` = ? ,`DUREE_EN_JOURS` = ? ,`REMUNERE` = ? ,`LIEN_WEB` = ?, `LIEN_DOCUMENT` = ?, `DATE` = ?, `NB_VUES` = ?, `ACTIVE` = ?, `ID_EMPLOYEUR` = ?"
+            + "WHERE `offrestage`.`ID_OFFRE` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            
+            requeteParam.setString(1, x.getTitre());
+            requeteParam.setString(2, x.getDescription());
+            requeteParam.setDate(3, new java.sql.Date(x.getDateDebut().getTime()));
+            requeteParam.setDate(4, new java.sql.Date(x.getDateFin().getTime()));
+            requeteParam.setInt(5, x.getDureeEnJours());
+            requeteParam.setInt(6, (x.getRemunere())?1:0);
+            requeteParam.setString(7, x.getLienWeb());
+            requeteParam.setString(8, x.getLienDocument());
+            requeteParam.setDate(9, new java.sql.Date(x.getDate().getTime()));
+            requeteParam.setInt(10, x.getNbVues());
+            requeteParam.setInt(11, (x.getActive())?1:0);
+            requeteParam.setString(12, x.getIdEmployeur());
+            requeteParam.setString(13, x.getIdOffre());
+>>>>>>> 8cad3419d62428d0bb2b397084c051f18043358b
             
             requeteParam.executeUpdate();
             return true;
@@ -221,7 +241,8 @@ public class OffreStageDAO extends Dao<OffreStage> {
         }
         return null;
     }
-        public List<OffreStage> findByUserId(String id) {
+    
+    public List<OffreStage> findByUserId(String id) {
         try{
             List<OffreStage> liste = new ArrayList();
             String requete = "SELECT * FROM `offrestage` WHERE ID_EMPLOYEUR=?";

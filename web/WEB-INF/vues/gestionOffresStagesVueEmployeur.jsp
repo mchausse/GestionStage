@@ -188,6 +188,7 @@
                     <!-- Affiche les offres de l'employeur -->
                     <c:forEach items="${listeStages}" var="item">
                         <!-- Debut d'une offre -->
+<<<<<<< HEAD
                         <form action="do?action=editOffre&id=${item.getIdOffre()}" method="post">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -203,6 +204,28 @@
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <!-- Affichage titre -->
                                             <div id="${item.getIdOffre()}TitreAff">
+=======
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <!-- Pour afficher un voyant de couleur -->
+                                <c:if test="${item.getActive() eq true}">
+                                    <span class="label label-success label-as-badge">&#8203 &#8203</span>
+                                </c:if>
+                                <c:if test="${item.getActive() eq false}">
+                                    <span class="label label-danger label-as-badge">&#8203 &#8203</span>
+                                </c:if>
+                                <div class='row'>
+                                    <div class="col-lg-12 dateStage">Publié le ${item.getDate()}</div>
+                                    <div class="col-lg-7">
+                                        <!-- Affichage titre -->
+                                        <div id="${item.getIdOffre()}TitreAff">
+                                            <kbd>${comp.getNom()}</kbd> 
+                                            <a href="?action=afficherListeCandidatureOffreStage&offreStage=${item.getIdOffre()}">${item.getTitre()}</a>
+                                        </div>
+                                        <!-- Titre Edit -->
+                                        <div id="${item.getIdOffre()}TitreEdit" style="display:none;">
+                                            <div class="col-lg-3">
+>>>>>>> 8cad3419d62428d0bb2b397084c051f18043358b
                                                 <kbd>${comp.getNom()}</kbd> 
                                                 ${item.getTitre()}
                                             </div>

@@ -35,7 +35,7 @@
 .sortBy:hover{
     color: #A6002B;
 }
-.divInfoEleve{
+.divInfoEleve2{
     background-color: #FAFAFA;
     border: solid 2px;
     border-color: #949494;
@@ -388,6 +388,10 @@
     }
 }
 /** ====== page : profil.jsp ====== */
+#bodyProfil{
+    margin-top: 10em;
+    
+}
 .btnProfil{
     text-decoration: none;
     float: right; 
@@ -414,6 +418,27 @@
     background-color: #dbdbdb;
     transform: scale(1.1, 1.1);
 
+}
+.informationEtu{
+    padding:1em;
+}
+.informationEtu .competence alert alert-info{
+    padding: 5px 8px 5px 8px;
+}
+.informationEtu #conteneurCompetences{
+    background-color: #EEEEEE;
+}
+.informationEtu #conteneurCompetencesEdit{
+    height: 8em;
+}
+.infoEtuRow{
+    margin: 0 1em 1em 1em;
+}
+.infoEtuRowComp{
+    margin: 0 1em -10px 1em;
+}
+.informationEtu .iconList{
+    margin-left: 1em;
 }
 
 /** ====== page : messagerie.jsp ====== */
@@ -458,18 +483,20 @@
 }
 */
 .btnPostuler{
-    margin:1em 1em 1em 1em;
+    margin:6em 0em 1em 0em;
 }
 .bodyOffre{
     padding:1em 0em 0em 0em;
 }
 .uneOffre{
-    margin-bottom: 2em;
-    min-height: 16em;
-    max-height: 16em;
+    margin:1em 0em 8em 0em;
+    min-height: 15em;
+    max-height: 15em;
 }
 .descOffre{
-    height:2em;
+    height:3em;
+    margin-top:0.5em;
+    margin-bottom:1em;
 }
 /** ====== page : gestionOffreStageVueEmployeur.jsp ====== */
 .btnAnime{
@@ -477,4 +504,58 @@
 }
 .btnAnime:hover{
     transform: scale(1.1, 1.1);
+}
+.compoff{
+    background: #cce6ff;
+    color: #4682b4;
+    border-color: #add8e6;
+    border: solid 0.1px;
+    border-radius: 8px;
+    height: 25px;
+    padding: 6px;
+}
+.divInfoEleve2{
+    background-color: #FAFAFA;
+    border: solid 2px;
+    border-color: #949494;
+    border-radius: 10px;
+    max-width: 100%;
+    text-align: center;
+    font-size: 15px;
+    padding: 1em;
+    transition: 0.5s;
+}
+
+.titreop{
+    font-size: 16px;
+    margin-left: 3px;
+}
+.buttonop{
+    margin-bottom: 10px;
+}
+.dateStage{
+    margin-top:-0.5em;
+    margin-bottom:0.5em;
+}
+.lienOffre{
+    font-family: arial;
+    color:black;
+}
+
+.selecte{
+    color: blue;
+    font-weight: bold;
+}
+.comptv{
+    background-color: #EEEEEE;
+}
+#acccan{
+    float: left;
+}
+#supcan{
+    float: right;
+}
+
+#cacher{
+    display:none;
 }
