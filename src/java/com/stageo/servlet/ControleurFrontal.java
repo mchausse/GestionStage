@@ -2,6 +2,7 @@ package com.stageo.servlet;
 
 //Action importer pour le controleur frontal
 import com.stageo.controleur.AbstractAction;
+import com.stageo.controleur.AccepterCandidatureAction;
 import com.stageo.controleur.AfficherCandidatureAction;
 import com.stageo.controleur.AfficherCommunicationsAction;
 import com.stageo.controleur.AfficherGestionDocumentsVueCoordonnateurAction;
@@ -23,18 +24,17 @@ import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
 import com.stageo.controleur.DeleteOffreAction;
-
 import com.stageo.controleur.EditOffreAction;
-
 import com.stageo.controleur.ReadStageDocuAction;
-
 import com.stageo.controleur.EnvoyerCandidatureAction;
 import com.stageo.controleur.EnvoyerMessageAction;
 import com.stageo.controleur.InscriptionAction;
 import com.stageo.controleur.ModifierProfilAction;
+import com.stageo.controleur.PostulerOffreStageAction;
 import com.stageo.controleur.RechercheParCritereAction;
-
+import com.stageo.controleur.RefuserCandidatureAction;
 import com.stageo.controleur.SelectionnerMessageAction;
+import com.stageo.controleur.TelechargerCvAction;
 
 
 import java.io.IOException;
@@ -138,6 +138,18 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherListeCandidatureOffreStage":
                 action = new AfficherListeCandidatureOffreStageAction();
+                break;
+            case "telechargerCVCandidature":
+                action = new TelechargerCvAction();
+                break;
+            case "postulerOffreStage":
+                action = new PostulerOffreStageAction();
+                break;
+            case "accepterCandidature":
+                action = new AccepterCandidatureAction();
+                break;
+            case "refuserCandidature":
+                action = new RefuserCandidatureAction();
                 break;
             default :
                 action = new DefaultAction();

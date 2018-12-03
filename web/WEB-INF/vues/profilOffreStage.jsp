@@ -92,11 +92,15 @@
                                     <input type="text" class="form-control" value="Il n'y a pas de document pour cette offre !" disabled /> 
                                 </c:if>
                         </div>
-                        <div class='row'>
+                        <div class='col-lg-12'>
                             <div>
                                 <c:set var="candidature" value="${candidatureDAO.findById(sessionScope['utilisateur'].getIdUtilisateur(), offreStage.getIdOffre())}" />
                                 <c:if test="${sessionScope.utilisateur.getTypeUtilisateur() eq 'Etudiant' && candidature == null}">
-                                    <button class="btn btn-danger dropdown-toggle btn-sm btnPostuler" type="button" data-toggle="dropdown">Postuler</button>
+                                    <form methode="post" action="./do">
+                                        <input type="hidden" name="action" value="postulerOffreStage">
+                                        <input type="hidden" name="offreStage" value="${offreStage.getIdOffre()}">
+                                        <input type="submit" class="btn btn-danger" value="Postuler" />
+                                    </form>
                                 </c:if>
                             </div>
                         </div>

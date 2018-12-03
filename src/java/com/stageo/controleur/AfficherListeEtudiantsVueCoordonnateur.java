@@ -10,5 +10,4 @@ package com.stageo.controleur;
  * @author Samuel
  */
 public class AfficherListeEtudiantsVueCoordonnateur {
-    
 }
