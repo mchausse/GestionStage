@@ -58,7 +58,7 @@ public class ServicesOffresStage {
                     o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
                     o.setRemunere(rs.getInt("REMUNERE")==1);
                     o.setLienWeb(rs.getString("LIEN_WEB"));                
-                    o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
+                    o.setLienDocument(rs.getBinaryStream("LIEN_DOCUMENT"));
                     o.setDate(rs.getDate("DATE"));
                     o.setNbVues(rs.getInt("NB_VUES"));
                     o.setActive(rs.getInt("ACTIVE")==1);

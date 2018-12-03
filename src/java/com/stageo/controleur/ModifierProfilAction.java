@@ -23,10 +23,6 @@ import com.stageo.dao.UtilisateurDAO;
 import com.stageo.dao.EtudiantDAO;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,10 +74,10 @@ public class ModifierProfilAction extends AbstractAction{
                 }
                 if(critEtuDao.find(etuCrit)!=null && !verif){critEtuDao.delete(etuCrit);}
             }
+            CvDAO cvDao = new CvDAO();
             String cvVerif = request.getParameter("cvNom").trim();
-            if(!cvVerif.equals("")){
-                //Ajout du cv
-                CvDAO cvDao = new CvDAO();
+            List<Cv> cvList = cvDao.findAllByIdEtudiant(currentUser.getIdUtilisateur());
+            if((cvList.isEmpty()&& !cvVerif.equals("")) || !cvVerif.equals("")){
                 Part filePart;
                 try {filePart = request.getPart("fichierCV");} catch (IOException | ServletException ex) {
                     return "profil";
@@ -89,12 +85,24 @@ public class ModifierProfilAction extends AbstractAction{
 
                 try(InputStream filecontent = filePart.getInputStream();){
                         String idCv = UUID.randomUUID().toString();
-                        Cv cv = new Cv(idCv,filecontent,request.getParameter("cvNom"),"FR",0,currentUser.getIdUtilisateur(),java.sql.Date.valueOf(LocalDate.now()));
-                        cvDao.create(cv);
+                        String nom = "";
+                        if(request.getParameter("langueEdit").equals("Anglais")){nom="EN_"+request.getParameter("cvNom");}
+                        else{nom="FR_"+request.getParameter("cvNom");}
+                        Cv cvCreate = new Cv(idCv,filecontent,nom,request.getParameter("langueEdit"),0,currentUser.getIdUtilisateur(),java.sql.Date.valueOf(LocalDate.now()));
+                        cvDao.create(cvCreate);
 
                     } 
-                catch (IOException ex) {return "profil";}  
-            
+                catch (IOException ex) {return "profil";}
+            }
+            else{
+                boolean verif;
+                for(Cv cv : cvList){
+                    verif = false;
+                    for(String name : parameterNames){
+                        if(cv.getLien().equals(name)){verif = true;}
+                    }
+                    if(!verif){cvDao.delete(cv);}
+                }
             }
         }
         

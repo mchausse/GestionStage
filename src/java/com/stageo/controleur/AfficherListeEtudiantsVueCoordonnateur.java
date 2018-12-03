@@ -10,6 +10,4 @@ package com.stageo.controleur;
  * @author Samuel
  */
 public class AfficherListeEtudiantsVueCoordonnateur {
-    if(request.getSession().getAttribute("utilisateur") == null)
-            return "inscription";
 }
