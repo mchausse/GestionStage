@@ -115,6 +115,7 @@
                 <!-- Fin de la section du menu des stages -->
                 
                 <!-- Debut de la section des stages -->
+                <div id="OffreAff">
                 <div class="col-lg-7">
                     <!--  Formulaire d'ajout de stage -->
                     <div id="ajouterStage">
@@ -169,18 +170,7 @@
                                                     </c:forEach>
                                                 </ul>
                                             </div>
-                                            <div  class="panel panel-default" id="conteneurCompetencesEdit" style="padding-bottom: 1em;">
-                                                <div class="panel-body" style="margin-top:-1em;">
-                                                    <c:forEach items="${listCritByEtu}"  var="critereEtu">
-                                                        <c:set var="critere" value="${crDao.findById(critereEtu.getIdCritere())}"/>
-                                                        <span class='competence alert alert-info' id="${critere.nom}">
-                                                            ${critere.nom}
-                                                            <a class='glyphicon glyphicon-remove' onclick='enleverCompetence("${critere.nom}")'></a>
-                                                            <input class="form-control" type="hidden" id="competence${critere.nom}" name="${critere.nom}">
-                                                        </span>
-                                                    </c:forEach>
-                                                </div>
-                                            </div>
+                                            <div class="panel panel-default" id="conteneurCompetencesEdit" style="padding: 1em;"></div>
                                         </div>
                                         <!-- Troisième section de l'offre-->
                                         <div class="col-lg-12" style="margin-top: 1em;">
@@ -346,6 +336,7 @@
                                             <textarea id="${item.getIdOffre()}DescEdit" name="${item.getIdOffre()}DescEdit" class="form-control" rows="3" style="display:none;" Enabled
                                                       >${item.getDescription()}</textarea>
                                         </div>
+                                        <!-- Critere Affichage -->
                                         <div id="${item.getIdOffre()}CritAff" class="col-lg-6">
                                             <c:set var="listCritByOffre" value="${offreCritDao.findByOffrePK(item.getIdOffre())}"/>
                                             <label for="conteneurCompetences">Compétences : <span class='competence alert alert-info'>${listCritByOffre.size()}</span></label>
@@ -355,6 +346,30 @@
                                                         <c:set var="critere" value="${crDao.findById(critOffre.getIdCritere())}"/>
                                                         <span class='competence alert alert-info'>${critere.nom}</span>
                                                     </c:forEach> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Critere Edit -->
+                                        <div id="${item.getIdOffre()}CritEdit" class="col-lg-5" style="margin-top:0.5em; display: none;">
+                                            <label for="conteneurCompetences">Compétences :</label>
+                                            <div class="btn-group">
+                                                <span class="glyphicon glyphicon-plus dropdown-toggle" data-toggle="dropdown"></span>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <c:forEach items="${listCrit}" var="critere">
+                                                        <li class="critere"><a href="#" onclick="ajouterCompEdit('${critere.nom}', '${item.getIdOffre()}')">${critere.nom}</a></li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
+                                            <div  class="panel panel-default" id="${item.getIdOffre()}ConteneurCritEdit" style="padding-bottom: 1em;">
+                                                <div class="panel-body">
+                                                    <c:forEach items="${listCritByOffre}" var="critOffre">
+                                                        <c:set var="critere" value="${crDao.findById(critOffre.getIdCritere())}"/>
+                                                        <span class='competence alert alert-info' id="${item.getIdOffre()}${critere.nom}">
+                                                            ${critere.nom}
+                                                            <a class='glyphicon glyphicon-remove' onclick='enleverCompetence("${item.getIdOffre()}${critere.nom}")'></a>
+                                                            <input class="form-control" type="hidden" id="competence${critere.nom}" name="${critere.nom}">
+                                                        </span>
+                                                    </c:forEach>
                                                 </div>
                                             </div>
                                         </div>
@@ -402,6 +417,7 @@
                 </div>
                 <!-- Fin de la section des stages -->
             </div>
+            </div>
         </div>
         <!-- Fin du contenu de la page -->
         
@@ -412,6 +428,12 @@
             function ajouterComp(id){
                 if(document.getElementById(id)=== null){
                     document.getElementById("conteneurCompetencesEdit").innerHTML += "<span class='competence' id='"+id+"'>"+id+" <a class='glyphicon glyphicon-remove' onclick='enleverCompetence(" + '"' + id + '"' + ")'></a><input class='form-control' type='hidden' id='competence" + id +"'" +" name='"+id+"'></span>";
+                    $(".competence").addClass("alert alert-info");
+                }
+            }
+            function ajouterCompEdit(id, idOffre){
+                if(document.getElementById(idOffre+id)=== null){
+                    document.getElementById(idOffre+"ConteneurCritEdit").innerHTML += "<span class='competence' id='"+id+"'>"+id+" <a class='glyphicon glyphicon-remove' onclick='enleverCompetence(" + '"' + id + '"' + ")'></a><input class='form-control' type='hidden' id='competence" + id +"'" +" name='"+id+"'></span>";
                     $(".competence").addClass("alert alert-info");
                 }
             }
@@ -443,6 +465,9 @@
                 //Remunere
                 document.getElementById((idOffre+"RemunereAff")).style.display = "none";
                 document.getElementById((idOffre+"RemunereEdit")).style.display = "block";
+                //Critere
+                document.getElementById((idOffre+"CritAff")).style.display = "none";
+                document.getElementById((idOffre+"CritEdit")).style.display = "block";
                 
             }
             function cancelModif(idOffre){
@@ -470,6 +495,9 @@
                 //Remunere
                 document.getElementById((idOffre+"RemunereAff")).style.display = "block";
                 document.getElementById((idOffre+"RemunereEdit")).style.display = "none";
+                //Critere
+                document.getElementById((idOffre+"CritAff")).style.display = "block";
+                document.getElementById((idOffre+"CritEdit")).style.display = "none";
             }
         </script>
         <script>

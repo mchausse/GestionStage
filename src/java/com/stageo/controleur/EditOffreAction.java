@@ -6,12 +6,18 @@
 package com.stageo.controleur;
 
 import com.stageo.beans.Avertissement;
+import com.stageo.beans.Critere;
 import com.stageo.beans.OffreStage;
+import com.stageo.beans.OffrestagecriterePK;
 import com.stageo.beans.Utilisateur;
+import com.stageo.dao.CritereDAO;
+import com.stageo.dao.OffreStageCritereDAO;
 import com.stageo.dao.OffreStageDAO;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -65,6 +71,23 @@ public class EditOffreAction extends AbstractAction{
             offreTemp.setDureeEnJours(Math.toIntExact(nbJours));
             offreTemp.setDateDebut(java.sql.Date.valueOf(d1));
             offreTemp.setDateFin(java.sql.Date.valueOf(d2));
+            
+            //Ajout de compétence
+            OffreStageCritereDAO critOffreDao = new OffreStageCritereDAO();
+            CritereDAO critDao = new CritereDAO();
+            List<Critere> critList = critDao.findAll();
+            List<String> parameterNames = new ArrayList<>(request.getParameterMap().keySet());
+            for(Critere crit : critList){
+                boolean verif = false;
+                OffrestagecriterePK offreCrit = new OffrestagecriterePK(idOffre,crit.getIdCritere());
+                for(String name : parameterNames){
+                    if(name.equals(crit.getNom())){
+                        if(critOffreDao.findPK(offreCrit)==null){critOffreDao.createPK(offreCrit);}
+                        verif = true;
+                    }
+                }
+                if(critOffreDao.findPK(offreCrit)!=null && !verif){critOffreDao.deletePK(offreCrit);}
+            }
             
             //Reste
             offreTemp.setLienWeb(request.getParameter(idOffre+"LienWebEdit"));
