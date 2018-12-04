@@ -4,7 +4,7 @@ package com.stageo.servlet;
 import com.stageo.controleur.AbstractAction;
 import com.stageo.controleur.AfficherCandidatureAction;
 import com.stageo.controleur.AfficherCommunicationsAction;
-import com.stageo.controleur.AfficherGestionDocumentsVueCoordonnateurAction;
+import com.stageo.controleur.AfficherGestionDocumentsAction;
 import com.stageo.controleur.AfficherInscriptionAction;
 import com.stageo.controleur.AfficherListeEtudiantsVueEmployeurAction;
 import com.stageo.controleur.AfficherListeStagesVueEtudiantAction;
@@ -19,10 +19,12 @@ import com.stageo.controleur.AfficherProfilEtudiantAction;
 import com.stageo.controleur.AfficherProfilOffreStageAction;
 import com.stageo.controleur.ConnexionAction;
 import com.stageo.controleur.CreateOffreAction;
+import com.stageo.controleur.CreerNouveauDocumentAction;
 import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
 import com.stageo.controleur.DeleteOffreAction;
+import com.stageo.controleur.DownloadDocumentAction;
 
 import com.stageo.controleur.EditOffreAction;
 
@@ -35,6 +37,7 @@ import com.stageo.controleur.ModifierProfilAction;
 import com.stageo.controleur.RechercheParCritereAction;
 
 import com.stageo.controleur.SelectionnerMessageAction;
+import com.stageo.controleur.DeleteDocumentAction;
 
 
 import java.io.IOException;
@@ -55,8 +58,17 @@ public class ControleurFrontal extends HttpServlet {
         if (actionAFaire == null) actionAFaire = "";
         
         switch (actionAFaire) {
-            case "afficherGestionDocumentsVueCoordinateur":
-                action = new AfficherGestionDocumentsVueCoordonnateurAction();
+            case "afficherGestionDocuments":
+                action = new AfficherGestionDocumentsAction();
+                break;
+            case "creeDocument":
+                action = new CreerNouveauDocumentAction();
+                break;
+            case "deleteDocument":
+                action = new DeleteDocumentAction();
+                break;
+            case "downloadDocument":
+                action = new DownloadDocumentAction();
                 break;
             case "afficherGestionOffresStagesVueEmployeur":
                 action = new AfficherGestionOffresStagesVueEmployeurAction();
