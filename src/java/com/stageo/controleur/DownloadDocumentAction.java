@@ -37,6 +37,8 @@ public class DownloadDocumentAction extends AbstractAction{
         {
             DocumentDAO docuDao = new DocumentDAO();
             Document downloadDoc = docuDao.findById(request.getParameter("idDocu"));
+            downloadDoc.setNbVues(downloadDoc.getNbVues()+1);
+            docuDao.update(downloadDoc);
                 fLecture = downloadDoc.getFichier();
                 fEcriture = response.getOutputStream();
                 int n;

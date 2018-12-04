@@ -25,11 +25,7 @@ import com.stageo.controleur.CreerNouveauMessageAction;
 import com.stageo.controleur.DeconnexionAction;
 import com.stageo.controleur.DefaultAction;
 import com.stageo.controleur.DeleteOffreAction;
-<<<<<<< HEAD
 import com.stageo.controleur.DownloadDocumentAction;
-
-=======
->>>>>>> 25b31c978c5c87708e4d317db7520cff23c08ef6
 import com.stageo.controleur.EditOffreAction;
 import com.stageo.controleur.ReadStageDocuAction;
 import com.stageo.controleur.EnvoyerCandidatureAction;
@@ -40,11 +36,8 @@ import com.stageo.controleur.PostulerOffreStageAction;
 import com.stageo.controleur.RechercheParCritereAction;
 import com.stageo.controleur.RefuserCandidatureAction;
 import com.stageo.controleur.SelectionnerMessageAction;
-<<<<<<< HEAD
 import com.stageo.controleur.DeleteDocumentAction;
-=======
 import com.stageo.controleur.TelechargerCvAction;
->>>>>>> 25b31c978c5c87708e4d317db7520cff23c08ef6
 
 
 import java.io.IOException;
