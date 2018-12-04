@@ -13,6 +13,8 @@ public class AfficherGestionOffresStagesVueEmployeurAction extends AbstractActio
 
     @Override
     public String execute() {
+        if(request.getSession().getAttribute("utilisateur") == null)
+            return "inscription";
         return "gestionOffresStagesVueEmployeur";
     }
     

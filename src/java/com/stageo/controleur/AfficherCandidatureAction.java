@@ -13,6 +13,8 @@ public class AfficherCandidatureAction extends AbstractAction{
 
     @Override
     public String execute() {
+        if(request.getSession().getAttribute("utilisateur") == null)
+            return "inscription";
         return "candidatures";
     }
     

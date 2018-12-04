@@ -38,7 +38,8 @@ public class ModifierProfilAction extends AbstractAction{
 
     @Override
     public String execute() {
-
+        if(request.getSession().getAttribute("utilisateur") == null)
+            return "inscription";
         //Modifier le compte Utilisateur
         Utilisateur currentUser = (Utilisateur)request.getSession().getAttribute("utilisateur");
         UtilisateurDAO userDao = new UtilisateurDAO();
