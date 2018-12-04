@@ -70,15 +70,15 @@
                                 <div class="form-group" style="padding:1em;">
                                     <label for="nomUser">Nom : </label>
                                     <input type="text" class="form-control" id="nomUser"  value="${user.getNom()}" disabled /> 
-                                    <input type="text" class="form-control" id="nomUser2" name="nomEdit" value="${user.getNom()}" style="display:none"/>  
+                                    <input type="text" class="form-control" id="nomUser2" name="nomEdit" value="${user.getNom()}" style="display:none" required/>  
                                     <br/>
                                     <label for="prenomUser">Prénom :</label>
                                     <input type="text" class="form-control" id="prenomUser"  value="${user.getPrenom()}" disabled />
-                                    <input type="text" class="form-control" id="prenomUser2"  name="prenomEdit" value="${user.getPrenom()}" style="display:none"/>  
+                                    <input type="text" class="form-control" id="prenomUser2"  name="prenomEdit" value="${user.getPrenom()}" style="display:none" required/>  
                                     <br/>
                                     <label for="emailUser">Courriel </label>
                                     <input type="email" class="form-control" id="emailUser"  value="${user.getCourriel()}" disabled />
-                                    <input type="email" class="form-control" id="emailUser2"  name="emailEdit" value="${user.getCourriel()}" style="display:none"/>   
+                                    <input type="email" class="form-control" id="emailUser2"  name="emailEdit" value="${user.getCourriel()}" style="display:none" required/>   
                                     <br/>
                                     <label for="typeUser">Type de votre compte : </label>
                                     <input type="text" class="form-control" id="typeUser"  value="${user.getTypeUtilisateur()}" disabled />
@@ -130,7 +130,7 @@
                                             <div class="input-group" name="listeCvEdit">
                                                 <label class="input-group-btn">
                                                     <span class="btn btn-primary">
-                                                        Ajouter<input type="file" id="file" name="fichierCV" class="form-control-file" style="display: none;" accept=".doc, .docx, application/pdf" size="50">
+                                                        Ajouter<input type="file" id="file" name="fichierCV" class="form-control-file" style="display: none;" accept="application/pdf" size="50">
                                                     </span>
                                                 </label>
                                                 <input type="text" class="form-control" id="cvNom" name="cvNom">
