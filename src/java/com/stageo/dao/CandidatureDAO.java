@@ -50,7 +50,7 @@ public class CandidatureDAO extends Dao<Candidature>{
 
     public Candidature findById(String ide, String ido) {
         try{
-            String requete = "SELECT * FROM `candidature` WHERE `ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
+            String requete = "SELECT * FROM `candidature` WHERE `candidature`.`ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, ide);
@@ -94,7 +94,28 @@ public class CandidatureDAO extends Dao<Candidature>{
             return null;
         }
     }
-    
+    public List<Candidature> findByIdOffreAtt(String id) {
+        try{
+            List<Candidature> liste = new ArrayList();
+            String requete = "SELECT * FROM `candidature` WHERE `ID_OFFRE` = ? && STATUT='En attente'";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
+            
+            requeteParam.setString(1, id);
+            ResultSet rs = requeteParam.executeQuery();
+            while(rs.next()){
+                Candidature c = new Candidature();
+                c.setCandidaturePK(new CandidaturePK(rs.getString("ID_ETUDIANT"), rs.getString("ID_OFFRE")));
+                c.setDate(rs.getTimestamp("DATE"));
+                c.setStatut(rs.getString("STATUT"));
+                liste.add(c);
+            }
+            return liste;
+        }
+        catch(SQLException e){
+             Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
     public List<Candidature> findByIdOffre(String id) {
         try{
             List<Candidature> liste = new ArrayList();
@@ -166,7 +187,7 @@ public class CandidatureDAO extends Dao<Candidature>{
     @Override
     public boolean delete(Candidature o) {
         try{
-            String requete = "SELECT * FROM `candidature` WHERE `candidature`.`ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
+            String requete = "DELETE * FROM `candidature` WHERE `candidature`.`ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, o.getCandidaturePK().getIdEtudiant());
@@ -218,6 +239,21 @@ public class CandidatureDAO extends Dao<Candidature>{
             System.out.println(requeteParam);
             ResultSet rs = requeteParam.executeQuery();
             return rs.first();
+        }
+        catch(SQLException e){
+             Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return false;
+    }
+
+    public boolean deleteByIdOffre(String id) {
+        try{
+            String requete = "DELETE FROM `candidature` WHERE `candidature`.`ID_OFFRE` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
+            
+            requeteParam.setString(1, id);
+            requeteParam.executeUpdate();
+            return true;
         }
         catch(SQLException e){
              Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);

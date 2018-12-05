@@ -27,6 +27,7 @@
     </head>
     <body>
         <%@include  file="menu.jsp" %>
+        
         <div class="container-fluid candidature">
             <div class="row">
                 <div class="col-lg-6">
@@ -46,7 +47,7 @@
                         </div>
                         <div class="panel-body infoCon">
                             <table class="table table-striped tableCandidature">
-                                <c:if test="${candidatureDAO.findByIdOffre(offreStage.getIdOffre()).size()>0}">
+                                <c:if test="${candidatureDAO.findByIdOffreAtt(offreStage.getIdOffre()).size()>0}">
                                     <thead class="titreTableCandidature">
                                         <tr>
                                             <td>Nom<a href="#" class="fa fa-arrows-alt-v"></a></td>
@@ -54,17 +55,16 @@
                                         </tr>
                                     </thead>
                                     <tbody class="contenuTableCandidature">
-                                        <c:forEach var="candidature" items="${candidatureDAO.findByIdOffre(offreStage.getIdOffre())}">
+                                        <c:forEach var="candidature" items="${candidatureDAO.findByIdOffreAtt(offreStage.getIdOffre())}">
                                             <c:set var="etudiant" value="${utilisateurDAO.findById(candidature.getCandidaturePK().getIdEtudiant())}" />
-                                            
-                                            <tr onclick="info('${etudiant.getPrenom()}','${etudiant.getNom()}','<c:forEach var="critere" items="${etudiantCritereDAO.findByIdEtudiant(etudiant.getIdUtilisateur())}">${critereDAO.findById(critere.getEtudiantcriterePK().getIdCritere()).getNom()},</c:forEach>','<c:forEach var="cv" items="${cvDAO.findAllByIdEtudiant(candidature.getCandidaturePK().getIdEtudiant())}">${cv.getIdCv()},${cv.getLien()},${cv.getLangue()},</c:forEach>')" id="${candidature.getCandidaturePK().getIdEtudiant()}" class="etu">
+                                            <tr onclick="info('${etudiant.getPrenom()}','${etudiant.getNom()}','<c:forEach var="critere" items="${etudiantCritereDAO.findByIdEtudiant(etudiant.getIdUtilisateur())}">${critereDAO.findById(critere.getEtudiantcriterePK().getIdCritere()).getNom()},</c:forEach>','<c:forEach var="cv" items="${cvDAO.findAllByIdEtudiant(candidature.getCandidaturePK().getIdEtudiant())}">${cv.getIdCv()},${cv.getLien()},${cv.getLangue()},</c:forEach>','${offreStage.getIdOffre()}','${candidature.getCandidaturePK().getIdEtudiant()}')" id="${candidature.getCandidaturePK().getIdEtudiant()}" class="etu">
                                                 <td>${etudiant.getPrenom()} ${etudiant.getNom()}</td>
                                                 <td>${candidature.getDate()}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
                                 </c:if>
-                                <c:if test="${candidatureDAO.findByIdOffre(offreStage.getIdOffre()).size()<=0}">
+                                <c:if test="${candidatureDAO.findByIdOffreAtt(offreStage.getIdOffre()).size()<=0}">
                                     <thead class="titreTableCandidature">
                                         <tr>
                                             <td>Nom<a href="#" class="fa fa-arrows-alt-v"></a></td>
@@ -73,7 +73,7 @@
                                     </thead>
                                     <tbody class="contenuTableCandidature">
                                         <tr>
-                                            <td>Il n'y a pas de candidatures actuellement pour votre offre de stage!</td>
+                                            <td>Il n'y a pas de candidatures en attente actuellement pour votre offre de stage!</td>
                                             <td></td>
                                         </tr>
                                     </tbody>
@@ -86,10 +86,21 @@
                 </div>
             </div>
         </div>
+        <c:if test="${idEtu!=null}">
+            <c:set var="candidature" value="${candidatureDAO.findById(idEtu, offreStage.getIdOffre())}" />
+            <c:set var="etudiant" value="${utilisateurDAO.findById(idEtu)}" />
+        </c:if>
     </body>
 </html>
 <script>
-
+    var test = document.getElementById("${idEtu}");
+    if(test!==null){
+    test.className += " selecte";
+    var listeE = document.getElementById("listeEtu");
+                listeE.classList.remove("col-lg-12");
+                listeE.classList.add("col-lg-6");
+    this.info('${etudiant.getPrenom()}','${etudiant.getNom()}','<c:forEach var="critere" items="${etudiantCritereDAO.findByIdEtudiant(etudiant.getIdUtilisateur())}">${critereDAO.findById(critere.getEtudiantcriterePK().getIdCritere()).getNom()},</c:forEach>','<c:forEach var="cv" items="${cvDAO.findAllByIdEtudiant(candidature.getCandidaturePK().getIdEtudiant())}">${cv.getIdCv()},${cv.getLien()},${cv.getLangue()},</c:forEach>','${offreStage.getIdOffre()}','${candidature.getCandidaturePK().getIdEtudiant()}');
+    }
     var header = document.getElementById("listeEtu");
     var etu = header.getElementsByClassName("etu");
     for (var i = 0; i < etu.length; i++) {
@@ -120,7 +131,7 @@
         }
       });
     }
-    function info(prenom,nom,competence,cv) {
+    function info(prenom,nom,competence,cv,idOffre,idEtu) {
         var menuInfo = document.getElementById("infoCan");
         var listecomp = competence.split(",");
         var listecv = cv.split(",");
@@ -148,8 +159,10 @@
         text +=                     '</div>'+
                                 '</div>'+
                                 '<label class="titreop">Cv</label>'+
-                                '<form method="post" class="form-inline" action="./do">'+
-                                    '<input type="hidden" name="Action" value="telechargerCVCandidature"/>'+
+                                '<form enctype="multipart/form-data" method="post" class="form-inline" action="./do">'+
+                                    '<input type="hidden" name="action" value="telechargerCVCandidature"/>'+
+                                    '<input type="hidden" name="idOffre" value="'+idOffre+'"/>'+
+                                    '<input type="hidden" name="idEtu" value="'+idEtu+'"/>'+
                                     '<select class="form-control comptv" name="cvId">'+
                                         '<option value="choisir" id="cacher" selected disabled>Choisir un CV</option>';
                                         if(listecomp.length > 1){
@@ -162,17 +175,21 @@
                                         }
         text +=                     '</select>'+
                                     '      <input type="submit" class="btn btn-primary" value="Télécharger"/>'+
-                                '</form>'+
-                                '<br /><br />'+
+                                '</form>';
+        text +=                 '<br /><br />'+
                                 '<div class="col-lg-6">'+
                                     '<form method="post" action="./do">'+
-                                        '<input type="hidden" name="Action" value="accepterCandidature"/>'+
+                                        '<input type="hidden" name="idOffre" value="'+idOffre+'"/>'+
+                                        '<input type="hidden" name="idEtu" value="'+idEtu+'"/>'+
+                                        '<input type="hidden" name="action" value="accepterCandidature"/>'+
                                         '<input type="submit" id="acccan" class="btn btn-success" value="Accepter"/>'+
                                     '</form>'+
                                 '</div>'+
                                 '<div class="col-lg-6">'+
                                     '<form method="post" action="./do">'+
-                                        '<input type="hidden" name="Action" value="refuserCandidature"/>'+
+                                        '<input type="hidden" name="action" value="refuserCandidature"/>'+
+                                        '<input type="hidden" name="idOffre" value="'+idOffre+'"/>'+
+                                        '<input type="hidden" name="idEtu" value="'+idEtu+'"/>'+
                                         '<input type="submit" id="supcan" class="btn btn-danger" value="Refuser"/>'+
                                     '</form>'+
                                 '</div>'+

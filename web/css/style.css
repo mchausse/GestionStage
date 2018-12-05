@@ -347,6 +347,14 @@
 .compC{
     margin-left: 2%;
 }
+.rowAjoutDocu2{
+    margin-top: 1em;
+}
+#btnUploadDocu{
+    margin-top: 8%;
+    margin-right: 2%;
+    float: right;
+}
 @media screen and (max-width: 1200px) {
     .titreCandidature{
         font-size: 28px;
@@ -543,7 +551,7 @@
 }
 
 .selecte{
-    color: blue;
+    color: #b30000;
     font-weight: bold;
 }
 .comptv{
