@@ -34,6 +34,8 @@ import javax.servlet.http.Part;
 public class CreateOffreAction extends AbstractAction{
     @Override
     public String execute() {
+        if(request.getSession().getAttribute("utilisateur") == null)
+            return "inscription";
         try{
             Utilisateur currentUser = (Utilisateur)request.getSession().getAttribute("utilisateur");
             OffreStage offreTemp = new OffreStage();
@@ -71,11 +73,9 @@ public class CreateOffreAction extends AbstractAction{
             }
             //POUR DOCUMENT
             Part filePart;
-            String idDocu = UUID.randomUUID().toString();
             filePart = request.getPart("docuStage");
             InputStream fileContent = filePart.getInputStream();
             offreTemp.setLienDocument(fileContent);
-            offreDao.create(offreTemp);
             
             //Ajout de compétence
             OffreStageCritereDAO critOffreDao = new OffreStageCritereDAO();
@@ -93,7 +93,7 @@ public class CreateOffreAction extends AbstractAction{
                 }
                 if(critOffreDao.findPK(offreCrit)!=null && !verif){critOffreDao.deletePK(offreCrit);}
             }
-            
+            offreDao.create(offreTemp);
             Avertissement aver = new Avertissement("L'offre à été créé.", "succes");
             request.getSession().setAttribute("avertissement", aver);
             return "gestionOffresStagesVueEmployeur";

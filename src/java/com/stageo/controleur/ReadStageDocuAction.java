@@ -37,7 +37,7 @@ public class ReadStageDocuAction extends AbstractAction{
             
             ResultSet res = pstm.executeQuery();
             if (res.next()) {
-                fLecture = res.getBinaryStream("LIEN_DOCUMENT");
+                fLecture = res.getBinaryStream("FICHIER");
                 fEcriture = response.getOutputStream();
                 int n;
                 byte[] buffer = new byte[1024];
