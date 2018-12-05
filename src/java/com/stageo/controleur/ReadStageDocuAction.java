@@ -38,15 +38,16 @@ public class ReadStageDocuAction extends AbstractAction{
                 while ((n=fLecture.read(buffer)) > 0) {
                     fEcriture.write(buffer,0,n);
                 }
+                return "gestionOffresStagesVueEmployeur";
             }
-            else {
-               request.setAttribute("MESSAGE", "Fichier "+id+" introuvable dans la BD"); 
-            }
-        } catch (IOException ex) {
-            request.setAttribute("MESSAGE", "ERREUR : " + ex.getMessage());
+            Avertissement aver = new Avertissement("Le document n'existe pas.", "erreur");
+            request.getSession().setAttribute("avertissement", aver);
+            return "gestionOffresStagesVueEmployeur";  
+        } 
+        catch (IOException ex) {
+            Avertissement aver = new Avertissement(": " + ex, "erreur");
+            request.getSession().setAttribute("avertissement", aver);
+            return "gestionOffresStagesVueEmployeur";   
         }
-        Avertissement aver = new Avertissement("Le document n'existe pas.", "erreur");
-        request.getSession().setAttribute("avertissement", aver);
-        return "gestionOffresStagesVueEmployeur";        
     }
 }
