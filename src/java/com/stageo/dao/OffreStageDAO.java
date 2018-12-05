@@ -42,7 +42,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
             requeteParam.setInt(6, x.getDureeEnJours());
             requeteParam.setInt(7, (x.getRemunere())?1:0);
             requeteParam.setString(8, x.getLienWeb());
-            requeteParam.setBinaryStream(9, x.getLienDocument());
+            requeteParam.setString(9, "");
             requeteParam.setDate(10, new java.sql.Date(x.getDate().getTime()));
             requeteParam.setInt(11, x.getNbVues());
             requeteParam.setInt(12, (x.getActive())?1:0);
@@ -53,34 +53,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
         }
         catch(SQLException e){
              Logger.getLogger(OffreStageDAO.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return false;
-    }
-    public String createTest(OffreStage x) {
-        try{
-            String requete = "INSERT INTO `offrestage` (`ID_OFFRE`,`TITRE`,`DESCRIPTION`,`DATE_DEBUT` ,`DATE_FIN` ,`DUREE_EN_JOURS` ,`REMUNERE` ,`LIEN_WEB`, `LIEN_DOCUMENT`, `DATE`, `NB_VUES`, `ACTIVE`, `ID_EMPLOYEUR`, `FICHIER`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
-            
-            requeteParam.setString(1, x.getIdOffre());
-            requeteParam.setString(2, x.getTitre());
-            requeteParam.setString(3, x.getDescription());
-            requeteParam.setDate(4, new java.sql.Date(x.getDateDebut().getTime()));
-            requeteParam.setDate(5, new java.sql.Date(x.getDateFin().getTime()));
-            requeteParam.setInt(6, x.getDureeEnJours());
-            requeteParam.setInt(7, (x.getRemunere())?1:0);
-            requeteParam.setString(8, x.getLienWeb());
-            requeteParam.setString(9, "");
-            requeteParam.setDate(10, new java.sql.Date(x.getDate().getTime()));
-            requeteParam.setInt(11, x.getNbVues());
-            requeteParam.setInt(12, (x.getActive())?1:0);
-            requeteParam.setString(13, x.getIdEmployeur());
-            requeteParam.setBinaryStream(14, x.getLienDocument());
-            requeteParam.executeUpdate();
-            return "oui";
-        }
-        catch(SQLException e){
-             Logger.getLogger(OffreStageDAO.class.getName()).log(Level.SEVERE, null, e);
-             return ""+e;
+             return false;
         }
     }
     @Override
