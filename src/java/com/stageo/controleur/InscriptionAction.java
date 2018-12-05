@@ -28,8 +28,6 @@ public class InscriptionAction extends AbstractAction{
     
     @Override
     public String execute() {
-        if(request.getSession().getAttribute("utilisateur") == null)
-            return "inscription";
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException ex) {

@@ -109,7 +109,23 @@
     color: #e3003b;
     font-size: 1.5em;
 }
-@media screen and (max-width: 900px) {
+/* Pour que le menu se ferme plus tôt */
+@media (min-width: 768px) and (max-width: 970px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+        display:block !important;
+    }
+    .navbar-header {
+        float:none;
+    }
+}
+/* Pour reduire la grosseur du menu */
+@media screen and (max-width: 1230px) {
     .navbar{
         font-size: 18px;
     }
@@ -326,16 +342,21 @@
     margin-left: 5%;
     margin-right: 5%;
 }
-.tableCandidature{
+.etu{
+    transition: 0.5s;
 }
+.etu:hover{
+    transform: scale(1.01, 1.01);
+    cursor: pointer;
+}
+
 .titreCandidature{
         font-size: 32px;
         font-weight: bold;
 }
 .titreTableCandidature{
     font-size: 14px;
-    font-weight: bold;
-        
+    font-weight: bold; 
 }
 .contenuTableCandidature{
         font-size: 13px;
