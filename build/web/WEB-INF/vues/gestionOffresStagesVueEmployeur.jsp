@@ -316,7 +316,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 alignCenter">
                                             <!--Lien affichage -->
-                                            <a target="${item.getLienWeb()}.pdf" href="https://${item.getLienWeb()}" id="${item.getIdOffre()}SiteAff">
+                                            <a target="_blank" href="${item.getLienWeb()}" id="${item.getIdOffre()}SiteAff">
                                                 ${item.getLienWeb()}
                                             </a>
                                             <!--Lien Edit -->
