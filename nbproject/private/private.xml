@@ -3,27 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/controleur/ReadStageDocuAction.java</file>
             <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/controleur/CreateOffreAction.java</file>
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/dao/OffreStageCritereDAO.java</file>
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/controleur/DeleteOffreAction.java</file>
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/dao/OffreStageDAO.java</file>
-            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/nbproject/build-impl.xml</file>
-=======
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/TelechargerCvAction.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/listeCandidatureOffreStage.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/index.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/META-INF/context.xml</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/candidatures.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/CritereDAO.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/CandidatureDAO.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/OffreStageCritereDAO.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/DeleteOffreAction.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/CvDAO.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/web/WEB-INF/vues/profilOffreStage.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/DownloadDocumentAction.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/dao/CompagnieDAO.java</file>
->>>>>>> 1c986dfdbb68e9572afe05bb46fb1bf2658fc0b8
         </group>
     </open-files>
 </project-private>
