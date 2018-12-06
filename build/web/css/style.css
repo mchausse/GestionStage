@@ -471,6 +471,9 @@
 }
 
 /** ====== page : messagerie.jsp ====== */
+.messageBody{
+    cursor: pointer;
+}
 .dateMessage{
     float:right;
     color:grey;

@@ -6,8 +6,15 @@
         <group/>
 =======
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/src/java/com/stageo/controleur/ReadStageDocuAction.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/web/WEB-INF/vues/listeStagesVueEtudiant.jsp</file>
+            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/web/WEB-INF/vues/menu.jsp</file>
+            <file>file:/C:/Users/gabri/OneDrive/HyperMedia2/TP/GestionStage/web/WEB-INF/vues/gestionOffresStagesVueEmployeur.jsp</file>
+=======
             <file>file:/F:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/TelechargerCvAction.java</file>
             <file>file:/F:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/GestionStage/src/java/com/stageo/controleur/ReadStageDocuAction.java</file>
+>>>>>>> 97c8f3dc7e0c5d2e5f43d4c30c617e25fd47cdc8
         </group>
 >>>>>>> bc919f45ce6dc8f7476f7dd5de2b59ef67323331
     </open-files>
