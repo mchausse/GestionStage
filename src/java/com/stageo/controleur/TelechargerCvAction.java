@@ -5,6 +5,8 @@
  */
 package com.stageo.controleur;
 
+import com.stageo.beans.Cv;
+import com.stageo.dao.CvDAO;
 import com.stageo.dao.OffreStageDAO;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,17 +41,14 @@ public class TelechargerCvAction extends AbstractAction{
         OutputStream fEcriture = null;
         try
         {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection cnx = DriverManager.getConnection("jdbc:mysql://localhost/stageo?user=root&password=root&serverTimezone=EST");
-                        
-            PreparedStatement pstm = cnx.prepareStatement("SELECT * FROM cv WHERE ID_CV=?");
-            pstm.setString(1, id);
+            response.setContentType("");
+            CvDAO cvDAO = new CvDAO();
+            Cv cv = cvDAO.findById(id);
             
-            ResultSet res = pstm.executeQuery();
-            if (res.next()) {
-                fLecture = res.getBinaryStream("FICHIER");
+            if (cv != null) {
+                fLecture = cv.getFichier();
                 fEcriture = response.getOutputStream();
-                response.setContentType("");
+               
                 int n;
                 byte[] buffer = new byte[1024];
                 while ((n=fLecture.read(buffer)) > 0) {
@@ -57,20 +56,14 @@ public class TelechargerCvAction extends AbstractAction{
                 }
             }
             else {
-               request.setAttribute("message", "Fichier "+id+" introuvable dans la BD"); 
+               return "listeCandidatureOffreStage";
             }
-            cnx.close();
 
         } catch (IOException ex) {
             request.setAttribute("MESSAGE", "ERREUR : " + ex.getMessage());
-        } catch (ClassNotFoundException ex) {
-            request.setAttribute("MESSAGE", "ERREUR : " + ex.getMessage());
-            Logger.getLogger(TelechargerCvAction.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            request.setAttribute("MESSAGE", "ERREUR : " + ex.getMessage());
-            Logger.getLogger(TelechargerCvAction.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         finally {
+        } 
+        
+        finally {
             try {
                 if (fLecture != null) {
                     fLecture.close();
