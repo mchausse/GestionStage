@@ -22,7 +22,9 @@
 <c:if test="${empty sessionScope.utilisateur}">
     <c:redirect url="do?action=afficherInscription"/>
 </c:if>
-
+<c:if test="${ param.action!='afficherListeStagesVueEtudiant'}" >
+    <c:redirect url = "do?afficherListeStagesVueEtudiant"/>
+</c:if>
 <!DOCTYPE html>
 <html>
     <head>
