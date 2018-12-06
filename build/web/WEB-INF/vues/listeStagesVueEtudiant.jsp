@@ -16,6 +16,7 @@
 <jsp:useBean id="candidatureDAO" class="com.stageo.dao.CandidatureDAO" scope="page"/>
 <jsp:useBean id="servicesCritere" class="com.stageo.services.ServicesCritere" scope="page"/>
 <jsp:useBean id="servicesOffresStage" class="com.stageo.services.ServicesOffresStage" scope="page"/>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- Verifier que le user est toujours connecter -->
 <c:if test="${empty sessionScope.utilisateur}">
@@ -38,9 +39,47 @@
         <%@include  file="menu.jsp" %>
         <!-- Fin de la barre de navigation -->
 
+
         <!-- Contenu de la page -->
         <div class="container-fluid" id="contenuPage">
-            
+                    
+            <!-- Debut de la notification lors de la soumission d'une candidature -->
+            <!-- Verifier que le message ne soit pas null -->
+            <c:if test="${not empty requestScope.envoye}"> 
+            <!-- Si il ny a pas eu derreur -->
+            <c:if test="${requestScope.envoye}">
+                <div class='row'>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                Succès
+                            </div>
+                            <div class="panel-body">
+                                Votre candidature a bien ete envoyee!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
+
+            <!-- Si il y a eu une erreur -->
+            <c:if test="${not requestScope.envoye}">
+                <div class='row'>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                Erreur
+                            </div>
+                            <div class="panel-body">
+                                Une erreur est survenu lors de l'envoi de la candidature
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
+        </c:if>
             <!-- Titre de la page -->
             <div class="row">
                 <div class="col-lg-4">
@@ -59,48 +98,11 @@
             </div>
             <!-- Fin du titre de la page-->
             
-            <!-- Debut de la notification lors de la soumission d'une candidature -->
-            <!-- Verifier que le message ne soit pas null -->
-            <c:if test="${not empty requestScope.envoye}">
-                
-                <!-- Si il ny a pas eu derreur -->
-                <c:if test="${requestScope.envoye}">
-                    <div class='row'>
-                        <div class="col-lg-2"></div>
-                        <div class="col-lg-8">
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    Succès
-                                </div>
-                                <div class="panel-body">
-                                    Votre candidature a bien ete envoyee!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </c:if>
-                
-                <!-- Si il y a eu une erreur -->
-                <c:if test="${not requestScope.envoye}">
-                    <div class='row'>
-                        <div class="col-lg-2"></div>
-                        <div class="col-lg-8">
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    Erreur
-                                </div>
-                                <div class="panel-body">
-                                    Une erreur est survenu lors de l'envoi de la candidature
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </c:if>
-            </c:if>
             <!-- Fin de la notification lors de la soumission d'une candidature -->
                 
             <!-- Section de recherche par competences -->
             <div class="row">
+                
                 <div class="col-lg-4">
                     <h2>Recherche par compétences</h2>
                 </div>
@@ -139,7 +141,7 @@
             <!-- Fin de section de recherche par competances -->
 
             <!-- Section de recherche des stages -->
-            <h2>Resultats </h2>
+
             <c:set var="i" value="${0}"/>
             
             <!-- Si aucun criteres de recherche est specifier, on recherche selon les cirtere-->
@@ -149,6 +151,15 @@
             <!-- Si aucun criteres de recherche n'est specifier, on recher tous les offres-->
             <c:if test="${empty requestScope.criteresRecherche || requestScope.criteresRecherche.isEmpty()}">
                 <c:set var="listeOffres" value="${offreStageDAO.findAll()}"/>
+            </c:if>
+            <c:if test="${fn:length(listeOffres) < 1}" >
+                <h2>Il n'y a aucune offre </h2>
+            </c:if>
+            <c:if test="${fn:length(listeOffres) eq 1}" >
+                <h2>Resultat </h2>
+            </c:if>
+            <c:if test="${fn:length(listeOffres) > 1}" >
+                <h2>Resultats </h2>
             </c:if>
             
             <c:forEach var="offre" items="${listeOffres}">
@@ -209,7 +220,7 @@
 
                                             <!-- Liens vers le doc-->
                                             <div class="col-lg-9 col-md-6 col-sm-6">
-                                                <span class="glyphicon glyphicon-file"><a class="lienOffre"> ${offre.getLienDocument()}</a></span>
+                                                <span class="glyphicon glyphicon-file"><a class="lienOffre" target="_blank" href="do?action=readStageDocu&id=${offre.getIdOffre()}"> Ouvrir le document ...</a></span>
                                             </div>
                                             <!-- Rémunération-->
                                             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -226,7 +237,7 @@
 
                                             <!-- Liens vers le site-->
                                             <div class="col-lg-9 col-md-6 col-sm-6">
-                                                <span class="glyphicon glyphicon-globe"><a class="lienOffre"> ${offre.getLienWeb()}</a></span>
+                                                <span class="glyphicon glyphicon-globe"><a class="lienOffre" target="_blank" href="${offre.getLienWeb()}"> ${offre.getLienWeb()}</a></span>
                                             </div>
 
                                             <!-- Nombre de vues-->
