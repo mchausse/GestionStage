@@ -62,6 +62,7 @@ public class DownloadDocumentAction extends AbstractAction{
                 System.out.println(e.getMessage());
             }
         }
+        response.setContentType("");
         return "gestionDocuments";    
     }
 }
