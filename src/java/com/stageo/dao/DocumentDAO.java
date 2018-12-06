@@ -133,6 +133,22 @@ public class DocumentDAO extends Dao<Document>{
         }
         return false;
     }
+    public boolean updateNbVue(Document x) {
+        try{
+            String requete = "UPDATE `document` SET `NB_VUES` = ? WHERE `document`.`ID_DOCUMENT` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete);
+            
+            requeteParam.setInt(1, x.getNbVues());
+            requeteParam.setString(2, x.getIdDocument());
+            
+            requeteParam.executeUpdate();
+            return true;
+        }
+        catch(SQLException e){
+            Logger.getLogger(DocumentDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return false;
+    }
 
     @Override
     public boolean delete(Document x) {

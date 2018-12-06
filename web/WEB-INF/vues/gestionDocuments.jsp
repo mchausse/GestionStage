@@ -9,9 +9,8 @@
 <!-- DAOs : -->
 <jsp:useBean id="docuDao" class="com.stageo.dao.DocumentDAO" scope="page"></jsp:useBean>
 
-
-<c:if test="${ param.action =='creeDocument' ||  param.action =='deleteDocument'}" > <!-- eviter des bug -->
-    <c:redirect url = "do?action=afficherGestionDocuments"/>
+<c:if test="${ param.action!='afficherGestionDocuments'}" >
+    <c:redirect url = "do?afficherGestionDocuments"/>
 </c:if>
 <html>
     <head>

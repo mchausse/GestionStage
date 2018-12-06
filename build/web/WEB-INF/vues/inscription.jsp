@@ -19,7 +19,7 @@
         <link href="./css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body onLoad="cacherInfo()">
-        <c:if test="${ param.action=='inscription'}" >
+        <c:if test="${ param.action!='afficherInscription'}" >
             <c:redirect url = "do?action=afficherInscription"/>
         </c:if>
         
