@@ -73,11 +73,9 @@ public class CreateOffreAction extends AbstractAction{
             }
             //POUR DOCUMENT
             Part filePart;
-            String idDocu = UUID.randomUUID().toString();
             filePart = request.getPart("docuStage");
             InputStream fileContent = filePart.getInputStream();
             offreTemp.setLienDocument(fileContent);
-            offreDao.create(offreTemp);
             
             //Ajout de compétence
             OffreStageCritereDAO critOffreDao = new OffreStageCritereDAO();
@@ -95,7 +93,7 @@ public class CreateOffreAction extends AbstractAction{
                 }
                 if(critOffreDao.findPK(offreCrit)!=null && !verif){critOffreDao.deletePK(offreCrit);}
             }
-            
+            offreDao.create(offreTemp);
             Avertissement aver = new Avertissement("L'offre à été créé.", "succes");
             request.getSession().setAttribute("avertissement", aver);
             return "gestionOffresStagesVueEmployeur";

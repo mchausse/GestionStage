@@ -57,7 +57,6 @@
                                     <tbody class="contenuTableCandidature">
                                         <c:forEach var="candidature" items="${candidatureDAO.findByIdOffreAtt(offreStage.getIdOffre())}">
                                             <c:set var="etudiant" value="${utilisateurDAO.findById(candidature.getCandidaturePK().getIdEtudiant())}" />
-                                            
                                             <tr onclick="info('${etudiant.getPrenom()}','${etudiant.getNom()}','<c:forEach var="critere" items="${etudiantCritereDAO.findByIdEtudiant(etudiant.getIdUtilisateur())}">${critereDAO.findById(critere.getEtudiantcriterePK().getIdCritere()).getNom()},</c:forEach>','<c:forEach var="cv" items="${cvDAO.findAllByIdEtudiant(candidature.getCandidaturePK().getIdEtudiant())}">${cv.getIdCv()},${cv.getLien()},${cv.getLangue()},</c:forEach>','${offreStage.getIdOffre()}','${candidature.getCandidaturePK().getIdEtudiant()}')" id="${candidature.getCandidaturePK().getIdEtudiant()}" class="etu">
                                                 <td>${etudiant.getPrenom()} ${etudiant.getNom()}</td>
                                                 <td>${candidature.getDate()}</td>

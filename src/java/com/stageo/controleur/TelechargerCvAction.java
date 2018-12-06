@@ -25,6 +25,7 @@ public class TelechargerCvAction extends AbstractAction{
     
     @Override
     public String execute() {
+        
         if(request.getSession().getAttribute("utilisateur") == null)
             return "inscription";
         String id = request.getParameter("cvId");
@@ -48,6 +49,7 @@ public class TelechargerCvAction extends AbstractAction{
             if (res.next()) {
                 fLecture = res.getBinaryStream("FICHIER");
                 fEcriture = response.getOutputStream();
+                response.setContentType("");
                 int n;
                 byte[] buffer = new byte[1024];
                 while ((n=fLecture.read(buffer)) > 0) {
