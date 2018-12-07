@@ -309,4 +309,20 @@ public class ServicesMessages {
             return messages;
         }catch(SQLException e){return null;}
     }
+    
+    public String getIdDestinataire(String idMessage){
+        try{
+            String requete = "SELECT ID_DESTINATAIRE "
+                            + "FROM UTILISATEURMESSAGE "
+                            + "WHERE ID_MESSAGE = ?";
+            PreparedStatement requeteParam = CNX.prepareStatement(requete);
+
+            requeteParam.setString(1, idMessage);
+            ResultSet rs=requeteParam.executeQuery();
+            
+            if(rs.next())return rs.getString("ID_DESTINATAIRE");
+        }catch(SQLException e){return e+"";}
+        return "";
+    }
+    public String getIdDestinataire(Message m){return getIdDestinataire(m.getIdMessage());}
 }
