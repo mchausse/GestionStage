@@ -24,9 +24,15 @@
 <jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
 <jsp:useBean id="messageDAO" class="com.stageo.dao.MessageDAO" scope="page"/>
 
+
 <!-- Verifier que le user est toujours connecter -->
 <c:if test="${empty sessionScope.utilisateur || sessionScope.utilisateur.getIdUtilisateur() eq null}">
     <c:redirect url="do?action=afficherInscription"/>
+</c:if>
+
+<!-- pour eviter les double submits de connexion -->
+<c:if test="${ param.action eq 'connexion'}" >
+    <c:redirect url = "do?action=afficherMessagerie"/>
 </c:if>
 
 <!DOCTYPE html>
