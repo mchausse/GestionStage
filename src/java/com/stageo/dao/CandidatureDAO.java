@@ -23,9 +23,8 @@ import java.util.logging.Logger;
  * @author Max
  */
 public class CandidatureDAO extends Dao<Candidature>{
-    public CandidatureDAO(){
-        super(Connexion.getInstance());
-    }
+    
+    public CandidatureDAO(){super(Connexion.getInstance());}
     public CandidatureDAO(Connection cnx) {
         super(cnx);
     }
@@ -49,9 +48,27 @@ public class CandidatureDAO extends Dao<Candidature>{
         return  false;
     }
 
-    @Override
-    public Candidature findById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Candidature findById(String ide, String ido) {
+        try{
+            String requete = "SELECT * FROM `candidature` WHERE `candidature`.`ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
+            
+            requeteParam.setString(1, ide);
+            requeteParam.setString(2, ido);
+            ResultSet rs = requeteParam.executeQuery();
+            if(rs.next()){
+                Candidature c = new Candidature();
+                c.setCandidaturePK(new CandidaturePK(rs.getString("ID_ETUDIANT"), rs.getString("ID_OFFRE")));
+                c.setDate(rs.getTimestamp("DATE"));
+                c.setStatut(rs.getString("STATUT"));
+                return c;
+            }
+            return null;
+        }
+        catch(SQLException e){
+             Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
     }
     
     public List<Candidature> findByIdEtudiant(String id) {
@@ -77,7 +94,28 @@ public class CandidatureDAO extends Dao<Candidature>{
             return null;
         }
     }
-    
+    public List<Candidature> findByIdOffreAtt(String id) {
+        try{
+            List<Candidature> liste = new ArrayList();
+            String requete = "SELECT * FROM `candidature` WHERE `ID_OFFRE` = ? && STATUT='En attente'";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
+            
+            requeteParam.setString(1, id);
+            ResultSet rs = requeteParam.executeQuery();
+            while(rs.next()){
+                Candidature c = new Candidature();
+                c.setCandidaturePK(new CandidaturePK(rs.getString("ID_ETUDIANT"), rs.getString("ID_OFFRE")));
+                c.setDate(rs.getTimestamp("DATE"));
+                c.setStatut(rs.getString("STATUT"));
+                liste.add(c);
+            }
+            return liste;
+        }
+        catch(SQLException e){
+             Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
     public List<Candidature> findByIdOffre(String id) {
         try{
             List<Candidature> liste = new ArrayList();
@@ -149,7 +187,7 @@ public class CandidatureDAO extends Dao<Candidature>{
     @Override
     public boolean delete(Candidature o) {
         try{
-            String requete = "SELECT * FROM `candidature` WHERE `candidature`.`ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
+            String requete = "DELETE * FROM `candidature` WHERE `candidature`.`ID_ETUDIANT` = ? AND `candidature`.`ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, o.getCandidaturePK().getIdEtudiant());
@@ -185,6 +223,11 @@ public class CandidatureDAO extends Dao<Candidature>{
         }
         return null;
     }
+
+    @Override
+    public Candidature findById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public boolean exists(String idUtilisateur, String idCandidature) {
         try{
@@ -196,6 +239,21 @@ public class CandidatureDAO extends Dao<Candidature>{
             System.out.println(requeteParam);
             ResultSet rs = requeteParam.executeQuery();
             return rs.first();
+        }
+        catch(SQLException e){
+             Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return false;
+    }
+
+    public boolean deleteByIdOffre(String id) {
+        try{
+            String requete = "DELETE FROM `candidature` WHERE `candidature`.`ID_OFFRE` = ?";
+            PreparedStatement requeteParam = cnx.prepareStatement(requete); 
+            
+            requeteParam.setString(1, id);
+            requeteParam.executeUpdate();
+            return true;
         }
         catch(SQLException e){
              Logger.getLogger(CandidatureDAO.class.getName()).log(Level.SEVERE, null, e);

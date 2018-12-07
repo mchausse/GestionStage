@@ -31,7 +31,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
     @Override
     public boolean create(OffreStage x) {
         try{
-            String requete = "INSERT INTO `offrestage` (`ID_OFFRE`,`TITRE`,`DESCRIPTION`,`DATE_DEBUT` ,`DATE_FIN` ,`DUREE_EN_JOURS` ,`REMUNERE` ,`LIEN_WEB`, `LIEN_DOCUMENT`, `DATE`, `NB_VUES`, `ACTIVE`, `ID_EMPLOYEUR`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String requete = "INSERT INTO `offrestage` (`ID_OFFRE`,`TITRE`,`DESCRIPTION`,`DATE_DEBUT` ,`DATE_FIN` ,`DUREE_EN_JOURS` ,`REMUNERE` ,`LIEN_WEB`, `LIEN_DOCUMENT`, `DATE`, `NB_VUES`, `ACTIVE`, `ID_EMPLOYEUR`, `FICHIER`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement requeteParam = cnx.prepareStatement(requete); 
             
             requeteParam.setString(1, x.getIdOffre());
@@ -42,20 +42,20 @@ public class OffreStageDAO extends Dao<OffreStage> {
             requeteParam.setInt(6, x.getDureeEnJours());
             requeteParam.setInt(7, (x.getRemunere())?1:0);
             requeteParam.setString(8, x.getLienWeb());
-            requeteParam.setString(9, x.getLienDocument());
+            requeteParam.setString(9, "");
             requeteParam.setDate(10, new java.sql.Date(x.getDate().getTime()));
             requeteParam.setInt(11, x.getNbVues());
             requeteParam.setInt(12, (x.getActive())?1:0);
             requeteParam.setString(13, x.getIdEmployeur());
+            requeteParam.setBinaryStream(14, x.getLienDocument());
             requeteParam.executeUpdate();
             return true;
         }
         catch(SQLException e){
              Logger.getLogger(OffreStageDAO.class.getName()).log(Level.SEVERE, null, e);
+             return false;
         }
-        return false;
     }
-
     @Override
     public OffreStage findById(String id) {
         try{
@@ -74,7 +74,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
                 o.setRemunere(rs.getInt("REMUNERE")==1); 
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
-                o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
+                o.setLienDocument(rs.getBinaryStream("FICHIER"));
                 o.setDate(rs.getDate("DATE"));
                 o.setNbVues(rs.getInt("NB_VUES"));
                 o.setActive(rs.getInt("ACTIVE")==1);
@@ -107,7 +107,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
                 o.setRemunere(rs.getInt("REMUNERE")==1);
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
-                o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
+                o.setLienDocument(rs.getBinaryStream("FICHIER"));
                 o.setDate(rs.getDate("DATE"));
                 o.setNbVues(rs.getInt("NB_VUES"));
                 o.setActive(rs.getInt("ACTIVE")==1);
@@ -125,23 +125,27 @@ public class OffreStageDAO extends Dao<OffreStage> {
     @Override
     public boolean update(OffreStage x) {
         try{
-            String requete = "UPDATE `offrestage` SET `TITRE` = ?, `DESCRIPTION` = ?, `LIEN_WEB` = ?, `LIEN_DOCUMENT` = ?, `DATE` = ?, `NB_VUES` = ?, `ACTIVE` = ?, `ID_EMPLOYEUR` = ?"
-            + "WHERE `offrestage`.`ID_OFFRE` = ?";
+            String requete = "UPDATE `offrestage` SET `ID_OFFRE` = ?, `TITRE` = ?, "
+                    + "`DESCRIPTION` = ?, `DATE_DEBUT` = ?, `DATE_FIN` = "
+                    + "?, `DUREE_EN_JOURS` = ?, `REMUNERE` = ?, `LIEN_WEB` = ?, "
+                    + "`LIEN_DOCUMENT` = ?, `DATE` = ?, `NB_VUES` = ?, `ACTIVE` = ?, "
+                    + "`ID_EMPLOYEUR` = ? WHERE `offrestage`.`ID_OFFRE` = ?";
             PreparedStatement requeteParam = cnx.prepareStatement(requete);
             
-            requeteParam.setString(1, x.getTitre());
-            requeteParam.setString(2, x.getDescription());
+            requeteParam.setString(1, x.getIdOffre());
+            requeteParam.setString(2, x.getTitre());
+            requeteParam.setString(3, x.getDescription());
             requeteParam.setDate(4, new java.sql.Date(x.getDateDebut().getTime()));
             requeteParam.setDate(5, new java.sql.Date(x.getDateFin().getTime()));
             requeteParam.setInt(6, x.getDureeEnJours());
             requeteParam.setInt(7, (x.getRemunere())?1:0);
-            requeteParam.setString(3, x.getLienWeb());
-            requeteParam.setString(4, x.getLienDocument());
-            requeteParam.setDate(5, new java.sql.Date(x.getDate().getTime()));
-            requeteParam.setInt(6, x.getNbVues());
-            requeteParam.setInt(7, (x.getActive())?1:0);
-            requeteParam.setString(8, x.getIdEmployeur());
-            requeteParam.setString(9, x.getIdOffre());
+            requeteParam.setString(8, x.getLienWeb());
+            requeteParam.setBinaryStream(9, x.getLienDocument());
+            requeteParam.setDate(10, new java.sql.Date(x.getDate().getTime()));
+            requeteParam.setInt(11, x.getNbVues());
+            requeteParam.setInt(12, (x.getActive())?1:0);
+            requeteParam.setString(13, x.getIdEmployeur());
+            requeteParam.setString(14, x.getIdOffre());
             
             requeteParam.executeUpdate();
             return true;
@@ -202,7 +206,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
                 o.setRemunere(rs.getInt("REMUNERE")==1);
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
-                o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
+                o.setLienDocument(rs.getBinaryStream("FICHIER"));
                 o.setDate(rs.getDate("DATE"));
                 o.setNbVues(rs.getInt("NB_VUES"));
                 o.setActive(rs.getInt("ACTIVE")==1);
@@ -235,7 +239,7 @@ public class OffreStageDAO extends Dao<OffreStage> {
                 o.setDureeEnJours(rs.getInt("DUREE_EN_JOURS")); 
                 o.setRemunere(rs.getInt("REMUNERE")==1);
                 o.setLienWeb(rs.getString("LIEN_WEB"));                
-                o.setLienDocument(rs.getString("LIEN_DOCUMENT"));
+                o.setLienDocument(rs.getBinaryStream("FICHIER"));
                 o.setDate(rs.getDate("DATE"));
                 o.setNbVues(rs.getInt("NB_VUES"));
                 o.setActive(rs.getInt("ACTIVE")==1);

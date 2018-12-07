@@ -1,0 +1,1 @@
+com.stageo.controleur.DeleteDocumentAction

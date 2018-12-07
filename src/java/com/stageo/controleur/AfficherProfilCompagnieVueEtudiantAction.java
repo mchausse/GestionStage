@@ -12,6 +12,8 @@ package com.stageo.controleur;
 public class AfficherProfilCompagnieVueEtudiantAction extends AbstractAction{
     @Override
     public String execute() {
+        if(request.getSession().getAttribute("utilisateur") == null)
+            return "inscription";
         return "profilCompagnieVueEtudiant";
     }
     

@@ -228,7 +228,7 @@
                 <!-- Debut de la section de la liste de messages -->
                 <c:if test="${not empty requestScope.vuRecus}">
                     <div class="col-lg-3">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default messageBody">
                             <div class="panel-heading">
                                 <span id='btnDescCouleur' class='glyphicon glyphicon-triangle-bottom'></span>
                                 Messages reçus
@@ -315,7 +315,7 @@
                 <!-- Debut de la section de la liste des messages envoyer-->
                 <c:if test="${not empty requestScope.vuEnvoyes}">
                     <div class="col-lg-3">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default messageBody">
                             <div class="panel-heading">
                                 <span id='btnDescCouleur' class='glyphicon glyphicon-triangle-bottom'></span>
                                 Messages envoyes

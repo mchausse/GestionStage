@@ -35,7 +35,7 @@
 .sortBy:hover{
     color: #A6002B;
 }
-.divInfoEleve{
+.divInfoEleve2{
     background-color: #FAFAFA;
     border: solid 2px;
     border-color: #949494;
@@ -109,7 +109,23 @@
     color: #e3003b;
     font-size: 1.5em;
 }
-@media screen and (max-width: 900px) {
+/* Pour que le menu se ferme plus tôt */
+@media (min-width: 768px) and (max-width: 970px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+        display:block !important;
+    }
+    .navbar-header {
+        float:none;
+    }
+}
+/* Pour reduire la grosseur du menu */
+@media screen and (max-width: 1230px) {
     .navbar{
         font-size: 18px;
     }
@@ -246,6 +262,37 @@
 .label-as-badgeNus{
     border-radius: 1em;
 }
+.datePick{
+    height: 4em;
+}
+.labDate{
+    padding-top: 1.5em;
+}
+.dateAff{
+    margin-top: 1em;
+    text-align: center;
+}
+.alignCenter{
+    text-align: center;
+}
+.btnAddComp{
+    transform: scale(1.2, 1.2);
+    color: #337ab7;
+    transition: 0.5s;
+}
+.btnAddComp:hover{
+    transform: scale(1.3, 1.3);
+    color: #23527c;
+}
+.btnDelComp{
+    text-decoration: none;
+}
+/* sinon les btns était stack un sur l'autre*/
+@media screen and (max-width: 1800px) {
+    .btnModStage{
+        margin-top: 0em;
+    }
+}
 
 /** ====== page : inscription.jsp ====== */
 #contenuInscription{
@@ -295,16 +342,21 @@
     margin-left: 5%;
     margin-right: 5%;
 }
-.tableCandidature{
+.etu{
+    transition: 0.5s;
 }
+.etu:hover{
+    transform: scale(1.01, 1.01);
+    cursor: pointer;
+}
+
 .titreCandidature{
         font-size: 32px;
         font-weight: bold;
 }
 .titreTableCandidature{
     font-size: 14px;
-    font-weight: bold;
-        
+    font-weight: bold; 
 }
 .contenuTableCandidature{
         font-size: 13px;
@@ -315,6 +367,14 @@
 }
 .compC{
     margin-left: 2%;
+}
+.rowAjoutDocu2{
+    margin-top: 1em;
+}
+#btnUploadDocu{
+    margin-top: 8%;
+    margin-right: 2%;
+    float: right;
 }
 @media screen and (max-width: 1200px) {
     .titreCandidature{
@@ -357,6 +417,10 @@
     }
 }
 /** ====== page : profil.jsp ====== */
+#bodyProfil{
+    margin-top: 10em;
+    
+}
 .btnProfil{
     text-decoration: none;
     float: right; 
@@ -384,8 +448,32 @@
     transform: scale(1.1, 1.1);
 
 }
+.informationEtu{
+    padding:1em;
+}
+.informationEtu .competence alert alert-info{
+    padding: 5px 8px 5px 8px;
+}
+.informationEtu #conteneurCompetences{
+    background-color: #EEEEEE;
+}
+.informationEtu #conteneurCompetencesEdit{
+    height: 8em;
+}
+.infoEtuRow{
+    margin: 0 1em 1em 1em;
+}
+.infoEtuRowComp{
+    margin: 0 1em -10px 1em;
+}
+.informationEtu .iconList{
+    margin-left: 1em;
+}
 
 /** ====== page : messagerie.jsp ====== */
+.messageBody{
+    cursor: pointer;
+}
 .dateMessage{
     float:right;
     color:grey;
@@ -421,9 +509,11 @@
     width:15em;
     word-wrap: break-word;
 }
+/*
 .input-group{
     margin-top:1em;
 }
+*/
 .btnPostuler{
     margin:6em 0em 1em 0em;
 }
@@ -447,6 +537,34 @@
 .btnAnime:hover{
     transform: scale(1.1, 1.1);
 }
+.compoff{
+    background: #cce6ff;
+    color: #4682b4;
+    border-color: #add8e6;
+    border: solid 0.1px;
+    border-radius: 8px;
+    height: 25px;
+    padding: 6px;
+}
+.divInfoEleve2{
+    background-color: #FAFAFA;
+    border: solid 2px;
+    border-color: #949494;
+    border-radius: 10px;
+    max-width: 100%;
+    text-align: center;
+    font-size: 15px;
+    padding: 1em;
+    transition: 0.5s;
+}
+
+.titreop{
+    font-size: 16px;
+    margin-left: 3px;
+}
+.buttonop{
+    margin-bottom: 10px;
+}
 .dateStage{
     margin-top:-0.5em;
     margin-bottom:0.5em;
@@ -454,4 +572,22 @@
 .lienOffre{
     font-family: arial;
     color:black;
+}
+
+.selecte{
+    color: #b30000;
+    font-weight: bold;
+}
+.comptv{
+    background-color: #EEEEEE;
+}
+#acccan{
+    float: left;
+}
+#supcan{
+    float: right;
+}
+
+#cacher{
+    display:none;
 }

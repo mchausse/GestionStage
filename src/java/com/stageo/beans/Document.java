@@ -5,6 +5,7 @@
  */
 package com.stageo.beans;
 
+import java.io.InputStream;
 import java.util.Date;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Date;
 public class Document {
     private String idDocument;
     private String titre;
+    private InputStream fichier;
     private String lien;
     private String type;
     private int nbVues;
@@ -26,9 +28,10 @@ public class Document {
         this.idDocument = idDocument;
     }
 
-    public Document(String idDocument, String titre, String lien, String type, int nbVues, String idCoordonnateur, Date date) {
+    public Document(String idDocument, String titre, InputStream fichier,String lien, String type, int nbVues, String idCoordonnateur, Date date) {
         this.idDocument = idDocument;
         this.titre = titre;
+        this.fichier = fichier;
         this.lien = lien;
         this.type = type;
         this.nbVues = nbVues;
@@ -51,6 +54,15 @@ public class Document {
     public void setTitre(String titre) {
         this.titre = titre;
     }
+
+    public InputStream getFichier() {
+        return fichier;
+    }
+
+    public void setFichier(InputStream fichier) {
+        this.fichier = fichier;
+    }
+    
     
     public String getLien() {
         return lien;

@@ -21,9 +21,7 @@
                 <ul class="nav navbar-nav navbar-left">
                     <c:if test="${ sessionScope['connecte'] eq true }" > <!--si l'utilisateur est connecte -->
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Employeur'}">
-                            <li><a class="#" href="do?action=afficherGestionOffresStagesVueEmployeur">Mes offres de stage</a></li><!-- Gab + candidature pour offre de stage -->
-                            <!-- Gab + candidature pour offre de stage -->
-                            <li><a class="#" href="do?action=afficherListeEtudiantsVueEmployeur">Recherche etudiants</a></li><!-- Sam -->
+                            <li><a class="#" href="do?action=afficherGestionOffresStagesVueEmployeur">Mes offres</a></li><!-- Gab + candidature pour offre de stage -->
                         </c:if>
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Etudiant'}">
                             <li><a class="#" href="do?action=afficherCandidature">Mes candidatures</a></li><!--Maxime Y-->
@@ -31,12 +29,12 @@
                         </c:if>
                         <c:if test="${ sessionScope['utilisateur'].getTypeUtilisateur() eq 'Coordonnateur'}">
                             <li><a class="#" href="do?action=afficherCandidature">Candidatures</a></li> <!--Maxime Y-->
-                            <li><a class="#" href="do?action=afficherListeStagesVueEtudiant">Offres de stage</a></li><!--Maxime C-->
                             <li><a class="#" href="do?action=afficherCommunications">Communications</a></li><!--Maxime C-->
-                            <li><a class="#" href="">Documents</a></li><!--Maxime Y-->
+                            <li><a class="#" href="do?action=afficherListeStagesVueEtudiant">Offres de stage</a></li><!--Maxime C-->
                         </c:if>
-                        <li><a class="#" href="do?action=afficherMessagerie">Messagerie</a></li><!--Maxime C-->
-                        <li><a class="#" href="do?action=afficherProfil">Profil</a></li> <!-- changer le nom pour de quoi d'autre -->
+                        <li><a class="#" href="do?action=afficherGestionDocuments">Documents</a></li><!--Sam-->
+                        <li><a class="#" href="do?action=afficherMessagerie">Messagerie</a></li>
+                        <li><a class="#" href="do?action=afficherProfil">Compte</a></li> <!-- Sam -->
                         <li><a class="#" href="do?action=deconnexion">Deconnexion</a></li>
                     </c:if>
                     <c:if test="${ empty sessionScope['connecte'] || sessionScope['connecte'] eq false }" > <!-- il est deco -->
