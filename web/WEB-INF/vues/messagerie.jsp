@@ -24,9 +24,15 @@
 <jsp:useBean id="compagnieDAO" class="com.stageo.dao.CompagnieDAO" scope="page"/>
 <jsp:useBean id="messageDAO" class="com.stageo.dao.MessageDAO" scope="page"/>
 
+
 <!-- Verifier que le user est toujours connecter -->
 <c:if test="${empty sessionScope.utilisateur || sessionScope.utilisateur.getIdUtilisateur() eq null}">
     <c:redirect url="do?action=afficherInscription"/>
+</c:if>
+
+<!-- pour eviter les double submits de connexion -->
+<c:if test="${ param.action eq 'connexion'}" >
+    <c:redirect url = "do?action=afficherMessagerie"/>
 </c:if>
 
 <!DOCTYPE html>
@@ -228,7 +234,7 @@
                 <!-- Debut de la section de la liste de messages -->
                 <c:if test="${not empty requestScope.vuRecus}">
                     <div class="col-lg-3">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default messageBody">
                             <div class="panel-heading">
                                 <span id='btnDescCouleur' class='glyphicon glyphicon-triangle-bottom'></span>
                                 Messages reçus
@@ -315,7 +321,7 @@
                 <!-- Debut de la section de la liste des messages envoyer-->
                 <c:if test="${not empty requestScope.vuEnvoyes}">
                     <div class="col-lg-3">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default messageBody">
                             <div class="panel-heading">
                                 <span id='btnDescCouleur' class='glyphicon glyphicon-triangle-bottom'></span>
                                 Messages envoyes
@@ -360,7 +366,8 @@
                                                 </c:if>
 
                                                 <!-- Aller chercher et afficher le prenom et nom du contact -->
-                                                ${utilisateurDAO.findById(unMessage.getIdExpediteur()).getPrenom()}
+                                                <c:set var="destinataire" value="${utilisateurDAO.findById(servicesMessagerie.getIdDestinataire(unMessage.getIdMessage()))}"/>
+                                                À : ${destinataire.getPrenom()} ${destinataire.getNom()}
                                                 <div class="dateMessage">${unMessage.getDate()}</div>
                                             </div>
                                             <div class="panel-body">${unMessage.getTitre()}</div>
@@ -394,19 +401,39 @@
                             <div class="panel-body message">
                                 
                                 <!-- Section de l'evoyeur du message -->
-                                <div class="col-lg-12" id="messageEnvoyeur">
-                                    <label id="messageEnvoyeur"><b>Envoyeur : </b></label>
-                                    <span>
-                                        <!-- Si le user est un employeur nous affiche le nom de la compagnie-->
-                                        <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
-                                            <c:set var="employeur" value="${employeurDAO.findById(messSelec.getIdExpediteur())}"/>
-                                            <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd>
-                                        </c:if>
-                                        ${user.getPrenom()} ${user.getNom()} 
-                                    </span>
-                                    <hr>
-                                </div>
                                 
+                                <c:if test="${empty requestScope.vuEnvoyes}">
+                                    <div class="col-lg-12" id="messageEnvoyeur">
+                                        <label id="messageEnvoyeur"><b>Envoyeur : </b></label>
+                                        <span>
+                                            <!-- Si le user est un employeur nous affiche le nom de la compagnie-->
+                                            <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                                                <c:set var="employeur" value="${employeurDAO.findById(messSelec.getIdExpediteur())}"/>
+                                                <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd>
+                                            </c:if>
+                                            ${user.getPrenom()} ${user.getNom()} 
+                                        </span>
+                                        <hr>
+                                    </div>
+                                </c:if>
+                                
+                                <!-- Section du destinataire du message -->
+                                <c:if test="${not empty requestScope.vuEnvoyes}">
+                                    <c:set var="user" value="${utilisateurDAO.findById(servicesMessagerie.getIdDestinataire(messSelec.getIdMessage()))}"/>
+                                    <div class="col-lg-12" id="messageEnvoyeur">
+                                        <label id="messageEnvoyeur"><b>Destinataire : </b></label>
+                                        <span>
+                                            <!-- Si le user est un employeur nous affiche le nom de la compagnie-->
+                                            <c:if test="${user.getTypeUtilisateur() eq 'Employeur'}">
+                                                <c:set var="employeur" value="${employeurDAO.findById(servicesMessagerie.getIdDestinataire(messSelec.getIdMessage()))}"/>
+                                                <kbd>${compagnieDAO.findById(employeur.getIdCompagnie()).getNom()}</kbd>
+                                            </c:if>
+                                            ${user.getPrenom()} ${user.getNom()} 
+                                        </span>
+                                        <hr>
+                                    </div>
+                                </c:if>
+                                    
                                 <!-- Section du titre du message -->
                                 <div class="col-lg-12" id="messageTitre">
                                     <label id="messageTitre"><b>Titre : </b></label>
